@@ -4,13 +4,11 @@ import {
   LayoutDashboard, 
   Users, 
   FileText, 
-  ArrowRight, 
   Zap, 
   ShieldCheck, 
   BarChart3, 
   Smartphone, 
   Clock, 
-  AlertCircle,
   Sun,
   ChevronRight,
   Menu,
@@ -20,35 +18,76 @@ import {
   Award,
   Star
 } from 'lucide-react';
-import { motion } from 'motion/react';
+import { motion, useScroll, useSpring } from 'motion/react';
 
-const Navbar = () => {
+const Navbar = ({ scrolled }: { scrolled: boolean }) => {
   const [isOpen, setIsOpen] = React.useState(false);
+  const [showFeatures, setShowFeatures] = React.useState(false);
+
+  const { scrollYProgress } = useScroll();
+  const scrollProgress = useSpring(scrollYProgress, {
+    stiffness: 100,
+    damping: 30,
+    restDelta: 0.001
+  });
+
+  const navLinks = [
+    { name: 'O Problema', href: '#problema' },
+    { name: 'Solução', href: '#solucao' },
+    { name: 'Como Funciona', href: '#funciona' },
+    { name: 'Planos', href: '#planos' },
+  ];
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-md border-b border-slate-100">
+    <>
+      <div className="fixed top-0 left-0 right-0 h-1 bg-slate-100 z-[60]">
+        <motion.div 
+          className="h-full bg-primary origin-left"
+          style={{ scaleX: scrollProgress }}
+        />
+      </div>
+      <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+      scrolled ? 'bg-white/90 backdrop-blur-lg border-b border-slate-200 py-2 shadow-sm' : 'bg-transparent py-4'
+    }`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16 items-center">
-          <div className="flex items-center gap-2">
-            <div className="bg-primary p-1.5 rounded-lg">
+          <div className="flex items-center gap-2 group cursor-pointer" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
+            <div className="bg-primary p-1.5 rounded-xl shadow-lg shadow-primary/20 group-hover:scale-110 transition-transform">
               <Sun className="w-6 h-6 text-white" />
             </div>
-            <span className="text-xl font-display font-bold tracking-tight">HOMOLOGA <span className="text-primary">Plus</span></span>
+            <span className="text-xl font-display font-bold tracking-tight text-slate-900">
+              HOMOLOGA <span className="text-primary">Plus</span>
+            </span>
           </div>
           
-          <div className="hidden md:flex items-center gap-8">
-            <a href="#problema" className="nav-link text-sm font-medium text-slate-600 hover:text-primary transition-colors">O Problema</a>
-            <a href="#solucao" className="nav-link text-sm font-medium text-slate-600 hover:text-primary transition-colors">Solução</a>
-            <a href="#funciona" className="nav-link text-sm font-medium text-slate-600 hover:text-primary transition-colors">Como Funciona</a>
-            <a href="#planos" className="nav-link text-sm font-medium text-slate-600 hover:text-primary transition-colors">Planos</a>
-            <button className="bg-primary hover:bg-primary-dark text-white px-5 py-2 rounded-full text-sm font-semibold transition-all shadow-md shadow-primary/20 min-h-0">
-              Testar Gratuitamente
+          <div className="hidden md:flex items-center gap-1">
+            {navLinks.map((link) => (
+              <a 
+                key={link.name}
+                href={link.href} 
+                className="px-4 py-2 text-sm font-medium text-slate-600 hover:text-primary hover:bg-slate-50 rounded-lg transition-all"
+              >
+                {link.name}
+              </a>
+            ))}
+            
+            <div className="h-6 w-px bg-slate-200 mx-4"></div>
+
+            <button 
+              className="bg-primary hover:bg-primary-dark text-white px-6 py-2.5 rounded-xl text-sm font-bold transition-all shadow-lg shadow-primary/20 hover:shadow-primary/30 active:scale-95"
+            >
+              Acessar Sistema
             </button>
           </div>
 
-          <div className="md:hidden">
-            <button onClick={() => setIsOpen(!isOpen)} className="text-slate-600">
-              {isOpen ? <X /> : <Menu />}
+          <div className="md:hidden flex items-center gap-4">
+            <button 
+              className="text-xs font-bold text-primary px-3 py-1.5 bg-primary/10 rounded-lg"
+            >
+              Acessar
+            </button>
+            <button onClick={() => setIsOpen(!isOpen)} className="p-2 text-slate-600 hover:bg-slate-100 rounded-lg transition-colors">
+              {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
             </button>
           </div>
         </div>
@@ -57,20 +96,37 @@ const Navbar = () => {
       {/* Mobile menu */}
       {isOpen && (
         <motion.div 
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="md:hidden bg-white border-b border-slate-100 px-4 pt-2 pb-6 space-y-2"
+          initial={{ opacity: 0, height: 0 }}
+          animate={{ opacity: 1, height: 'auto' }}
+          exit={{ opacity: 0, height: 0 }}
+          className="md:hidden bg-white border-b border-slate-100 overflow-hidden shadow-xl"
         >
-          <a href="#problema" onClick={() => setIsOpen(false)} className="block px-3 py-2 text-base font-medium text-slate-600">O Problema</a>
-          <a href="#solucao" onClick={() => setIsOpen(false)} className="block px-3 py-2 text-base font-medium text-slate-600">Solução</a>
-          <a href="#funciona" onClick={() => setIsOpen(false)} className="block px-3 py-2 text-base font-medium text-slate-600">Como Funciona</a>
-          <a href="#planos" onClick={() => setIsOpen(false)} className="block px-3 py-2 text-base font-medium text-slate-600">Planos</a>
-          <button className="w-full mt-4 bg-primary text-white px-5 py-3 rounded-xl text-base font-semibold">
-            Testar Gratuitamente
-          </button>
+          <div className="px-4 pt-2 pb-8 space-y-1">
+            <p className="px-3 py-2 text-[10px] font-bold text-slate-400 uppercase tracking-widest">Navegação</p>
+            {navLinks.map((link) => (
+              <a 
+                key={link.name}
+                href={link.href} 
+                onClick={() => setIsOpen(false)} 
+                className="flex items-center justify-between px-3 py-3 text-base font-semibold text-slate-700 hover:bg-slate-50 rounded-xl transition-colors"
+              >
+                {link.name}
+                <ChevronRight className="w-4 h-4 text-slate-300" />
+              </a>
+            ))}
+            
+            <div className="pt-8 px-2">
+              <button 
+                className="w-full bg-primary text-white px-5 py-4 rounded-2xl text-base font-bold shadow-xl shadow-primary/20"
+              >
+                Testar Gratuitamente
+              </button>
+            </div>
+          </div>
         </motion.div>
       )}
     </nav>
+    </>
   );
 };
 
@@ -103,7 +159,9 @@ const Hero = () => {
               Organize projetos, integradores e etapas da homologação em um único sistema profissional.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
-              <button className="bg-primary hover:bg-primary-dark text-white px-8 py-4 rounded-2xl text-lg font-bold transition-all shadow-xl shadow-primary/20 flex items-center justify-center gap-2 w-full sm:w-auto">
+              <button 
+                className="bg-primary hover:bg-primary-dark text-white px-8 py-4 rounded-2xl text-lg font-bold transition-all shadow-xl shadow-primary/20 flex items-center justify-center gap-2 w-full sm:w-auto"
+              >
                 🚀 Testar gratuitamente
               </button>
             </div>
@@ -571,9 +629,13 @@ const CTA = () => {
             <p className="text-base md:text-xl text-slate-400 mb-8 md:mb-12">
               Centralize todos os projetos em um único sistema profissional.
             </p>
-            <button className="bg-primary hover:bg-primary-dark text-white px-8 md:px-10 py-4 md:py-5 rounded-2xl text-lg md:text-xl font-bold transition-all shadow-2xl shadow-primary/30 inline-flex items-center gap-3 w-full sm:w-auto justify-center">
-              🚀 Criar conta gratuita
-            </button>
+            <div className="flex justify-center">
+              <button 
+                className="bg-primary hover:bg-primary-dark text-white px-8 md:px-10 py-4 md:py-5 rounded-2xl text-lg md:text-xl font-bold transition-all shadow-2xl shadow-primary/30 inline-flex items-center gap-3 w-full sm:w-auto justify-center"
+              >
+                🚀 Criar conta gratuita
+              </button>
+            </div>
           </div>
         </div>
       </div>
@@ -598,7 +660,7 @@ const Footer = () => {
             </p>
           </div>
           
-          <div>
+          <div className="text-left">
             <h4 className="font-bold text-slate-900 mb-4 md:mb-6">Links Rápidos</h4>
             <ul className="space-y-3 md:space-y-4 text-sm text-slate-600">
               <li><a href="#problema" className="hover:text-primary">O Problema</a></li>
@@ -608,7 +670,7 @@ const Footer = () => {
             </ul>
           </div>
 
-          <div>
+          <div className="text-left">
             <h4 className="font-bold text-slate-900 mb-4 md:mb-6">Contato</h4>
             <ul className="space-y-3 md:space-y-4 text-sm text-slate-600">
               <li>contato@homologaplus.com.br</li>
@@ -631,9 +693,17 @@ const Footer = () => {
 };
 
 export default function App() {
+  const [scrolled, setScrolled] = React.useState(false);
+
+  React.useEffect(() => {
+    const handleScroll = () => setScrolled(window.scrollY > 100);
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   return (
     <div className="min-h-screen">
-      <Navbar />
+      <Navbar scrolled={scrolled} />
       <Hero />
       <BeforeAfter />
       <Flow />
@@ -643,6 +713,16 @@ export default function App() {
       <Pricing />
       <CTA />
       <Footer />
+      
+      {/* Back to Top Button */}
+      <motion.button
+        initial={{ opacity: 0, scale: 0.5 }}
+        animate={{ opacity: scrolled ? 1 : 0, scale: scrolled ? 1 : 0 }}
+        onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+        className="fixed bottom-8 right-8 z-40 bg-white text-primary p-4 rounded-2xl shadow-2xl border border-slate-100 hover:bg-primary hover:text-white transition-all group"
+      >
+        <ChevronRight className="w-6 h-6 -rotate-90 group-hover:-translate-y-1 transition-transform" />
+      </motion.button>
     </div>
   );
 }

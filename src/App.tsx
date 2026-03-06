@@ -1,0 +1,648 @@
+import React from 'react';
+import { 
+  CheckCircle2, 
+  LayoutDashboard, 
+  Users, 
+  FileText, 
+  ArrowRight, 
+  Zap, 
+  ShieldCheck, 
+  BarChart3, 
+  Smartphone, 
+  Clock, 
+  AlertCircle,
+  Sun,
+  ChevronRight,
+  Menu,
+  X,
+  DollarSign,
+  Calendar,
+  Award,
+  Star
+} from 'lucide-react';
+import { motion } from 'motion/react';
+
+const Navbar = () => {
+  const [isOpen, setIsOpen] = React.useState(false);
+
+  return (
+    <nav className="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-md border-b border-slate-100">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex justify-between h-16 items-center">
+          <div className="flex items-center gap-2">
+            <div className="bg-primary p-1.5 rounded-lg">
+              <Sun className="w-6 h-6 text-white" />
+            </div>
+            <span className="text-xl font-display font-bold tracking-tight">HOMOLOGA <span className="text-primary">Plus</span></span>
+          </div>
+          
+          <div className="hidden md:flex items-center gap-8">
+            <a href="#problema" className="nav-link text-sm font-medium text-slate-600 hover:text-primary transition-colors">O Problema</a>
+            <a href="#solucao" className="nav-link text-sm font-medium text-slate-600 hover:text-primary transition-colors">Solução</a>
+            <a href="#funciona" className="nav-link text-sm font-medium text-slate-600 hover:text-primary transition-colors">Como Funciona</a>
+            <a href="#planos" className="nav-link text-sm font-medium text-slate-600 hover:text-primary transition-colors">Planos</a>
+            <button className="bg-primary hover:bg-primary-dark text-white px-5 py-2 rounded-full text-sm font-semibold transition-all shadow-md shadow-primary/20 min-h-0">
+              Testar Gratuitamente
+            </button>
+          </div>
+
+          <div className="md:hidden">
+            <button onClick={() => setIsOpen(!isOpen)} className="text-slate-600">
+              {isOpen ? <X /> : <Menu />}
+            </button>
+          </div>
+        </div>
+      </div>
+
+      {/* Mobile menu */}
+      {isOpen && (
+        <motion.div 
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="md:hidden bg-white border-b border-slate-100 px-4 pt-2 pb-6 space-y-2"
+        >
+          <a href="#problema" onClick={() => setIsOpen(false)} className="block px-3 py-2 text-base font-medium text-slate-600">O Problema</a>
+          <a href="#solucao" onClick={() => setIsOpen(false)} className="block px-3 py-2 text-base font-medium text-slate-600">Solução</a>
+          <a href="#funciona" onClick={() => setIsOpen(false)} className="block px-3 py-2 text-base font-medium text-slate-600">Como Funciona</a>
+          <a href="#planos" onClick={() => setIsOpen(false)} className="block px-3 py-2 text-base font-medium text-slate-600">Planos</a>
+          <button className="w-full mt-4 bg-primary text-white px-5 py-3 rounded-xl text-base font-semibold">
+            Testar Gratuitamente
+          </button>
+        </motion.div>
+      )}
+    </nav>
+  );
+};
+
+const Hero = () => {
+  return (
+    <section className="relative pt-24 pb-12 md:pt-32 md:pb-20 lg:pt-48 lg:pb-32 overflow-hidden">
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full -z-10 opacity-10">
+        <div className="absolute top-0 left-1/4 w-64 h-64 md:w-96 md:h-96 bg-primary rounded-full blur-[80px] md:blur-[120px]" />
+        <div className="absolute bottom-0 right-1/4 w-64 h-64 md:w-96 md:h-96 bg-blue-400 rounded-full blur-[80px] md:blur-[120px]" />
+      </div>
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-12 items-center">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="text-center md:text-left"
+          >
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 text-primary text-[10px] md:text-xs font-bold uppercase tracking-wider mb-6">
+              <Zap className="w-3.5 h-3.5" />
+              Lançamento Oficial
+            </div>
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-5xl xl:text-6xl font-display font-extrabold text-slate-900 leading-[1.1] mb-6">
+              <span className="block md:inline lg:block">Sistema de gestão</span>
+              <span className="block md:inline lg:block whitespace-nowrap">para homologação</span>
+              <span className="block md:inline lg:block">de usinas solares</span>
+            </h1>
+            <p className="text-lg md:text-xl text-slate-600 leading-relaxed mb-8 md:mb-10 max-w-xl mx-auto md:mx-0">
+              Organize projetos, integradores e etapas da homologação em um único sistema profissional.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
+              <button className="bg-primary hover:bg-primary-dark text-white px-8 py-4 rounded-2xl text-lg font-bold transition-all shadow-xl shadow-primary/20 flex items-center justify-center gap-2 w-full sm:w-auto">
+                🚀 Testar gratuitamente
+              </button>
+            </div>
+            <div className="mt-8 md:mt-10 flex flex-col sm:flex-row items-center gap-4 text-sm text-slate-500 justify-center md:justify-start">
+              <div className="flex -space-x-2">
+                {[1, 2, 3, 4].map((i) => (
+                  <img 
+                    key={i}
+                    src={`https://picsum.photos/seed/user${i}/64/64`} 
+                    alt="User" 
+                    className="w-8 h-8 rounded-full border-2 border-white"
+                    referrerPolicy="no-referrer"
+                    loading="lazy"
+                  />
+                ))}
+              </div>
+              <span className="text-center sm:text-left">Utilizado por mais de 50 empresas de engenharia</span>
+            </div>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="relative"
+          >
+            <div className="relative bg-slate-900 rounded-3xl p-4 shadow-2xl overflow-hidden border border-slate-800">
+              <div className="flex items-center gap-2 mb-4 px-2">
+                <div className="w-3 h-3 rounded-full bg-red-500" />
+                <div className="w-3 h-3 rounded-full bg-yellow-500" />
+                <div className="w-3 h-3 rounded-full bg-green-500" />
+                <div className="ml-4 h-6 w-64 bg-slate-800 rounded-md" />
+              </div>
+              
+              <div className="grid grid-cols-3 gap-4 mb-6">
+                <div className="bg-slate-800/50 p-4 rounded-2xl border border-slate-700">
+                  <p className="text-slate-400 text-xs uppercase font-bold mb-1">Em Análise</p>
+                  <p className="text-2xl font-bold text-white">12</p>
+                </div>
+                <div className="bg-slate-800/50 p-4 rounded-2xl border border-slate-700">
+                  <p className="text-slate-400 text-xs uppercase font-bold mb-1">Enviados</p>
+                  <p className="text-2xl font-bold text-white">28</p>
+                </div>
+                <div className="bg-slate-800/50 p-4 rounded-2xl border border-slate-700">
+                  <p className="text-slate-400 text-xs uppercase font-bold mb-1">Homologados</p>
+                  <p className="text-2xl font-bold text-green-400">145</p>
+                </div>
+              </div>
+
+              <div className="space-y-3">
+                {[
+                  { name: "Usina Solar Silva", status: "Parecer de Acesso", color: "bg-blue-500" },
+                  { name: "Fazenda Sol Nascente", status: "Análise Documental", color: "bg-yellow-500" },
+                  { name: "Residencial Horizonte", status: "Homologado", color: "bg-green-500" },
+                ].map((project, idx) => (
+                  <div key={idx} className="bg-slate-800/30 p-3 rounded-xl flex items-center justify-between border border-slate-700/50">
+                    <div className="flex items-center gap-3">
+                      <div className={`w-2 h-2 rounded-full ${project.color}`} />
+                      <span className="text-sm text-slate-200 font-medium">{project.name}</span>
+                    </div>
+                    <span className="text-[10px] bg-slate-700 text-slate-300 px-2 py-1 rounded-md uppercase font-bold">{project.status}</span>
+                  </div>
+                ))}
+              </div>
+              
+              {/* Decorative elements */}
+              <div className="absolute -bottom-10 -right-10 w-40 h-40 bg-primary/20 rounded-full blur-3xl" />
+            </div>
+          </motion.div>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+const BeforeAfter = () => {
+  return (
+    <section className="py-16 md:py-24 bg-surface">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="text-center mb-12 md:mb-16">
+          <h2 className="text-2xl md:text-3xl lg:text-4xl font-display font-bold text-slate-900 mb-4 md:mb-6">
+            Como as homologações são gerenciadas hoje
+          </h2>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
+          <div className="bg-white p-6 md:p-8 rounded-3xl border border-slate-200 shadow-sm">
+            <h3 className="text-lg md:text-xl font-bold text-red-600 mb-4 md:mb-6 flex items-center gap-2">
+              <X className="w-5 h-5" /> ANTES DO HOMOLOGA Plus
+            </h3>
+            <ul className="space-y-3 md:space-y-4">
+              {[
+                "Planilhas espalhadas",
+                "Documentos no WhatsApp",
+                "Integradores cobrando status",
+                "Projetos difíceis de acompanhar"
+              ].map((item, idx) => (
+                <li key={idx} className="flex items-center gap-3 text-slate-600 text-sm md:text-base">
+                  <div className="w-1.5 h-1.5 rounded-full bg-red-400 shrink-0" />
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div className="bg-white p-6 md:p-8 rounded-3xl border border-primary/20 shadow-lg shadow-primary/5">
+            <h3 className="text-lg md:text-xl font-bold text-primary mb-4 md:mb-6 flex items-center gap-2">
+              <CheckCircle2 className="w-5 h-5" /> COM HOMOLOGA Plus
+            </h3>
+            <ul className="space-y-3 md:space-y-4">
+              {[
+                "Projetos centralizados",
+                "Área exclusiva para integradores",
+                "Status atualizado em tempo real",
+                "Fluxo de homologação organizado"
+              ].map((item, idx) => (
+                <li key={idx} className="flex items-center gap-3 text-slate-900 font-medium text-sm md:text-base">
+                  <div className="w-1.5 h-1.5 rounded-full bg-primary shrink-0" />
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+const Flow = () => {
+  return (
+    <section className="py-16 md:py-24 bg-white">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="text-center mb-12 md:mb-16">
+          <h2 className="text-2xl md:text-3xl lg:text-4xl font-display font-bold text-slate-900 mb-4 md:mb-6">
+            Fluxo organizado da homologação
+          </h2>
+        </div>
+
+        <div className="flex flex-col lg:flex-row items-center justify-center gap-6 lg:gap-0">
+          {[
+            { title: "Projeto cadastrado", icon: <FileText className="w-5 h-5" /> },
+            { title: "Análise documental", icon: <ShieldCheck className="w-5 h-5" /> },
+            { title: "Envio para concessionária", icon: <Zap className="w-5 h-5" /> },
+            { title: "Aguardando parecer", icon: <Clock className="w-5 h-5" /> },
+            { title: "Homologado", icon: <CheckCircle2 className="w-5 h-5" /> }
+          ].map((step, idx, arr) => (
+            <React.Fragment key={idx}>
+              <div className="flex flex-col items-center gap-3 group w-full lg:w-auto">
+                <div className={`w-14 h-14 md:w-16 md:h-16 rounded-2xl flex items-center justify-center transition-all ${idx === arr.length - 1 ? 'bg-success text-white' : 'bg-slate-100 text-slate-600 group-hover:bg-primary/10 group-hover:text-primary'}`}>
+                  {step.icon}
+                </div>
+                <span className="text-xs md:text-sm font-bold text-slate-700 text-center max-w-[120px]">
+                  {step.title}
+                </span>
+              </div>
+              {idx < arr.length - 1 && (
+                <div className="flex lg:flex-row flex-col items-center mx-4">
+                  <div className="w-px h-6 lg:w-16 lg:h-px bg-slate-200" />
+                  <ChevronRight className="w-4 h-4 text-slate-300 hidden lg:block" />
+                </div>
+              )}
+            </React.Fragment>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+};
+
+const Features = () => {
+  return (
+    <section className="py-16 md:py-24 bg-surface" id="solucao">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="text-center mb-12 md:mb-20">
+          <h2 className="text-2xl md:text-3xl lg:text-4xl font-display font-bold text-slate-900 mb-4 md:mb-6">Funcionalidades</h2>
+          <p className="text-slate-600 max-w-2xl mx-auto text-sm md:text-base">
+            Tudo o que você precisa para escalar sua empresa de homologação.
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+          {[
+            { icon: <LayoutDashboard />, title: "Gestão de Projetos", desc: "Controle completo das usinas em processo de homologação." },
+            { icon: <Users />, title: "Área do Integrador", desc: "Cada parceiro possui login próprio para cadastrar e acompanhar projetos." },
+            { icon: <FileText />, title: "Controle de Documentos", desc: "Centralize toda a documentação da usina." },
+            { icon: <BarChart3 />, title: "Fluxo de Homologação", desc: "Acompanhe cada etapa do processo." },
+            { icon: <DollarSign />, title: "Gestão Financeira", desc: "Controle valores recebidos e pendentes por projeto." },
+            { icon: <Smartphone />, title: "Mapa de Projetos", desc: "Visualize a localização das usinas cadastradas." },
+          ].map((feature, idx) => (
+            <div key={idx} className="p-6 md:p-8 rounded-3xl border border-slate-200 bg-white hover:shadow-xl hover:shadow-slate-200/50 transition-all group">
+              <div className="w-10 h-10 md:w-12 md:h-12 bg-primary/10 text-primary rounded-2xl flex items-center justify-center mb-4 md:mb-6 shadow-sm group-hover:scale-110 transition-transform">
+                {React.cloneElement(feature.icon as React.ReactElement, { className: "w-5 h-5 md:w-6 md:h-6" })}
+              </div>
+              <h3 className="text-lg md:text-xl font-bold text-slate-900 mb-2 md:mb-3">{feature.title}</h3>
+              <p className="text-slate-600 text-xs md:text-sm leading-relaxed">{feature.desc}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+};
+
+const WhoIsItFor = () => {
+  return (
+    <section className="py-16 md:py-24 bg-white">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="text-center mb-12 md:mb-16">
+          <h2 className="text-2xl md:text-3xl lg:text-4xl font-display font-bold text-slate-900 mb-4 md:mb-6">
+            Para quem é o HOMOLOGA Plus
+          </h2>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+          {[
+            "Empresas que prestam serviços de homologação de usinas solares",
+            "Empresas de engenharia elétrica",
+            "Integradores que terceirizam homologação de sistemas fotovoltaicos"
+          ].map((item, idx) => (
+            <div key={idx} className="bg-surface p-6 md:p-8 rounded-3xl border border-slate-100 flex items-start gap-4">
+              <div className="w-8 h-8 md:w-10 md:h-10 bg-primary text-white rounded-xl flex items-center justify-center shrink-0">
+                <CheckCircle2 className="w-4 h-4 md:w-5 md:h-5" />
+              </div>
+              <p className="text-slate-700 font-medium leading-relaxed text-sm md:text-base">{item}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+};
+
+const DashboardMockup = () => {
+  return (
+    <section className="py-16 md:py-24 bg-primary-dark text-white overflow-hidden" id="funciona">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="text-center mb-12 md:mb-16">
+          <h2 className="text-2xl md:text-3xl lg:text-4xl font-display font-bold mb-4 md:mb-6 px-4">
+            Veja o sistema funcionando na prática
+          </h2>
+        </div>
+
+        <motion.div 
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="relative max-w-5xl mx-auto px-2 md:px-0"
+        >
+          <div className="bg-slate-800 rounded-2xl p-1.5 md:p-2 shadow-2xl border border-slate-700">
+            <div className="bg-slate-900 rounded-xl overflow-hidden aspect-video relative">
+              <img 
+                src="https://picsum.photos/seed/dashboard/1200/800" 
+                alt="Dashboard Mockup" 
+                className="w-full h-full object-cover opacity-80"
+                referrerPolicy="no-referrer"
+                loading="lazy"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 to-transparent" />
+              <div className="absolute inset-0 flex items-center justify-center">
+                <div className="bg-white/10 backdrop-blur-md p-4 md:p-6 rounded-3xl border border-white/20">
+                  <LayoutDashboard className="w-10 h-10 md:w-16 md:h-16 text-white" />
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          {/* Decorative floating elements */}
+          <div className="absolute -top-6 -right-6 w-24 h-24 md:w-32 md:h-32 bg-primary rounded-full blur-3xl opacity-20" />
+          <div className="absolute -bottom-6 -left-6 w-24 h-24 md:w-32 md:h-32 bg-success rounded-full blur-3xl opacity-20" />
+        </motion.div>
+      </div>
+    </section>
+  );
+};
+
+const Pricing = () => {
+  return (
+    <section id="planos" className="py-16 md:py-24 bg-surface">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Título Principal da Seção */}
+        <div className="text-center mb-12 md:mb-16">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-display font-bold text-slate-900 mb-4 md:mb-6">
+            Planos e Preços
+          </h2>
+          <p className="text-base md:text-xl text-slate-600 max-w-2xl mx-auto">
+            Escolha o plano ideal para profissionalizar a gestão da sua empresa.
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-6 xl:gap-8 items-stretch">
+          {/* Plano Mensal */}
+          <div className="bg-white p-8 rounded-3xl border border-slate-200 shadow-sm flex flex-col hover:shadow-md transition-shadow w-full max-w-md mx-auto lg:max-w-none">
+            <div className="mb-6">
+              <div className="w-12 h-12 bg-slate-100 text-slate-600 rounded-2xl flex items-center justify-center mb-4">
+                <Calendar className="w-6 h-6" />
+              </div>
+              <h3 className="text-xl font-bold text-slate-900">Plano Mensal</h3>
+              <p className="text-primary font-medium text-sm">Ideal para começar</p>
+            </div>
+            
+            <p className="text-slate-600 text-sm mb-6">
+              Para empresas que estão estruturando seus processos ou desejam testar a plataforma.
+            </p>
+
+            <div className="mb-8">
+              <div className="flex items-baseline gap-1">
+                <span className="text-slate-500 text-lg font-medium">R$</span>
+                <span className="text-4xl font-display font-black text-slate-900">249</span>
+                <span className="text-slate-500 text-sm">/mês</span>
+              </div>
+            </div>
+
+            <ul className="space-y-4 mb-8 flex-grow">
+              {[
+                "Acesso completo à plataforma",
+                "Cadastro ilimitado de projetos",
+                "Gestão de integradores",
+                "Controle de documentos",
+                "Acompanhamento das etapas de homologação",
+                "Suporte via WhatsApp"
+              ].map((item, idx) => (
+                <li key={idx} className="flex items-start gap-3 text-sm text-slate-600">
+                  <CheckCircle2 className="w-4 h-4 text-success shrink-0 mt-0.5" />
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
+
+            <div className="mt-auto">
+              <button className="w-full py-4 rounded-2xl border border-slate-900 text-slate-900 font-bold hover:bg-slate-50 transition-colors mb-4">
+                Criar conta
+              </button>
+              <p className="text-[10px] text-slate-400 text-center italic">
+                Indicado para: profissionais autônomos e pequenas empresas que estão iniciando.
+              </p>
+            </div>
+          </div>
+
+          {/* Plano Semestral - DESTAQUE */}
+          <div className="bg-white p-8 rounded-3xl border-2 border-primary shadow-xl relative flex flex-col transform lg:scale-105 z-10 w-full max-w-md mx-auto lg:max-w-none my-4 lg:my-0">
+            <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-primary text-white text-[10px] font-bold uppercase px-4 py-1 rounded-full shadow-md flex items-center gap-1.5 tracking-wider whitespace-nowrap">
+              <Star className="w-3 h-3 fill-white" />
+              MAIS POPULAR
+            </div>
+            
+            <div className="mb-6">
+              <div className="w-12 h-12 bg-primary/10 text-primary rounded-2xl flex items-center justify-center mb-4">
+                <Zap className="w-6 h-6" />
+              </div>
+              <h3 className="text-xl font-bold text-slate-900">Plano Semestral</h3>
+              <p className="text-primary font-medium text-sm">Mais resultados pelo menor custo</p>
+            </div>
+            
+            <p className="text-slate-600 text-sm mb-6">
+              Para empresas em crescimento que possuem fluxo constante de projetos.
+            </p>
+
+            <div className="mb-8">
+              <div className="flex items-baseline gap-1">
+                <span className="text-slate-500 text-lg font-medium">R$</span>
+                <span className="text-4xl font-display font-black text-slate-900">219</span>
+                <span className="text-slate-500 text-sm">/mês</span>
+              </div>
+              <p className="text-xs text-primary font-bold mt-1">Cobrança semestral</p>
+            </div>
+
+            <ul className="space-y-4 mb-8 flex-grow">
+              {[
+                "Todos os benefícios do plano mensal",
+                "Economia em relação ao plano mensal",
+                "Onboarding assistido",
+                "Treinamento para uso da plataforma",
+                "Suporte prioritário"
+              ].map((item, idx) => (
+                <li key={idx} className="flex items-start gap-3 text-sm text-slate-900 font-medium">
+                  <CheckCircle2 className="w-4 h-4 text-primary shrink-0 mt-0.5" />
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
+
+            <div className="mt-auto">
+              <button className="w-full py-4 rounded-2xl bg-primary text-white font-bold hover:bg-primary-dark transition-all shadow-xl shadow-primary/20 mb-4">
+                Criar conta
+              </button>
+              <p className="text-[10px] text-slate-400 text-center italic">
+                Indicado para empresas com fluxo constante de projetos.
+              </p>
+            </div>
+          </div>
+
+          {/* Plano Anual */}
+          <div className="bg-white p-8 rounded-3xl border border-slate-200 shadow-sm flex flex-col hover:shadow-md transition-shadow w-full max-w-md mx-auto lg:max-w-none relative">
+            <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-amber-50 text-amber-600 border border-amber-200 text-[10px] font-bold uppercase px-4 py-1 rounded-full shadow-sm flex items-center gap-1.5 tracking-wider whitespace-nowrap">
+              <Star className="w-3 h-3 fill-amber-600" />
+              MAIS ECONÔMICO
+            </div>
+            
+            <div className="mb-6 relative">
+              <div className="w-12 h-12 bg-orange-50 text-orange-500 rounded-2xl flex items-center justify-center mb-4">
+                <Award className="w-6 h-6" />
+              </div>
+              <h3 className="text-xl font-bold text-slate-900">Plano Anual</h3>
+              <p className="text-primary font-medium text-sm">Plano profissional</p>
+            </div>
+            
+            <p className="text-slate-600 text-sm mb-6">
+              O plano mais completo e vantajoso para empresas com grande volume de homologações.
+            </p>
+
+            <div className="mb-8">
+              <div className="flex items-baseline gap-1">
+                <span className="text-slate-500 text-lg font-medium">R$</span>
+                <span className="text-4xl font-display font-black text-slate-900">189</span>
+                <span className="text-slate-500 text-sm">/mês</span>
+              </div>
+              <p className="text-xs text-orange-600 font-bold mt-1">Cobrança anual</p>
+            </div>
+
+            <ul className="space-y-4 mb-8 flex-grow">
+              {[
+                "Todos os benefícios do plano semestral",
+                "Maior economia entre os planos",
+                "Suporte premium",
+                "Atendimento prioritário",
+                "Consultoria de processos para organização da homologação"
+              ].map((item, idx) => (
+                <li key={idx} className="flex items-start gap-3 text-sm text-slate-600">
+                  <CheckCircle2 className="w-4 h-4 text-orange-500 shrink-0 mt-0.5" />
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
+
+            <div className="mt-auto">
+              <button className="w-full py-4 rounded-2xl border border-slate-900 text-slate-900 font-bold hover:bg-slate-50 transition-colors mb-4">
+                Criar conta
+              </button>
+              <p className="text-[10px] text-slate-400 text-center italic">
+                Indicado para empresas estruturadas com grande volume de projetos.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+const CTA = () => {
+  return (
+    <section className="py-16 md:py-24">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="bg-slate-900 rounded-[32px] md:rounded-[40px] p-8 md:p-12 lg:p-20 text-center relative overflow-hidden">
+          <div className="absolute top-0 left-0 w-full h-full opacity-20">
+            <div className="absolute top-0 left-1/4 w-48 h-48 md:w-64 md:h-64 bg-primary rounded-full blur-[80px] md:blur-[100px]" />
+            <div className="absolute bottom-0 right-1/4 w-48 h-48 md:w-64 md:h-64 bg-blue-600 rounded-full blur-[80px] md:blur-[100px]" />
+          </div>
+          
+          <div className="relative z-10 max-w-3xl mx-auto">
+            <h2 className="text-2xl md:text-3xl lg:text-5xl font-display font-bold text-white mb-6 md:mb-8">
+              Comece a organizar suas homologações hoje
+            </h2>
+            <p className="text-base md:text-xl text-slate-400 mb-8 md:mb-12">
+              Centralize todos os projetos em um único sistema profissional.
+            </p>
+            <button className="bg-primary hover:bg-primary-dark text-white px-8 md:px-10 py-4 md:py-5 rounded-2xl text-lg md:text-xl font-bold transition-all shadow-2xl shadow-primary/30 inline-flex items-center gap-3 w-full sm:w-auto justify-center">
+              🚀 Criar conta gratuita
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+const Footer = () => {
+  return (
+    <footer className="bg-white border-t border-slate-100 pt-16 pb-10">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-10 md:gap-12 mb-12 md:mb-16">
+          <div className="sm:col-span-2">
+            <div className="flex items-center gap-2 mb-6">
+              <div className="bg-primary p-1.5 rounded-lg">
+                <Sun className="w-6 h-6 text-white" />
+              </div>
+              <span className="text-xl font-display font-bold tracking-tight">HOMOLOGA <span className="text-primary">Plus</span></span>
+            </div>
+            <p className="text-slate-500 max-w-sm leading-relaxed text-sm">
+              Sistema de gestão de homologação de usinas fotovoltaicas. Desenvolvido para simplificar a vida de engenheiros e empresas do setor solar.
+            </p>
+          </div>
+          
+          <div>
+            <h4 className="font-bold text-slate-900 mb-4 md:mb-6">Links Rápidos</h4>
+            <ul className="space-y-3 md:space-y-4 text-sm text-slate-600">
+              <li><a href="#problema" className="hover:text-primary">O Problema</a></li>
+              <li><a href="#solucao" className="hover:text-primary">A Solução</a></li>
+              <li><a href="#funciona" className="hover:text-primary">Como Funciona</a></li>
+              <li><a href="#planos" className="hover:text-primary">Planos</a></li>
+            </ul>
+          </div>
+
+          <div>
+            <h4 className="font-bold text-slate-900 mb-4 md:mb-6">Contato</h4>
+            <ul className="space-y-3 md:space-y-4 text-sm text-slate-600">
+              <li>contato@homologaplus.com.br</li>
+              <li>Suporte via WhatsApp</li>
+              <li>São Paulo, SP</li>
+            </ul>
+          </div>
+        </div>
+        
+        <div className="pt-8 border-t border-slate-100 flex flex-col md:flex-row justify-between items-center gap-4 text-xs md:text-sm text-slate-400 text-center md:text-left">
+          <p>© 2024 HOMOLOGA Plus. Todos os direitos reservados.</p>
+          <div className="flex gap-6 md:gap-8">
+            <a href="#" className="hover:text-slate-600">Termos de Uso</a>
+            <a href="#" className="hover:text-slate-600">Privacidade</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+  );
+};
+
+export default function App() {
+  return (
+    <div className="min-h-screen">
+      <Navbar />
+      <Hero />
+      <BeforeAfter />
+      <Flow />
+      <Features />
+      <WhoIsItFor />
+      <DashboardMockup />
+      <Pricing />
+      <CTA />
+      <Footer />
+    </div>
+  );
+}

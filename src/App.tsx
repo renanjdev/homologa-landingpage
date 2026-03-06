@@ -660,9 +660,9 @@ const Footer = () => {
             </p>
           </div>
           
-          <div className="text-left">
+          <div className="flex flex-col items-start text-left">
             <h4 className="font-bold text-slate-900 mb-4 md:mb-6">Links Rápidos</h4>
-            <ul className="space-y-3 md:space-y-4 text-sm text-slate-600">
+            <ul className="flex flex-col items-start space-y-3 md:space-y-4 text-sm text-slate-600">
               <li><a href="#problema" className="hover:text-primary">O Problema</a></li>
               <li><a href="#solucao" className="hover:text-primary">A Solução</a></li>
               <li><a href="#funciona" className="hover:text-primary">Como Funciona</a></li>
@@ -670,9 +670,9 @@ const Footer = () => {
             </ul>
           </div>
 
-          <div className="text-left">
+          <div className="flex flex-col items-start text-left">
             <h4 className="font-bold text-slate-900 mb-4 md:mb-6">Contato</h4>
-            <ul className="space-y-3 md:space-y-4 text-sm text-slate-600">
+            <ul className="flex flex-col items-start space-y-3 md:space-y-4 text-sm text-slate-600">
               <li>contato@homologaplus.com.br</li>
               <li>Suporte via WhatsApp</li>
               <li>São Paulo, SP</li>

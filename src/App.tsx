@@ -1,4 +1,5 @@
 import React from 'react';
+import { SpeedInsights } from "@vercel/speed-insights/react"
 import { 
   CheckCircle2, 
   LayoutDashboard, 
@@ -751,6 +752,7 @@ export default function App() {
       <Pricing />
       <CTA />
       <Footer />
+      <SpeedInsights />
       
       {/* Back to Top Button */}
       <motion.button

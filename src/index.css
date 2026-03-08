@@ -10,6 +10,8 @@
   --color-success: #10B981;
   --color-warning: #F97316;
   --color-surface: #F3F4F6;
+
+  --breakpoint-xs: 375px;
 }
 
 @layer base {
@@ -36,9 +38,11 @@
   @apply bg-clip-text text-transparent bg-gradient-to-r from-primary to-orange-600;
 }
 
-/* Optimization for touch targets */
-button, a {
-  @apply min-h-[44px] flex items-center justify-center;
+/* Optimization for touch targets on mobile */
+@media (max-width: 768px) {
+  button, a {
+    @apply min-h-[44px];
+  }
 }
 
 .nav-link {

@@ -19,7 +19,7 @@ import {
   Award,
   Star
 } from 'lucide-react';
-import { motion, useScroll, useSpring } from 'motion/react';
+import { motion, useScroll, useSpring, AnimatePresence } from 'motion/react';
 
 const Navbar = ({ scrolled }: { scrolled: boolean }) => {
   const [isOpen, setIsOpen] = React.useState(false);
@@ -56,7 +56,7 @@ const Navbar = ({ scrolled }: { scrolled: boolean }) => {
             <div className="bg-primary p-1.5 rounded-xl shadow-lg shadow-primary/20 group-hover:scale-110 transition-transform">
               <Sun className="w-6 h-6 text-white" />
             </div>
-            <span className="text-xl font-display font-bold tracking-tight text-slate-900">
+            <span className="text-lg sm:text-xl font-display font-bold tracking-tight text-slate-900">
               HOMOLOGA <span className="text-primary">Plus</span>
             </span>
           </div>
@@ -82,53 +82,56 @@ const Navbar = ({ scrolled }: { scrolled: boolean }) => {
             </a>
           </div>
 
-          <div className="md:hidden flex items-center gap-4">
+          <div className="md:hidden flex items-center gap-2 xs:gap-4">
             <a 
               href="https://app.homologaplus.com.br/login"
-              className="text-xs font-bold text-primary px-3 py-1.5 bg-primary/10 rounded-lg"
+              className="text-[10px] xs:text-xs font-bold text-primary px-2 xs:px-3 py-1.5 bg-primary/10 rounded-lg whitespace-nowrap"
             >
               Acessar
             </a>
-            <button onClick={() => setIsOpen(!isOpen)} className="p-2 text-slate-600 hover:bg-slate-100 rounded-lg transition-colors">
-              {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+            <button onClick={() => setIsOpen(!isOpen)} className="p-1.5 xs:p-2 text-slate-600 hover:bg-slate-100 rounded-lg transition-colors">
+              {isOpen ? <X className="w-5 h-5 xs:w-6 h-6" /> : <Menu className="w-5 h-5 xs:w-6 h-6" />}
             </button>
           </div>
         </div>
       </div>
 
       {/* Mobile menu */}
-      {isOpen && (
-        <motion.div 
-          initial={{ opacity: 0, height: 0 }}
-          animate={{ opacity: 1, height: 'auto' }}
-          exit={{ opacity: 0, height: 0 }}
-          className="md:hidden bg-white border-b border-slate-100 overflow-hidden shadow-xl"
-        >
-          <div className="px-4 pt-2 pb-8 space-y-1">
-            <p className="px-3 py-2 text-[10px] font-bold text-slate-400 uppercase tracking-widest">Navegação</p>
-            {navLinks.map((link) => (
-              <a 
-                key={link.name}
-                href={link.href} 
-                onClick={() => setIsOpen(false)} 
-                className="flex items-center justify-between px-3 py-3 text-base font-semibold text-slate-700 hover:bg-slate-50 rounded-xl transition-colors"
-              >
-                {link.name}
-                <ChevronRight className="w-4 h-4 text-slate-300" />
-              </a>
-            ))}
-            
-            <div className="pt-8 px-2">
-              <a 
-                href="https://app.homologaplus.com.br/login"
-                className="w-full bg-primary text-white px-5 py-4 rounded-2xl text-base font-bold shadow-xl shadow-primary/20 block text-center"
-              >
-                Testar Gratuitamente
-              </a>
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div 
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: 'auto' }}
+            exit={{ opacity: 0, height: 0 }}
+            transition={{ duration: 0.3, ease: "easeInOut" }}
+            className="md:hidden bg-white border-b border-slate-100 overflow-hidden shadow-xl"
+          >
+            <div className="px-4 pt-2 pb-8 space-y-1">
+              <p className="px-3 py-2 text-[10px] font-bold text-slate-400 uppercase tracking-widest">Navegação</p>
+              {navLinks.map((link) => (
+                <a 
+                  key={link.name}
+                  href={link.href} 
+                  onClick={() => setIsOpen(false)} 
+                  className="flex items-center justify-between px-3 py-3 text-base font-semibold text-slate-700 hover:bg-slate-50 rounded-xl transition-colors"
+                >
+                  {link.name}
+                  <ChevronRight className="w-4 h-4 text-slate-300" />
+                </a>
+              ))}
+              
+              <div className="pt-8 px-2">
+                <a 
+                  href="https://app.homologaplus.com.br/login"
+                  className="w-full bg-primary text-white px-5 py-4 rounded-2xl text-base font-bold shadow-xl shadow-primary/20 block text-center active:scale-[0.98] transition-transform"
+                >
+                  Testar Gratuitamente
+                </a>
+              </div>
             </div>
-          </div>
-        </motion.div>
-      )}
+          </motion.div>
+        )}
+      </AnimatePresence>
     </nav>
     </>
   );
@@ -154,12 +157,12 @@ const Hero = () => {
               <Zap className="w-3.5 h-3.5" />
               Lançamento Oficial
             </div>
-            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-5xl xl:text-6xl font-display font-extrabold text-slate-900 leading-[1.1] mb-6">
+            <h1 className="text-2xl xs:text-3xl sm:text-4xl md:text-5xl lg:text-5xl xl:text-6xl font-display font-extrabold text-slate-900 leading-[1.2] xs:leading-[1.15] sm:leading-[1.1] mb-6 break-words">
               <span className="block">Sistema de gestão</span>
               <span className="block text-primary">para homologação</span>
               <span className="block">de usinas solares</span>
             </h1>
-            <p className="text-lg md:text-xl text-slate-600 leading-relaxed mb-8 md:mb-10 max-w-xl mx-auto md:mx-0">
+            <p className="text-base md:text-xl text-slate-600 leading-relaxed mb-8 md:mb-10 max-w-xl mx-auto md:mx-0 break-words">
               Organize projetos, integradores e etapas da homologação em um único sistema profissional.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
@@ -201,18 +204,18 @@ const Hero = () => {
                 <div className="ml-2 h-5 w-24 sm:w-48 bg-slate-800 rounded-md" />
               </div>
               
-              <div className="grid grid-cols-3 gap-2 sm:gap-4 mb-6">
-                <div className="bg-slate-800/50 p-2 sm:p-4 rounded-xl sm:rounded-2xl border border-slate-700">
-                  <p className="text-slate-400 text-[8px] sm:text-xs uppercase font-bold mb-1 truncate">Em Análise</p>
-                  <p className="text-lg sm:text-2xl font-bold text-white">12</p>
+            <div className="grid grid-cols-3 gap-1.5 xs:gap-2 sm:gap-4 mb-6">
+                <div className="bg-slate-800/50 p-2 xs:p-3 sm:p-4 rounded-xl sm:rounded-2xl border border-slate-700">
+                  <p className="text-slate-400 text-[6px] xs:text-[8px] sm:text-xs uppercase font-bold mb-1 truncate">Em Análise</p>
+                  <p className="text-sm xs:text-lg sm:text-2xl font-bold text-white">12</p>
                 </div>
-                <div className="bg-slate-800/50 p-2 sm:p-4 rounded-xl sm:rounded-2xl border border-slate-700">
-                  <p className="text-slate-400 text-[8px] sm:text-xs uppercase font-bold mb-1 truncate">Enviados</p>
-                  <p className="text-lg sm:text-2xl font-bold text-white">28</p>
+                <div className="bg-slate-800/50 p-2 xs:p-3 sm:p-4 rounded-xl sm:rounded-2xl border border-slate-700">
+                  <p className="text-slate-400 text-[6px] xs:text-[8px] sm:text-xs uppercase font-bold mb-1 truncate">Enviados</p>
+                  <p className="text-sm xs:text-lg sm:text-2xl font-bold text-white">28</p>
                 </div>
-                <div className="bg-slate-800/50 p-2 sm:p-4 rounded-xl sm:rounded-2xl border border-slate-700">
-                  <p className="text-slate-400 text-[8px] sm:text-xs uppercase font-bold mb-1 truncate">Homologados</p>
-                  <p className="text-lg sm:text-2xl font-bold text-green-400">145</p>
+                <div className="bg-slate-800/50 p-2 xs:p-3 sm:p-4 rounded-xl sm:rounded-2xl border border-slate-700">
+                  <p className="text-slate-400 text-[6px] xs:text-[8px] sm:text-xs uppercase font-bold mb-1 truncate">Homologados</p>
+                  <p className="text-sm xs:text-lg sm:text-2xl font-bold text-green-400">145</p>
                 </div>
               </div>
 
@@ -306,7 +309,7 @@ const Flow = () => {
           </h2>
         </div>
 
-        <div className="flex flex-col lg:flex-row items-center justify-center gap-6 lg:gap-0">
+        <div className="flex flex-col lg:flex-row items-center justify-center gap-8 lg:gap-0">
           {[
             { title: "Projeto cadastrado", icon: <FileText className="w-5 h-5" /> },
             { title: "Análise documental", icon: <ShieldCheck className="w-5 h-5" /> },
@@ -315,17 +318,17 @@ const Flow = () => {
             { title: "Homologado", icon: <CheckCircle2 className="w-5 h-5" /> }
           ].map((step, idx, arr) => (
             <React.Fragment key={idx}>
-              <div className="flex flex-col items-center gap-3 group w-full lg:w-auto">
-                <div className={`w-14 h-14 md:w-16 md:h-16 rounded-2xl flex items-center justify-center transition-all ${idx === arr.length - 1 ? 'bg-success text-white' : 'bg-slate-100 text-slate-600 group-hover:bg-primary/10 group-hover:text-primary'}`}>
+              <div className="flex flex-col items-center gap-3 group w-full lg:w-auto relative">
+                <div className={`w-16 h-16 rounded-2xl flex items-center justify-center transition-all shadow-sm ${idx === arr.length - 1 ? 'bg-success text-white' : 'bg-slate-100 text-slate-600 group-hover:bg-primary/10 group-hover:text-primary'}`}>
                   {step.icon}
                 </div>
-                <span className="text-xs md:text-sm font-bold text-slate-700 text-center max-w-[120px]">
+                <span className="text-xs md:text-sm font-bold text-slate-700 text-center max-w-[140px] px-4 lg:px-0">
                   {step.title}
                 </span>
               </div>
               {idx < arr.length - 1 && (
-                <div className="flex lg:flex-row flex-col items-center mx-4">
-                  <div className="w-px h-6 lg:w-16 lg:h-px bg-slate-200" />
+                <div className="flex lg:flex-row flex-col items-center">
+                  <div className="w-px h-8 lg:w-12 xl:w-16 lg:h-px bg-slate-200" />
                   <ChevronRight className="w-4 h-4 text-slate-300 hidden lg:block" />
                 </div>
               )}
@@ -481,9 +484,9 @@ const Pricing = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-6 xl:gap-8 items-stretch">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-6 xl:gap-8 items-stretch px-2 sm:px-0">
           {/* Plano Mensal */}
-          <div className="bg-white p-8 rounded-3xl border border-slate-200 shadow-sm flex flex-col hover:shadow-md transition-shadow w-full max-w-md mx-auto lg:max-w-none">
+          <div className="bg-white p-6 sm:p-8 rounded-3xl border border-slate-200 shadow-sm flex flex-col hover:shadow-md transition-shadow w-full max-w-md mx-auto lg:max-w-none">
             <div className="mb-6">
               <div className="w-12 h-12 bg-slate-100 text-slate-600 rounded-2xl flex items-center justify-center mb-4">
                 <Calendar className="w-6 h-6" />

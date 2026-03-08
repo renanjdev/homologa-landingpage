@@ -154,9 +154,9 @@ const Hero = () => {
               Lançamento Oficial
             </div>
             <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-5xl xl:text-6xl font-display font-extrabold text-slate-900 leading-[1.1] mb-6">
-              <span className="block md:inline lg:block">Sistema de gestão</span>
-              <span className="block md:inline lg:block whitespace-nowrap">para homologação</span>
-              <span className="block md:inline lg:block">de usinas solares</span>
+              <span className="block">Sistema de gestão</span>
+              <span className="block text-primary">para homologação</span>
+              <span className="block">de usinas solares</span>
             </h1>
             <p className="text-lg md:text-xl text-slate-600 leading-relaxed mb-8 md:mb-10 max-w-xl mx-auto md:mx-0">
               Organize projetos, integradores e etapas da homologação em um único sistema profissional.
@@ -194,39 +194,39 @@ const Hero = () => {
           >
             <div className="relative bg-slate-900 rounded-3xl p-4 shadow-2xl overflow-hidden border border-slate-800">
               <div className="flex items-center gap-2 mb-4 px-2">
-                <div className="w-3 h-3 rounded-full bg-red-500" />
-                <div className="w-3 h-3 rounded-full bg-yellow-500" />
-                <div className="w-3 h-3 rounded-full bg-green-500" />
-                <div className="ml-4 h-6 w-64 bg-slate-800 rounded-md" />
+                <div className="w-2.5 h-2.5 rounded-full bg-red-500" />
+                <div className="w-2.5 h-2.5 rounded-full bg-yellow-500" />
+                <div className="w-2.5 h-2.5 rounded-full bg-green-500" />
+                <div className="ml-2 h-5 w-24 sm:w-48 bg-slate-800 rounded-md" />
               </div>
               
-              <div className="grid grid-cols-3 gap-4 mb-6">
-                <div className="bg-slate-800/50 p-4 rounded-2xl border border-slate-700">
-                  <p className="text-slate-400 text-xs uppercase font-bold mb-1">Em Análise</p>
-                  <p className="text-2xl font-bold text-white">12</p>
+              <div className="grid grid-cols-3 gap-2 sm:gap-4 mb-6">
+                <div className="bg-slate-800/50 p-2 sm:p-4 rounded-xl sm:rounded-2xl border border-slate-700">
+                  <p className="text-slate-400 text-[8px] sm:text-xs uppercase font-bold mb-1 truncate">Em Análise</p>
+                  <p className="text-lg sm:text-2xl font-bold text-white">12</p>
                 </div>
-                <div className="bg-slate-800/50 p-4 rounded-2xl border border-slate-700">
-                  <p className="text-slate-400 text-xs uppercase font-bold mb-1">Enviados</p>
-                  <p className="text-2xl font-bold text-white">28</p>
+                <div className="bg-slate-800/50 p-2 sm:p-4 rounded-xl sm:rounded-2xl border border-slate-700">
+                  <p className="text-slate-400 text-[8px] sm:text-xs uppercase font-bold mb-1 truncate">Enviados</p>
+                  <p className="text-lg sm:text-2xl font-bold text-white">28</p>
                 </div>
-                <div className="bg-slate-800/50 p-4 rounded-2xl border border-slate-700">
-                  <p className="text-slate-400 text-xs uppercase font-bold mb-1">Homologados</p>
-                  <p className="text-2xl font-bold text-green-400">145</p>
+                <div className="bg-slate-800/50 p-2 sm:p-4 rounded-xl sm:rounded-2xl border border-slate-700">
+                  <p className="text-slate-400 text-[8px] sm:text-xs uppercase font-bold mb-1 truncate">Homologados</p>
+                  <p className="text-lg sm:text-2xl font-bold text-green-400">145</p>
                 </div>
               </div>
 
-              <div className="space-y-3">
+              <div className="space-y-2 sm:space-y-3">
                 {[
-                  { name: "Usina Solar Silva", status: "Parecer de Acesso", color: "bg-blue-500" },
-                  { name: "Fazenda Sol Nascente", status: "Análise Documental", color: "bg-yellow-500" },
-                  { name: "Residencial Horizonte", status: "Homologado", color: "bg-green-500" },
+                  { name: "Usina Solar Silva", status: "Parecer", color: "bg-blue-500" },
+                  { name: "Fazenda Sol Nascente", status: "Análise", color: "bg-yellow-500" },
+                  { name: "Residencial Horizonte", status: "OK", color: "bg-green-500" },
                 ].map((project, idx) => (
-                  <div key={idx} className="bg-slate-800/30 p-3 rounded-xl flex items-center justify-between border border-slate-700/50">
-                    <div className="flex items-center gap-3">
-                      <div className={`w-2 h-2 rounded-full ${project.color}`} />
-                      <span className="text-sm text-slate-200 font-medium">{project.name}</span>
+                  <div key={idx} className="bg-slate-800/30 p-2 sm:p-3 rounded-lg sm:rounded-xl flex items-center justify-between border border-slate-700/50 gap-2">
+                    <div className="flex items-center gap-2 sm:gap-3 min-w-0">
+                      <div className={`w-1.5 h-1.5 rounded-full shrink-0 ${project.color}`} />
+                      <span className="text-[10px] sm:text-sm text-slate-200 font-medium truncate">{project.name}</span>
                     </div>
-                    <span className="text-[10px] bg-slate-700 text-slate-300 px-2 py-1 rounded-md uppercase font-bold">{project.status}</span>
+                    <span className="text-[8px] sm:text-[10px] bg-slate-700 text-slate-300 px-1.5 py-0.5 rounded-md uppercase font-bold whitespace-nowrap shrink-0">{project.status}</span>
                   </div>
                 ))}
               </div>
@@ -413,21 +413,45 @@ const DashboardMockup = () => {
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="relative max-w-5xl mx-auto px-2 md:px-0"
+          className="relative max-w-5xl mx-auto px-4 md:px-0"
         >
-          <div className="bg-slate-800 rounded-2xl p-1.5 md:p-2 shadow-2xl border border-slate-700">
-            <div className="bg-slate-900 rounded-xl overflow-hidden aspect-video relative">
+          <div className="bg-slate-800 rounded-[2rem] p-2 md:p-4 shadow-2xl border border-slate-700 relative">
+            <div className="bg-slate-900 rounded-[1.5rem] overflow-hidden aspect-[16/10] md:aspect-video relative border border-slate-800">
               <img 
-                src="https://picsum.photos/seed/dashboard/1200/800" 
+                src="https://picsum.photos/seed/solar-dashboard/1200/800" 
                 alt="Dashboard Mockup" 
-                className="w-full h-full object-cover opacity-80"
+                className="w-full h-full object-cover opacity-60"
                 referrerPolicy="no-referrer"
                 loading="lazy"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 to-transparent" />
-              <div className="absolute inset-0 flex items-center justify-center">
-                <div className="bg-white/10 backdrop-blur-md p-4 md:p-6 rounded-3xl border border-white/20">
-                  <LayoutDashboard className="w-10 h-10 md:w-16 md:h-16 text-white" />
+              <div className="absolute inset-0 bg-gradient-to-tr from-slate-900 via-slate-900/40 to-transparent" />
+              
+              {/* Simulated UI Elements */}
+              <div className="absolute top-4 left-4 right-4 md:top-8 md:left-8 md:right-8 flex flex-col gap-4">
+                <div className="flex justify-between items-start">
+                  <div className="space-y-1">
+                    <div className="h-2 w-20 bg-primary/40 rounded-full" />
+                    <div className="h-4 w-32 bg-white/20 rounded-full" />
+                  </div>
+                  <div className="flex gap-2">
+                    <div className="w-8 h-8 rounded-lg bg-white/10" />
+                    <div className="w-8 h-8 rounded-lg bg-white/10" />
+                  </div>
+                </div>
+                
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-2 md:gap-4">
+                  {[1, 2, 3, 4].map(i => (
+                    <div key={i} className="bg-white/5 backdrop-blur-sm p-3 rounded-xl border border-white/10">
+                      <div className="h-1.5 w-10 bg-white/20 rounded-full mb-2" />
+                      <div className="h-3 w-16 bg-white/40 rounded-full" />
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+                <div className="bg-primary/20 backdrop-blur-xl p-6 md:p-10 rounded-full border border-primary/30 shadow-2xl animate-pulse">
+                  <LayoutDashboard className="w-12 h-12 md:w-20 md:h-20 text-white" />
                 </div>
               </div>
             </div>

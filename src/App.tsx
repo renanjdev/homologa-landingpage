@@ -73,19 +73,21 @@ const Navbar = ({ scrolled }: { scrolled: boolean }) => {
             
             <div className="h-6 w-px bg-slate-200 mx-4"></div>
 
-            <button 
+            <a 
+              href="https://app.homologaplus.com.br/login"
               className="bg-primary hover:bg-primary-dark text-white px-6 py-2.5 rounded-xl text-sm font-bold transition-all shadow-lg shadow-primary/20 hover:shadow-primary/30 active:scale-95"
             >
               Acessar Sistema
-            </button>
+            </a>
           </div>
 
           <div className="md:hidden flex items-center gap-4">
-            <button 
+            <a 
+              href="https://app.homologaplus.com.br/login"
               className="text-xs font-bold text-primary px-3 py-1.5 bg-primary/10 rounded-lg"
             >
               Acessar
-            </button>
+            </a>
             <button onClick={() => setIsOpen(!isOpen)} className="p-2 text-slate-600 hover:bg-slate-100 rounded-lg transition-colors">
               {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
             </button>
@@ -116,11 +118,12 @@ const Navbar = ({ scrolled }: { scrolled: boolean }) => {
             ))}
             
             <div className="pt-8 px-2">
-              <button 
-                className="w-full bg-primary text-white px-5 py-4 rounded-2xl text-base font-bold shadow-xl shadow-primary/20"
+              <a 
+                href="https://app.homologaplus.com.br/login"
+                className="w-full bg-primary text-white px-5 py-4 rounded-2xl text-base font-bold shadow-xl shadow-primary/20 block text-center"
               >
                 Testar Gratuitamente
-              </button>
+              </a>
             </div>
           </div>
         </motion.div>
@@ -159,11 +162,12 @@ const Hero = () => {
               Organize projetos, integradores e etapas da homologação em um único sistema profissional.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
-              <button 
+              <a 
+                href="https://app.homologaplus.com.br/login"
                 className="bg-primary hover:bg-primary-dark text-white px-8 py-4 rounded-2xl text-lg font-bold transition-all shadow-xl shadow-primary/20 flex items-center justify-center gap-2 w-full sm:w-auto"
               >
                 🚀 Testar gratuitamente
-              </button>
+              </a>
             </div>
             <div className="mt-8 md:mt-10 flex flex-col sm:flex-row items-center gap-4 text-sm text-slate-500 justify-center md:justify-start">
               <div className="flex -space-x-2">
@@ -492,9 +496,12 @@ const Pricing = () => {
             </ul>
 
             <div className="mt-auto">
-              <button className="w-full py-4 rounded-2xl border border-slate-900 text-slate-900 font-bold hover:bg-slate-50 transition-colors mb-4">
+              <a 
+                href="https://app.homologaplus.com.br/login"
+                className="w-full py-4 rounded-2xl border border-slate-900 text-slate-900 font-bold hover:bg-slate-50 transition-colors mb-4 block text-center"
+              >
                 Criar conta
-              </button>
+              </a>
               <p className="text-[10px] text-slate-400 text-center italic">
                 Indicado para: profissionais autônomos e pequenas empresas que estão iniciando.
               </p>
@@ -545,9 +552,12 @@ const Pricing = () => {
             </ul>
 
             <div className="mt-auto">
-              <button className="w-full py-4 rounded-2xl bg-primary text-white font-bold hover:bg-primary-dark transition-all shadow-xl shadow-primary/20 mb-4">
+              <a 
+                href="https://app.homologaplus.com.br/login"
+                className="w-full py-4 rounded-2xl bg-primary text-white font-bold hover:bg-primary-dark transition-all shadow-xl shadow-primary/20 mb-4 block text-center"
+              >
                 Criar conta
-              </button>
+              </a>
               <p className="text-[10px] text-slate-400 text-center italic">
                 Indicado para empresas com fluxo constante de projetos.
               </p>
@@ -598,9 +608,12 @@ const Pricing = () => {
             </ul>
 
             <div className="mt-auto">
-              <button className="w-full py-4 rounded-2xl border border-slate-900 text-slate-900 font-bold hover:bg-slate-50 transition-colors mb-4">
+              <a 
+                href="https://app.homologaplus.com.br/login"
+                className="w-full py-4 rounded-2xl border border-slate-900 text-slate-900 font-bold hover:bg-slate-50 transition-colors mb-4 block text-center"
+              >
                 Criar conta
-              </button>
+              </a>
               <p className="text-[10px] text-slate-400 text-center italic">
                 Indicado para empresas estruturadas com grande volume de projetos.
               </p>
@@ -630,11 +643,12 @@ const CTA = () => {
               Centralize todos os projetos em um único sistema profissional.
             </p>
             <div className="flex justify-center">
-              <button 
+              <a 
+                href="https://app.homologaplus.com.br/login"
                 className="bg-primary hover:bg-primary-dark text-white px-8 md:px-10 py-4 md:py-5 rounded-2xl text-lg md:text-xl font-bold transition-all shadow-2xl shadow-primary/30 inline-flex items-center gap-3 w-full sm:w-auto justify-center"
               >
                 🚀 Criar conta gratuita
-              </button>
+              </a>
             </div>
           </div>
         </div>

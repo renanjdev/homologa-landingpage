@@ -856,7 +856,7 @@ const Footer = () => {
         </div>
         
         <div className="pt-8 border-t border-slate-100 flex flex-col md:flex-row justify-between items-center gap-4 text-xs md:text-sm text-slate-400 text-center md:text-left">
-          <p>© 2024 HOMOLOGA Plus. Todos os direitos reservados.</p>
+          <p>© 2026 HOMOLOGA Plus. Todos os direitos reservados.</p>
           <div className="flex gap-6 md:gap-8">
             <a href="#" className="hover:text-slate-600">Termos de Uso</a>
             <a href="#" className="hover:text-slate-600">Privacidade</a>

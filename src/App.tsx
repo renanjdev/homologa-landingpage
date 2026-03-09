@@ -35,7 +35,6 @@ const Navbar = ({ scrolled }: { scrolled: boolean }) => {
   const navLinks = [
     { name: 'O Problema', href: '#problema' },
     { name: 'Solução', href: '#solucao' },
-    { name: 'Como Funciona', href: '#funciona' },
     { name: 'Planos', href: '#planos' },
   ];
 
@@ -191,53 +190,27 @@ const Hero = () => {
           </motion.div>
 
           <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="relative"
+            className="relative flex justify-center md:justify-end"
           >
-            <div className="relative bg-slate-900 rounded-3xl p-4 shadow-2xl overflow-hidden border border-slate-800">
-              <div className="flex items-center gap-2 mb-4 px-2">
-                <div className="w-2.5 h-2.5 rounded-full bg-red-500" />
-                <div className="w-2.5 h-2.5 rounded-full bg-yellow-500" />
-                <div className="w-2.5 h-2.5 rounded-full bg-green-500" />
-                <div className="ml-2 h-5 w-24 sm:w-48 bg-slate-800 rounded-md" />
-              </div>
-              
-            <div className="grid grid-cols-3 gap-1.5 xs:gap-2 sm:gap-4 mb-6">
-                <div className="bg-slate-800/50 p-2 xs:p-3 sm:p-4 rounded-xl sm:rounded-2xl border border-slate-700">
-                  <p className="text-slate-400 text-[6px] xs:text-[8px] sm:text-xs uppercase font-bold mb-1 truncate">Em Análise</p>
-                  <p className="text-sm xs:text-lg sm:text-2xl font-bold text-white">12</p>
-                </div>
-                <div className="bg-slate-800/50 p-2 xs:p-3 sm:p-4 rounded-xl sm:rounded-2xl border border-slate-700">
-                  <p className="text-slate-400 text-[6px] xs:text-[8px] sm:text-xs uppercase font-bold mb-1 truncate">Enviados</p>
-                  <p className="text-sm xs:text-lg sm:text-2xl font-bold text-white">28</p>
-                </div>
-                <div className="bg-slate-800/50 p-2 xs:p-3 sm:p-4 rounded-xl sm:rounded-2xl border border-slate-700">
-                  <p className="text-slate-400 text-[6px] xs:text-[8px] sm:text-xs uppercase font-bold mb-1 truncate">Homologados</p>
-                  <p className="text-sm xs:text-lg sm:text-2xl font-bold text-green-400">145</p>
-                </div>
-              </div>
-
-              <div className="space-y-2 sm:space-y-3">
-                {[
-                  { name: "Usina Solar Silva", status: "Parecer", color: "bg-blue-500" },
-                  { name: "Fazenda Sol Nascente", status: "Análise", color: "bg-yellow-500" },
-                  { name: "Residencial Horizonte", status: "OK", color: "bg-green-500" },
-                ].map((project, idx) => (
-                  <div key={idx} className="bg-slate-800/30 p-2 sm:p-3 rounded-lg sm:rounded-xl flex items-center justify-between border border-slate-700/50 gap-2">
-                    <div className="flex items-center gap-2 sm:gap-3 min-w-0">
-                      <div className={`w-1.5 h-1.5 rounded-full shrink-0 ${project.color}`} />
-                      <span className="text-[10px] sm:text-sm text-slate-200 font-medium truncate">{project.name}</span>
-                    </div>
-                    <span className="text-[8px] sm:text-[10px] bg-slate-700 text-slate-300 px-1.5 py-0.5 rounded-md uppercase font-bold whitespace-nowrap shrink-0">{project.status}</span>
-                  </div>
-                ))}
-              </div>
+            <motion.div 
+              animate={{ y: [0, -12, 0] }}
+              transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
+              className="relative w-full max-w-[280px] sm:max-w-[340px] lg:max-w-[380px]"
+            >
+              <img 
+                src="https://i.imgur.com/X8O9as5.png" 
+                alt="Dashboard Homologa Plus" 
+                className="w-full h-auto drop-shadow-[0_25px_50px_rgba(0,0,0,0.15)]"
+                referrerPolicy="no-referrer"
+              />
               
               {/* Decorative elements */}
-              <div className="absolute -bottom-10 -right-10 w-40 h-40 bg-primary/20 rounded-full blur-3xl" />
-            </div>
+              <div className="absolute -bottom-6 -right-6 w-32 h-32 bg-primary/15 rounded-full blur-3xl -z-10" />
+              <div className="absolute -top-6 -left-6 w-24 h-24 bg-blue-400/15 rounded-full blur-3xl -z-10" />
+            </motion.div>
           </motion.div>
         </div>
       </div>
@@ -398,73 +371,6 @@ const WhoIsItFor = () => {
             </div>
           ))}
         </div>
-      </div>
-    </section>
-  );
-};
-
-const DashboardMockup = () => {
-  return (
-    <section className="py-16 md:py-24 bg-primary-dark text-white overflow-hidden" id="funciona">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-12 md:mb-16">
-          <h2 className="text-2xl md:text-3xl lg:text-4xl font-display font-bold mb-4 md:mb-6 px-4">
-            Veja o sistema funcionando na prática
-          </h2>
-        </div>
-
-        <motion.div 
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="relative max-w-5xl mx-auto px-4 md:px-0"
-        >
-          <div className="bg-slate-800 rounded-[2rem] p-2 md:p-4 shadow-2xl border border-slate-700 relative">
-            <div className="bg-slate-900 rounded-[1.5rem] overflow-hidden aspect-[16/10] md:aspect-video relative border border-slate-800">
-              <img 
-                src="https://picsum.photos/seed/solar-dashboard/1200/800" 
-                alt="Dashboard Mockup" 
-                className="w-full h-full object-cover opacity-60"
-                referrerPolicy="no-referrer"
-                loading="lazy"
-              />
-              <div className="absolute inset-0 bg-gradient-to-tr from-slate-900 via-slate-900/40 to-transparent" />
-              
-              {/* Simulated UI Elements */}
-              <div className="absolute top-4 left-4 right-4 md:top-8 md:left-8 md:right-8 flex flex-col gap-4">
-                <div className="flex justify-between items-start">
-                  <div className="space-y-1">
-                    <div className="h-2 w-20 bg-primary/40 rounded-full" />
-                    <div className="h-4 w-32 bg-white/20 rounded-full" />
-                  </div>
-                  <div className="flex gap-2">
-                    <div className="w-8 h-8 rounded-lg bg-white/10" />
-                    <div className="w-8 h-8 rounded-lg bg-white/10" />
-                  </div>
-                </div>
-                
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-2 md:gap-4">
-                  {[1, 2, 3, 4].map(i => (
-                    <div key={i} className="bg-white/5 backdrop-blur-sm p-3 rounded-xl border border-white/10">
-                      <div className="h-1.5 w-10 bg-white/20 rounded-full mb-2" />
-                      <div className="h-3 w-16 bg-white/40 rounded-full" />
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-                <div className="bg-primary/20 backdrop-blur-xl p-6 md:p-10 rounded-full border border-primary/30 shadow-2xl animate-pulse">
-                  <LayoutDashboard className="w-12 h-12 md:w-20 md:h-20 text-white" />
-                </div>
-              </div>
-            </div>
-          </div>
-          
-          {/* Decorative floating elements */}
-          <div className="absolute -top-6 -right-6 w-24 h-24 md:w-32 md:h-32 bg-primary rounded-full blur-3xl opacity-20" />
-          <div className="absolute -bottom-6 -left-6 w-24 h-24 md:w-32 md:h-32 bg-success rounded-full blur-3xl opacity-20" />
-        </motion.div>
       </div>
     </section>
   );
@@ -707,7 +613,6 @@ const Footer = () => {
             <ul className="flex flex-col items-start space-y-3 md:space-y-4 text-sm text-slate-600">
               <li><a href="#problema" className="hover:text-primary">O Problema</a></li>
               <li><a href="#solucao" className="hover:text-primary">A Solução</a></li>
-              <li><a href="#funciona" className="hover:text-primary">Como Funciona</a></li>
               <li><a href="#planos" className="hover:text-primary">Planos</a></li>
             </ul>
           </div>
@@ -751,7 +656,6 @@ export default function App() {
       <Flow />
       <Features />
       <WhoIsItFor />
-      <DashboardMockup />
       <Pricing />
       <CTA />
       <Footer />

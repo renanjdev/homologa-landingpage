@@ -1,5 +1,6 @@
 import React from 'react';
 import { SpeedInsights } from "@vercel/speed-insights/react"
+import { BrowserRouter, Routes, Route, Link, useLocation } from 'react-router-dom';
 import { 
   CheckCircle2, 
   LayoutDashboard, 
@@ -22,6 +23,16 @@ import {
   Gauge
 } from 'lucide-react';
 import { motion, useScroll, useSpring, AnimatePresence } from 'motion/react';
+import TermsOfUse from './pages/TermsOfUse';
+import PrivacyPolicy from './pages/PrivacyPolicy';
+
+const ScrollToTop = () => {
+  const { pathname } = useLocation();
+  React.useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+  return null;
+};
 
 const Navbar = ({ scrolled }: { scrolled: boolean }) => {
   const [isOpen, setIsOpen] = React.useState(false);
@@ -53,14 +64,14 @@ const Navbar = ({ scrolled }: { scrolled: boolean }) => {
     }`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16 items-center">
-          <div className="flex items-center gap-2 group cursor-pointer" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
+          <Link to="/" className="flex items-center gap-2 group cursor-pointer" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
             <div className="bg-primary p-1.5 rounded-xl shadow-lg shadow-primary/20 group-hover:scale-110 transition-transform">
               <Sun className="w-6 h-6 text-white" />
             </div>
             <span className="text-lg sm:text-xl font-display font-bold tracking-tight text-slate-900">
               HOMOLOGA <span className="text-primary">Plus</span>
             </span>
-          </div>
+          </Link>
           
           <div className="hidden md:flex items-center gap-1">
             {navLinks.map((link) => (
@@ -825,12 +836,12 @@ const Footer = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-10 md:gap-12 mb-12 md:mb-16">
           <div className="sm:col-span-2">
-            <div className="flex items-center gap-2 mb-6">
+            <Link to="/" className="flex items-center gap-2 mb-6" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
               <div className="bg-primary p-1.5 rounded-lg">
                 <Sun className="w-6 h-6 text-white" />
               </div>
               <span className="text-xl font-display font-bold tracking-tight">HOMOLOGA <span className="text-primary">Plus</span></span>
-            </div>
+            </Link>
             <p className="text-slate-500 max-w-sm leading-relaxed text-sm">
               Sistema de gestão de homologação de usinas fotovoltaicas. Desenvolvido para simplificar a vida de engenheiros e empresas do setor solar.
             </p>
@@ -858,8 +869,8 @@ const Footer = () => {
         <div className="pt-8 border-t border-slate-100 flex flex-col md:flex-row justify-between items-center gap-4 text-xs md:text-sm text-slate-400 text-center md:text-left">
           <p>© 2026 HOMOLOGA Plus. Todos os direitos reservados.</p>
           <div className="flex gap-6 md:gap-8">
-            <a href="#" className="hover:text-slate-600">Termos de Uso</a>
-            <a href="#" className="hover:text-slate-600">Privacidade</a>
+            <Link to="/termos" className="hover:text-slate-600">Termos de Uso</Link>
+            <Link to="/privacidade" className="hover:text-slate-600">Privacidade</Link>
           </div>
         </div>
       </div>
@@ -867,7 +878,7 @@ const Footer = () => {
   );
 };
 
-export default function App() {
+const LandingPage = () => {
   const [scrolled, setScrolled] = React.useState(false);
 
   React.useEffect(() => {
@@ -901,5 +912,18 @@ export default function App() {
         <ChevronRight className="w-6 h-6 -rotate-90 group-hover:-translate-y-1 transition-transform" />
       </motion.button>
     </div>
+  );
+};
+
+export default function App() {
+  return (
+    <BrowserRouter>
+      <ScrollToTop />
+      <Routes>
+        <Route path="/" element={<LandingPage />} />
+        <Route path="/termos" element={<TermsOfUse />} />
+        <Route path="/privacidade" element={<PrivacyPolicy />} />
+      </Routes>
+    </BrowserRouter>
   );
 }

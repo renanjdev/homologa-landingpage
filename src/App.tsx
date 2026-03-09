@@ -17,7 +17,9 @@ import {
   DollarSign,
   Calendar,
   Award,
-  Star
+  Star,
+  ChevronDown,
+  Gauge
 } from 'lucide-react';
 import { motion, useScroll, useSpring, AnimatePresence } from 'motion/react';
 
@@ -75,16 +77,16 @@ const Navbar = ({ scrolled }: { scrolled: boolean }) => {
 
             <a 
               href="https://app.homologaplus.com.br/login"
-              className="bg-primary hover:bg-primary-dark text-white px-6 py-2.5 rounded-xl text-sm font-bold transition-all shadow-lg shadow-primary/20 hover:shadow-primary/30 active:scale-95"
+              className="inline-flex items-center justify-center bg-primary hover:bg-primary-dark text-white px-6 py-2.5 rounded-xl text-sm font-bold transition-all shadow-lg shadow-primary/20 hover:shadow-primary/30 active:scale-95"
             >
               Acessar Sistema
             </a>
           </div>
 
-          <div className="md:hidden flex items-center gap-2 xs:gap-4">
+          <div className="md:hidden flex items-center gap-3">
             <a 
               href="https://app.homologaplus.com.br/login"
-              className="text-[10px] xs:text-xs font-bold text-primary px-2 xs:px-3 py-1.5 bg-primary/10 rounded-lg whitespace-nowrap"
+              className="inline-flex items-center justify-center text-xs font-bold text-primary px-4 py-2 bg-primary/10 rounded-xl whitespace-nowrap active:scale-95 transition-transform"
             >
               Acessar
             </a>
@@ -169,7 +171,7 @@ const Hero = () => {
                 href="https://app.homologaplus.com.br/login"
                 className="bg-primary hover:bg-primary-dark text-white px-8 py-4 rounded-2xl text-lg font-bold transition-all shadow-xl shadow-primary/20 flex items-center justify-center gap-2 w-full sm:w-auto"
               >
-                🚀 Testar gratuitamente
+                Testar gratuitamente
               </a>
             </div>
             <div className="mt-8 md:mt-10 flex flex-col sm:flex-row items-center gap-4 text-sm text-slate-500 justify-center md:justify-start">
@@ -181,7 +183,7 @@ const Hero = () => {
                     alt="User" 
                     className="w-8 h-8 rounded-full border-2 border-white"
                     referrerPolicy="no-referrer"
-                    loading="lazy"
+                    loading="eager"
                   />
                 ))}
               </div>
@@ -205,6 +207,7 @@ const Hero = () => {
                 alt="Dashboard Homologa Plus" 
                 className="w-full h-auto drop-shadow-[0_25px_50px_rgba(0,0,0,0.15)]"
                 referrerPolicy="no-referrer"
+                loading="eager"
               />
               
               {/* Decorative elements */}
@@ -220,7 +223,13 @@ const Hero = () => {
 
 const BeforeAfter = () => {
   return (
-    <section className="py-16 md:py-24 bg-surface">
+    <motion.section 
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-100px" }}
+      transition={{ duration: 0.6 }}
+      className="py-16 md:py-24 bg-surface"
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12 md:mb-16">
           <h2 className="text-2xl md:text-3xl lg:text-4xl font-display font-bold text-slate-900 mb-4 md:mb-6">
@@ -268,54 +277,106 @@ const BeforeAfter = () => {
           </div>
         </div>
       </div>
-    </section>
+    </motion.section>
   );
 };
 
 const Flow = () => {
+  const steps = [
+    { title: "Projeto cadastrado", icon: <FileText className="w-6 h-6" />, color: "bg-blue-500" },
+    { title: "Análise documental", icon: <ShieldCheck className="w-6 h-6" />, color: "bg-indigo-500" },
+    { title: "Envio para concessionária", icon: <Zap className="w-6 h-6" />, color: "bg-amber-500" },
+    { title: "Aguardando parecer", icon: <Clock className="w-6 h-6" />, color: "bg-purple-500" },
+    { title: "Medidor Trocado", icon: <Gauge className="w-6 h-6" />, color: "bg-rose-500" },
+    { title: "Homologado", icon: <CheckCircle2 className="w-6 h-6" />, color: "bg-emerald-500" }
+  ];
+
   return (
-    <section className="py-16 md:py-24 bg-white">
+    <motion.section 
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1 }}
+      viewport={{ once: true, margin: "-100px" }}
+      className="py-20 md:py-32 bg-white overflow-hidden"
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-12 md:mb-16">
-          <h2 className="text-2xl md:text-3xl lg:text-4xl font-display font-bold text-slate-900 mb-4 md:mb-6">
-            Fluxo organizado da homologação
+        <div className="text-center mb-16 md:mb-24">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-display font-bold text-slate-900 mb-6 tracking-tight">
+            Fluxo organizado da <span className="text-primary">homologação</span>
           </h2>
+          <p className="text-slate-600 max-w-2xl mx-auto text-base md:text-lg">
+            Acompanhe cada etapa do processo de forma clara e automatizada, eliminando gargalos e erros manuais.
+          </p>
         </div>
 
-        <div className="flex flex-col lg:flex-row items-center justify-center gap-8 lg:gap-0">
-          {[
-            { title: "Projeto cadastrado", icon: <FileText className="w-5 h-5" /> },
-            { title: "Análise documental", icon: <ShieldCheck className="w-5 h-5" /> },
-            { title: "Envio para concessionária", icon: <Zap className="w-5 h-5" /> },
-            { title: "Aguardando parecer", icon: <Clock className="w-5 h-5" /> },
-            { title: "Homologado", icon: <CheckCircle2 className="w-5 h-5" /> }
-          ].map((step, idx, arr) => (
-            <React.Fragment key={idx}>
-              <div className="flex flex-col items-center gap-3 group w-full lg:w-auto relative">
-                <div className={`w-16 h-16 rounded-2xl flex items-center justify-center transition-all shadow-sm ${idx === arr.length - 1 ? 'bg-success text-white' : 'bg-slate-100 text-slate-600 group-hover:bg-primary/10 group-hover:text-primary'}`}>
-                  {step.icon}
-                </div>
-                <span className="text-xs md:text-sm font-bold text-slate-700 text-center max-w-[140px] px-4 lg:px-0">
-                  {step.title}
+        <div className="relative">
+          {/* Desktop Connector Line */}
+          <div className="hidden lg:block absolute top-12 left-0 w-full h-0.5 bg-slate-100 -z-10">
+            <motion.div 
+              initial={{ width: 0 }}
+              whileInView={{ width: "100%" }}
+              viewport={{ once: true }}
+              transition={{ duration: 1.5, ease: "easeInOut" }}
+              className="h-full bg-gradient-to-r from-primary/20 via-primary to-emerald-500"
+            />
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-6 gap-12 lg:gap-4">
+            {steps.map((step, idx) => (
+              <motion.div 
+                key={idx}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: idx * 0.15, duration: 0.5 }}
+                className="flex flex-col items-center group relative"
+              >
+                {/* Step Number */}
+                <span className="absolute -top-8 text-4xl font-display font-black text-slate-50 select-none group-hover:text-slate-100 transition-colors">
+                  0{idx + 1}
                 </span>
-              </div>
-              {idx < arr.length - 1 && (
-                <div className="flex lg:flex-row flex-col items-center">
-                  <div className="w-px h-8 lg:w-12 xl:w-16 lg:h-px bg-slate-200" />
-                  <ChevronRight className="w-4 h-4 text-slate-300 hidden lg:block" />
+
+                <div className="relative">
+                  {/* Outer Glow */}
+                  <div className={`absolute inset-0 rounded-3xl blur-xl opacity-0 group-hover:opacity-20 transition-opacity duration-500 ${step.color}`} />
+                  
+                  {/* Icon Container */}
+                  <div className={`relative w-20 h-20 md:w-24 md:h-24 rounded-3xl flex items-center justify-center transition-all duration-500 shadow-sm border border-white bg-white group-hover:-translate-y-2 group-hover:shadow-xl group-hover:shadow-slate-200/50`}>
+                    <div className={`w-12 h-12 md:w-14 md:h-14 rounded-2xl flex items-center justify-center text-white shadow-inner ${step.color} transition-transform duration-500 group-hover:scale-110`}>
+                      {step.icon}
+                    </div>
+                  </div>
                 </div>
-              )}
-            </React.Fragment>
-          ))}
+
+                <div className="mt-6 text-center">
+                  <h3 className="text-sm md:text-base font-bold text-slate-900 mb-1 group-hover:text-primary transition-colors">
+                    {step.title}
+                  </h3>
+                  <div className="w-8 h-1 bg-slate-100 mx-auto rounded-full group-hover:w-12 group-hover:bg-primary transition-all duration-300" />
+                </div>
+
+                {/* Mobile/Tablet Connector */}
+                {idx < steps.length - 1 && (
+                  <div className="lg:hidden absolute -bottom-8 left-1/2 -translate-x-1/2 w-0.5 h-8 bg-slate-100 md:hidden" />
+                )}
+              </motion.div>
+            ))}
+          </div>
         </div>
       </div>
-    </section>
+    </motion.section>
   );
 };
 
 const Features = () => {
   return (
-    <section className="py-16 md:py-24 bg-surface" id="solucao">
+    <motion.section 
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-100px" }}
+      transition={{ duration: 0.6 }}
+      className="py-16 md:py-24 bg-surface" 
+      id="solucao"
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12 md:mb-20">
           <h2 className="text-2xl md:text-3xl lg:text-4xl font-display font-bold text-slate-900 mb-4 md:mb-6">Funcionalidades</h2>
@@ -343,13 +404,19 @@ const Features = () => {
           ))}
         </div>
       </div>
-    </section>
+    </motion.section>
   );
 };
 
 const WhoIsItFor = () => {
   return (
-    <section className="py-16 md:py-24 bg-white">
+    <motion.section 
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-100px" }}
+      transition={{ duration: 0.6 }}
+      className="py-16 md:py-24 bg-white"
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12 md:mb-16">
           <h2 className="text-2xl md:text-3xl lg:text-4xl font-display font-bold text-slate-900 mb-4 md:mb-6">
@@ -372,13 +439,168 @@ const WhoIsItFor = () => {
           ))}
         </div>
       </div>
+    </motion.section>
+  );
+};
+
+const Testimonials = () => {
+  const testimonials = [
+    {
+      name: "Eng. Ricardo Santos",
+      role: "Diretor Técnico na SolarEng",
+      content: "O HOMOLOGA Plus transformou nossa gestão. Antes perdíamos prazos por falta de organização, agora temos controle total de cada etapa da homologação.",
+      avatar: "https://picsum.photos/seed/ricardo/128/128"
+    },
+    {
+      name: "Monalisa Felipe",
+      role: "Gerente de Projetos na EcoPower",
+      content: "A facilidade de gerenciar múltiplos integradores em um só lugar é o grande diferencial. O sistema é intuitivo e o suporte é excelente.",
+      avatar: "https://i.imgur.com/M7OKfJ3b.jpg"
+    },
+    {
+      name: "Wellington Ribeiro",
+      role: "Sócio-Fundador da WR Projetos Elétricos",
+      content: "Reduzimos em 40% o tempo gasto com burocracia e organização de documentos. É uma ferramenta indispensável para quem quer escalar no setor solar.",
+      avatar: "https://i.imgur.com/SyFgrfwb.jpg"
+    }
+  ];
+
+  return (
+    <section className="py-16 md:py-24 bg-slate-50/50">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="text-center mb-12 md:mb-16">
+          <h2 className="text-3xl md:text-4xl font-display font-bold text-slate-900 mb-4">
+            O que dizem nossos clientes
+          </h2>
+          <p className="text-slate-600 max-w-2xl mx-auto">
+            Empresas de engenharia que já profissionalizaram sua gestão com o HOMOLOGA Plus.
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          {testimonials.map((t, idx) => (
+            <motion.div 
+              key={idx}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: idx * 0.1 }}
+              className="bg-white p-8 rounded-3xl border border-slate-100 flex flex-col h-full shadow-sm hover:shadow-md transition-shadow"
+            >
+              <div className="flex gap-1 mb-6">
+                {[1, 2, 3, 4, 5].map((star) => (
+                  <Star key={star} className="w-4 h-4 text-yellow-400 fill-yellow-400" />
+                ))}
+              </div>
+              <p className="text-slate-700 italic mb-8 flex-grow">"{t.content}"</p>
+              <div className="flex items-center gap-4">
+                <img 
+                  src={t.avatar} 
+                  alt={t.name} 
+                  className="w-12 h-12 rounded-full border-2 border-white shadow-sm"
+                  referrerPolicy="no-referrer"
+                  loading="lazy"
+                />
+                <div>
+                  <h4 className="font-bold text-slate-900 text-sm">{t.name}</h4>
+                  <p className="text-slate-500 text-xs">{t.role}</p>
+                </div>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+      </div>
     </section>
+  );
+};
+
+const FAQ = () => {
+  const [openIndex, setOpenIndex] = React.useState<number | null>(null);
+
+  const faqs = [
+    {
+      question: "Quais funcionalidades o sistema oferece?",
+      answer: "O HOMOLOGA Plus oferece gestão completa de projetos, controle de documentos, acompanhamento de etapas de homologação, dashboard de indicadores, gestão de integradores e muito mais."
+    },
+    {
+      question: "Como funciona a área do integrador?",
+      answer: "Seus integradores parceiros têm um acesso restrito onde podem cadastrar novos projetos, fazer upload de documentos e acompanhar o status de cada homologação em tempo real."
+    },
+    {
+      question: "Quais planos estão disponíveis?",
+      answer: "Oferecemos planos Mensal, Semestral (com 15% de desconto) e Anual (com 25% de desconto), todos com acesso completo às funcionalidades do sistema."
+    },
+    {
+      question: "Como entrar em contato com o suporte?",
+      answer: "Nosso suporte é humanizado e realizado diretamente via WhatsApp para garantir agilidade no atendimento aos nossos clientes."
+    }
+  ];
+
+  return (
+    <motion.section 
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-100px" }}
+      transition={{ duration: 0.6 }}
+      className="py-16 md:py-24 bg-white"
+    >
+      <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="text-center mb-8 md:mb-12">
+          <h2 className="text-2xl md:text-4xl font-display font-bold text-slate-900 mb-3 md:mb-4">
+            Perguntas Frequentes
+          </h2>
+          <p className="text-slate-600 text-sm md:text-base">
+            Tire suas dúvidas sobre como o HOMOLOGA Plus pode ajudar sua empresa.
+          </p>
+        </div>
+
+        <div className="space-y-4">
+          {faqs.map((faq, idx) => (
+            <div 
+              key={idx} 
+              className="border border-slate-100 rounded-2xl overflow-hidden bg-surface transition-all"
+            >
+              <button
+                onClick={() => setOpenIndex(openIndex === idx ? null : idx)}
+                className="w-full flex items-center justify-between p-5 md:p-6 text-left hover:bg-slate-50 transition-colors"
+              >
+                <span className="font-bold text-slate-900 text-sm md:text-base pr-4 md:pr-8">{faq.question}</span>
+                <ChevronDown 
+                  className={`w-4 h-4 md:w-5 md:h-5 text-slate-400 transition-transform duration-300 shrink-0 ${openIndex === idx ? 'rotate-180' : ''}`} 
+                />
+              </button>
+              <AnimatePresence>
+                {openIndex === idx && (
+                  <motion.div
+                    initial={{ height: 0, opacity: 0 }}
+                    animate={{ height: 'auto', opacity: 1 }}
+                    exit={{ height: 0, opacity: 0 }}
+                    transition={{ duration: 0.3, ease: "easeInOut" }}
+                  >
+                    <div className="p-5 md:p-6 pt-0 text-slate-600 text-sm md:text-base leading-relaxed border-t border-slate-50">
+                      {faq.answer}
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
+          ))}
+        </div>
+      </div>
+    </motion.section>
   );
 };
 
 const Pricing = () => {
   return (
-    <section id="planos" className="py-16 md:py-24 bg-surface">
+    <motion.section 
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-100px" }}
+      transition={{ duration: 0.6 }}
+      id="planos" 
+      className="py-16 md:py-24 bg-surface"
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Título Principal da Seção */}
         <div className="text-center mb-12 md:mb-16">
@@ -555,13 +777,19 @@ const Pricing = () => {
           </div>
         </div>
       </div>
-    </section>
+    </motion.section>
   );
 };
 
 const CTA = () => {
   return (
-    <section className="py-16 md:py-24">
+    <motion.section 
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-100px" }}
+      transition={{ duration: 0.6 }}
+      className="py-16 md:py-24"
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="bg-slate-900 rounded-[32px] md:rounded-[40px] p-8 md:p-12 lg:p-20 text-center relative overflow-hidden">
           <div className="absolute top-0 left-0 w-full h-full opacity-20">
@@ -587,7 +815,7 @@ const CTA = () => {
           </div>
         </div>
       </div>
-    </section>
+    </motion.section>
   );
 };
 
@@ -656,7 +884,9 @@ export default function App() {
       <Flow />
       <Features />
       <WhoIsItFor />
+      <Testimonials />
       <Pricing />
+      <FAQ />
       <CTA />
       <Footer />
       <SpeedInsights />

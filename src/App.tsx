@@ -1,6 +1,7 @@
 import React from 'react';
 import { SpeedInsights } from "@vercel/speed-insights/react"
 import { BrowserRouter, Routes, Route, Link, useLocation } from 'react-router-dom';
+import { Helmet } from 'react-helmet-async';
 import { 
   CheckCircle2, 
   LayoutDashboard, 
@@ -889,6 +890,11 @@ const LandingPage = () => {
 
   return (
     <div className="min-h-screen">
+      <Helmet>
+        <title>HOMOLOGA Plus | Gestão de Homologação de Usinas Fotovoltaicas</title>
+        <meta name="description" content="A plataforma definitiva para engenheiros e empresas de energia solar. Gerencie e homologue suas usinas fotovoltaicas com agilidade, segurança e automação." />
+        <link rel="canonical" href="https://ais-pre-mugp3ltyrxmavzsrbd7ya7-203218294417.us-east1.run.app/" />
+      </Helmet>
       <Navbar scrolled={scrolled} />
       <Hero />
       <BeforeAfter />

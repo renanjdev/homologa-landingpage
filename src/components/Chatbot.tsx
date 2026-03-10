@@ -31,8 +31,10 @@ const Chatbot: React.FC = () => {
     if (!input.trim() || isLoading) return;
 
     const userMessage = input.trim();
+    const newUserMessage: Message = { role: 'user', text: userMessage };
+    
     setInput('');
-    setMessages(prev => [...prev, { role: 'user', text: userMessage }]);
+    setMessages(prev => [...prev, newUserMessage]);
     setIsLoading(true);
 
     try {
@@ -57,18 +59,19 @@ const Chatbot: React.FC = () => {
         - Tom de voz: Profissional, direto e prestativo. Use português do Brasil.
       `;
 
-      // Filter messages to ensure alternating user/model roles and correct format
-      const history = messages.map(m => ({
+      // Construct history including the new message
+      // Skip the first message (bot greeting) and add the new user message
+      const chatHistory = [
+        ...messages.slice(1), // Previous messages excluding greeting
+        newUserMessage        // Current user message
+      ].map(m => ({
         role: m.role === 'user' ? 'user' : 'model',
         parts: [{ text: m.text }]
       }));
 
       const response = await ai.models.generateContent({
         model: model,
-        contents: [
-          ...history,
-          { role: 'user', parts: [{ text: userMessage }] }
-        ],
+        contents: chatHistory,
         config: {
           systemInstruction: systemInstruction,
           temperature: 0.7,

@@ -897,8 +897,9 @@ const LandingPage = () => {
   return (
     <div className="min-h-screen">
       <Helmet>
-        <title>HOMOLOGA Plus | Gestão de Homologação de Usinas Fotovoltaicas</title>
-        <meta name="description" content="A plataforma definitiva para engenheiros e empresas de energia solar. Gerencie e homologue suas usinas fotovoltaicas com agilidade, segurança e automação." />
+        <title>HOMOLOGA Plus | Homologação Solar e Gestão de Usinas Fotovoltaicas</title>
+        <meta name="description" content="Simplifique a homologação solar e a gestão de usinas fotovoltaicas com o HOMOLOGA Plus. Agilidade e segurança para empresas de energia solar e engenheiros." />
+        <meta name="keywords" content="homologação solar, energia fotovoltaica, gestão de usinas, engenharia solar, homologa plus, projetos solares, usina solar" />
         <link rel="canonical" href="https://ais-pre-mugp3ltyrxmavzsrbd7ya7-203218294417.us-east1.run.app/" />
       </Helmet>
       <Navbar scrolled={scrolled} />

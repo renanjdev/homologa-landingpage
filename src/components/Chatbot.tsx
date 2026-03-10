@@ -36,7 +36,12 @@ const Chatbot: React.FC = () => {
     setIsLoading(true);
 
     try {
-      const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
+      const apiKey = process.env.GEMINI_API_KEY;
+      if (!apiKey) {
+        throw new Error("API_KEY_MISSING");
+      }
+
+      const ai = new GoogleGenAI({ apiKey });
       const model = "gemini-3-flash-preview";
       
       const systemInstruction = `
@@ -46,28 +51,14 @@ const Chatbot: React.FC = () => {
         Informações sobre o HOMOLOGA Plus:
         - O que é: Sistema de gestão para homologação de usinas fotovoltaicas.
         - Público-alvo: Empresas de engenharia elétrica, empresas de homologação e integradores solares.
-        - Principais Funcionalidades:
-          * Gestão de Projetos: Controle completo das usinas em processo.
-          * Área do Integrador: Login próprio para parceiros cadastrarem e acompanharem projetos.
-          * Controle de Documentos: Centralização de toda a documentação.
-          * Fluxo de Homologação: Acompanhamento de etapas (Análise, Envio, Parecer, Medidor, Homologado).
-          * Gestão Financeira: Controle de valores por projeto.
-          * Mapa de Projetos: Visualização geográfica das usinas.
-        - Planos e Preços:
-          * Mensal: R$ 249/mês.
-          * Semestral: R$ 219/mês (cobrança semestral).
-          * Anual: R$ 189/mês (cobrança anual).
-        - Contato: contato@homologaplus.com.br ou suporte via WhatsApp (014 99127-3245).
-        - Diferencial: Elimina a bagunça de planilhas e WhatsApp, centralizando tudo em um fluxo profissional.
-
-        Instruções de tom de voz:
-        - Seja profissional, prestativo e direto.
-        - Use português do Brasil.
-        - Se não souber algo específico, peça para o usuário falar com um consultor via WhatsApp.
-        - Mantenha as respostas concisas e fáceis de ler.
+        - Principais Funcionalidades: Gestão de Projetos, Área do Integrador, Controle de Documentos, Fluxo de Homologação, Gestão Financeira e Mapa de Projetos.
+        - Planos: Mensal (R$ 249), Semestral (R$ 219/mês), Anual (R$ 189/mês).
+        - Contato: contato@homologaplus.com.br ou WhatsApp (14) 99127-3245.
+        - Tom de voz: Profissional, direto e prestativo. Use português do Brasil.
       `;
 
-      const chatHistory = messages.map(m => ({
+      // Filter messages to ensure alternating user/model roles and correct format
+      const history = messages.map(m => ({
         role: m.role === 'user' ? 'user' : 'model',
         parts: [{ text: m.text }]
       }));
@@ -75,17 +66,26 @@ const Chatbot: React.FC = () => {
       const response = await ai.models.generateContent({
         model: model,
         contents: [
-          { role: 'user', parts: [{ text: systemInstruction }] },
-          ...chatHistory,
+          ...history,
           { role: 'user', parts: [{ text: userMessage }] }
         ],
+        config: {
+          systemInstruction: systemInstruction,
+          temperature: 0.7,
+        }
       });
 
-      const botText = response.text || "Desculpe, tive um problema ao processar sua resposta. Pode tentar novamente?";
+      const botText = response.text || "Desculpe, não consegui processar sua dúvida agora.";
       setMessages(prev => [...prev, { role: 'bot', text: botText }]);
-    } catch (error) {
+    } catch (error: any) {
       console.error("Chatbot Error:", error);
-      setMessages(prev => [...prev, { role: 'bot', text: "No momento estou com dificuldades técnicas. Por favor, tente novamente em instantes ou fale conosco pelo WhatsApp." }]);
+      let errorMessage = "Desculpe, tive um problema ao processar sua resposta. Pode tentar novamente?";
+      
+      if (error.message === "API_KEY_MISSING") {
+        errorMessage = "Configuração pendente: A chave de API não foi detectada. Por favor, verifique as variáveis de ambiente.";
+      }
+      
+      setMessages(prev => [...prev, { role: 'bot', text: errorMessage }]);
     } finally {
       setIsLoading(false);
     }

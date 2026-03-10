@@ -215,7 +215,7 @@ const Hero = () => {
               className="relative w-full max-w-[280px] sm:max-w-[340px] lg:max-w-[380px]"
             >
               <img 
-                src="https://i.imgur.com/X8O9as5.png" 
+                src="https://i.imgur.com/NruoIEi.png" 
                 alt="Dashboard Homologa Plus" 
                 className="w-full h-auto drop-shadow-[0_25px_50px_rgba(0,0,0,0.15)]"
                 referrerPolicy="no-referrer"

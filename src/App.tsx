@@ -176,7 +176,7 @@ const Hero = () => {
               <span className="block">de usinas solares</span>
             </h1>
             <p className="text-base md:text-xl text-slate-600 leading-relaxed mb-8 md:mb-10 max-w-xl mx-auto md:mx-0 break-words">
-              Organize projetos, integradores e etapas da homologação em um único sistema profissional.
+              Toda a gestão de projetos, integradores e etapas da homologação na palma da sua mão, em um único sistema profissional.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
               <a 

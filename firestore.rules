@@ -1,0 +1,53 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // ===============================================================
+    // Assumed Data Model
+    // ===============================================================
+    //
+    // Collection: waitlist
+    // Document ID: auto-generated
+    // Fields:
+    //   - email: string (required, email format) - User's email address.
+    //   - createdAt: timestamp (required) - Timestamp when the user joined the waitlist.
+    //   - source: string (optional) - Where the user signed up from.
+    //
+    // ===============================================================
+
+    // Helper functions
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+
+    function isAdmin() {
+      return isAuthenticated() && 
+        (get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'admin' ||
+         (request.auth.token.email == "renanjjanuario@gmail.com" && request.auth.token.email_verified == true));
+    }
+
+    function isValidEmail(email) {
+      return email is string && email.matches("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$");
+    }
+
+    function isValidWaitlistEntry(data) {
+      return data.keys().hasAll(['email', 'createdAt']) &&
+             data.keys().hasOnly(['email', 'createdAt', 'source']) &&
+             isValidEmail(data.email) &&
+             data.createdAt is timestamp &&
+             (!('source' in data) || data.source is string);
+    }
+
+    match /waitlist/{entryId} {
+      // Allow anyone to join the waitlist
+      allow create: if isValidWaitlistEntry(request.resource.data);
+      
+      // Only admins can view or manage the waitlist
+      allow read, update, delete: if isAdmin();
+    }
+
+    match /users/{userId} {
+      allow read: if isAuthenticated() && (request.auth.uid == userId || isAdmin());
+      allow write: if isAdmin();
+    }
+  }
+}

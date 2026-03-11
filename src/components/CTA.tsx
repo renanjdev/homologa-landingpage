@@ -1,5 +1,6 @@
 import React from 'react';
 import { motion } from 'motion/react';
+import { Link } from 'react-router-dom';
 
 const CTA = () => {
   return (
@@ -20,18 +21,18 @@ const CTA = () => {
           
           <div className="relative z-10 max-w-3xl mx-auto">
             <h2 className="text-2xl md:text-3xl lg:text-5xl font-display font-bold text-white mb-6 md:mb-8">
-              Comece a organizar suas homologações hoje
+              Garanta seu lugar no lançamento oficial
             </h2>
             <p className="text-base md:text-xl text-slate-400 mb-8 md:mb-12">
-              Centralize todos os projetos em um único sistema profissional.
+              O HOMOLOGA Plus está em fase ALPHA. Entre na lista de espera e aproveite o Plano Fundador.
             </p>
             <div className="flex justify-center">
-              <a 
-                href="https://app.homologaplus.com.br/login"
+              <Link 
+                to="/waitlist"
                 className="bg-primary hover:bg-primary-dark text-white px-8 md:px-10 py-4 md:py-5 rounded-2xl text-lg md:text-xl font-bold transition-all shadow-2xl shadow-primary/30 inline-flex items-center gap-3 w-full sm:w-auto justify-center"
               >
-                Criar conta gratuita
-              </a>
+                Entrar na Lista de Espera
+              </Link>
             </div>
           </div>
         </div>

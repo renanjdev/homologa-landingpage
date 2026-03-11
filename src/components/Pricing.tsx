@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'motion/react';
 import { Calendar, CheckCircle2, Star, Zap, Award } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const Pricing = () => {
   return (
@@ -63,14 +64,12 @@ const Pricing = () => {
             </ul>
 
             <div className="mt-auto">
-              <a 
-                href="https://wa.me/5514991273245?text=Olá!%20Gostaria%20de%20saber%20mais%20sobre%20o%20Plano%20Mensal%20do%20HOMOLOGA%20Plus%20e%20falar%20com%20um%20consultor."
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-full py-4 rounded-2xl border border-slate-900 text-slate-900 font-bold hover:bg-slate-50 transition-colors mb-4 block text-center"
+              <Link 
+                to="/waitlist"
+                className="w-full py-4 rounded-2xl bg-primary text-white font-bold hover:bg-primary-dark transition-all shadow-xl shadow-primary/20 mb-4 block text-center"
               >
-                Falar com consultor
-              </a>
+                Garantir Vaga Fundador
+              </Link>
               <p className="text-[10px] text-slate-400 text-center italic">
                 Indicado para: profissionais autônomos e pequenas empresas que estão iniciando.
               </p>
@@ -121,14 +120,12 @@ const Pricing = () => {
             </ul>
 
             <div className="mt-auto">
-              <a 
-                href="https://wa.me/5514991273245?text=Olá!%20Gostaria%20de%20saber%20mais%20sobre%20o%20Plano%20Semestral%20do%20HOMOLOGA%20Plus%20e%20falar%20com%20um%20consultor."
-                target="_blank"
-                rel="noopener noreferrer"
+              <Link 
+                to="/waitlist"
                 className="w-full py-4 rounded-2xl bg-primary text-white font-bold hover:bg-primary-dark transition-all shadow-xl shadow-primary/20 mb-4 block text-center"
               >
-                Falar com consultor
-              </a>
+                Garantir Vaga Fundador
+              </Link>
               <p className="text-[10px] text-slate-400 text-center italic">
                 Indicado para empresas com fluxo constante de projetos.
               </p>
@@ -179,14 +176,12 @@ const Pricing = () => {
             </ul>
 
             <div className="mt-auto">
-              <a 
-                href="https://wa.me/5514991273245?text=Olá!%20Gostaria%20de%20saber%20mais%20sobre%20o%20Plano%20Anual%20do%20HOMOLOGA%20Plus%20e%20falar%20com%20um%20consultor."
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-full py-4 rounded-2xl border border-slate-900 text-slate-900 font-bold hover:bg-slate-50 transition-colors mb-4 block text-center"
+              <Link 
+                to="/waitlist"
+                className="w-full py-4 rounded-2xl bg-primary text-white font-bold hover:bg-primary-dark transition-all shadow-xl shadow-primary/20 mb-4 block text-center"
               >
-                Falar com consultor
-              </a>
+                Garantir Vaga Fundador
+              </Link>
               <p className="text-[10px] text-slate-400 text-center italic">
                 Indicado para empresas estruturadas com grande volume de projetos.
               </p>

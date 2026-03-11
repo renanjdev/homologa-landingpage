@@ -27,6 +27,7 @@ import { motion, useScroll, useSpring, AnimatePresence } from 'motion/react';
 import { Suspense, lazy } from 'react';
 import TermsOfUse from './pages/TermsOfUse';
 import PrivacyPolicy from './pages/PrivacyPolicy';
+import Waitlist from './pages/Waitlist';
 
 // Lazy load components below the fold
 const BeforeAfter = lazy(() => import('./components/BeforeAfter'));
@@ -98,21 +99,21 @@ const Navbar = ({ scrolled }: { scrolled: boolean }) => {
             
             <div className="h-6 w-px bg-slate-200 mx-4"></div>
 
-            <a 
-              href="https://app.homologaplus.com.br/login"
+            <Link 
+              to="/waitlist"
               className="inline-flex items-center justify-center bg-primary hover:bg-primary-dark text-white px-6 py-2.5 rounded-xl text-sm font-bold transition-all shadow-lg shadow-primary/20 hover:shadow-primary/30 active:scale-95"
             >
               Acessar Sistema
-            </a>
+            </Link>
           </div>
 
           <div className="md:hidden flex items-center gap-3">
-            <a 
-              href="https://app.homologaplus.com.br/login"
+            <Link 
+              to="/waitlist"
               className="inline-flex items-center justify-center text-xs font-bold text-primary px-4 py-2 bg-primary/10 rounded-xl whitespace-nowrap active:scale-95 transition-transform"
             >
               Acessar
-            </a>
+            </Link>
             <button onClick={() => setIsOpen(!isOpen)} className="p-1.5 xs:p-2 text-slate-600 hover:bg-slate-100 rounded-lg transition-colors">
               {isOpen ? <X className="w-5 h-5 xs:w-6 h-6" /> : <Menu className="w-5 h-5 xs:w-6 h-6" />}
             </button>
@@ -145,12 +146,13 @@ const Navbar = ({ scrolled }: { scrolled: boolean }) => {
               ))}
               
               <div className="pt-8 px-2">
-                <a 
-                  href="https://app.homologaplus.com.br/login"
+                <Link 
+                  to="/waitlist"
+                  onClick={() => setIsOpen(false)}
                   className="w-full bg-primary text-white px-5 py-4 rounded-2xl text-base font-bold shadow-xl shadow-primary/20 block text-center active:scale-[0.98] transition-transform"
                 >
                   Testar Gratuitamente
-                </a>
+                </Link>
               </div>
             </div>
           </motion.div>
@@ -190,12 +192,12 @@ const Hero = () => {
               Toda a gestão de projetos, integradores e etapas da homologação na palma da sua mão, em um único sistema profissional.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
-              <a 
-                href="https://app.homologaplus.com.br/login"
+              <Link 
+                to="/waitlist"
                 className="bg-primary hover:bg-primary-dark text-white px-8 py-4 rounded-2xl text-lg font-bold transition-all shadow-xl shadow-primary/20 flex items-center justify-center gap-2 w-full sm:w-auto"
               >
                 Testar gratuitamente
-              </a>
+              </Link>
             </div>
             <div className="mt-8 md:mt-10 flex flex-col sm:flex-row items-center gap-4 text-sm text-slate-500 justify-center md:justify-start">
               <div className="flex -space-x-2">
@@ -295,6 +297,7 @@ export default function App() {
       <ScrollToTop />
       <Routes>
         <Route path="/" element={<LandingPage />} />
+        <Route path="/waitlist" element={<Waitlist />} />
         <Route path="/termos" element={<TermsOfUse />} />
         <Route path="/privacidade" element={<PrivacyPolicy />} />
       </Routes>

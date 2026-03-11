@@ -64,12 +64,14 @@ const Pricing = () => {
             </ul>
 
             <div className="mt-auto">
-              <Link 
-                to="/waitlist"
+              <a 
+                href="https://wa.me/5514991273245?text=Olá! Gostaria de saber mais sobre o Plano Mensal do HOMOLOGA Plus."
+                target="_blank"
+                rel="noopener noreferrer"
                 className="w-full py-4 rounded-2xl bg-primary text-white font-bold hover:bg-primary-dark transition-all shadow-xl shadow-primary/20 mb-4 block text-center"
               >
-                Garantir Vaga Fundador
-              </Link>
+                Falar com consultor
+              </a>
               <p className="text-[10px] text-slate-400 text-center italic">
                 Indicado para: profissionais autônomos e pequenas empresas que estão iniciando.
               </p>
@@ -120,12 +122,14 @@ const Pricing = () => {
             </ul>
 
             <div className="mt-auto">
-              <Link 
-                to="/waitlist"
+              <a 
+                href="https://wa.me/5514991273245?text=Olá! Gostaria de saber mais sobre o Plano Semestral do HOMOLOGA Plus."
+                target="_blank"
+                rel="noopener noreferrer"
                 className="w-full py-4 rounded-2xl bg-primary text-white font-bold hover:bg-primary-dark transition-all shadow-xl shadow-primary/20 mb-4 block text-center"
               >
-                Garantir Vaga Fundador
-              </Link>
+                Falar com consultor
+              </a>
               <p className="text-[10px] text-slate-400 text-center italic">
                 Indicado para empresas com fluxo constante de projetos.
               </p>
@@ -176,12 +180,14 @@ const Pricing = () => {
             </ul>
 
             <div className="mt-auto">
-              <Link 
-                to="/waitlist"
+              <a 
+                href="https://wa.me/5514991273245?text=Olá! Gostaria de saber mais sobre o Plano Anual do HOMOLOGA Plus."
+                target="_blank"
+                rel="noopener noreferrer"
                 className="w-full py-4 rounded-2xl bg-primary text-white font-bold hover:bg-primary-dark transition-all shadow-xl shadow-primary/20 mb-4 block text-center"
               >
-                Garantir Vaga Fundador
-              </Link>
+                Falar com consultor
+              </a>
               <p className="text-[10px] text-slate-400 text-center italic">
                 Indicado para empresas estruturadas com grande volume de projetos.
               </p>

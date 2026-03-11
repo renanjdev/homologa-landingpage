@@ -14,6 +14,11 @@ async function startServer() {
 
   app.use(express.json());
 
+  // Health check route
+  app.get("/api/health", (req, res) => {
+    res.json({ status: "ok", mode: process.env.NODE_ENV });
+  });
+
   // API Route for Waitlist
   app.post("/api/waitlist", async (req, res) => {
     const { email } = req.body;

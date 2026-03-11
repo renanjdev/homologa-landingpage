@@ -38,7 +38,6 @@ const FAQ = lazy(() => import('./components/FAQ'));
 const Pricing = lazy(() => import('./components/Pricing'));
 const CTA = lazy(() => import('./components/CTA'));
 const Footer = lazy(() => import('./components/Footer'));
-const Chatbot = lazy(() => import('./components/Chatbot'));
 
 const ScrollToTop = () => {
   const { pathname } = useLocation();
@@ -274,7 +273,6 @@ const LandingPage = () => {
         <FAQ />
         <CTA />
         <Footer />
-        <Chatbot />
       </Suspense>
       <SpeedInsights />
       

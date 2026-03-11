@@ -84,8 +84,8 @@ async function startServer() {
     // Serve static files
     app.use(express.static(distPath));
     
-    // Fallback for SPA - Using a regex that is safe for Express 5
-    app.get('*', (req, res, next) => {
+    // Fallback for SPA - Using the correct Express 5 named wildcard syntax
+    app.get('*all', (req, res, next) => {
       // If it's an API route, don't serve index.html, let it fall through or 404
       if (req.path.startsWith('/api/')) {
         return next();

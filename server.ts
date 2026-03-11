@@ -1,8 +1,12 @@
 import express from "express";
 import { createServer as createViteServer } from "vite";
 import path from "path";
+import { fileURLToPath } from 'url';
 import { Resend } from 'resend';
 import dotenv from 'dotenv';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 dotenv.config();
 
@@ -75,11 +79,17 @@ async function startServer() {
     app.use(vite.middlewares);
   } else {
     console.log("Starting in PRODUCTION mode...");
-    const distPath = path.resolve(process.cwd(), 'dist');
+    const distPath = path.join(__dirname, 'dist');
+    
+    // Serve static files
     app.use(express.static(distPath));
     
-    // Fallback for SPA - Using app.use as a catch-all to avoid Express 5 wildcard issues
-    app.use((req, res) => {
+    // Fallback for SPA - Using a regex that is safe for Express 5
+    app.get('*', (req, res, next) => {
+      // If it's an API route, don't serve index.html, let it fall through or 404
+      if (req.path.startsWith('/api/')) {
+        return next();
+      }
       res.sendFile(path.join(distPath, 'index.html'));
     });
   }

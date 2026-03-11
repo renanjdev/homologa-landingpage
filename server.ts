@@ -6,7 +6,7 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 
-const resend = new Resend(process.env.RESEND_API_KEY);
+const resend = new Resend(process.env.RESEND_API_KEY || '');
 
 async function startServer() {
   const app = express();
@@ -77,7 +77,7 @@ async function startServer() {
     console.log("Starting in PRODUCTION mode...");
     const distPath = path.resolve(process.cwd(), 'dist');
     app.use(express.static(distPath));
-    app.get('*', (req, res) => {
+    app.get('*all', (req, res) => {
       res.sendFile(path.resolve(distPath, 'index.html'));
     });
   }

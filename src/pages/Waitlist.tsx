@@ -28,11 +28,20 @@ const Waitlist = () => {
 
     setStatus('loading');
     try {
+      // 1. Save to Firestore (Frontend)
       await addDoc(collection(db, 'waitlist'), {
         email,
         createdAt: serverTimestamp(),
         source: 'waitlist_page'
       });
+
+      // 2. Send Confirmation Email (Backend)
+      await fetch('/api/waitlist', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email })
+      });
+
       setStatus('success');
       setEmail('');
     } catch (error: any) {
@@ -45,8 +54,8 @@ const Waitlist = () => {
   return (
     <div className="min-h-screen bg-slate-50 flex flex-col">
       <Helmet>
-        <title>Versão ALPHA | HOMOLOGA Plus - Lista de Espera</title>
-        <meta name="description" content="O HOMOLOGA Plus está em versão ALPHA. Entre na lista de espera para garantir o Plano Fundador com valor promocional." />
+        <title>Lista de Espera | HOMOLOGA Plus - Plano Fundador</title>
+        <meta name="description" content="Entre na lista de espera do HOMOLOGA Plus para garantir o Plano Fundador com valor promocional exclusivo no lançamento." />
       </Helmet>
 
       {/* Header */}
@@ -70,38 +79,35 @@ const Waitlist = () => {
         </div>
       </nav>
 
-      <main className="flex-1 flex items-center justify-center p-4 py-12 md:py-20">
-        <div className="max-w-4xl w-full grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+      <main className="flex-1 flex items-center justify-center p-4 py-8 md:py-20">
+        <div className="max-w-4xl w-full grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
           
           {/* Content Side */}
           <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
+            className="text-center lg:text-left"
           >
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-100 text-amber-700 text-xs font-bold uppercase tracking-wider mb-6">
-              <Zap className="w-3.5 h-3.5" />
-              Fase Alpha - Vagas Encerradas
-            </div>
-            <h1 className="text-3xl md:text-5xl font-display font-extrabold text-slate-900 leading-tight mb-6">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl font-display font-extrabold text-slate-900 leading-tight mb-4 md:mb-6">
               Estamos preparando algo <span className="text-primary">extraordinário</span>.
             </h1>
-            <p className="text-lg text-slate-600 mb-8 leading-relaxed">
-              O <strong>HOMOLOGA Plus</strong> está atualmente em fase ALPHA restrita. 
-              As vagas para o grupo inicial de testes foram preenchidas em tempo recorde.
+            <p className="text-base sm:text-lg text-slate-600 mb-6 md:mb-8 leading-relaxed max-w-xl mx-auto lg:mx-0">
+              O <strong>HOMOLOGA Plus</strong> está chegando para revolucionar a gestão de homologação solar. 
+              Entre na lista e garanta benefícios exclusivos de lançamento.
             </p>
             
-            <div className="space-y-4 mb-8">
+            <div className="space-y-3 md:space-y-4 mb-8 flex flex-col items-center lg:items-start">
               {[
                 { icon: Star, text: 'Prioridade no lançamento oficial', color: 'text-amber-500' },
                 { icon: ShieldCheck, text: 'Acesso exclusivo ao Plano Fundador', color: 'text-emerald-500' },
                 { icon: CheckCircle2, text: 'Valor de assinatura promocional vitalício', color: 'text-primary' }
               ].map((item, i) => (
-                <div key={i} className="flex items-center gap-3">
-                  <div className={`p-1 rounded-full bg-slate-100 ${item.color}`}>
-                    <item.icon className="w-5 h-5" />
+                <div key={i} className="flex items-center gap-3 w-full max-w-xs lg:max-w-none justify-start">
+                  <div className={`p-1.5 rounded-full bg-slate-100 ${item.color} shrink-0`}>
+                    <item.icon className="w-4 h-4 md:w-5 md:h-5" />
                   </div>
-                  <span className="text-slate-700 font-medium">{item.text}</span>
+                  <span className="text-slate-700 font-medium text-sm md:text-base text-left">{item.text}</span>
                 </div>
               ))}
             </div>
@@ -112,7 +118,7 @@ const Waitlist = () => {
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="bg-white rounded-3xl shadow-2xl p-8 border border-slate-100 relative overflow-hidden"
+            className="bg-white rounded-3xl shadow-2xl p-6 sm:p-8 border border-slate-100 relative overflow-hidden"
           >
             <div className="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-full -mr-16 -mt-16 blur-3xl" />
             

@@ -77,7 +77,9 @@ async function startServer() {
     console.log("Starting in PRODUCTION mode...");
     const distPath = path.resolve(process.cwd(), 'dist');
     app.use(express.static(distPath));
-    app.get('(.*)', (req, res) => {
+    
+    // Fallback for SPA - Using app.use as a catch-all to avoid Express 5 wildcard issues
+    app.use((req, res) => {
       res.sendFile(path.join(distPath, 'index.html'));
     });
   }

@@ -77,8 +77,8 @@ async function startServer() {
     console.log("Starting in PRODUCTION mode...");
     const distPath = path.resolve(process.cwd(), 'dist');
     app.use(express.static(distPath));
-    app.get('*all', (req, res) => {
-      res.sendFile(path.resolve(distPath, 'index.html'));
+    app.get('*', (req, res) => {
+      res.sendFile(path.join(distPath, 'index.html'));
     });
   }
 

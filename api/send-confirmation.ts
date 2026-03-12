@@ -81,29 +81,29 @@ export default async function handler(req: any, res: any) {
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
             <title>Bem-vindo ao HOMOLOGA Plus</title>
           </head>
-          <body style="margin: 0; padding: 0; background-color: #F8FAFC; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;">
-            <table border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 600px; margin: 20px auto; background-color: #ffffff; border-radius: 24px; overflow: hidden; box-shadow: 0 10px 25px -5px rgba(0,0,0,0.05);">
-              <!-- Header -->
+          <body style="margin: 0; padding: 0; background-color: #F8FAFC; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
+            <table border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 600px; margin: 20px auto; background-color: #ffffff; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.05);">
+              <!-- Header with Logo -->
               <tr>
-                <td align="center" style="padding: 50px 0; background: linear-gradient(135deg, #2563EB 0%, #1E3A8A 100%);">
+                <td align="center" style="padding: 40px 0; background-color: #1E293B;">
                   <table border="0" cellpadding="0" cellspacing="0">
                     <tr>
-                      <td align="center" style="background-color: #ffffff; padding: 12px; border-radius: 16px;">
-                        <img src="https://img.icons8.com/ios-filled/100/2563eb/sun--v1.png" alt="Logo" width="32" height="32" style="display: block;">
+                      <td align="center" style="background-color: #F27D26; padding: 12px; border-radius: 14px;">
+                        <img src="https://cdn-icons-png.flaticon.com/512/979/979585.png" alt="Logo" width="40" height="40" style="display: block;">
                       </td>
                       <td style="padding-left: 15px;">
-                        <span style="font-size: 24px; font-weight: 800; color: #ffffff; letter-spacing: -0.02em;">HOMOLOGA <span style="color: #60A5FA;">Plus</span></span>
+                        <span style="font-size: 24px; font-weight: bold; color: #ffffff; letter-spacing: -0.5px;">HOMOLOGA <span style="color: #F27D26;">Plus</span></span>
                       </td>
                     </tr>
                   </table>
                 </td>
               </tr>
               
-              <!-- Hero -->
+              <!-- Hero Section -->
               <tr>
-                <td style="padding: 48px 40px 40px 40px; text-align: center;">
-                  <h1 style="color: #0F172A; font-size: 32px; margin: 0 0 16px 0; font-weight: 800; letter-spacing: -0.02em;">Acesso Confirmado! 🚀</h1>
-                  <p style="color: #475569; font-size: 17px; line-height: 1.6; margin: 0;">
+                <td style="padding: 40px 30px; text-align: center;">
+                  <h1 style="color: #1E293B; font-size: 28px; margin: 0 0 20px 0; font-weight: 800;">Acesso Confirmado! 🚀</h1>
+                  <p style="color: #64748B; font-size: 16px; line-height: 1.6; margin: 0;">
                     Olá!<br><br>
                     Seu acesso antecipado foi confirmado. Você agora faz parte do grupo de projetistas que terão prioridade no lançamento da plataforma <strong>HOMOLOGA Plus</strong>.
                   </p>
@@ -112,31 +112,31 @@ export default async function handler(req: any, res: any) {
 
               <!-- Rank Card -->
               <tr>
-                <td style="padding: 0 40px;">
-                  <div style="background: linear-gradient(to bottom, #F8FAFC, #ffffff); padding: 40px 20px; border-radius: 24px; border: 1px solid #E2E8F0; text-align: center;">
-                    <p style="margin: 0; font-size: 13px; text-transform: uppercase; letter-spacing: 0.1em; color: #64748B; font-weight: 700;">Sua posição na fila</p>
-                    <p style="margin: 12px 0 0 0; font-size: 64px; font-weight: 900; color: #2563EB; letter-spacing: -0.02em;">#${displayRank}</p>
+                <td style="padding: 0 30px;">
+                  <div style="background-color: #F8FAFC; padding: 30px; border-radius: 20px; border: 2px dashed #E2E8F0; text-align: center;">
+                    <p style="margin: 0; font-size: 13px; text-transform: uppercase; letter-spacing: 0.1em; color: #94A3B8; font-weight: 700;">SUA POSIÇÃO NA FILA</p>
+                    <p style="margin: 10px 0 0 0; font-size: 48px; font-weight: 900; color: #F27D26;">#${displayRank}</p>
                   </div>
                 </td>
               </tr>
 
               <!-- Content -->
               <tr>
-                <td style="padding: 40px;">
-                  <div style="margin-bottom: 32px; text-align: center;">
-                    <p style="color: #0F172A; font-size: 16px; line-height: 1.6; margin: 0; font-weight: 600;">
-                      Os primeiros usuários terão acesso ao <span style="color: #2563EB;">Plano Fundador</span> com condições especiais.
+                <td style="padding: 40px 30px;">
+                  <div style="margin-bottom: 25px; text-align: center;">
+                    <p style="color: #1E293B; font-size: 15px; line-height: 1.5; margin: 0;">
+                      Os primeiros usuários terão acesso ao <strong>Plano Fundador</strong> com condições especiais.
                     </p>
                   </div>
                   
-                  <div style="background-color: #FFF7ED; border-left: 4px solid #F97316; padding: 24px; border-radius: 0 20px 20px 0; margin-bottom: 32px;">
-                    <h4 style="color: #9A3412; margin: 0 0 8px 0; font-size: 16px; font-weight: 700;">💡 Quer subir na fila?</h4>
-                    <p style="color: #9A3412; font-size: 15px; margin: 0; line-height: 1.5; opacity: 0.9;">
+                  <div style="background-color: #FFF7ED; border-left: 4px solid #F27D26; padding: 20px; border-radius: 0 12px 12px 0; margin-bottom: 25px;">
+                    <h4 style="color: #C2410C; margin: 0 0 10px 0; font-size: 16px;">💡 Quer subir na fila?</h4>
+                    <p style="color: #C2410C; font-size: 14px; margin: 0; line-height: 1.5;">
                       Compartilhe seu link exclusivo com outros projetistas solares. Cada indicação válida faz você subir posições.
                     </p>
                   </div>
 
-                  <p style="color: #64748B; font-size: 15px; line-height: 1.7; text-align: center; margin: 0;">
+                  <p style="color: #64748B; font-size: 15px; line-height: 1.6; text-align: center; margin: 0;">
                     Estamos preparando a plataforma que vai simplificar a homologação de usinas fotovoltaicas nas concessionárias.<br><br>
                     Em breve enviaremos novidades do lançamento.
                   </p>
@@ -145,18 +145,18 @@ export default async function handler(req: any, res: any) {
 
               <!-- Footer -->
               <tr>
-                <td style="padding: 40px; background-color: #F8FAFC; text-align: center; border-top: 1px solid #E2E8F0;">
-                  <p style="margin: 0 0 8px 0; color: #0F172A; font-size: 15px; font-weight: 700;">
+                <td style="padding: 30px; background-color: #F1F5F9; text-align: center; border-radius: 0 0 16px 16px;">
+                  <p style="margin: 0 0 10px 0; color: #1E293B; font-size: 14px; font-weight: 700;">
                     Equipe HOMOLOGA Plus
                   </p>
-                  <p style="margin: 0 0 24px 0; color: #94A3B8; font-size: 13px; line-height: 1.5;">
+                  <p style="margin: 0 0 20px 0; color: #94A3B8; font-size: 12px; line-height: 1.4;">
                     Ferramenta criada por quem trabalha diariamente com projetos e homologação solar.
                   </p>
-                  <div style="display: inline-block; margin: 0 12px;">
-                    <a href="https://homologaplus.com.br" style="color: #2563EB; text-decoration: none; font-size: 13px; font-weight: 600;">Website</a>
+                  <div style="display: inline-block; margin: 0 10px;">
+                    <a href="https://homologaplus.com.br" style="color: #F27D26; text-decoration: none; font-size: 12px; font-weight: 600;">Website</a>
                   </div>
-                  <div style="display: inline-block; margin: 0 12px;">
-                    <a href="https://instagram.com/homologaplus" style="color: #2563EB; text-decoration: none; font-size: 13px; font-weight: 600;">Instagram</a>
+                  <div style="display: inline-block; margin: 0 10px;">
+                    <a href="https://instagram.com/homologaplus" style="color: #F27D26; text-decoration: none; font-size: 12px; font-weight: 600;">Instagram</a>
                   </div>
                 </td>
               </tr>

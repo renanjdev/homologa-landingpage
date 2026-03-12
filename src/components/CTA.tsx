@@ -2,19 +2,26 @@ import React, { useState, useEffect } from 'react';
 import { motion } from 'motion/react';
 import { Link } from 'react-router-dom';
 import { Zap, ChevronRight, Sparkles, ShieldCheck } from 'lucide-react';
-import { doc, onSnapshot } from 'firebase/firestore';
-import { db } from '../firebase';
 
 const CTA = () => {
   const [count, setCount] = useState(87);
 
   useEffect(() => {
-    const unsub = onSnapshot(doc(db, 'stats', 'global'), (doc) => {
-      if (doc.exists()) {
-        setCount(Math.max(87, doc.data().waitlistCount || 0));
+    const fetchCount = async () => {
+      try {
+        const response = await fetch('/api/waitlist');
+        if (response.ok) {
+          const data = await response.json();
+          setCount(data.count || 87);
+        }
+      } catch (err) {
+        console.error('Failed to fetch waitlist count:', err);
       }
-    });
-    return () => unsub();
+    };
+    fetchCount();
+    
+    const interval = setInterval(fetchCount, 30000);
+    return () => clearInterval(interval);
   }, []);
 
   return (

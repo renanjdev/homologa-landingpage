@@ -1,6 +1,4 @@
 import { useState, useEffect } from 'react';
-import { collection, addDoc, serverTimestamp, doc, onSnapshot, getDoc, setDoc, updateDoc, increment } from 'firebase/firestore';
-import { db } from '../firebase';
 
 export type WaitlistStatus = 'idle' | 'loading' | 'success' | 'error';
 
@@ -12,46 +10,45 @@ export const useWaitlist = (referralId: string | null) => {
   const [userReferrals, setUserReferrals] = useState(0);
   const [userInitialRank, setUserInitialRank] = useState(0);
 
-  // Listen to real-time counter
+  // Fetch count on mount
   useEffect(() => {
-    const unsub = onSnapshot(doc(db, 'stats', 'global'), (doc) => {
-      if (doc.exists()) {
-        const data = doc.data();
-        setWaitlistCount(Math.max(87, data.waitlistCount || 0));
+    const fetchCount = async () => {
+      try {
+        const response = await fetch('/api/waitlist');
+        if (response.ok) {
+          const data = await response.json();
+          setWaitlistCount(data.count || 87);
+        }
+      } catch (err) {
+        console.error('Failed to fetch waitlist count:', err);
       }
-    });
-    return () => unsub();
+    };
+    fetchCount();
+    
+    // Optional: poll every 30 seconds
+    const interval = setInterval(fetchCount, 30000);
+    return () => clearInterval(interval);
   }, []);
-
-  // Listen to user's own document for referral updates
-  useEffect(() => {
-    if (!userId) return;
-    const unsub = onSnapshot(doc(db, 'waitlist', userId), (doc) => {
-      if (doc.exists()) {
-        const data = doc.data();
-        setUserReferrals(data.referralCount || 0);
-        setUserInitialRank(data.initialRank || 0);
-      }
-    });
-    return () => unsub();
-  }, [userId]);
 
   const joinWaitlist = async (whatsapp: string, email: string) => {
     setStatus('loading');
     try {
-      const currentRank = waitlistCount + 1;
-      const emailKey = email.toLowerCase().trim();
-      const referralCode = Math.random().toString(36).substring(2, 8).toUpperCase();
+      const urlParams = new URLSearchParams(window.location.search);
+      const utm_source = urlParams.get('utm_source');
+      const utm_medium = urlParams.get('utm_medium');
+      const utm_campaign = urlParams.get('utm_campaign');
+      const referrer = document.referrer;
 
-      // Call Backend API instead of direct Firestore write
       const response = await fetch('/api/waitlist', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           email,
           whatsapp,
-          rank: currentRank,
-          referralCode,
+          utm_source,
+          utm_medium,
+          utm_campaign,
+          referrer,
           referralId
         })
       });
@@ -61,33 +58,11 @@ export const useWaitlist = (referralId: string | null) => {
         throw new Error(errorData.error || 'Failed to join waitlist');
       }
 
-      setUserId(emailKey);
-      setUserInitialRank(currentRank);
-
-      // Trigger email confirmation in background
-      try {
-        const urlParams = new URLSearchParams(window.location.search);
-        const utm_source = urlParams.get('utm_source');
-        const utm_medium = urlParams.get('utm_medium');
-        const utm_campaign = urlParams.get('utm_campaign');
-        const referrer = document.referrer;
-
-        await fetch('/api/send-confirmation', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ 
-            email, 
-            whatsapp, 
-            rank: currentRank,
-            utm_source,
-            utm_medium,
-            utm_campaign,
-            referrer
-          })
-        });
-      } catch (emailErr) {
-        console.error('Failed to trigger email confirmation:', emailErr);
-      }
+      const data = await response.json();
+      
+      setUserId(email.toLowerCase().trim());
+      setUserInitialRank(data.position);
+      setWaitlistCount(data.position);
 
       setStatus('success');
     } catch (error: any) {

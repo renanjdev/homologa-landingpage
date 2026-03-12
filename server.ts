@@ -86,10 +86,20 @@ async function startServer() {
 
   // API Route for Email Confirmation
   app.post("/api/send-confirmation", async (req, res) => {
-    const { email, whatsapp, rank } = req.body;
+    const { email, whatsapp, rank, utm_source, utm_medium, utm_campaign } = req.body;
+    const ip = req.headers['x-forwarded-for'] || req.socket.remoteAddress;
 
     const cleanEmail = typeof email === 'string' ? email.trim() : '';
-    console.log("Novo lead:", cleanEmail);
+    console.log("Novo lead:", {
+      email: cleanEmail,
+      whatsapp,
+      rank,
+      ip,
+      utm_source,
+      utm_medium,
+      utm_campaign,
+      timestamp: new Date().toISOString()
+    });
 
     if (!cleanEmail) {
       return res.status(400).json({ error: "Email is required" });

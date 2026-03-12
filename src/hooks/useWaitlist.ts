@@ -81,10 +81,22 @@ export const useWaitlist = (referralId: string | null) => {
 
       // Send confirmation email via server
       try {
+        const urlParams = new URLSearchParams(window.location.search);
+        const utm_source = urlParams.get('utm_source');
+        const utm_medium = urlParams.get('utm_medium');
+        const utm_campaign = urlParams.get('utm_campaign');
+
         await fetch('/api/send-confirmation', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ email, whatsapp, rank: currentRank })
+          body: JSON.stringify({ 
+            email, 
+            whatsapp, 
+            rank: currentRank,
+            utm_source,
+            utm_medium,
+            utm_campaign
+          })
         });
       } catch (emailErr) {
         console.error('Failed to trigger email confirmation:', emailErr);

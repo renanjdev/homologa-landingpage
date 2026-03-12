@@ -39,40 +39,86 @@ async function startServer() {
     }
   });
 
-  // API Route for Contact Form
-  app.post("/api/contact", async (req, res) => {
-    const { name, email, subject, message } = req.body;
+  // API Route for WhatsApp Notifications
+  app.post("/api/notify", async (req, res) => {
+    const { to, message } = req.body;
 
-    if (!name || !email || !subject || !message) {
-      return res.status(400).json({ error: "All fields are required" });
+    if (!to || !message) {
+      return res.status(400).json({ error: "Recipient and message are required" });
     }
 
     try {
-      const supportEmail = process.env.SUPPORT_EMAIL || 'suporte@homologaplus.com.br';
+      // MOCK WHATSAPP SENDING
+      // In a real scenario, you would use an API like Twilio, Meta, or a local gateway.
+      console.log(`[WHATSAPP NOTIFICATION] To: ${to} | Message: ${message}`);
       
+      // Example integration (commented out):
+      /*
+      await fetch('https://api.whatsapp.com/v1/messages', {
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${process.env.WHATSAPP_API_KEY}`,
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          messaging_product: "whatsapp",
+          to: to,
+          type: "text",
+          text: { body: message }
+        })
+      });
+      */
+
+      res.json({ success: true, message: "Notification sent (mocked)" });
+    } catch (err) {
+      console.error('Notification Error:', err);
+      res.status(500).json({ error: "Failed to send notification" });
+    }
+  });
+
+  // API Route for Email Confirmation
+  app.post("/api/send-confirmation", async (req, res) => {
+    const { email, whatsapp, rank } = req.body;
+
+    if (!email) {
+      return res.status(400).json({ error: "Email is required" });
+    }
+
+    try {
       const { data, error } = await resend.emails.send({
-        from: 'Homologa Plus <contato@homologaplus.com.br>',
-        to: [supportEmail],
-        subject: `[Contato Site] ${subject}`,
+        from: 'HOMOLOGA Plus <onboarding@resend.dev>',
+        to: [email],
+        subject: '🚀 Bem-vindo à lista de espera do HOMOLOGA Plus!',
         html: `
-          <h2>Nova mensagem de contato</h2>
-          <p><strong>Nome:</strong> ${name}</p>
-          <p><strong>Email:</strong> ${email}</p>
-          <p><strong>Assunto:</strong> ${subject}</p>
-          <p><strong>Mensagem:</strong></p>
-          <p>${message.replace(/\n/g, '<br>')}</p>
+          <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto; color: #334155;">
+            <h1 style="color: #F27D26;">Você está na lista!</h1>
+            <p>Olá,</p>
+            <p>Ficamos muito felizes com seu interesse no <strong>HOMOLOGA Plus</strong>. Você acaba de garantir seu lugar na fila para a plataforma definitiva de gestão para projetistas solares.</p>
+            
+            <div style="background-color: #F8FAFC; padding: 20px; border-radius: 12px; border: 1px solid #E2E8F0; margin: 20px 0;">
+              <p style="margin: 0; font-size: 14px; text-transform: uppercase; letter-spacing: 0.05em; color: #64748B;">Sua posição atual</p>
+              <p style="margin: 5px 0 0 0; font-size: 32px; font-weight: bold; color: #F27D26;">#${rank}</p>
+            </div>
+
+            <p><strong>Dica de Ouro:</strong> Quer subir na fila? Indique outros projetistas usando seu link exclusivo que você recebeu na página de confirmação.</p>
+            
+            <p>Em breve traremos mais novidades sobre o lançamento e o <strong>Plano Fundador</strong>.</p>
+            
+            <hr style="border: 0; border-top: 1px solid #E2E8F0; margin: 30px 0;" />
+            <p style="font-size: 12px; color: #94A3B8;">Equipe HOMOLOGA Plus</p>
+          </div>
         `,
       });
 
       if (error) {
         console.error('Resend Error:', error);
-        return res.status(400).json({ error: error.message });
+        return res.status(400).json({ error });
       }
 
       res.json({ success: true, data });
     } catch (err) {
-      console.error('Server Error:', err);
-      res.status(500).json({ error: "Internal server error" });
+      console.error('Email Error:', err);
+      res.status(500).json({ error: "Failed to send email" });
     }
   });
 

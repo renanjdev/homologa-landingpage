@@ -1,22 +1,10 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Helmet } from 'react-helmet-async';
-import { 
-  CheckCircle2, 
-  Phone,
-  ArrowLeft, 
-  Zap, 
-  ShieldCheck, 
-  Loader2,
-  AlertCircle,
-  Sun,
-  ChevronRight,
-  Share2,
-  Trophy
-} from 'lucide-react';
+import { Mail, CheckCircle2, Phone, ArrowLeft, Zap, ShieldCheck, Loader2, AlertCircle, Sun, ChevronRight, Share2, Trophy } from 'lucide-react';
 import { Link, useSearchParams } from 'react-router-dom';
 import { useWaitlist } from '../hooks/useWaitlist';
-import { formatWhatsApp, validateWhatsApp } from '../utils/whatsapp';
+import { formatWhatsApp, validateWhatsApp, validateEmail } from '../utils/whatsapp';
 
 const WaitlistHeader = () => (
   <nav className="bg-white/80 backdrop-blur-lg border-b border-slate-200 py-4 sticky top-0 z-50">
@@ -191,26 +179,36 @@ const WaitlistForm = ({
   status, 
   errorMessage 
 }: { 
-  onSubmit: (whatsapp: string) => void;
+  onSubmit: (whatsapp: string, email: string) => void;
   status: string;
   errorMessage: string;
 }) => {
   const [whatsapp, setWhatsapp] = useState('');
-  const [inputError, setInputError] = useState(false);
+  const [email, setEmail] = useState('');
+  const [inputError, setInputError] = useState<string | null>(null);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!validateWhatsApp(whatsapp)) {
-      setInputError(true);
+      setInputError('Por favor, insira um número de WhatsApp válido com DDD.');
       return;
     }
-    onSubmit(whatsapp);
+    if (!validateEmail(email)) {
+      setInputError('Por favor, insira um e-mail válido.');
+      return;
+    }
+    onSubmit(whatsapp, email);
   };
 
   const handleWhatsappChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const formatted = formatWhatsApp(e.target.value);
     setWhatsapp(formatted);
-    if (inputError) setInputError(false);
+    if (inputError) setInputError(null);
+  };
+
+  const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setEmail(e.target.value);
+    if (inputError) setInputError(null);
   };
 
   return (
@@ -225,7 +223,29 @@ const WaitlistForm = ({
         Seja um dos primeiros a utilizar a plataforma que vai mudar sua rotina.
       </p>
 
-      <form onSubmit={handleSubmit} className="space-y-6">
+      <form onSubmit={handleSubmit} className="space-y-5">
+        <div>
+          <label htmlFor="email" className="block text-sm font-semibold text-slate-700 mb-2">
+            Seu melhor e-mail (obrigatório)
+          </label>
+          <div className="relative">
+            <Mail className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-400" />
+            <input
+              type="email"
+              id="email"
+              required
+              value={email}
+              onChange={handleEmailChange}
+              placeholder="exemplo@email.com"
+              className={`w-full bg-slate-50 border rounded-2xl pl-12 pr-4 py-4 focus:outline-none focus:ring-4 transition-all text-lg ${
+                inputError?.includes('e-mail')
+                  ? 'border-red-300 focus:ring-red-100 focus:border-red-400' 
+                  : 'border-slate-200 focus:ring-primary/10 focus:border-primary'
+              }`}
+            />
+          </div>
+        </div>
+
         <div>
           <label htmlFor="whatsapp" className="block text-sm font-semibold text-slate-700 mb-2">
             Seu WhatsApp (obrigatório)
@@ -240,7 +260,7 @@ const WaitlistForm = ({
               onChange={handleWhatsappChange}
               placeholder="(00) 00000-0000"
               className={`w-full bg-slate-50 border rounded-2xl pl-12 pr-4 py-4 focus:outline-none focus:ring-4 transition-all text-lg ${
-                inputError 
+                inputError?.includes('WhatsApp') 
                   ? 'border-red-300 focus:ring-red-100 focus:border-red-400' 
                   : 'border-slate-200 focus:ring-primary/10 focus:border-primary'
               }`}
@@ -251,7 +271,7 @@ const WaitlistForm = ({
         {(status === 'error' || inputError) && (
           <div className="flex items-center gap-2 text-red-600 text-sm bg-red-50 p-4 rounded-xl border border-red-100">
             <AlertCircle className="w-4 h-4 shrink-0" />
-            {inputError ? 'Por favor, insira um número de WhatsApp válido com DDD.' : errorMessage}
+            {inputError || errorMessage}
           </div>
         )}
 

@@ -17,3 +17,7 @@ export const validateWhatsApp = (value: string) => {
   const numbers = value.replace(/\D/g, '');
   return numbers.length >= 10 && numbers.length <= 11;
 };
+
+export const validateEmail = (email: string) => {
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+};

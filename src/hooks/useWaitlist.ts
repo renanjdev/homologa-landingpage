@@ -36,13 +36,14 @@ export const useWaitlist = (referralId: string | null) => {
     return () => unsub();
   }, [userId]);
 
-  const joinWaitlist = async (whatsapp: string) => {
+  const joinWaitlist = async (whatsapp: string, email: string) => {
     setStatus('loading');
     try {
       const currentRank = waitlistCount + 1;
       
       const waitlistData: any = {
         whatsapp,
+        email,
         createdAt: serverTimestamp(),
         source: 'waitlist_page',
         initialRank: currentRank,
@@ -76,6 +77,18 @@ export const useWaitlist = (referralId: string | null) => {
         await setDoc(statsRef, {
           waitlistCount: 88
         });
+      }
+
+      // Send confirmation email via server
+      try {
+        await fetch('/api/send-confirmation', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email, whatsapp, rank: currentRank })
+        });
+      } catch (emailErr) {
+        console.error('Failed to trigger email confirmation:', emailErr);
+        // We don't fail the whole process if email fails
       }
 
       setStatus('success');

@@ -9,6 +9,7 @@ service cloud.firestore {
     // Document ID: auto-generated
     // Fields:
     //   - whatsapp: string (required) - User's WhatsApp number.
+    //   - email: string (optional) - User's email address.
     //   - createdAt: timestamp (required) - Timestamp when the user joined the waitlist.
     //   - source: string (optional) - Where the user signed up from.
     //
@@ -19,6 +20,10 @@ service cloud.firestore {
       return request.auth != null;
     }
 
+    function isValidEmail(email) {
+      return email is string && email.matches("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$");
+    }
+
     function isAdmin() {
       return isAuthenticated() && 
         (get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'admin' ||
@@ -27,8 +32,9 @@ service cloud.firestore {
 
     function isValidWaitlistEntry(data) {
       return data.keys().hasAll(['whatsapp', 'createdAt', 'initialRank']) &&
-             data.keys().hasOnly(['whatsapp', 'createdAt', 'source', 'referral', 'referralCount', 'initialRank']) &&
+             data.keys().hasOnly(['whatsapp', 'email', 'createdAt', 'source', 'referral', 'referralCount', 'initialRank']) &&
              data.whatsapp is string && data.whatsapp.size() >= 8 && data.whatsapp.size() < 30 &&
+             (!('email' in data) || isValidEmail(data.email)) &&
              data.createdAt is timestamp &&
              data.initialRank is int &&
              (!('referralCount' in data) || data.referralCount is int) &&

@@ -3,8 +3,20 @@ import { createServer as createViteServer } from "vite";
 import path from "path";
 import { Resend } from 'resend';
 import dotenv from 'dotenv';
+import admin from 'firebase-admin';
+import { getFirestore } from 'firebase-admin/firestore';
+import firebaseConfig from './firebase-applet-config.json';
 
 dotenv.config();
+
+// Initialize Firebase Admin
+if (!admin.apps.length) {
+  admin.initializeApp({
+    projectId: firebaseConfig.projectId,
+  });
+}
+
+const dbAdmin = getFirestore(firebaseConfig.firestoreDatabaseId);
 
 const resend = new Resend(process.env.RESEND_API_KEY || '');
 
@@ -19,6 +31,65 @@ async function startServer() {
   app.get("/api/health", (req, res) => {
     console.log("Health check requested");
     res.json({ status: "ok", mode: process.env.NODE_ENV });
+  });
+
+  // API Route for Waitlist (Backend Firestore)
+  app.post("/api/waitlist", async (req, res) => {
+    const { email, whatsapp, rank, referralCode, referralId } = req.body;
+
+    if (!email) {
+      return res.status(400).json({ error: "Email is required" });
+    }
+
+    try {
+      const emailKey = email.toLowerCase().trim();
+      
+      // Update referrer if exists
+      if (referralId) {
+        try {
+          await dbAdmin.collection('waitlist').doc(referralId).update({
+            referralCount: admin.firestore.FieldValue.increment(1)
+          });
+        } catch (err) {
+          console.error('Error updating referrer in backend:', err);
+        }
+      }
+
+      // Set user document
+      await dbAdmin.collection('waitlist').doc(emailKey).set({
+        email,
+        whatsapp,
+        rank: rank || 0,
+        referralCode: referralCode || Math.random().toString(36).substring(2, 8).toUpperCase(),
+        createdAt: admin.firestore.FieldValue.serverTimestamp(),
+        source: 'waitlist_api',
+        referralCount: 0,
+        ...(referralId ? { referral: referralId } : {})
+      });
+
+      // Update global stats
+      const statsRef = dbAdmin.collection('stats').doc('global');
+      const statsSnap = await statsRef.get();
+      
+      if (statsSnap.exists) {
+        await statsRef.update({
+          waitlistCount: admin.firestore.FieldValue.increment(1)
+        });
+      } else {
+        await statsRef.set({
+          waitlistCount: 88
+        });
+      }
+
+      res.json({ success: true });
+    } catch (err) {
+      console.error('Waitlist API Error:', err);
+      res.status(500).json({ error: "Failed to join waitlist" });
+    }
+  });
+
+  app.all("/api/waitlist", (req, res) => {
+    res.status(405).json({ error: "Method not allowed" });
   });
 
   // API Route for WhatsApp Notifications

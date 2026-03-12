@@ -9,7 +9,6 @@ export const useWaitlist = (referralId: string | null) => {
   const [errorMessage, setErrorMessage] = useState('');
   const [waitlistCount, setWaitlistCount] = useState(87);
   const [userId, setUserId] = useState<string | null>(null);
-  const [referralCode, setReferralCode] = useState<string | null>(null);
   const [userReferrals, setUserReferrals] = useState(0);
   const [userInitialRank, setUserInitialRank] = useState(0);
 
@@ -40,49 +39,77 @@ export const useWaitlist = (referralId: string | null) => {
   const joinWaitlist = async (whatsapp: string, email: string) => {
     setStatus('loading');
     try {
-      const urlParams = new URLSearchParams(window.location.search);
-      const utm_source = urlParams.get('utm_source');
-      const utm_medium = urlParams.get('utm_medium');
-      const utm_campaign = urlParams.get('utm_campaign');
+      const currentRank = waitlistCount + 1;
       
-      const response = await fetch('/api/join-waitlist', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ 
-          email, 
-          whatsapp, 
-          utm_source,
-          utm_medium,
-          utm_campaign,
-          ref: referralId
-        })
-      });
+      const waitlistData: any = {
+        whatsapp,
+        email,
+        createdAt: serverTimestamp(),
+        source: 'waitlist_page',
+        initialRank: currentRank,
+        referralCount: 0
+      };
+      
+      if (referralId) {
+        waitlistData.referral = referralId;
+        try {
+          await updateDoc(doc(db, 'waitlist', referralId), {
+            referralCount: increment(1)
+          });
+        } catch (err) {
+          console.error('Error updating referrer:', err);
+        }
+      }
 
-      let result;
-      const contentType = response.headers.get('content-type');
-      if (contentType && contentType.includes('application/json')) {
-        result = await response.json();
+      const docRef = await addDoc(collection(db, 'waitlist'), waitlistData);
+
+      setUserId(docRef.id);
+      setUserInitialRank(currentRank);
+
+      const statsRef = doc(db, 'stats', 'global');
+      const statsSnap = await getDoc(statsRef);
+      
+      if (statsSnap.exists()) {
+        await updateDoc(statsRef, {
+          waitlistCount: increment(1)
+        });
       } else {
-        const text = await response.text();
-        console.error('Server returned non-JSON response:', text);
-        throw new Error(text || 'A server error occurred. Please try again later.');
+        await setDoc(statsRef, {
+          waitlistCount: 88
+        });
       }
 
-      if (!response.ok) {
-        throw new Error(result.error || 'Failed to join waitlist');
-      }
+      // Send confirmation email via server
+      try {
+        const urlParams = new URLSearchParams(window.location.search);
+        const utm_source = urlParams.get('utm_source');
+        const utm_medium = urlParams.get('utm_medium');
+        const utm_campaign = urlParams.get('utm_campaign');
+        const referrer = document.referrer;
 
-      setUserId(email.trim().toLowerCase());
-      setUserInitialRank(result.rank);
-      setUserReferrals(result.referralCount || 0);
-      // Store referralCode separately for sharing
-      setReferralCode(result.referralCode);
+        await fetch('/api/send-confirmation', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ 
+            email, 
+            whatsapp, 
+            rank: currentRank,
+            utm_source,
+            utm_medium,
+            utm_campaign,
+            referrer
+          })
+        });
+      } catch (emailErr) {
+        console.error('Failed to trigger email confirmation:', emailErr);
+        // We don't fail the whole process if email fails
+      }
 
       setStatus('success');
     } catch (error: any) {
       console.error('Error joining waitlist:', error);
       setStatus('error');
-      setErrorMessage(error.message || 'Ocorreu um erro ao salvar seu contato. Por favor, tente novamente.');
+      setErrorMessage('Ocorreu um erro ao salvar seu contato. Por favor, tente novamente.');
     }
   };
 
@@ -93,7 +120,6 @@ export const useWaitlist = (referralId: string | null) => {
     errorMessage,
     waitlistCount,
     userId,
-    referralCode,
     userReferrals,
     userInitialRank,
     joinWaitlist,

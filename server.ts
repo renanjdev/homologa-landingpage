@@ -2,7 +2,7 @@ import express from "express";
 import { createServer as createViteServer } from "vite";
 import path from "path";
 import { fileURLToPath } from 'url';
-import { Resend } from 'resend';
+import nodemailer from 'nodemailer';
 import dotenv from 'dotenv';
 
 const __filename = fileURLToPath(import.meta.url);
@@ -10,7 +10,15 @@ const __dirname = path.dirname(__filename);
 
 dotenv.config();
 
-const resend = new Resend(process.env.RESEND_API_KEY || '');
+const transporter = nodemailer.createTransport({
+  host: process.env.SMTP_HOST || 'smtp.gmail.com',
+  port: parseInt(process.env.SMTP_PORT || '465'),
+  secure: true, // true for 465, false for other ports
+  auth: {
+    user: process.env.SMTP_USER,
+    pass: process.env.SMTP_PASS,
+  },
+});
 
 async function startServer() {
   const app = express();
@@ -34,10 +42,10 @@ async function startServer() {
     }
 
     try {
-      // Send Email via Resend
-      const { data, error } = await resend.emails.send({
-        from: 'HOMOLOGA Plus <contato@homologaplus.com.br>',
-        to: [email],
+      // Send Email via Nodemailer
+      await transporter.sendMail({
+        from: `"HOMOLOGA Plus" <${process.env.SMTP_USER}>`,
+        to: email,
         subject: 'Bem-vindo à lista VIP do HOMOLOGA Plus! 🚀',
         html: `
           <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; color: #334155;">
@@ -59,15 +67,10 @@ async function startServer() {
         `,
       });
 
-      if (error) {
-        console.error('Resend Error:', error);
-        return res.status(500).json({ error: "Failed to send email" });
-      }
-
-      res.json({ success: true, data });
+      res.json({ success: true });
     } catch (err) {
-      console.error('Server Error:', err);
-      res.status(500).json({ error: "Internal server error" });
+      console.error('Nodemailer Error:', err);
+      res.status(500).json({ error: "Failed to send email" });
     }
   });
 

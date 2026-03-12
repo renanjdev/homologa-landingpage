@@ -105,19 +105,19 @@ const WaitlistHero = ({ waitlistCount }: { waitlistCount: number }) => (
 const SuccessState = ({ 
   userInitialRank, 
   userReferrals, 
-  userId, 
+  referralCode, 
   onReset 
 }: { 
   userInitialRank: number; 
   userReferrals: number; 
-  userId: string | null;
+  referralCode: string | null;
   onReset: () => void;
 }) => {
   const currentRank = Math.max(1, userInitialRank - (userReferrals * 7));
   const nextRank = Math.max(1, currentRank - 21);
 
   const shareOnWhatsApp = () => {
-    const shareUrl = `${window.location.origin}/waitlist?ref=${userId}`;
+    const shareUrl = `${window.location.origin}/waitlist?ref=${referralCode}`;
     const text = `🚀 Acabei de entrar na lista de espera do *HOMOLOGA Plus*!\n\nA plataforma definitiva para *gestão de projetos e homologação* solar. ☀️\n\nFeito de projetista para projetista. Organize seus processos e ganhe escala. Garanta sua vaga no *Plano Fundador* antes que as 100 vagas acabem! ⏳\n\nEntre pelo meu link para subir na fila:\n${shareUrl}`;
     window.open(`https://wa.me/?text=${encodeURIComponent(text)}`, '_blank');
   };
@@ -308,6 +308,7 @@ const Waitlist = () => {
     errorMessage,
     waitlistCount,
     userId,
+    referralCode,
     userReferrals,
     userInitialRank,
     joinWaitlist,
@@ -336,7 +337,7 @@ const Waitlist = () => {
             <AnimatePresence mode="wait">
               {status === 'success' ? (
                 <SuccessState 
-                  userId={userId}
+                  referralCode={referralCode}
                   userInitialRank={userInitialRank}
                   userReferrals={userReferrals}
                   onReset={resetStatus}

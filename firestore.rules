@@ -26,7 +26,8 @@ service cloud.firestore {
 
     function isAdmin() {
       return isAuthenticated() && 
-        (get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'admin' ||
+        (exists(/databases/$(database)/documents/users/$(request.auth.uid)) && 
+         get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'admin' ||
          (request.auth.token.email == "renanjjanuario@gmail.com" && request.auth.token.email_verified == true));
     }
 
@@ -34,12 +35,12 @@ service cloud.firestore {
       return data.keys().hasAll(['whatsapp', 'createdAt', 'initialRank']) &&
              data.keys().hasOnly(['whatsapp', 'email', 'createdAt', 'source', 'referral', 'referralCount', 'initialRank']) &&
              data.whatsapp is string && data.whatsapp.size() >= 8 && data.whatsapp.size() < 30 &&
-             (!('email' in data) || isValidEmail(data.email)) &&
+             (!('email' in data) || data.email == "" || isValidEmail(data.email)) &&
              data.createdAt is timestamp &&
-             data.initialRank is int &&
+             (data.initialRank is int || data.initialRank is number) &&
              (!('referralCount' in data) || data.referralCount is int) &&
-             (!('source' in data) || (data.source is string && data.source.size() < 50)) &&
-             (!('referral' in data) || data.referral == null || (data.referral is string && data.referral.size() < 50));
+             (!('source' in data) || (data.source is string && data.source.size() < 100)) &&
+             (!('referral' in data) || data.referral == null || (data.referral is string && data.referral.size() < 100));
     }
 
     match /waitlist/{entryId} {
@@ -54,7 +55,7 @@ service cloud.firestore {
                         request.resource.data.referralCount == resource.data.referralCount + 1) ||
                        isAdmin();
       
-      // Only admins can delete or list all
+      // Only admins can list all or delete
       allow list, delete: if isAdmin();
     }
 
@@ -63,10 +64,11 @@ service cloud.firestore {
       allow read: if true;
       // Allow anyone to increment the waitlistCount
       allow update: if request.resource.data.diff(resource.data).affectedKeys().hasOnly(['waitlistCount']) &&
-                     request.resource.data.waitlistCount == resource.data.waitlistCount + 1;
+                     (request.resource.data.waitlistCount == resource.data.waitlistCount + 1 || 
+                      request.resource.data.waitlistCount == resource.data.waitlistCount);
       // Allow anyone to create the initial stats doc if it doesn't exist
       allow create: if request.resource.data.keys().hasOnly(['waitlistCount']) &&
-                    request.resource.data.waitlistCount is int;
+                    (request.resource.data.waitlistCount is int || request.resource.data.waitlistCount is number);
       // Only admins can delete
       allow delete: if isAdmin();
     }

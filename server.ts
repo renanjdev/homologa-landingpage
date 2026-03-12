@@ -1,31 +1,17 @@
 import express from "express";
 import { createServer as createViteServer } from "vite";
 import path from "path";
-import { fileURLToPath } from 'url';
-import nodemailer from 'nodemailer';
+import { Resend } from 'resend';
 import dotenv from 'dotenv';
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
 
 dotenv.config();
 
-const transporter = nodemailer.createTransport({
-  host: process.env.SMTP_HOST || 'smtp.gmail.com',
-  port: parseInt(process.env.SMTP_PORT || '465'),
-  secure: true, // true for 465, false for other ports
-  auth: {
-    user: process.env.SMTP_USER,
-    pass: process.env.SMTP_PASS,
-  },
-});
+const resend = new Resend(process.env.RESEND_API_KEY || '');
 
 async function startServer() {
   const app = express();
   const PORT = 3000;
 
-  // Trust proxy is required for correct protocol detection (HTTP vs HTTPS)
-  app.set('trust proxy', true);
   app.use(express.json());
 
   // Health check route
@@ -42,10 +28,10 @@ async function startServer() {
     }
 
     try {
-      // Send Email via Nodemailer
-      await transporter.sendMail({
-        from: `"HOMOLOGA Plus" <${process.env.SMTP_USER}>`,
-        to: email,
+      // Send Email via Resend
+      const { data, error } = await resend.emails.send({
+        from: 'HOMOLOGA Plus <contato@homologaplus.com.br>',
+        to: [email],
         subject: 'Bem-vindo à lista VIP do HOMOLOGA Plus! 🚀',
         html: `
           <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; color: #334155;">
@@ -67,10 +53,15 @@ async function startServer() {
         `,
       });
 
-      res.json({ success: true });
+      if (error) {
+        console.error('Resend Error:', error);
+        return res.status(500).json({ error: "Failed to send email" });
+      }
+
+      res.json({ success: true, data });
     } catch (err) {
-      console.error('Nodemailer Error:', err);
-      res.status(500).json({ error: "Failed to send email" });
+      console.error('Server Error:', err);
+      res.status(500).json({ error: "Internal server error" });
     }
   });
 
@@ -84,17 +75,9 @@ async function startServer() {
     app.use(vite.middlewares);
   } else {
     console.log("Starting in PRODUCTION mode...");
-    const distPath = path.join(__dirname, 'dist');
-    
-    // Serve static files
+    const distPath = path.resolve(process.cwd(), 'dist');
     app.use(express.static(distPath));
-    
-    // Fallback for SPA - Using the correct Express 5 named wildcard syntax
-    app.get('*all', (req, res, next) => {
-      // If it's an API route, don't serve index.html, let it fall through or 404
-      if (req.path.startsWith('/api/')) {
-        return next();
-      }
+    app.get('*', (req, res) => {
       res.sendFile(path.join(distPath, 'index.html'));
     });
   }

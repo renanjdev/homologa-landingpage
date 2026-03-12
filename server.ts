@@ -41,7 +41,8 @@ async function startServer() {
   app.get("/api/waitlist", async (req, res) => {
     const supabase = getSupabase();
     if (!supabase) {
-      return res.status(500).json({ error: "Supabase not configured. Please set SUPABASE_URL and SUPABASE_KEY." });
+      // Demo mode fallback
+      return res.json({ count: 87, demo: true });
     }
     try {
       const { count, error } = await supabase
@@ -57,13 +58,16 @@ async function startServer() {
 
   app.post("/api/waitlist", async (req, res) => {
     const supabase = getSupabase();
-    if (!supabase) {
-      return res.status(500).json({ error: "Supabase not configured. Please set SUPABASE_URL and SUPABASE_KEY." });
-    }
     const { email, whatsapp, utm_source, utm_medium, utm_campaign, referrer } = req.body;
 
     if (!email) {
       return res.status(400).json({ error: "Email is required" });
+    }
+
+    if (!supabase) {
+      // Demo mode fallback
+      console.warn("Supabase not configured. Using demo mode for email:", email);
+      return res.json({ success: true, position: 88, demo: true });
     }
 
     try {

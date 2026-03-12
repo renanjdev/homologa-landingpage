@@ -54,142 +54,110 @@ async function startServer() {
         subject: 'Você entrou na lista do HOMOLOGA Plus 🚀',
         html: `
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office">
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <meta name="x-apple-disable-message-reformatting">
-  <title>Confirmação HOMOLOGA Plus</title>
-  <!--[if mso]>
-  <noscript>
-    <xml>
-      <o:OfficeDocumentSettings>
-        <o:PixelsPerInch>96</o:PixelsPerInch>
-      </o:OfficeDocumentSettings>
-    </xml>
-  </noscript>
-  <![endif]-->
+  <title>HOMOLOGA Plus - Confirmação</title>
   <style type="text/css">
-    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
     
-    body { margin: 0; padding: 0; min-width: 100%; width: 100% !important; height: 100% !important; background-color: #F3F5F9; font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; }
-    img { line-height: 100%; outline: none; text-decoration: none; -ms-interpolation-mode: bicubic; border: 0; }
-    table { border-collapse: collapse !important; }
+    body { margin: 0; padding: 0; width: 100% !important; background-color: #F8FAFC; font-family: 'Inter', Helvetica, Arial, sans-serif; -webkit-font-smoothing: antialiased; }
+    table { border-collapse: collapse; }
+    .container { max-width: 600px; margin: 0 auto; background-color: #ffffff; border-radius: 24px; overflow: hidden; border: 1px solid #E2E8F0; }
+    .header { background-color: #0F172A; padding: 60px 40px; text-align: center; }
+    .hero-card { background: linear-gradient(135deg, #1E293B 0%, #0F172A 100%); border-radius: 20px; padding: 40px; margin: -40px 40px 0 40px; border: 1px solid rgba(255,255,255,0.1); box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04); }
+    .btn { background: #3B82F6; color: #ffffff !important; padding: 16px 32px; text-decoration: none; border-radius: 12px; font-weight: 700; display: inline-block; transition: all 0.2s; }
     
     @media only screen and (max-width: 600px) {
-      .content { width: 100% !important; }
-      .mobile-padding { padding-left: 20px !important; padding-right: 20px !important; }
-      .position-number { font-size: 48px !important; }
+      .hero-card { margin: -30px 20px 0 20px !important; padding: 30px 20px !important; }
+      .container { border-radius: 0 !important; border: none !important; }
     }
   </style>
 </head>
-<body style="margin: 0; padding: 0; background-color: #F3F5F9;">
-  <!-- Preheader Text -->
-  <div style="display: none; max-height: 0px; overflow: hidden;">
-    Sua posição #${rank} na lista do HOMOLOGA Plus está confirmada! Veja como ganhar prioridade no lançamento.
-  </div>
-
-  <table border="0" cellpadding="0" cellspacing="0" width="100%" style="background-color: #F3F5F9; table-layout: fixed;">
+<body style="margin: 0; padding: 0; background-color: #F8FAFC;">
+  <table border="0" cellpadding="0" cellspacing="0" width="100%" style="padding: 40px 0;">
     <tr>
-      <td align="center" style="padding: 40px 10px;">
-        <table border="0" cellpadding="0" cellspacing="0" width="600" class="content" style="background-color: #FFFFFF; border-radius: 24px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.05);">
+      <td align="center">
+        <table border="0" cellpadding="0" cellspacing="0" width="600" class="container" style="background-color: #ffffff; border-radius: 24px; border: 1px solid #E2E8F0;">
           
-          <!-- Header Hero -->
+          <!-- Header -->
           <tr>
-            <td style="background-color: #0F2A5A; background: linear-gradient(135deg, #0F2A5A 0%, #1E3A8A 100%); padding: 60px 40px; text-align: center; position: relative;">
-              <!-- Decorative Circles (CSS fallback for non-VML) -->
-              <div style="margin-bottom: 25px;">
-                <span style="font-size: 26px; font-weight: 800; color: #FFFFFF; letter-spacing: -1px;">HOMOLOGA <span style="color: #60A5FA;">Plus</span></span>
+            <td class="header" style="background-color: #0F172A; padding: 80px 40px; text-align: center;">
+              <div style="margin-bottom: 24px;">
+                <span style="font-size: 22px; font-weight: 800; color: #FFFFFF; letter-spacing: -0.5px;">HOMOLOGA <span style="color: #3B82F6;">Plus</span></span>
               </div>
-              <h1 style="font-size: 32px; font-weight: 700; color: #FFFFFF; margin: 0; line-height: 1.2;">Acesso Confirmado!</h1>
-              <p style="font-size: 17px; color: #D6E2FF; margin: 12px 0 0 0; opacity: 0.9;">Você está um passo à frente na gestão solar.</p>
-            </td>
-          </tr>
-          
-          <!-- Greeting -->
-          <tr>
-            <td class="mobile-padding" style="padding: 45px 50px 20px 50px;">
-              <p style="font-size: 18px; color: #1F2937; margin: 0; font-weight: 600;">Olá, ${name} 👋</p>
-              <p style="font-size: 16px; color: #4B5563; line-height: 1.7; margin: 15px 0 0 0;">
-                É um prazer ter você conosco. O <strong>HOMOLOGA Plus</strong> está sendo construído para ser a ferramenta definitiva para integradores que buscam escala e eficiência.
-              </p>
+              <h1 style="font-size: 32px; font-weight: 700; color: #FFFFFF; margin: 0; letter-spacing: -1px;">Bem-vindo à elite solar.</h1>
+              <p style="font-size: 16px; color: #94A3B8; margin: 12px 0 0 0;">Sua reserva para o acesso antecipado foi confirmada.</p>
             </td>
           </tr>
 
-          <!-- Position Card -->
+          <!-- Position Widget -->
           <tr>
-            <td class="mobile-padding" style="padding: 10px 50px;">
-              <table border="0" cellpadding="0" cellspacing="0" width="100%" style="background-color: #1E3A8A; background: linear-gradient(135deg, #1E3A8A 0%, #0F2A5A 100%); border-radius: 20px; text-align: center;">
+            <td>
+              <table border="0" cellpadding="0" cellspacing="0" width="100%">
                 <tr>
-                  <td style="padding: 40px 30px;">
-                    <p style="font-size: 13px; font-weight: 700; color: #CBD5E1; letter-spacing: 2.5px; text-transform: uppercase; margin: 0 0 12px 0;">SUA POSIÇÃO NA FILA</p>
-                    <h2 class="position-number" style="font-size: 64px; font-weight: 800; color: #93C5FD; margin: 0; line-height: 1;">#${rank}</h2>
-                    <p style="font-size: 15px; color: #D6E2FF; margin: 18px 0 0 0; font-weight: 500;">Você será notificado assim que for sua vez</p>
+                  <td class="hero-card" style="background: #1E293B; border-radius: 20px; padding: 40px; text-align: center; border: 1px solid rgba(255,255,255,0.1);">
+                    <p style="font-size: 12px; font-weight: 700; color: #94A3B8; letter-spacing: 2px; text-transform: uppercase; margin: 0 0 16px 0;">POSIÇÃO ATUAL NA LISTA</p>
+                    <div style="display: inline-block; background: rgba(59, 130, 246, 0.1); border: 1px solid rgba(59, 130, 246, 0.2); border-radius: 100px; padding: 8px 24px; margin-bottom: 16px;">
+                      <span style="font-size: 56px; font-weight: 800; color: #3B82F6; line-height: 1;">#${rank}</span>
+                    </div>
+                    <p style="font-size: 15px; color: #CBD5E1; margin: 0; font-weight: 500;">Você está entre os primeiros integradores.</p>
                   </td>
                 </tr>
               </table>
             </td>
           </tr>
 
-          <!-- Details & Referral -->
+          <!-- Content -->
           <tr>
-            <td class="mobile-padding" style="padding: 30px 50px 50px 50px;">
-              
-              <!-- Details Box -->
-              <div style="background-color: #F8FAFC; border: 1px solid #E2E8F0; border-radius: 16px; padding: 25px; margin-bottom: 30px;">
-                <p style="font-size: 13px; font-weight: 700; color: #1E293B; margin: 0 0 18px 0; text-transform: uppercase; letter-spacing: 1px;">DETALHES DA INSCRIÇÃO</p>
-                <table border="0" cellpadding="0" cellspacing="0" width="100%">
-                  <tr>
-                    <td style="padding: 6px 0; font-size: 14px; color: #64748b;">E-mail:</td>
-                    <td style="padding: 6px 0; font-size: 14px; color: #1e293b; font-weight: 600; text-align: right;">${email}</td>
-                  </tr>
-                  <tr>
-                    <td style="padding: 6px 0; font-size: 14px; color: #64748b;">Produto:</td>
-                    <td style="padding: 6px 0; font-size: 14px; color: #1e293b; font-weight: 600; text-align: right;">Plano Fundador</td>
-                  </tr>
-                  <tr>
-                    <td style="padding: 6px 0; font-size: 14px; color: #64748b;">Data:</td>
-                    <td style="padding: 6px 0; font-size: 14px; color: #1e293b; font-weight: 600; text-align: right;">${date}</td>
-                  </tr>
-                </table>
-              </div>
+            <td style="padding: 60px 50px 40px 50px;">
+              <p style="font-size: 18px; color: #0F172A; margin: 0; font-weight: 700;">Olá, ${name}!</p>
+              <p style="font-size: 16px; color: #475569; line-height: 1.6; margin: 16px 0 0 0;">
+                Obrigado por se juntar a nós. Estamos finalizando os últimos detalhes para entregar a você a plataforma de homologação mais rápida do Brasil.
+              </p>
 
-              <!-- Referral Section -->
-              <div style="background-color: #FFFFFF; border: 1px solid #E5E7EB; border-radius: 16px; padding: 30px; text-align: center;">
-                <h3 style="font-size: 18px; font-weight: 700; color: #1F2937; margin: 0 0 12px 0;">🚀 Quer subir na fila?</h3>
-                <p style="font-size: 15px; color: #4B5563; line-height: 1.6; margin: 0 0 25px 0;">
-                  Para cada integrador que entrar na lista através do seu link, você sobe <strong>7 posições</strong> e ganha prioridade máxima.
-                </p>
+              <!-- Stats Grid -->
+              <table border="0" cellpadding="0" cellspacing="0" width="100%" style="margin-top: 40px;">
+                <tr>
+                  <td width="48%" style="background-color: #F1F5F9; border-radius: 16px; padding: 20px;">
+                    <p style="font-size: 11px; font-weight: 700; color: #64748B; margin: 0 0 4px 0; text-transform: uppercase;">PLANO RESERVADO</p>
+                    <p style="font-size: 15px; font-weight: 700; color: #0F172A; margin: 0;">Fundador</p>
+                  </td>
+                  <td width="4%"></td>
+                  <td width="48%" style="background-color: #F1F5F9; border-radius: 16px; padding: 20px;">
+                    <p style="font-size: 11px; font-weight: 700; color: #64748B; margin: 0 0 4px 0; text-transform: uppercase;">DATA DE ENTRADA</p>
+                    <p style="font-size: 15px; font-weight: 700; color: #0F172A; margin: 0;">${date}</p>
+                  </td>
+                </tr>
+              </table>
+
+              <!-- Referral Action -->
+              <div style="margin-top: 40px; padding: 32px; background-color: #F8FAFC; border: 1px dashed #CBD5E1; border-radius: 20px; text-align: center;">
+                <h3 style="font-size: 18px; font-weight: 700; color: #0F172A; margin: 0 0 8px 0;">Quer pular etapas?</h3>
+                <p style="font-size: 14px; color: #64748B; margin: 0 0 24px 0;">Indique um colega integrador e suba <strong>7 posições</strong> instantaneamente.</p>
                 
-                <!-- Bulletproof Button -->
                 <table border="0" cellpadding="0" cellspacing="0" align="center">
                   <tr>
-                    <td align="center" bgcolor="#3B82F6" style="border-radius: 12px; background: linear-gradient(to right, #3B82F6, #1D4ED8); box-shadow: 0 8px 20px rgba(59,130,246,0.3);">
-                      <a href="${shareUrl}" target="_blank" style="font-size: 16px; font-family: 'Inter', Helvetica, Arial, sans-serif; color: #ffffff; text-decoration: none; border-radius: 12px; padding: 18px 35px; border: 1px solid #3B82F6; display: inline-block; font-weight: 700;">Subir na Fila Agora</a>
+                    <td align="center" bgcolor="#3B82F6" style="border-radius: 12px;">
+                      <a href="${shareUrl}" target="_blank" style="font-size: 15px; font-family: 'Inter', sans-serif; color: #ffffff; text-decoration: none; border-radius: 12px; padding: 16px 40px; display: inline-block; font-weight: 700;">Copiar meu link de convite</a>
                     </td>
                   </tr>
                 </table>
               </div>
-
-              <!-- Support Box -->
-              <div style="background-color: #EFF6FF; border: 1px solid #BFDBFE; border-radius: 12px; padding: 20px; text-align: center; margin-top: 30px;">
-                <p style="font-size: 14px; color: #1E40AF; margin: 0; font-weight: 500;">
-                  Dúvidas? Responda este e-mail ou chame nosso suporte.
-                </p>
-              </div>
-
             </td>
           </tr>
 
           <!-- Footer -->
           <tr>
-            <td style="background-color: #0F2A5A; padding: 50px 40px; text-align: center; color: #FFFFFF;">
-              <p style="font-size: 20px; font-weight: 800; margin: 0 0 12px 0;">HOMOLOGA <span style="color: #60A5FA;">Plus</span></p>
-              <p style="font-size: 14px; color: #FFFFFF; margin: 0 0 25px 0; opacity: 0.7;">© 2026 HOMOLOGA Plus. Todos os direitos reservados.</p>
+            <td style="background-color: #F8FAFC; padding: 40px 50px; text-align: center; border-top: 1px solid #E2E8F0;">
+              <p style="font-size: 14px; font-weight: 600; color: #0F172A; margin: 0 0 8px 0;">HOMOLOGA Plus</p>
+              <p style="font-size: 12px; color: #94A3B8; margin: 0 0 24px 0;">A inteligência que o seu setor de engenharia precisava.</p>
               
-              <div style="border-top: 1px solid rgba(255,255,255,0.1); padding-top: 25px;">
-                <p style="font-size: 12px; color: #9CA3AF; margin: 0; line-height: 1.6; max-width: 400px; margin: 0 auto;">
-                  Você recebeu este e-mail porque se inscreveu na lista de espera do HOMOLOGA Plus. Se não foi você, apenas ignore este e-mail.
+              <div style="border-top: 1px solid #E2E8F0; padding-top: 24px;">
+                <p style="font-size: 11px; color: #94A3B8; margin: 0; line-height: 1.5;">
+                  Este e-mail foi enviado para ${email}.<br/>
+                  © 2026 HOMOLOGA Plus. Todos os direitos reservados.
                 </p>
               </div>
             </td>

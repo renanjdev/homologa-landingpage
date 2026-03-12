@@ -39,6 +39,10 @@ async function startServer() {
     }
   });
 
+  app.all("/api/waitlist", (req, res) => {
+    res.status(405).json({ error: "Method not allowed" });
+  });
+
   // API Route for WhatsApp Notifications
   app.post("/api/notify", async (req, res) => {
     const { to, message } = req.body;
@@ -74,6 +78,10 @@ async function startServer() {
       console.error('Notification Error:', err);
       res.status(500).json({ error: "Failed to send notification" });
     }
+  });
+
+  app.all("/api/notify", (req, res) => {
+    res.status(405).json({ error: "Method not allowed" });
   });
 
   // API Route for Email Confirmation
@@ -139,6 +147,11 @@ async function startServer() {
       console.error('Email Exception:', err);
       res.status(500).json({ error: "Failed to send email" });
     }
+  });
+
+  // Handle other methods for /api/send-confirmation
+  app.all("/api/send-confirmation", (req, res) => {
+    res.status(405).json({ error: "Method not allowed" });
   });
 
   // Vite middleware for development

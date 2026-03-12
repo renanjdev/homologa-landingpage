@@ -8,7 +8,7 @@ service cloud.firestore {
     // Collection: waitlist
     // Document ID: auto-generated
     // Fields:
-    //   - email: string (required, email format) - User's email address.
+    //   - whatsapp: string (required) - User's WhatsApp number.
     //   - createdAt: timestamp (required) - Timestamp when the user joined the waitlist.
     //   - source: string (optional) - Where the user signed up from.
     //
@@ -25,24 +25,44 @@ service cloud.firestore {
          (request.auth.token.email == "renanjjanuario@gmail.com" && request.auth.token.email_verified == true));
     }
 
-    function isValidEmail(email) {
-      return email is string && email.matches("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$");
-    }
-
     function isValidWaitlistEntry(data) {
-      return data.keys().hasAll(['email', 'createdAt']) &&
-             data.keys().hasOnly(['email', 'createdAt', 'source']) &&
-             isValidEmail(data.email) &&
+      return data.keys().hasAll(['whatsapp', 'createdAt', 'initialRank']) &&
+             data.keys().hasOnly(['whatsapp', 'createdAt', 'source', 'referral', 'referralCount', 'initialRank']) &&
+             data.whatsapp is string && data.whatsapp.size() >= 8 && data.whatsapp.size() < 30 &&
              data.createdAt is timestamp &&
-             (!('source' in data) || data.source is string);
+             data.initialRank is int &&
+             (!('referralCount' in data) || data.referralCount is int) &&
+             (!('source' in data) || (data.source is string && data.source.size() < 50)) &&
+             (!('referral' in data) || data.referral == null || (data.referral is string && data.referral.size() < 50));
     }
 
     match /waitlist/{entryId} {
       // Allow anyone to join the waitlist
       allow create: if isValidWaitlistEntry(request.resource.data);
       
-      // Only admins can view or manage the waitlist
-      allow read, update, delete: if isAdmin();
+      // Allow anyone to read their own entry if they have the ID
+      allow get: if true;
+
+      // Allow anyone to increment referralCount of a referrer
+      allow update: if (request.resource.data.diff(resource.data).affectedKeys().hasOnly(['referralCount']) &&
+                        request.resource.data.referralCount == resource.data.referralCount + 1) ||
+                       isAdmin();
+      
+      // Only admins can delete or list all
+      allow list, delete: if isAdmin();
+    }
+
+    match /stats/global {
+      // Allow anyone to read stats (for the counter)
+      allow read: if true;
+      // Allow anyone to increment the waitlistCount
+      allow update: if request.resource.data.diff(resource.data).affectedKeys().hasOnly(['waitlistCount']) &&
+                     request.resource.data.waitlistCount == resource.data.waitlistCount + 1;
+      // Allow anyone to create the initial stats doc if it doesn't exist
+      allow create: if request.resource.data.keys().hasOnly(['waitlistCount']) &&
+                    request.resource.data.waitlistCount is int;
+      // Only admins can delete
+      allow delete: if isAdmin();
     }
 
     match /users/{userId} {

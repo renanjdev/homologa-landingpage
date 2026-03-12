@@ -21,41 +21,52 @@ async function startServer() {
 
   // API Route for Waitlist
   app.post("/api/waitlist", async (req, res) => {
-    const { email } = req.body;
+    const { whatsapp } = req.body;
 
-    if (!email) {
-      return res.status(400).json({ error: "Email is required" });
+    if (!whatsapp) {
+      return res.status(400).json({ error: "WhatsApp is required" });
     }
 
     try {
-      // Send Email via Resend
+      // Here you could integrate with a WhatsApp API (like Twilio or a custom provider)
+      // For now, we just acknowledge the receipt on the server side.
+      console.log(`New waitlist entry: ${whatsapp}`);
+      
+      res.json({ success: true });
+    } catch (err) {
+      console.error('Server Error:', err);
+      res.status(500).json({ error: "Internal server error" });
+    }
+  });
+
+  // API Route for Contact Form
+  app.post("/api/contact", async (req, res) => {
+    const { name, email, subject, message } = req.body;
+
+    if (!name || !email || !subject || !message) {
+      return res.status(400).json({ error: "All fields are required" });
+    }
+
+    try {
+      const supportEmail = process.env.SUPPORT_EMAIL || 'suporte@homologaplus.com.br';
+      
       const { data, error } = await resend.emails.send({
-        from: 'HOMOLOGA Plus <contato@homologaplus.com.br>',
-        to: [email],
-        subject: 'Bem-vindo à lista VIP do HOMOLOGA Plus! 🚀',
+        from: 'Homologa Plus <contato@homologaplus.com.br>',
+        to: [supportEmail],
+        subject: `[Contato Site] ${subject}`,
         html: `
-          <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; color: #334155;">
-            <h1 style="color: #0ea5e9;">Você está na lista VIP! 🚀</h1>
-            <p>Olá,</p>
-            <p>Recebemos seu interesse no <strong>HOMOLOGA Plus</strong>. É um prazer ter você conosco nesta fase Alpha!</p>
-            <p>Como prometido, você acaba de garantir benefícios exclusivos:</p>
-            <ul>
-              <li><strong>Prioridade Máxima:</strong> Você será avisado antes de todo mundo quando abrirmos novas vagas.</li>
-              <li><strong>Plano Fundador:</strong> Acesso a um valor de assinatura promocional e vitalício, disponível apenas para quem está nesta lista.</li>
-            </ul>
-            <p>Estamos trabalhando duro para entregar a melhor plataforma de gestão de homologação solar do mercado.</p>
-            <p>Em breve traremos mais novidades!</p>
-            <br />
-            <p>Atenciosamente,<br /><strong>Equipe HOMOLOGA Plus</strong></p>
-            <hr style="border: none; border-top: 1px solid #e2e8f0; margin: 20px 0;" />
-            <p style="font-size: 12px; color: #94a3b8;">Este é um e-mail automático. Não é necessário responder.</p>
-          </div>
+          <h2>Nova mensagem de contato</h2>
+          <p><strong>Nome:</strong> ${name}</p>
+          <p><strong>Email:</strong> ${email}</p>
+          <p><strong>Assunto:</strong> ${subject}</p>
+          <p><strong>Mensagem:</strong></p>
+          <p>${message.replace(/\n/g, '<br>')}</p>
         `,
       });
 
       if (error) {
         console.error('Resend Error:', error);
-        return res.status(500).json({ error: "Failed to send email" });
+        return res.status(400).json({ error: error.message });
       }
 
       res.json({ success: true, data });

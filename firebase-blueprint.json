@@ -5,10 +5,9 @@
       "description": "Emails of users interested in the Founder Plan during Alpha phase.",
       "type": "object",
       "properties": {
-        "email": {
+        "whatsapp": {
           "type": "string",
-          "format": "email",
-          "description": "User's email address."
+          "description": "User's WhatsApp number."
         },
         "createdAt": {
           "type": "string",
@@ -18,15 +17,42 @@
         "source": {
           "type": "string",
           "description": "Where the user signed up from (e.g., 'hero', 'pricing')."
+        },
+        "referral": {
+          "type": "string",
+          "description": "ID of the user who referred this entry."
+        },
+        "referralCount": {
+          "type": "integer",
+          "description": "Number of users referred by this entry."
+        },
+        "initialRank": {
+          "type": "integer",
+          "description": "Position in the queue when the user joined."
         }
       },
-      "required": ["email", "createdAt"]
+      "required": ["whatsapp", "createdAt", "initialRank"]
+    },
+    "stats": {
+      "title": "Stats",
+      "description": "Global statistics for the application.",
+      "type": "object",
+      "properties": {
+        "waitlistCount": {
+          "type": "integer",
+          "description": "Total number of users in the waitlist."
+        }
+      }
     }
   },
   "firestore": {
     "/waitlist/{entryId}": {
       "schema": "waitlist",
       "description": "Collection of waitlist entries."
+    },
+    "/stats/global": {
+      "schema": "stats",
+      "description": "Global statistics document."
     }
   }
 }

@@ -21,30 +21,6 @@ async function startServer() {
     res.json({ status: "ok", mode: process.env.NODE_ENV });
   });
 
-  // API Route for Waitlist
-  app.post("/api/waitlist", async (req, res) => {
-    const { whatsapp } = req.body;
-
-    if (!whatsapp) {
-      return res.status(400).json({ error: "WhatsApp is required" });
-    }
-
-    try {
-      // Here you could integrate with a WhatsApp API (like Twilio or a custom provider)
-      // For now, we just acknowledge the receipt on the server side.
-      console.log(`New waitlist entry: ${whatsapp}`);
-      
-      res.json({ success: true });
-    } catch (err) {
-      console.error('Server Error:', err);
-      res.status(500).json({ error: "Internal server error" });
-    }
-  });
-
-  app.all("/api/waitlist", (req, res) => {
-    res.status(405).json({ error: "Method not allowed" });
-  });
-
   // API Route for WhatsApp Notifications
   app.post("/api/notify", async (req, res) => {
     const { to, message } = req.body;

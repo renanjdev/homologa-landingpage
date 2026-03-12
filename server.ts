@@ -80,15 +80,34 @@ async function startServer() {
   app.post("/api/send-confirmation", async (req, res) => {
     const { email, whatsapp, rank } = req.body;
 
-    if (!email) {
+    const cleanEmail = typeof email === 'string' ? email.trim() : '';
+    console.log("Novo lead:", cleanEmail);
+
+    if (!cleanEmail) {
       return res.status(400).json({ error: "Email is required" });
     }
 
+    // Basic email validation to prevent Resend validation errors
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(cleanEmail)) {
+      return res.status(400).json({ error: "Invalid email format" });
+    }
+
+    const apiKey = process.env.RESEND_API_KEY;
+    if (!apiKey) {
+      console.error('RESEND_API_KEY is missing');
+      return res.status(500).json({ error: "Email service not configured" });
+    }
+
     try {
-      const { data, error } = await resend.emails.send({
-        from: 'HOMOLOGA Plus <onboarding@resend.dev>',
-        to: [email],
+      const resendClient = new Resend(apiKey);
+      const displayRank = rank || '---';
+      
+      const { data, error } = await resendClient.emails.send({
+        from: 'HOMOLOGA Plus <contato@homologaplus.com.br>',
+        to: [cleanEmail],
         subject: '🚀 Bem-vindo à lista de espera do HOMOLOGA Plus!',
+        text: `Olá! Você está na lista de espera do HOMOLOGA Plus. Sua posição atual é #${displayRank}.`,
         html: `
           <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto; color: #334155;">
             <h1 style="color: #F27D26;">Você está na lista!</h1>
@@ -97,7 +116,7 @@ async function startServer() {
             
             <div style="background-color: #F8FAFC; padding: 20px; border-radius: 12px; border: 1px solid #E2E8F0; margin: 20px 0;">
               <p style="margin: 0; font-size: 14px; text-transform: uppercase; letter-spacing: 0.05em; color: #64748B;">Sua posição atual</p>
-              <p style="margin: 5px 0 0 0; font-size: 32px; font-weight: bold; color: #F27D26;">#${rank}</p>
+              <p style="margin: 5px 0 0 0; font-size: 32px; font-weight: bold; color: #F27D26;">#${displayRank}</p>
             </div>
 
             <p><strong>Dica de Ouro:</strong> Quer subir na fila? Indique outros projetistas usando seu link exclusivo que você recebeu na página de confirmação.</p>
@@ -111,13 +130,13 @@ async function startServer() {
       });
 
       if (error) {
-        console.error('Resend Error:', error);
+        console.error('Resend Validation/API Error:', JSON.stringify(error, null, 2));
         return res.status(400).json({ error });
       }
 
       res.json({ success: true, data });
     } catch (err) {
-      console.error('Email Error:', err);
+      console.error('Email Exception:', err);
       res.status(500).json({ error: "Failed to send email" });
     }
   });

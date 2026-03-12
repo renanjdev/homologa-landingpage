@@ -31,12 +31,12 @@ const firebaseConfig = loadConfig();
 
 // Initialize Firebase Admin
 let firebaseApp: App | null = null;
-const apps = getApps();
-
-if (apps.length === 0) {
-  try {
+try {
+  const apps = getApps();
+  if (apps.length === 0) {
     // Support both AI Studio config and Vercel environment variables
     if (process.env.FIREBASE_PRIVATE_KEY && process.env.FIREBASE_CLIENT_EMAIL) {
+      console.log('Initializing Firebase Admin with Environment Variables...');
       firebaseApp = initializeApp({
         credential: cert({
           projectId: process.env.FIREBASE_PROJECT_ID || firebaseConfig?.projectId,
@@ -44,28 +44,35 @@ if (apps.length === 0) {
           privateKey: process.env.FIREBASE_PRIVATE_KEY.replace(/\\n/g, "\n"),
         }),
       });
-    } else if (firebaseConfig) {
+    } else if (firebaseConfig && firebaseConfig.projectId) {
+      console.log('Initializing Firebase Admin with firebase-applet-config.json...');
       firebaseApp = initializeApp({
         projectId: firebaseConfig.projectId,
       });
+    } else {
+      console.warn('No Firebase configuration found (env vars or config file). Database features will be disabled.');
     }
-    console.log('Firebase Admin initialized');
-  } catch (err) {
-    console.error('Firebase Admin initialization failed:', err);
+    if (firebaseApp) console.log('Firebase Admin initialized successfully');
+  } else {
+    firebaseApp = apps[0]!;
+    console.log('Using existing Firebase Admin instance');
   }
-} else {
-  firebaseApp = apps[0]!;
+} catch (err) {
+  console.error('CRITICAL: Firebase Admin initialization failed:', err);
 }
 
 // Helper to get Firestore instance safely
 const getDb = () => {
-  if (!firebaseApp) return null;
+  if (!firebaseApp) {
+    console.error('getDb called: firebaseApp is null');
+    return null;
+  }
   try {
-    return firebaseConfig?.firestoreDatabaseId 
-      ? getFirestore(firebaseApp, firebaseConfig.firestoreDatabaseId)
-      : getFirestore(firebaseApp);
+    // Check if we have a specific database ID
+    const dbId = firebaseConfig?.firestoreDatabaseId;
+    return dbId ? getFirestore(firebaseApp, dbId) : getFirestore(firebaseApp);
   } catch (err) {
-    console.error('Firestore initialization failed:', err);
+    console.error('Firestore instance retrieval failed:', err);
     return null;
   }
 };

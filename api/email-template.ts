@@ -1,5 +1,7 @@
 
-export const getEmailHtml = (rank: string) => `
+export const getEmailHtml = (rank: string) => {
+  console.log('[Template] Gerando HTML para rank:', rank);
+  return `
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -140,3 +142,4 @@ export const getEmailHtml = (rank: string) => `
 </body>
 </html>
 `;
+};

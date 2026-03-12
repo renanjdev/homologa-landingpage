@@ -1,5 +1,5 @@
 import { Resend } from 'resend';
-import { getEmailHtml } from './_lib/email-template';
+import { getEmailHtml } from './email-template';
 
 /**
  * Helper to set CORS headers
@@ -76,12 +76,19 @@ export default async function handler(req: any, res: any) {
     }
 
     const apiKey = process.env.RESEND_API_KEY;
+    console.log('[API] Verificando API Key:', { 
+      exists: !!apiKey, 
+      length: apiKey?.length,
+      nodeEnv: process.env.NODE_ENV 
+    });
+
     if (!apiKey) {
       console.error('[API] Erro: RESEND_API_KEY não configurada');
       return res.status(500).json({ error: "Serviço de email não configurado no servidor" });
     }
 
     const resend = new Resend(apiKey);
+    console.log('[API] Resend inicializado');
     const displayRank = rank || '---';
     
     // Send email using Resend
@@ -108,7 +115,8 @@ export default async function handler(req: any, res: any) {
     console.error('[API] Erro Global:', err);
     return res.status(500).json({ 
       error: "Erro Interno do Servidor", 
-      message: err.message
+      message: err.message,
+      details: process.env.NODE_ENV === 'development' ? err.stack : undefined
     });
   }
 }

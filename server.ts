@@ -3,7 +3,7 @@ import { createServer as createViteServer } from "vite";
 import path from "path";
 import { Resend } from 'resend';
 import dotenv from 'dotenv';
-import { getEmailHtml } from './api/_lib/email-template';
+import { getEmailHtml } from './api/email-template';
 
 dotenv.config();
 
@@ -109,6 +109,12 @@ async function startServer() {
     }
 
     const apiKey = process.env.RESEND_API_KEY;
+    console.log('[Server] Verificando API Key:', { 
+      exists: !!apiKey, 
+      length: apiKey?.length,
+      nodeEnv: process.env.NODE_ENV 
+    });
+
     if (!apiKey) {
       console.error('[Server] Erro: RESEND_API_KEY não configurada');
       return res.status(500).json({ error: "Serviço de email não configurado" });
@@ -116,6 +122,7 @@ async function startServer() {
 
     try {
       const resendClient = new Resend(apiKey);
+      console.log('[Server] Resend inicializado');
       const displayRank = rank || '---';
       
       const { data, error } = await resendClient.emails.send({
@@ -134,7 +141,11 @@ async function startServer() {
       res.json({ success: true, data });
     } catch (err: any) {
       console.error('[Server] Exceção no Email:', err);
-      res.status(500).json({ error: "Erro interno ao enviar email", message: err.message });
+      return res.status(500).json({ 
+        error: "Erro interno ao enviar email", 
+        message: err.message,
+        details: process.env.NODE_ENV === 'development' ? err.stack : undefined
+      });
     }
   });
   // Handle other methods for /api/send-confirmation

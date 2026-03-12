@@ -3,9 +3,10 @@ import { createServer as createViteServer } from "vite";
 import path from "path";
 import { Resend } from 'resend';
 import dotenv from 'dotenv';
-import { getEmailHtml } from './api/email-template';
 
 dotenv.config();
+
+const resend = new Resend(process.env.RESEND_API_KEY || '');
 
 async function startServer() {
   const app = express();
@@ -88,66 +89,140 @@ async function startServer() {
     const { email, whatsapp, rank, utm_source, utm_medium, utm_campaign, referrer } = req.body;
     const ip = req.headers['x-forwarded-for'] || req.socket.remoteAddress;
 
-    const cleanEmail = typeof email === 'string' ? email.trim().toLowerCase() : '';
-    
-    console.log("[Server] Novo lead:", {
+    const cleanEmail = typeof email === 'string' ? email.trim() : '';
+    console.log("Novo lead:", {
       email: cleanEmail,
       whatsapp,
       rank,
       ip,
-      utm: { utm_source, utm_medium, utm_campaign },
-      timestamp: new Date().toISOString()
+      utm_source,
+      utm_medium,
+      utm_campaign,
+      referrer,
+      created_at: new Date().toISOString()
     });
 
     if (!cleanEmail) {
-      return res.status(400).json({ error: "Email é obrigatório" });
+      return res.status(400).json({ error: "Email is required" });
     }
 
+    // Basic email validation to prevent Resend validation errors
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(cleanEmail)) {
-      return res.status(400).json({ error: "Formato de email inválido" });
+      return res.status(400).json({ error: "Invalid email format" });
     }
 
     const apiKey = process.env.RESEND_API_KEY;
-    console.log('[Server] Verificando API Key:', { 
-      exists: !!apiKey, 
-      length: apiKey?.length,
-      nodeEnv: process.env.NODE_ENV 
-    });
-
     if (!apiKey) {
-      console.error('[Server] Erro: RESEND_API_KEY não configurada');
-      return res.status(500).json({ error: "Serviço de email não configurado" });
+      console.error('RESEND_API_KEY is missing');
+      return res.status(500).json({ error: "Email service not configured" });
     }
 
     try {
       const resendClient = new Resend(apiKey);
-      console.log('[Server] Resend inicializado');
       const displayRank = rank || '---';
       
       const { data, error } = await resendClient.emails.send({
         from: 'HOMOLOGA Plus <contato@homologaplus.com.br>',
         to: [cleanEmail],
         subject: 'Você entrou na lista do HOMOLOGA Plus 🚀',
-        text: `Olá! Seu acesso antecipado foi confirmado. Você agora faz parte do grupo de projetistas que terão prioridade no lançamento da plataforma HOMOLOGA Plus. SUA POSIÇÃO NA FILA: #${displayRank}.`,
-        html: getEmailHtml(displayRank),
+        text: `Olá! Seu acesso antecipado foi confirmado. Você agora faz parte do grupo de projetistas que terão prioridade no lançamento da plataforma HOMOLOGA Plus. SUA POSIÇÃO NA FILA: #${displayRank}. Os primeiros usuários terão acesso ao Plano Fundador com condições especiais. Quer subir na fila? Compartilhe seu link exclusivo com outros projetistas solares.`,
+        html: `
+          <!DOCTYPE html>
+          <html>
+            <head>
+              <meta charset="utf-8">
+              <meta name="viewport" content="width=device-width, initial-scale=1.0">
+              <title>Bem-vindo ao HOMOLOGA Plus</title>
+            </head>
+            <body style="margin: 0; padding: 0; background-color: #F8FAFC; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;">
+              <table border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 600px; margin: 20px auto; background-color: #ffffff; border-radius: 24px; overflow: hidden; box-shadow: 0 10px 25px -5px rgba(0,0,0,0.05);">
+                <!-- Header -->
+                <tr>
+                  <td align="center" style="padding: 40px 0; background-color: #ffffff; border-bottom: 1px solid #F1F5F9;">
+                    <img src="https://i.imgur.com/Sm4PqXw.png" alt="HOMOLOGA Plus" width="220" style="display: block; max-width: 80%;" referrerPolicy="no-referrer">
+                  </td>
+                </tr>
+                
+                <!-- Hero -->
+                <tr>
+                  <td style="padding: 48px 40px 40px 40px; text-align: center;">
+                    <h1 style="color: #0F172A; font-size: 32px; margin: 0 0 16px 0; font-weight: 800; letter-spacing: -0.02em;">Acesso Confirmado! 🚀</h1>
+                    <p style="color: #475569; font-size: 17px; line-height: 1.6; margin: 0;">
+                      Olá!<br><br>
+                      Seu acesso antecipado foi confirmado. Você agora faz parte do grupo de projetistas que terão prioridade no lançamento da plataforma <strong>HOMOLOGA Plus</strong>.
+                    </p>
+                  </td>
+                </tr>
+
+                <!-- Rank Card -->
+                <tr>
+                  <td style="padding: 0 40px;">
+                    <div style="background: linear-gradient(to bottom, #F8FAFC, #ffffff); padding: 40px 20px; border-radius: 24px; border: 1px solid #E2E8F0; text-align: center;">
+                      <p style="margin: 0; font-size: 13px; text-transform: uppercase; letter-spacing: 0.1em; color: #64748B; font-weight: 700;">Sua posição na fila</p>
+                      <p style="margin: 12px 0 0 0; font-size: 64px; font-weight: 900; color: #2563EB; letter-spacing: -0.02em;">#${displayRank}</p>
+                    </div>
+                  </td>
+                </tr>
+
+                <!-- Content -->
+                <tr>
+                  <td style="padding: 40px;">
+                    <div style="margin-bottom: 32px; text-align: center;">
+                      <p style="color: #0F172A; font-size: 16px; line-height: 1.6; margin: 0; font-weight: 600;">
+                        Os primeiros usuários terão acesso ao <span style="color: #2563EB;">Plano Fundador</span> com condições especiais.
+                      </p>
+                    </div>
+                    
+                    <div style="background-color: #FFF7ED; border-left: 4px solid #F97316; padding: 24px; border-radius: 0 20px 20px 0; margin-bottom: 32px;">
+                      <h4 style="color: #9A3412; margin: 0 0 8px 0; font-size: 16px; font-weight: 700;">💡 Quer subir na fila?</h4>
+                      <p style="color: #9A3412; font-size: 15px; margin: 0; line-height: 1.5; opacity: 0.9;">
+                        Compartilhe seu link exclusivo com outros projetistas solares. Cada indicação válida faz você subir posições.
+                      </p>
+                    </div>
+
+                    <p style="color: #64748B; font-size: 15px; line-height: 1.7; text-align: center; margin: 0;">
+                      Estamos preparando a plataforma que vai simplificar a homologação de usinas fotovoltaicas nas concessionárias.<br><br>
+                      Em breve enviaremos novidades do lançamento.
+                    </p>
+                  </td>
+                </tr>
+
+                <!-- Footer -->
+                <tr>
+                  <td style="padding: 40px; background-color: #F8FAFC; text-align: center; border-top: 1px solid #E2E8F0;">
+                    <p style="margin: 0 0 8px 0; color: #0F172A; font-size: 15px; font-weight: 700;">
+                      Equipe HOMOLOGA Plus
+                    </p>
+                    <p style="margin: 0 0 24px 0; color: #94A3B8; font-size: 13px; line-height: 1.5;">
+                      Ferramenta criada por quem trabalha diariamente com projetos e homologação solar.
+                    </p>
+                    <div style="display: inline-block; margin: 0 12px;">
+                      <a href="https://homologaplus.com.br" style="color: #2563EB; text-decoration: none; font-size: 13px; font-weight: 600;">Website</a>
+                    </div>
+                    <div style="display: inline-block; margin: 0 12px;">
+                      <a href="https://instagram.com/homologaplus" style="color: #2563EB; text-decoration: none; font-size: 13px; font-weight: 600;">Instagram</a>
+                    </div>
+                  </td>
+                </tr>
+              </table>
+            </body>
+          </html>
+        `,
       });
 
       if (error) {
-        console.error('[Server] Erro no Resend:', error);
-        return res.status(400).json({ error: "Falha ao enviar email", details: error });
+        console.error('Resend Validation/API Error:', JSON.stringify(error, null, 2));
+        return res.status(400).json({ error });
       }
 
       res.json({ success: true, data });
-    } catch (err: any) {
-      console.error('[Server] Exceção no Email:', err);
-      return res.status(500).json({ 
-        error: "Erro interno ao enviar email", 
-        message: err.message,
-        details: process.env.NODE_ENV === 'development' ? err.stack : undefined
-      });
+    } catch (err) {
+      console.error('Email Exception:', err);
+      res.status(500).json({ error: "Failed to send email" });
     }
   });
+
   // Handle other methods for /api/send-confirmation
   app.all("/api/send-confirmation", (req, res) => {
     res.status(405).json({ error: "Method not allowed" });

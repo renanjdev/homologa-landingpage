@@ -140,7 +140,7 @@ async function startServer() {
                 <!-- Header -->
                 <tr>
                   <td align="center" style="padding: 40px 0; background-color: #ffffff; border-bottom: 1px solid #F1F5F9;">
-                    <img src="https://i.imgur.com/PqVmFJJ.png" alt="HOMOLOGA Plus" width="220" style="display: block; max-width: 80%;" referrerPolicy="no-referrer">
+                    <img src="https://i.imgur.com/Sm4PqXw.png" alt="HOMOLOGA Plus" width="220" style="display: block; max-width: 80%;" referrerPolicy="no-referrer">
                   </td>
                 </tr>
                 

@@ -18,7 +18,7 @@ import {
 } from 'lucide-react';
 import { Link, useNavigate } from 'react-router-dom';
 import { collection, query, orderBy, onSnapshot, doc, getDoc } from 'firebase/firestore';
-import { signInWithPopup, GoogleAuthProvider, signOut, onAuthStateChanged } from 'firebase/auth';
+import { signInWithPopup, GoogleAuthProvider, signOut, onAuthStateChanged, signInWithEmailAndPassword } from 'firebase/auth';
 import { db, auth } from '../firebase';
 
 interface Lead {
@@ -38,6 +38,10 @@ const AdminDashboard = () => {
   const [user, setUser] = useState<any>(null);
   const [isAdmin, setIsAdmin] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [loginError, setLoginError] = useState('');
+  const [isLoggingIn, setIsLoggingIn] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -45,7 +49,8 @@ const AdminDashboard = () => {
       setUser(currentUser);
       if (currentUser) {
         // Check if user is admin (matching your firestore.rules logic)
-        const isAdminEmail = currentUser.email === 'renanjjanuario@gmail.com' && currentUser.emailVerified;
+        const isAdminEmail = (currentUser.email === 'renanjjanuario@gmail.com' && currentUser.emailVerified) || 
+                            currentUser.email === 'admin@homologaplus.com.br';
         
         // Also check firestore role if exists
         let hasAdminRole = false;
@@ -91,7 +96,25 @@ const AdminDashboard = () => {
     return () => unsubscribe();
   }, [isAdmin]);
 
-  const handleLogin = async () => {
+  const handleLogin = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setLoginError('');
+    setIsLoggingIn(true);
+    try {
+      await signInWithEmailAndPassword(auth, email, password);
+    } catch (error: any) {
+      console.error("Login failed:", error);
+      if (error.code === 'auth/user-not-found' || error.code === 'auth/wrong-password' || error.code === 'auth/invalid-credential') {
+        setLoginError('E-mail ou senha incorretos.');
+      } else {
+        setLoginError('Erro ao realizar login. Tente novamente.');
+      }
+    } finally {
+      setIsLoggingIn(false);
+    }
+  };
+
+  const handleGoogleLogin = async () => {
     try {
       const provider = new GoogleAuthProvider();
       // Force account selection dialog
@@ -163,22 +186,69 @@ const AdminDashboard = () => {
           </p>
           
           {!user ? (
-            <button
-              onClick={handleLogin}
-              className="w-full bg-primary hover:bg-primary-dark text-white py-4 rounded-2xl font-bold flex items-center justify-center gap-2 transition-all active:scale-95 shadow-lg shadow-primary/20"
-            >
-              Entrar com Google
-            </button>
+            <form onSubmit={handleLogin} className="space-y-4">
+              <div className="text-left">
+                <label className="block text-sm font-medium text-slate-700 mb-1">E-mail</label>
+                <input 
+                  type="email" 
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  required
+                  className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all"
+                  placeholder="admin@homologaplus.com.br"
+                />
+              </div>
+              <div className="text-left">
+                <label className="block text-sm font-medium text-slate-700 mb-1">Senha</label>
+                <input 
+                  type="password" 
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  required
+                  className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all"
+                  placeholder="••••••••"
+                />
+              </div>
+              
+              {loginError && (
+                <p className="text-xs text-red-500 font-medium">{loginError}</p>
+              )}
+
+              <button
+                type="submit"
+                disabled={isLoggingIn}
+                className="w-full bg-primary hover:bg-primary-dark text-white py-4 rounded-2xl font-bold flex items-center justify-center gap-2 transition-all active:scale-95 shadow-lg shadow-primary/20 disabled:opacity-50"
+              >
+                {isLoggingIn ? <Loader2 className="w-5 h-5 animate-spin" /> : 'Entrar'}
+              </button>
+
+              <div className="relative py-4">
+                <div className="absolute inset-0 flex items-center">
+                  <div className="w-full border-t border-slate-100"></div>
+                </div>
+                <div className="relative flex justify-center text-xs uppercase">
+                  <span className="bg-white px-2 text-slate-400">Ou</span>
+                </div>
+              </div>
+
+              <button
+                type="button"
+                onClick={handleGoogleLogin}
+                className="w-full border border-slate-200 text-slate-600 py-3 rounded-2xl font-bold flex items-center justify-center gap-2 hover:bg-slate-50 transition-all"
+              >
+                Entrar com Google
+              </button>
+            </form>
           ) : (
             <div className="space-y-4">
               <p className="text-sm text-red-500 font-medium">
                 Você está logado como {user.email}, mas não tem permissão de administrador.
               </p>
               <button
-                onClick={handleLogin}
+                onClick={() => setUser(null)} // This will show the login form again
                 className="w-full bg-primary hover:bg-primary-dark text-white py-4 rounded-2xl font-bold flex items-center justify-center gap-2 transition-all active:scale-95 shadow-lg shadow-primary/20"
               >
-                Trocar de conta Google
+                Tentar outro login
               </button>
               <button
                 onClick={handleLogout}

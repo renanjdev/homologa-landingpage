@@ -1,46 +1,42 @@
 {
   "entities": {
     "waitlist": {
-      "title": "Waitlist Lead",
-      "description": "A lead in the waitlist with referral information",
+      "title": "Waitlist",
+      "description": "Emails of users interested in the Founder Plan during Alpha phase.",
       "type": "object",
       "properties": {
+        "whatsapp": {
+          "type": "string",
+          "description": "User's WhatsApp number."
+        },
         "email": {
           "type": "string",
           "format": "email",
-          "description": "User's email address"
-        },
-        "whatsapp": {
-          "type": "string",
-          "description": "User's WhatsApp number"
-        },
-        "rank": {
-          "type": "integer",
-          "description": "Current position in the waitlist"
-        },
-        "referralCode": {
-          "type": "string",
-          "description": "Unique code for referrals"
-        },
-        "referredBy": {
-          "type": "string",
-          "description": "The referralCode of the user who referred this lead"
-        },
-        "referralCount": {
-          "type": "integer",
-          "description": "Number of people referred by this user"
+          "description": "User's email address."
         },
         "createdAt": {
           "type": "string",
           "format": "date-time",
-          "description": "When the lead joined"
+          "description": "Timestamp when the user joined the waitlist."
         },
-        "ip": {
+        "source": {
           "type": "string",
-          "description": "IP address of the user"
+          "description": "Where the user signed up from (e.g., 'hero', 'pricing')."
+        },
+        "referral": {
+          "type": "string",
+          "description": "ID of the user who referred this entry."
+        },
+        "referralCount": {
+          "type": "integer",
+          "description": "Number of users referred by this entry."
+        },
+        "initialRank": {
+          "type": "integer",
+          "description": "Position in the queue when the user joined."
         }
       },
-      "required": ["email", "whatsapp", "rank", "referralCode", "createdAt"]
+      "required": ["whatsapp", "createdAt", "initialRank"]
     },
     "stats": {
       "title": "Stats",
@@ -50,6 +46,18 @@
         "waitlistCount": {
           "type": "integer",
           "description": "Total number of users in the waitlist."
+        }
+      }
+    },
+    "users": {
+      "title": "User",
+      "description": "User profile and roles.",
+      "type": "object",
+      "properties": {
+        "role": {
+          "type": "string",
+          "enum": ["admin", "user"],
+          "description": "User's role in the system."
         }
       }
     }
@@ -62,6 +70,10 @@
     "/stats/global": {
       "schema": "stats",
       "description": "Global statistics document."
+    },
+    "/users/{userId}": {
+      "schema": "users",
+      "description": "User profiles and roles."
     }
   }
 }

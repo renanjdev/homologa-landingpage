@@ -6,6 +6,7 @@ import { Sun } from 'lucide-react';
 // Lazy load pages
 const LandingPage = lazy(() => import('./pages/LandingPage'));
 const Waitlist = lazy(() => import('./pages/Waitlist'));
+const AdminDashboard = lazy(() => import('./pages/AdminDashboard'));
 const TermsOfUse = lazy(() => import('./pages/TermsOfUse'));
 const PrivacyPolicy = lazy(() => import('./pages/PrivacyPolicy'));
 
@@ -25,6 +26,7 @@ export default function App() {
         <Routes>
           <Route path="/" element={<LandingPage />} />
           <Route path="/waitlist" element={<Waitlist />} />
+          <Route path="/admin" element={<AdminDashboard />} />
           <Route path="/termos" element={<TermsOfUse />} />
           <Route path="/privacidade" element={<PrivacyPolicy />} />
         </Routes>

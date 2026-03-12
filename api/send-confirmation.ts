@@ -71,8 +71,8 @@ export default async function handler(req: any, res: any) {
     const { data, error } = await resend.emails.send({
       from: 'HOMOLOGA Plus <contato@homologaplus.com.br>',
       to: [cleanEmail],
-      subject: '🚀 Bem-vindo à lista de espera do HOMOLOGA Plus!',
-      text: `Olá! Você está na lista de espera do HOMOLOGA Plus. Sua posição atual é #${displayRank}.`,
+      subject: 'Você entrou na lista do HOMOLOGA Plus 🚀',
+      text: `Olá! Seu acesso antecipado foi confirmado. Você agora faz parte do grupo de projetistas que terão prioridade no lançamento da plataforma HOMOLOGA Plus. SUA POSIÇÃO NA FILA: #${displayRank}. Os primeiros usuários terão acesso ao Plano Fundador com condições especiais. Quer subir na fila? Compartilhe seu link exclusivo com outros projetistas solares.`,
       html: `
         <!DOCTYPE html>
         <html>
@@ -102,9 +102,10 @@ export default async function handler(req: any, res: any) {
               <!-- Hero Section -->
               <tr>
                 <td style="padding: 40px 30px; text-align: center;">
-                  <h1 style="color: #1E293B; font-size: 28px; margin: 0 0 20px 0; font-weight: 800;">Você está na lista! 🚀</h1>
+                  <h1 style="color: #1E293B; font-size: 28px; margin: 0 0 20px 0; font-weight: 800;">Acesso Confirmado! 🚀</h1>
                   <p style="color: #64748B; font-size: 16px; line-height: 1.6; margin: 0;">
-                    Ficamos muito felizes com seu interesse no <strong>HOMOLOGA Plus</strong>. Você acaba de garantir seu lugar na fila para a plataforma definitiva de gestão para projetistas solares.
+                    Olá!<br><br>
+                    Seu acesso antecipado foi confirmado. Você agora faz parte do grupo de projetistas que terão prioridade no lançamento da plataforma <strong>HOMOLOGA Plus</strong>.
                   </p>
                 </td>
               </tr>
@@ -113,7 +114,7 @@ export default async function handler(req: any, res: any) {
               <tr>
                 <td style="padding: 0 30px;">
                   <div style="background-color: #F8FAFC; padding: 30px; border-radius: 20px; border: 2px dashed #E2E8F0; text-align: center;">
-                    <p style="margin: 0; font-size: 13px; text-transform: uppercase; letter-spacing: 0.1em; color: #94A3B8; font-weight: 700;">Sua posição atual na fila</p>
+                    <p style="margin: 0; font-size: 13px; text-transform: uppercase; letter-spacing: 0.1em; color: #94A3B8; font-weight: 700;">SUA POSIÇÃO NA FILA</p>
                     <p style="margin: 10px 0 0 0; font-size: 48px; font-weight: 900; color: #F27D26;">#${displayRank}</p>
                   </div>
                 </td>
@@ -122,27 +123,34 @@ export default async function handler(req: any, res: any) {
               <!-- Content -->
               <tr>
                 <td style="padding: 40px 30px;">
-                  <div style="margin-bottom: 25px;">
-                    <h3 style="color: #1E293B; margin: 0 0 10px 0;">O que vem por aí?</h3>
-                    <p style="color: #64748B; font-size: 15px; line-height: 1.5; margin: 0;">
-                      Estamos finalizando os últimos detalhes para entregar a melhor experiência em homologação solar do Brasil. Você receberá um aviso prioritário assim que liberarmos o acesso.
+                  <div style="margin-bottom: 25px; text-align: center;">
+                    <p style="color: #1E293B; font-size: 15px; line-height: 1.5; margin: 0;">
+                      Os primeiros usuários terão acesso ao <strong>Plano Fundador</strong> com condições especiais.
                     </p>
                   </div>
                   
-                  <div style="background-color: #FFF7ED; border-left: 4px solid #F27D26; padding: 15px 20px; border-radius: 0 12px 12px 0;">
-                    <p style="color: #C2410C; font-size: 14px; margin: 0;">
-                      <strong>Dica:</strong> Quer subir na fila? Indique outros projetistas usando seu link exclusivo que você recebeu na página de confirmação.
+                  <div style="background-color: #FFF7ED; border-left: 4px solid #F27D26; padding: 20px; border-radius: 0 12px 12px 0; margin-bottom: 25px;">
+                    <h4 style="color: #C2410C; margin: 0 0 10px 0; font-size: 16px;">💡 Quer subir na fila?</h4>
+                    <p style="color: #C2410C; font-size: 14px; margin: 0; line-height: 1.5;">
+                      Compartilhe seu link exclusivo com outros projetistas solares. Cada indicação válida faz você subir posições.
                     </p>
                   </div>
+
+                  <p style="color: #64748B; font-size: 15px; line-height: 1.6; text-align: center; margin: 0;">
+                    Estamos preparando a plataforma que vai simplificar a homologação de usinas fotovoltaicas nas concessionárias.<br><br>
+                    Em breve enviaremos novidades do lançamento.
+                  </p>
                 </td>
               </tr>
 
               <!-- Footer -->
               <tr>
                 <td style="padding: 30px; background-color: #F1F5F9; text-align: center; border-radius: 0 0 16px 16px;">
-                  <p style="margin: 0 0 15px 0; color: #94A3B8; font-size: 12px;">
-                    © 2026 HOMOLOGA Plus. Todos os direitos reservados.<br>
-                    A plataforma inteligente para o setor fotovoltaico.
+                  <p style="margin: 0 0 10px 0; color: #1E293B; font-size: 14px; font-weight: 700;">
+                    Equipe HOMOLOGA Plus
+                  </p>
+                  <p style="margin: 0 0 20px 0; color: #94A3B8; font-size: 12px; line-height: 1.4;">
+                    Ferramenta criada por quem trabalha diariamente com projetos e homologação solar.
                   </p>
                   <div style="display: inline-block; margin: 0 10px;">
                     <a href="https://homologaplus.com.br" style="color: #F27D26; text-decoration: none; font-size: 12px; font-weight: 600;">Website</a>

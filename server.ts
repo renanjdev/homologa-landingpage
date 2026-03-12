@@ -86,7 +86,7 @@ async function startServer() {
 
   // API Route for Email Confirmation
   app.post("/api/send-confirmation", async (req, res) => {
-    const { email, whatsapp, rank, utm_source, utm_medium, utm_campaign } = req.body;
+    const { email, whatsapp, rank, utm_source, utm_medium, utm_campaign, referrer } = req.body;
     const ip = req.headers['x-forwarded-for'] || req.socket.remoteAddress;
 
     const cleanEmail = typeof email === 'string' ? email.trim() : '';
@@ -98,7 +98,8 @@ async function startServer() {
       utm_source,
       utm_medium,
       utm_campaign,
-      timestamp: new Date().toISOString()
+      referrer,
+      created_at: new Date().toISOString()
     });
 
     if (!cleanEmail) {

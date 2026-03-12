@@ -2,7 +2,7 @@ import { Resend } from 'resend';
 
 export default async function handler(req: any, res: any) {
   try {
-    // Enable CORS
+    // Enable CORS and disable cache
     res.setHeader('Access-Control-Allow-Credentials', 'true');
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS,PATCH,DELETE,POST,PUT');
@@ -10,6 +10,7 @@ export default async function handler(req: any, res: any) {
       'Access-Control-Allow-Headers',
       'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version'
     );
+    res.setHeader('Cache-Control', 'no-store, max-age=0');
 
     if (req.method === 'OPTIONS') {
       return res.status(200).end();
@@ -30,7 +31,7 @@ export default async function handler(req: any, res: any) {
       return res.status(405).json({ error: 'Method not allowed' });
     }
 
-    const { email, whatsapp, rank, utm_source, utm_medium, utm_campaign } = req.body || {};
+    const { email, whatsapp, rank, utm_source, utm_medium, utm_campaign, referrer } = req.body || {};
     
     // Vercel specific IP detection
     const ip = req.headers['x-real-ip'] || req.headers['x-forwarded-for'] || 'unknown';
@@ -45,7 +46,8 @@ export default async function handler(req: any, res: any) {
       utm_source,
       utm_medium,
       utm_campaign,
-      timestamp: new Date().toISOString()
+      referrer,
+      created_at: new Date().toISOString()
     });
 
     if (!cleanEmail) {

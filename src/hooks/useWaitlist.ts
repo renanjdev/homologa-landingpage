@@ -85,6 +85,7 @@ export const useWaitlist = (referralId: string | null) => {
         const utm_source = urlParams.get('utm_source');
         const utm_medium = urlParams.get('utm_medium');
         const utm_campaign = urlParams.get('utm_campaign');
+        const referrer = document.referrer;
 
         await fetch('/api/send-confirmation', {
           method: 'POST',
@@ -95,7 +96,8 @@ export const useWaitlist = (referralId: string | null) => {
             rank: currentRank,
             utm_source,
             utm_medium,
-            utm_campaign
+            utm_campaign,
+            referrer
           })
         });
       } catch (emailErr) {

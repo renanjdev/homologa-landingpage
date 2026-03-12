@@ -16,6 +16,8 @@ async function startServer() {
   const app = express();
   const PORT = 3000;
 
+  // Trust proxy is required for correct protocol detection (HTTP vs HTTPS)
+  app.set('trust proxy', true);
   app.use(express.json());
 
   // Health check route

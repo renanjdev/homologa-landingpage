@@ -6,12 +6,16 @@ service cloud.firestore {
     // ===============================================================
     //
     // Collection: waitlist
-    // Document ID: auto-generated
+    // Document ID: email (lowercase)
     // Fields:
+    //   - email: string (required) - User's email address.
     //   - whatsapp: string (required) - User's WhatsApp number.
-    //   - email: string (optional) - User's email address.
-    //   - createdAt: timestamp (required) - Timestamp when the user joined the waitlist.
-    //   - source: string (optional) - Where the user signed up from.
+    //   - rank: int (required) - Current position in the waitlist.
+    //   - referralCode: string (required) - Unique code for referrals.
+    //   - referredBy: string (optional) - The referralCode of the user who referred this lead.
+    //   - referralCount: int (optional) - Number of people referred by this user.
+    //   - createdAt: timestamp (required) - When the lead joined.
+    //   - ip: string (optional) - IP address of the user.
     //
     // ===============================================================
 
@@ -31,30 +35,26 @@ service cloud.firestore {
     }
 
     function isValidWaitlistEntry(data) {
-      return data.keys().hasAll(['whatsapp', 'createdAt', 'initialRank']) &&
-             data.keys().hasOnly(['whatsapp', 'email', 'createdAt', 'source', 'referral', 'referralCount', 'initialRank']) &&
-             data.whatsapp is string && data.whatsapp.size() >= 8 && data.whatsapp.size() < 30 &&
-             (!('email' in data) || isValidEmail(data.email)) &&
+      return data.keys().hasAll(['email', 'whatsapp', 'rank', 'referralCode', 'createdAt']) &&
+             data.keys().hasOnly(['email', 'whatsapp', 'rank', 'referralCode', 'referredBy', 'referralCount', 'createdAt', 'ip']) &&
+             isValidEmail(data.email) &&
+             data.whatsapp is string && data.whatsapp.size() >= 8 &&
+             data.rank is int &&
+             data.referralCode is string &&
              data.createdAt is timestamp &&
-             data.initialRank is int &&
+             (!('referredBy' in data) || (data.referredBy is string || data.referredBy == null)) &&
              (!('referralCount' in data) || data.referralCount is int) &&
-             (!('source' in data) || (data.source is string && data.source.size() < 50)) &&
-             (!('referral' in data) || data.referral == null || (data.referral is string && data.referral.size() < 50));
+             (!('ip' in data) || data.ip is string);
     }
 
-    match /waitlist/{entryId} {
-      // Allow anyone to join the waitlist
+    match /waitlist/{email} {
+      // Allow read if it's the user's own email (assuming document ID is email)
+      allow get: if true; // Publicly readable by ID for rank checking
+      
+      // Creation and updates are handled by the server (firebase-admin)
+      // but we keep these rules for safety if client-side is used
       allow create: if isValidWaitlistEntry(request.resource.data);
-      
-      // Allow anyone to read their own entry if they have the ID
-      allow get: if true;
-
-      // Allow anyone to increment referralCount of a referrer
-      allow update: if (request.resource.data.diff(resource.data).affectedKeys().hasOnly(['referralCount']) &&
-                        request.resource.data.referralCount == resource.data.referralCount + 1) ||
-                       isAdmin();
-      
-      // Only admins can delete or list all
+      allow update: if isAdmin();
       allow list, delete: if isAdmin();
     }
 

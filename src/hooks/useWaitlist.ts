@@ -9,6 +9,7 @@ export const useWaitlist = (referralId: string | null) => {
   const [errorMessage, setErrorMessage] = useState('');
   const [waitlistCount, setWaitlistCount] = useState(87);
   const [userId, setUserId] = useState<string | null>(null);
+  const [referralCode, setReferralCode] = useState<string | null>(null);
   const [userReferrals, setUserReferrals] = useState(0);
   const [userInitialRank, setUserInitialRank] = useState(0);
 
@@ -39,77 +40,41 @@ export const useWaitlist = (referralId: string | null) => {
   const joinWaitlist = async (whatsapp: string, email: string) => {
     setStatus('loading');
     try {
-      const currentRank = waitlistCount + 1;
+      const urlParams = new URLSearchParams(window.location.search);
+      const utm_source = urlParams.get('utm_source');
+      const utm_medium = urlParams.get('utm_medium');
+      const utm_campaign = urlParams.get('utm_campaign');
       
-      const waitlistData: any = {
-        whatsapp,
-        email,
-        createdAt: serverTimestamp(),
-        source: 'waitlist_page',
-        initialRank: currentRank,
-        referralCount: 0
-      };
-      
-      if (referralId) {
-        waitlistData.referral = referralId;
-        try {
-          await updateDoc(doc(db, 'waitlist', referralId), {
-            referralCount: increment(1)
-          });
-        } catch (err) {
-          console.error('Error updating referrer:', err);
-        }
+      const response = await fetch('/api/send-confirmation', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ 
+          email, 
+          whatsapp, 
+          utm_source,
+          utm_medium,
+          utm_campaign,
+          referrer: referralId
+        })
+      });
+
+      const result = await response.json();
+
+      if (!response.ok) {
+        throw new Error(result.error || 'Failed to join waitlist');
       }
 
-      const docRef = await addDoc(collection(db, 'waitlist'), waitlistData);
-
-      setUserId(docRef.id);
-      setUserInitialRank(currentRank);
-
-      const statsRef = doc(db, 'stats', 'global');
-      const statsSnap = await getDoc(statsRef);
-      
-      if (statsSnap.exists()) {
-        await updateDoc(statsRef, {
-          waitlistCount: increment(1)
-        });
-      } else {
-        await setDoc(statsRef, {
-          waitlistCount: 88
-        });
-      }
-
-      // Send confirmation email via server
-      try {
-        const urlParams = new URLSearchParams(window.location.search);
-        const utm_source = urlParams.get('utm_source');
-        const utm_medium = urlParams.get('utm_medium');
-        const utm_campaign = urlParams.get('utm_campaign');
-        const referrer = document.referrer;
-
-        await fetch('/api/send-confirmation', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ 
-            email, 
-            whatsapp, 
-            rank: currentRank,
-            utm_source,
-            utm_medium,
-            utm_campaign,
-            referrer
-          })
-        });
-      } catch (emailErr) {
-        console.error('Failed to trigger email confirmation:', emailErr);
-        // We don't fail the whole process if email fails
-      }
+      setUserId(email.trim().toLowerCase());
+      setUserInitialRank(result.data.rank);
+      setUserReferrals(result.data.referralCount || 0);
+      // Store referralCode separately for sharing
+      setReferralCode(result.data.referralCode);
 
       setStatus('success');
     } catch (error: any) {
       console.error('Error joining waitlist:', error);
       setStatus('error');
-      setErrorMessage('Ocorreu um erro ao salvar seu contato. Por favor, tente novamente.');
+      setErrorMessage(error.message || 'Ocorreu um erro ao salvar seu contato. Por favor, tente novamente.');
     }
   };
 
@@ -120,6 +85,7 @@ export const useWaitlist = (referralId: string | null) => {
     errorMessage,
     waitlistCount,
     userId,
+    referralCode,
     userReferrals,
     userInitialRank,
     joinWaitlist,

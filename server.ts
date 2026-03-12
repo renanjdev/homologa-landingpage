@@ -128,23 +128,87 @@ async function startServer() {
         subject: '🚀 Bem-vindo à lista de espera do HOMOLOGA Plus!',
         text: `Olá! Você está na lista de espera do HOMOLOGA Plus. Sua posição atual é #${displayRank}.`,
         html: `
-          <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto; color: #334155;">
-            <h1 style="color: #F27D26;">Você está na lista!</h1>
-            <p>Olá,</p>
-            <p>Ficamos muito felizes com seu interesse no <strong>HOMOLOGA Plus</strong>. Você acaba de garantir seu lugar na fila para a plataforma definitiva de gestão para projetistas solares.</p>
-            
-            <div style="background-color: #F8FAFC; padding: 20px; border-radius: 12px; border: 1px solid #E2E8F0; margin: 20px 0;">
-              <p style="margin: 0; font-size: 14px; text-transform: uppercase; letter-spacing: 0.05em; color: #64748B;">Sua posição atual</p>
-              <p style="margin: 5px 0 0 0; font-size: 32px; font-weight: bold; color: #F27D26;">#${displayRank}</p>
-            </div>
+          <!DOCTYPE html>
+          <html>
+            <head>
+              <meta charset="utf-8">
+              <meta name="viewport" content="width=device-width, initial-scale=1.0">
+              <title>Bem-vindo ao HOMOLOGA Plus</title>
+            </head>
+            <body style="margin: 0; padding: 0; background-color: #F8FAFC; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
+              <table border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 600px; margin: 20px auto; background-color: #ffffff; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.05);">
+                <!-- Header with Logo -->
+                <tr>
+                  <td align="center" style="padding: 40px 0; background-color: #1E293B;">
+                    <table border="0" cellpadding="0" cellspacing="0">
+                      <tr>
+                        <td align="center" style="background-color: #F27D26; padding: 12px; border-radius: 14px;">
+                          <img src="https://cdn-icons-png.flaticon.com/512/979/979585.png" alt="Logo" width="40" height="40" style="display: block;">
+                        </td>
+                        <td style="padding-left: 15px;">
+                          <span style="font-size: 24px; font-weight: bold; color: #ffffff; letter-spacing: -0.5px;">HOMOLOGA <span style="color: #F27D26;">Plus</span></span>
+                        </td>
+                      </tr>
+                    </table>
+                  </td>
+                </tr>
+                
+                <!-- Hero Section -->
+                <tr>
+                  <td style="padding: 40px 30px; text-align: center;">
+                    <h1 style="color: #1E293B; font-size: 28px; margin: 0 0 20px 0; font-weight: 800;">Você está na lista! 🚀</h1>
+                    <p style="color: #64748B; font-size: 16px; line-height: 1.6; margin: 0;">
+                      Ficamos muito felizes com seu interesse no <strong>HOMOLOGA Plus</strong>. Você acaba de garantir seu lugar na fila para a plataforma definitiva de gestão para projetistas solares.
+                    </p>
+                  </td>
+                </tr>
 
-            <p><strong>Dica de Ouro:</strong> Quer subir na fila? Indique outros projetistas usando seu link exclusivo que você recebeu na página de confirmação.</p>
-            
-            <p>Em breve traremos mais novidades sobre o lançamento e o <strong>Plano Fundador</strong>.</p>
-            
-            <hr style="border: 0; border-top: 1px solid #E2E8F0; margin: 30px 0;" />
-            <p style="font-size: 12px; color: #94A3B8;">Equipe HOMOLOGA Plus</p>
-          </div>
+                <!-- Rank Card -->
+                <tr>
+                  <td style="padding: 0 30px;">
+                    <div style="background-color: #F8FAFC; padding: 30px; border-radius: 20px; border: 2px dashed #E2E8F0; text-align: center;">
+                      <p style="margin: 0; font-size: 13px; text-transform: uppercase; letter-spacing: 0.1em; color: #94A3B8; font-weight: 700;">Sua posição atual na fila</p>
+                      <p style="margin: 10px 0 0 0; font-size: 48px; font-weight: 900; color: #F27D26;">#${displayRank}</p>
+                    </div>
+                  </td>
+                </tr>
+
+                <!-- Content -->
+                <tr>
+                  <td style="padding: 40px 30px;">
+                    <div style="margin-bottom: 25px;">
+                      <h3 style="color: #1E293B; margin: 0 0 10px 0;">O que vem por aí?</h3>
+                      <p style="color: #64748B; font-size: 15px; line-height: 1.5; margin: 0;">
+                        Estamos finalizando os últimos detalhes para entregar a melhor experiência em homologação solar do Brasil. Você receberá um aviso prioritário assim que liberarmos o acesso.
+                      </p>
+                    </div>
+                    
+                    <div style="background-color: #FFF7ED; border-left: 4px solid #F27D26; padding: 15px 20px; border-radius: 0 12px 12px 0;">
+                      <p style="color: #C2410C; font-size: 14px; margin: 0;">
+                        <strong>Dica:</strong> Quer subir na fila? Indique outros projetistas usando seu link exclusivo que você recebeu na página de confirmação.
+                      </p>
+                    </div>
+                  </td>
+                </tr>
+
+                <!-- Footer -->
+                <tr>
+                  <td style="padding: 30px; background-color: #F1F5F9; text-align: center; border-radius: 0 0 16px 16px;">
+                    <p style="margin: 0 0 15px 0; color: #94A3B8; font-size: 12px;">
+                      © 2026 HOMOLOGA Plus. Todos os direitos reservados.<br>
+                      A plataforma inteligente para o setor fotovoltaico.
+                    </p>
+                    <div style="display: inline-block; margin: 0 10px;">
+                      <a href="https://homologaplus.com.br" style="color: #F27D26; text-decoration: none; font-size: 12px; font-weight: 600;">Website</a>
+                    </div>
+                    <div style="display: inline-block; margin: 0 10px;">
+                      <a href="https://instagram.com/homologaplus" style="color: #F27D26; text-decoration: none; font-size: 12px; font-weight: 600;">Instagram</a>
+                    </div>
+                  </td>
+                </tr>
+              </table>
+            </body>
+          </html>
         `,
       });
 

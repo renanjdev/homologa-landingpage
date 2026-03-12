@@ -45,7 +45,7 @@ export const useWaitlist = (referralId: string | null) => {
       const utm_medium = urlParams.get('utm_medium');
       const utm_campaign = urlParams.get('utm_campaign');
       
-      const response = await fetch('/api/send-confirmation', {
+      const response = await fetch('/api/join-waitlist', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ 
@@ -54,7 +54,7 @@ export const useWaitlist = (referralId: string | null) => {
           utm_source,
           utm_medium,
           utm_campaign,
-          referrer: referralId
+          ref: referralId
         })
       });
 
@@ -73,10 +73,10 @@ export const useWaitlist = (referralId: string | null) => {
       }
 
       setUserId(email.trim().toLowerCase());
-      setUserInitialRank(result.data.rank);
-      setUserReferrals(result.data.referralCount || 0);
+      setUserInitialRank(result.rank);
+      setUserReferrals(result.referralCount || 0);
       // Store referralCode separately for sharing
-      setReferralCode(result.data.referralCode);
+      setReferralCode(result.referralCode);
 
       setStatus('success');
     } catch (error: any) {

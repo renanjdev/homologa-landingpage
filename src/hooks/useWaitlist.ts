@@ -58,7 +58,15 @@ export const useWaitlist = (referralId: string | null) => {
         })
       });
 
-      const result = await response.json();
+      let result;
+      const contentType = response.headers.get('content-type');
+      if (contentType && contentType.includes('application/json')) {
+        result = await response.json();
+      } else {
+        const text = await response.text();
+        console.error('Server returned non-JSON response:', text);
+        throw new Error(text || 'A server error occurred. Please try again later.');
+      }
 
       if (!response.ok) {
         throw new Error(result.error || 'Failed to join waitlist');

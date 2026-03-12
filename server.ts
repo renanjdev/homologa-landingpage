@@ -4,6 +4,7 @@ import path from "path";
 import { Resend } from 'resend';
 import dotenv from 'dotenv';
 import * as admin from 'firebase-admin';
+import { getFirestore, FieldValue, Timestamp } from 'firebase-admin/firestore';
 import fs from 'fs';
 
 dotenv.config();
@@ -12,7 +13,12 @@ dotenv.config();
 const loadConfig = () => {
   try {
     const configPath = path.resolve(process.cwd(), 'firebase-applet-config.json');
-    return JSON.parse(fs.readFileSync(configPath, 'utf8'));
+    if (!fs.existsSync(configPath)) {
+      console.warn('firebase-applet-config.json not found');
+      return null;
+    }
+    const content = fs.readFileSync(configPath, 'utf8');
+    return JSON.parse(content);
   } catch (err) {
     console.error('Failed to load firebase-applet-config.json:', err);
     return null;
@@ -22,23 +28,32 @@ const loadConfig = () => {
 const firebaseConfig = loadConfig();
 
 // Initialize Firebase Admin
+let firebaseApp: admin.app.App | null = null;
 if (firebaseConfig && !admin.apps.length) {
   try {
-    admin.initializeApp({
+    firebaseApp = admin.initializeApp({
       projectId: firebaseConfig.projectId,
     });
+    console.log('Firebase Admin initialized for project:', firebaseConfig.projectId);
   } catch (err) {
     console.error('Firebase Admin initialization failed:', err);
   }
+} else if (admin.apps.length) {
+  firebaseApp = admin.apps[0]!;
 }
 
 // Helper to get Firestore instance safely
 const getDb = () => {
-  if (!admin.apps.length) return null;
+  if (!firebaseApp) {
+    console.error('getDb called but firebaseApp is null');
+    return null;
+  }
   try {
-    return firebaseConfig?.firestoreDatabaseId 
-      ? admin.firestore(firebaseConfig.firestoreDatabaseId)
-      : admin.firestore();
+    // Use getFirestore to support named databases
+    const db = firebaseConfig?.firestoreDatabaseId 
+      ? getFirestore(firebaseApp, firebaseConfig.firestoreDatabaseId)
+      : getFirestore(firebaseApp);
+    return db;
   } catch (err) {
     console.error('Firestore initialization failed:', err);
     return null;
@@ -174,7 +189,7 @@ async function startServer() {
       }
 
       // 2. Security: Check IP limits (simple check)
-      const recentIpCheck = await waitlistRef.where('ip', '==', ip).where('createdAt', '>', admin.firestore.Timestamp.fromMillis(Date.now() - 3600000)).get();
+      const recentIpCheck = await waitlistRef.where('ip', '==', ip).where('createdAt', '>', Timestamp.fromMillis(Date.now() - 3600000)).get();
       if (recentIpCheck.size >= 5) {
         return res.status(429).json({ error: "Too many registrations from this IP. Please try again later." });
       }
@@ -203,8 +218,8 @@ async function startServer() {
           referredBy = refCode;
           
           await referrerDoc.ref.update({
-            referralCount: admin.firestore.FieldValue.increment(1),
-            rank: admin.firestore.FieldValue.increment(-10)
+            referralCount: FieldValue.increment(1),
+            rank: FieldValue.increment(-10)
           });
         }
       }
@@ -217,7 +232,7 @@ async function startServer() {
         referralCode,
         referredBy,
         referralCount: 0,
-        createdAt: admin.firestore.FieldValue.serverTimestamp(),
+        createdAt: FieldValue.serverTimestamp(),
         ip,
         utm_source: utm_source || null,
         utm_medium: utm_medium || null,
@@ -228,7 +243,7 @@ async function startServer() {
 
       // 7. Update global stats
       if (statsDoc.exists) {
-        await statsRef.update({ waitlistCount: admin.firestore.FieldValue.increment(1) });
+        await statsRef.update({ waitlistCount: FieldValue.increment(1) });
       } else {
         await statsRef.set({ waitlistCount: newRank });
       }

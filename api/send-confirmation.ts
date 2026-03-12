@@ -1,57 +1,69 @@
 import { Resend } from 'resend';
 
-const resend = new Resend(process.env.RESEND_API_KEY || '');
-
 export default async function handler(req: any, res: any) {
-  // Enable CORS
-  res.setHeader('Access-Control-Allow-Credentials', 'true');
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS,PATCH,DELETE,POST,PUT');
-  res.setHeader(
-    'Access-Control-Allow-Headers',
-    'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version'
-  );
-
-  if (req.method === 'OPTIONS') {
-    res.status(200).end();
-    return;
-  }
-
-  if (req.method !== 'POST') {
-    return res.status(405).json({ error: 'Method not allowed' });
-  }
-
-  const { email, whatsapp, rank, utm_source, utm_medium, utm_campaign } = req.body;
-  const ip = req.headers['x-forwarded-for'] || req.socket.remoteAddress;
-
-  const cleanEmail = typeof email === 'string' ? email.trim() : '';
-  
-  console.log("Novo lead (Vercel API):", {
-    email: cleanEmail,
-    whatsapp,
-    rank,
-    ip,
-    utm_source,
-    utm_medium,
-    utm_campaign,
-    timestamp: new Date().toISOString()
-  });
-
-  if (!cleanEmail) {
-    return res.status(400).json({ error: "Email is required" });
-  }
-
-  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  if (!emailRegex.test(cleanEmail)) {
-    return res.status(400).json({ error: "Invalid email format" });
-  }
-
-  const apiKey = process.env.RESEND_API_KEY;
-  if (!apiKey) {
-    return res.status(500).json({ error: "Email service not configured" });
-  }
-
   try {
+    // Enable CORS
+    res.setHeader('Access-Control-Allow-Credentials', 'true');
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS,PATCH,DELETE,POST,PUT');
+    res.setHeader(
+      'Access-Control-Allow-Headers',
+      'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version'
+    );
+
+    if (req.method === 'OPTIONS') {
+      return res.status(200).end();
+    }
+
+    if (req.method === 'GET') {
+      return res.status(200).json({ 
+        status: 'ok', 
+        message: 'API is alive', 
+        env: {
+          hasResendKey: !!process.env.RESEND_API_KEY,
+          nodeEnv: process.env.NODE_ENV
+        }
+      });
+    }
+
+    if (req.method !== 'POST') {
+      return res.status(405).json({ error: 'Method not allowed' });
+    }
+
+    const { email, whatsapp, rank, utm_source, utm_medium, utm_campaign } = req.body || {};
+    
+    // Vercel specific IP detection
+    const ip = req.headers['x-real-ip'] || req.headers['x-forwarded-for'] || 'unknown';
+
+    const cleanEmail = typeof email === 'string' ? email.trim() : '';
+    
+    console.log("Novo lead (Vercel API):", {
+      email: cleanEmail,
+      whatsapp,
+      rank,
+      ip,
+      utm_source,
+      utm_medium,
+      utm_campaign,
+      timestamp: new Date().toISOString()
+    });
+
+    if (!cleanEmail) {
+      return res.status(400).json({ error: "Email is required" });
+    }
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(cleanEmail)) {
+      return res.status(400).json({ error: "Invalid email format" });
+    }
+
+    const apiKey = process.env.RESEND_API_KEY;
+    if (!apiKey) {
+      console.error('RESEND_API_KEY is missing in environment variables');
+      return res.status(500).json({ error: "Email service not configured" });
+    }
+
+    const resend = new Resend(apiKey);
     const displayRank = rank || '---';
     
     const { data, error } = await resend.emails.send({
@@ -81,12 +93,17 @@ export default async function handler(req: any, res: any) {
     });
 
     if (error) {
+      console.error('Resend API Error:', error);
       return res.status(400).json({ error });
     }
 
     return res.status(200).json({ success: true, data });
-  } catch (err) {
-    console.error('Email Exception:', err);
-    return res.status(500).json({ error: "Failed to send email" });
+  } catch (err: any) {
+    console.error('Global API Exception:', err);
+    return res.status(500).json({ 
+      error: "Internal Server Error", 
+      message: err.message,
+      stack: process.env.NODE_ENV === 'development' ? err.stack : undefined
+    });
   }
 }

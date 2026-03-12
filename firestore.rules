@@ -46,7 +46,7 @@ service cloud.firestore {
 
     match /waitlist/{entryId} {
       // Allow anyone to join the waitlist
-      allow create: if isValidWaitlistEntry(request.resource.data);
+      allow create: if isValidWaitlistEntry(request.resource.data) || isAdmin();
       
       // Allow anyone to read their own entry if they have the ID
       allow get: if true;

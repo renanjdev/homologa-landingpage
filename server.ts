@@ -51,96 +51,96 @@ async function startServer() {
       await resend.emails.send({
         from: 'HOMOLOGA Plus <contato@homologaplus.com.br>',
         to: [email],
-        subject: 'Você entrou na lista do HOMOLOGA Plus 🚀',
+        subject: 'Sua posição na lista está garantida 🚀',
         html: `
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>HOMOLOGA Plus - Confirmação</title>
+  <title>HOMOLOGA Plus</title>
   <style type="text/css">
-    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap');
     
-    body { margin: 0; padding: 0; width: 100% !important; background-color: #F8FAFC; font-family: 'Inter', Helvetica, Arial, sans-serif; -webkit-font-smoothing: antialiased; }
+    body { margin: 0; padding: 0; width: 100% !important; background-color: #050505; font-family: 'Inter', Helvetica, Arial, sans-serif; -webkit-font-smoothing: antialiased; color: #FFFFFF; }
     table { border-collapse: collapse; }
-    .container { max-width: 600px; margin: 0 auto; background-color: #ffffff; border-radius: 24px; overflow: hidden; border: 1px solid #E2E8F0; }
-    .header { background-color: #0F172A; padding: 60px 40px; text-align: center; }
-    .hero-card { background: linear-gradient(135deg, #1E293B 0%, #0F172A 100%); border-radius: 20px; padding: 40px; margin: -40px 40px 0 40px; border: 1px solid rgba(255,255,255,0.1); box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04); }
-    .btn { background: #3B82F6; color: #ffffff !important; padding: 16px 32px; text-decoration: none; border-radius: 12px; font-weight: 700; display: inline-block; transition: all 0.2s; }
+    .bento-card { background-color: #111111; border: 1px solid #222222; border-radius: 24px; padding: 32px; }
+    .neon-text { color: #3B82F6; text-shadow: 0 0 20px rgba(59, 130, 246, 0.5); }
+    .btn { background: #FFFFFF; color: #000000 !important; padding: 16px 32px; text-decoration: none; border-radius: 100px; font-weight: 700; display: inline-block; }
     
     @media only screen and (max-width: 600px) {
-      .hero-card { margin: -30px 20px 0 20px !important; padding: 30px 20px !important; }
-      .container { border-radius: 0 !important; border: none !important; }
+      .mobile-full { width: 100% !important; padding: 20px !important; }
+      .display-text { font-size: 32px !important; }
     }
   </style>
 </head>
-<body style="margin: 0; padding: 0; background-color: #F8FAFC;">
-  <table border="0" cellpadding="0" cellspacing="0" width="100%" style="padding: 40px 0;">
+<body style="margin: 0; padding: 0; background-color: #050505; color: #FFFFFF;">
+  <table border="0" cellpadding="0" cellspacing="0" width="100%" style="padding: 60px 0;">
     <tr>
       <td align="center">
-        <table border="0" cellpadding="0" cellspacing="0" width="600" class="container" style="background-color: #ffffff; border-radius: 24px; border: 1px solid #E2E8F0;">
+        <table border="0" cellpadding="0" cellspacing="0" width="600" class="mobile-full">
           
-          <!-- Header -->
+          <!-- Logo -->
           <tr>
-            <td class="header" style="background-color: #0F172A; padding: 80px 40px; text-align: center;">
-              <div style="margin-bottom: 24px;">
-                <span style="font-size: 22px; font-weight: 800; color: #FFFFFF; letter-spacing: -0.5px;">HOMOLOGA <span style="color: #3B82F6;">Plus</span></span>
-              </div>
-              <h1 style="font-size: 32px; font-weight: 700; color: #FFFFFF; margin: 0; letter-spacing: -1px;">Bem-vindo à elite solar.</h1>
-              <p style="font-size: 16px; color: #94A3B8; margin: 12px 0 0 0;">Sua reserva para o acesso antecipado foi confirmada.</p>
+            <td align="center" style="padding-bottom: 40px;">
+              <span style="font-size: 20px; font-weight: 900; letter-spacing: -1px; color: #FFFFFF;">HOMOLOGA <span style="color: #3B82F6;">+</span></span>
             </td>
           </tr>
 
-          <!-- Position Widget -->
+          <!-- Main Bento -->
           <tr>
-            <td>
+            <td class="bento-card" style="background-color: #111111; border: 1px solid #222222; border-radius: 32px; padding: 48px; text-align: center;">
+              <h1 class="display-text" style="font-size: 42px; font-weight: 900; margin: 0; letter-spacing: -2px; line-height: 1.1;">VOCÊ ESTÁ <br/>NA LISTA.</h1>
+              <p style="font-size: 16px; color: #888888; margin: 20px 0 40px 0; line-height: 1.5;">O futuro da homologação solar <br/>está sendo preparado para você.</p>
+              
+              <!-- Rank Circle -->
+              <div style="margin-bottom: 40px;">
+                <div style="display: inline-block; width: 140px; height: 140px; border: 2px solid #3B82F6; border-radius: 100px; position: relative;">
+                  <table border="0" cellpadding="0" cellspacing="0" width="100%" height="100%">
+                    <tr>
+                      <td align="center" valign="middle">
+                        <span style="font-size: 12px; font-weight: 700; color: #3B82F6; display: block; margin-bottom: 4px;">RANK</span>
+                        <span style="font-size: 42px; font-weight: 900; color: #FFFFFF; line-height: 1;">${rank}</span>
+                      </td>
+                    </tr>
+                  </table>
+                </div>
+              </div>
+
+              <p style="font-size: 14px; color: #888888; margin: 0;">Aguarde nosso convite oficial.</p>
+            </td>
+          </tr>
+
+          <!-- Secondary Bento Grid -->
+          <tr>
+            <td style="padding-top: 20px;">
               <table border="0" cellpadding="0" cellspacing="0" width="100%">
                 <tr>
-                  <td class="hero-card" style="background: #1E293B; border-radius: 20px; padding: 40px; text-align: center; border: 1px solid rgba(255,255,255,0.1);">
-                    <p style="font-size: 12px; font-weight: 700; color: #94A3B8; letter-spacing: 2px; text-transform: uppercase; margin: 0 0 16px 0;">POSIÇÃO ATUAL NA LISTA</p>
-                    <div style="display: inline-block; background: rgba(59, 130, 246, 0.1); border: 1px solid rgba(59, 130, 246, 0.2); border-radius: 100px; padding: 8px 24px; margin-bottom: 16px;">
-                      <span style="font-size: 56px; font-weight: 800; color: #3B82F6; line-height: 1;">#${rank}</span>
-                    </div>
-                    <p style="font-size: 15px; color: #CBD5E1; margin: 0; font-weight: 500;">Você está entre os primeiros integradores.</p>
+                  <td width="290" class="bento-card" style="background-color: #111111; border: 1px solid #222222; border-radius: 24px; padding: 24px;">
+                    <p style="font-size: 11px; font-weight: 700; color: #555555; margin: 0 0 8px 0; text-transform: uppercase;">STATUS</p>
+                    <p style="font-size: 16px; font-weight: 700; color: #FFFFFF; margin: 0;">Acesso Confirmado</p>
+                  </td>
+                  <td width="20"></td>
+                  <td width="290" class="bento-card" style="background-color: #111111; border: 1px solid #222222; border-radius: 24px; padding: 24px;">
+                    <p style="font-size: 11px; font-weight: 700; color: #555555; margin: 0 0 8px 0; text-transform: uppercase;">DATA</p>
+                    <p style="font-size: 16px; font-weight: 700; color: #FFFFFF; margin: 0;">${date}</p>
                   </td>
                 </tr>
               </table>
             </td>
           </tr>
 
-          <!-- Content -->
+          <!-- Referral Bento -->
           <tr>
-            <td style="padding: 60px 50px 40px 50px;">
-              <p style="font-size: 18px; color: #0F172A; margin: 0; font-weight: 700;">Olá, ${name}!</p>
-              <p style="font-size: 16px; color: #475569; line-height: 1.6; margin: 16px 0 0 0;">
-                Obrigado por se juntar a nós. Estamos finalizando os últimos detalhes para entregar a você a plataforma de homologação mais rápida do Brasil.
-              </p>
-
-              <!-- Stats Grid -->
-              <table border="0" cellpadding="0" cellspacing="0" width="100%" style="margin-top: 40px;">
-                <tr>
-                  <td width="48%" style="background-color: #F1F5F9; border-radius: 16px; padding: 20px;">
-                    <p style="font-size: 11px; font-weight: 700; color: #64748B; margin: 0 0 4px 0; text-transform: uppercase;">PLANO RESERVADO</p>
-                    <p style="font-size: 15px; font-weight: 700; color: #0F172A; margin: 0;">Fundador</p>
-                  </td>
-                  <td width="4%"></td>
-                  <td width="48%" style="background-color: #F1F5F9; border-radius: 16px; padding: 20px;">
-                    <p style="font-size: 11px; font-weight: 700; color: #64748B; margin: 0 0 4px 0; text-transform: uppercase;">DATA DE ENTRADA</p>
-                    <p style="font-size: 15px; font-weight: 700; color: #0F172A; margin: 0;">${date}</p>
-                  </td>
-                </tr>
-              </table>
-
-              <!-- Referral Action -->
-              <div style="margin-top: 40px; padding: 32px; background-color: #F8FAFC; border: 1px dashed #CBD5E1; border-radius: 20px; text-align: center;">
-                <h3 style="font-size: 18px; font-weight: 700; color: #0F172A; margin: 0 0 8px 0;">Quer pular etapas?</h3>
-                <p style="font-size: 14px; color: #64748B; margin: 0 0 24px 0;">Indique um colega integrador e suba <strong>7 posições</strong> instantaneamente.</p>
+            <td style="padding-top: 20px;">
+              <div class="bento-card" style="background-color: #3B82F6; border-radius: 32px; padding: 40px; text-align: center;">
+                <h3 style="font-size: 20px; font-weight: 900; color: #FFFFFF; margin: 0 0 12px 0; letter-spacing: -0.5px;">QUER PULAR A FILA?</h3>
+                <p style="font-size: 15px; color: rgba(255,255,255,0.8); margin: 0 0 32px 0; line-height: 1.4;">Indique um integrador e suba <br/><strong>7 posições</strong> na hora.</p>
                 
                 <table border="0" cellpadding="0" cellspacing="0" align="center">
                   <tr>
-                    <td align="center" bgcolor="#3B82F6" style="border-radius: 12px;">
-                      <a href="${shareUrl}" target="_blank" style="font-size: 15px; font-family: 'Inter', sans-serif; color: #ffffff; text-decoration: none; border-radius: 12px; padding: 16px 40px; display: inline-block; font-weight: 700;">Copiar meu link de convite</a>
+                    <td align="center" bgcolor="#FFFFFF" style="border-radius: 100px;">
+                      <a href="${shareUrl}" target="_blank" style="font-size: 14px; font-family: 'Inter', sans-serif; color: #000000; text-decoration: none; border-radius: 100px; padding: 16px 40px; display: inline-block; font-weight: 900; text-transform: uppercase; letter-spacing: 1px;">Copiar Link</a>
                     </td>
                   </tr>
                 </table>
@@ -150,18 +150,12 @@ async function startServer() {
 
           <!-- Footer -->
           <tr>
-            <td style="background-color: #F8FAFC; padding: 40px 50px; text-align: center; border-top: 1px solid #E2E8F0;">
-              <p style="font-size: 14px; font-weight: 600; color: #0F172A; margin: 0 0 8px 0;">HOMOLOGA Plus</p>
-              <p style="font-size: 12px; color: #94A3B8; margin: 0 0 24px 0;">A inteligência que o seu setor de engenharia precisava.</p>
-              
-              <div style="border-top: 1px solid #E2E8F0; padding-top: 24px;">
-                <p style="font-size: 11px; color: #94A3B8; margin: 0; line-height: 1.5;">
-                  Este e-mail foi enviado para ${email}.<br/>
-                  © 2026 HOMOLOGA Plus. Todos os direitos reservados.
-                </p>
-              </div>
+            <td align="center" style="padding-top: 60px;">
+              <p style="font-size: 12px; color: #444444; margin: 0;">HOMOLOGA PLUS — 2026</p>
+              <p style="font-size: 11px; color: #222222; margin: 10px 0 0 0;">Você recebeu este e-mail porque se inscreveu em nossa lista.</p>
             </td>
           </tr>
+
         </table>
       </td>
     </tr>

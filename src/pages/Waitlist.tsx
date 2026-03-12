@@ -105,19 +105,19 @@ const WaitlistHero = ({ waitlistCount }: { waitlistCount: number }) => (
 const SuccessState = ({ 
   userInitialRank, 
   userReferrals, 
-  referralCode, 
+  userId, 
   onReset 
 }: { 
   userInitialRank: number; 
   userReferrals: number; 
-  referralCode: string | null;
+  userId: string | null;
   onReset: () => void;
 }) => {
   const currentRank = Math.max(1, userInitialRank - (userReferrals * 7));
   const nextRank = Math.max(1, currentRank - 21);
 
   const shareOnWhatsApp = () => {
-    const shareUrl = `${window.location.origin}/waitlist?ref=${referralCode}`;
+    const shareUrl = `${window.location.origin}/waitlist?ref=${userId}`;
     const text = `🚀 Acabei de entrar na lista de espera do *HOMOLOGA Plus*!\n\nA plataforma definitiva para *gestão de projetos e homologação* solar. ☀️\n\nFeito de projetista para projetista. Organize seus processos e ganhe escala. Garanta sua vaga no *Plano Fundador* antes que as 100 vagas acabem! ⏳\n\nEntre pelo meu link para subir na fila:\n${shareUrl}`;
     window.open(`https://wa.me/?text=${encodeURIComponent(text)}`, '_blank');
   };
@@ -179,16 +179,21 @@ const WaitlistForm = ({
   status, 
   errorMessage 
 }: { 
-  onSubmit: (whatsapp: string, email: string) => void;
+  onSubmit: (name: string, whatsapp: string, email: string) => void;
   status: string;
   errorMessage: string;
 }) => {
+  const [name, setName] = useState('');
   const [whatsapp, setWhatsapp] = useState('');
   const [email, setEmail] = useState('');
   const [inputError, setInputError] = useState<string | null>(null);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    if (name.trim().length < 3) {
+      setInputError('Por favor, insira seu nome completo.');
+      return;
+    }
     if (!validateWhatsApp(whatsapp)) {
       setInputError('Por favor, insira um número de WhatsApp válido com DDD.');
       return;
@@ -197,7 +202,12 @@ const WaitlistForm = ({
       setInputError('Por favor, insira um e-mail válido.');
       return;
     }
-    onSubmit(whatsapp, email);
+    onSubmit(name, whatsapp, email);
+  };
+
+  const handleNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setName(e.target.value);
+    if (inputError) setInputError(null);
   };
 
   const handleWhatsappChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -224,6 +234,30 @@ const WaitlistForm = ({
       </p>
 
       <form onSubmit={handleSubmit} className="space-y-5">
+        <div>
+          <label htmlFor="name" className="block text-sm font-semibold text-slate-700 mb-2">
+            Seu nome completo (obrigatório)
+          </label>
+          <div className="relative">
+            <div className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-400 flex items-center justify-center">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+            </div>
+            <input
+              type="text"
+              id="name"
+              required
+              value={name}
+              onChange={handleNameChange}
+              placeholder="João Silva"
+              className={`w-full bg-slate-50 border rounded-2xl pl-12 pr-4 py-4 focus:outline-none focus:ring-4 transition-all text-lg ${
+                inputError?.includes('nome')
+                  ? 'border-red-300 focus:ring-red-100 focus:border-red-400' 
+                  : 'border-slate-200 focus:ring-primary/10 focus:border-primary'
+              }`}
+            />
+          </div>
+        </div>
+
         <div>
           <label htmlFor="email" className="block text-sm font-semibold text-slate-700 mb-2">
             Seu melhor e-mail (obrigatório)
@@ -308,7 +342,6 @@ const Waitlist = () => {
     errorMessage,
     waitlistCount,
     userId,
-    referralCode,
     userReferrals,
     userInitialRank,
     joinWaitlist,
@@ -337,7 +370,7 @@ const Waitlist = () => {
             <AnimatePresence mode="wait">
               {status === 'success' ? (
                 <SuccessState 
-                  referralCode={referralCode}
+                  userId={userId}
                   userInitialRank={userInitialRank}
                   userReferrals={userReferrals}
                   onReset={resetStatus}

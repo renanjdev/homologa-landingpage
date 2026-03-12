@@ -30,7 +30,7 @@ export const useWaitlist = (referralId: string | null) => {
     return () => clearInterval(interval);
   }, []);
 
-  const joinWaitlist = async (whatsapp: string, email: string) => {
+  const joinWaitlist = async (name: string, whatsapp: string, email: string) => {
     setStatus('loading');
     try {
       const urlParams = new URLSearchParams(window.location.search);
@@ -43,6 +43,7 @@ export const useWaitlist = (referralId: string | null) => {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
+          name,
           email,
           whatsapp,
           utm_source,

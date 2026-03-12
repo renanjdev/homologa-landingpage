@@ -37,6 +37,58 @@ async function startServer() {
     res.json({ status: "ok", mode: process.env.NODE_ENV });
   });
 
+  // Helper to send confirmation email
+  async function sendConfirmationEmail(email: string, rank: number) {
+    if (!process.env.RESEND_API_KEY) {
+      console.warn("RESEND_API_KEY not configured. Skipping email for:", email);
+      return;
+    }
+
+    try {
+      const shareUrl = `https://homologaplus.com.br/waitlist?ref=${encodeURIComponent(email.toLowerCase().trim())}`;
+      
+      await resend.emails.send({
+        from: 'HOMOLOGA Plus <contato@homologaplus.com.br>',
+        to: [email],
+        subject: 'Você entrou na lista do HOMOLOGA Plus 🚀',
+        html: `
+          <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; color: #1e293b;">
+            <div style="text-align: center; margin-bottom: 30px;">
+              <h1 style="color: #f59e0b; margin-bottom: 10px;">HOMOLOGA Plus</h1>
+              <p style="font-size: 18px; color: #64748b;">Sua jornada para uma homologação solar eficiente começa aqui.</p>
+            </div>
+            
+            <div style="background-color: #f8fafc; border-radius: 24px; padding: 40px; text-align: center; border: 1px solid #e2e8f0;">
+              <p style="text-transform: uppercase; font-size: 12px; font-weight: bold; letter-spacing: 1px; color: #64748b; margin-bottom: 10px;">Sua posição na fila</p>
+              <h2 style="font-size: 48px; color: #f59e0b; margin: 0;">#${rank}</h2>
+              <p style="margin-top: 20px; font-size: 16px; line-height: 1.6;">
+                Parabéns! Você garantiu seu lugar entre os primeiros integradores que terão acesso ao <strong>Plano Fundador</strong>.
+              </p>
+            </div>
+
+            <div style="margin-top: 30px; padding: 20px; border-radius: 16px; background-color: #fffbeb; border: 1px solid #fef3c7;">
+              <h3 style="margin-top: 0; color: #92400e;">🚀 Quer subir na fila?</h3>
+              <p style="font-size: 14px; color: #b45309;">
+                Para cada integrador que entrar na lista através do seu link, você sobe <strong>7 posições</strong> e ganha prioridade no lançamento.
+              </p>
+              <div style="background: white; padding: 10px; border-radius: 8px; border: 1px solid #fde68a; font-family: monospace; font-size: 12px; margin: 15px 0; word-break: break-all;">
+                ${shareUrl}
+              </div>
+            </div>
+
+            <div style="text-align: center; margin-top: 40px; font-size: 12px; color: #94a3b8;">
+              <p>&copy; ${new Date().getFullYear()} HOMOLOGA Plus. Todos os direitos reservados.</p>
+              <p>Este é um e-mail automático, por favor não responda.</p>
+            </div>
+          </div>
+        `,
+      });
+      console.log("Confirmation email sent to:", email);
+    } catch (err) {
+      console.error("Failed to send confirmation email:", err);
+    }
+  }
+
   // API Route for Waitlist (Supabase)
   app.get("/api/waitlist", async (req, res) => {
     const supabase = getSupabase();
@@ -67,7 +119,9 @@ async function startServer() {
     if (!supabase) {
       // Demo mode fallback
       console.warn("Supabase not configured. Using demo mode for email:", email);
-      return res.json({ success: true, position: 88, demo: true });
+      const demoPosition = 88;
+      sendConfirmationEmail(email, demoPosition);
+      return res.json({ success: true, position: demoPosition, demo: true });
     }
 
     try {
@@ -93,6 +147,9 @@ async function startServer() {
         .select("*", { count: "exact", head: true });
 
       const position = (count || 0) + 87;
+
+      // Send confirmation email in background
+      sendConfirmationEmail(email, position);
 
       res.json({ success: true, position });
     } catch (err) {

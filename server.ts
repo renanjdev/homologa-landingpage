@@ -4,19 +4,57 @@ import path from "path";
 import { Resend } from 'resend';
 import dotenv from 'dotenv';
 import * as admin from 'firebase-admin';
-import firebaseConfig from './firebase-applet-config.json';
+import fs from 'fs';
 
 dotenv.config();
 
+// Helper to load config safely
+const loadConfig = () => {
+  try {
+    const configPath = path.resolve(process.cwd(), 'firebase-applet-config.json');
+    return JSON.parse(fs.readFileSync(configPath, 'utf8'));
+  } catch (err) {
+    console.error('Failed to load firebase-applet-config.json:', err);
+    return null;
+  }
+};
+
+const firebaseConfig = loadConfig();
+
 // Initialize Firebase Admin
-if (!admin.apps.length) {
-  admin.initializeApp({
-    projectId: firebaseConfig.projectId,
-  });
+if (firebaseConfig && !admin.apps.length) {
+  try {
+    admin.initializeApp({
+      projectId: firebaseConfig.projectId,
+    });
+  } catch (err) {
+    console.error('Firebase Admin initialization failed:', err);
+  }
 }
 
-const db = admin.firestore();
-const resend = new Resend(process.env.RESEND_API_KEY || '');
+// Helper to get Firestore instance safely
+const getDb = () => {
+  if (!admin.apps.length) return null;
+  try {
+    return firebaseConfig?.firestoreDatabaseId 
+      ? admin.firestore(firebaseConfig.firestoreDatabaseId)
+      : admin.firestore();
+  } catch (err) {
+    console.error('Firestore initialization failed:', err);
+    return null;
+  }
+};
+
+// Helper to get Resend instance safely
+const getResend = () => {
+  if (!process.env.RESEND_API_KEY) return null;
+  try {
+    return new Resend(process.env.RESEND_API_KEY);
+  } catch (err) {
+    console.error('Resend initialization failed:', err);
+    return null;
+  }
+};
 
 // Helper to generate referral code
 function generateReferralCode(length = 6) {
@@ -34,9 +72,22 @@ async function startServer() {
 
   app.use(express.json());
 
+  // Global error handler for JSON parsing
+  app.use((err: any, req: any, res: any, next: any) => {
+    if (err instanceof SyntaxError && 'body' in err) {
+      return res.status(400).json({ error: "Invalid JSON" });
+    }
+    next();
+  });
+
   // Health check route
   app.get("/api/health", (req, res) => {
-    res.json({ status: "ok", mode: process.env.NODE_ENV });
+    res.json({ 
+      status: "ok", 
+      mode: process.env.NODE_ENV,
+      firebase: !!firebaseConfig && admin.apps.length > 0,
+      resend: !!process.env.RESEND_API_KEY
+    });
   });
 
   // API Route for Waitlist
@@ -48,10 +99,7 @@ async function startServer() {
     }
 
     try {
-      // Here you could integrate with a WhatsApp API (like Twilio or a custom provider)
-      // For now, we just acknowledge the receipt on the server side.
       console.log(`New waitlist entry: ${whatsapp}`);
-      
       res.json({ success: true });
     } catch (err) {
       console.error('Server Error:', err);
@@ -72,27 +120,7 @@ async function startServer() {
     }
 
     try {
-      // MOCK WHATSAPP SENDING
-      // In a real scenario, you would use an API like Twilio, Meta, or a local gateway.
       console.log(`[WHATSAPP NOTIFICATION] To: ${to} | Message: ${message}`);
-      
-      // Example integration (commented out):
-      /*
-      await fetch('https://api.whatsapp.com/v1/messages', {
-        method: 'POST',
-        headers: {
-          'Authorization': `Bearer ${process.env.WHATSAPP_API_KEY}`,
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          messaging_product: "whatsapp",
-          to: to,
-          type: "text",
-          text: { body: message }
-        })
-      });
-      */
-
       res.json({ success: true, message: "Notification sent (mocked)" });
     } catch (err) {
       console.error('Notification Error:', err);
@@ -115,10 +143,14 @@ async function startServer() {
       return res.status(400).json({ error: "Email is required" });
     }
 
-    // Basic email validation
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(cleanEmail)) {
       return res.status(400).json({ error: "Invalid email format" });
+    }
+
+    const db = getDb();
+    if (!db) {
+      return res.status(500).json({ error: "Database not initialized" });
     }
 
     try {
@@ -157,10 +189,9 @@ async function startServer() {
 
       // 4. Generate unique referral code
       let referralCode = generateReferralCode();
-      // Ensure uniqueness (simple check)
       const codeCheck = await waitlistRef.where('referralCode', '==', referralCode).get();
       if (!codeCheck.empty) {
-        referralCode = generateReferralCode(7); // Try longer if collision
+        referralCode = generateReferralCode(7);
       }
 
       // 5. Handle Referral
@@ -171,10 +202,9 @@ async function startServer() {
           const referrerDoc = referrerQuery.docs[0];
           referredBy = refCode;
           
-          // Update referrer: increment count and improve rank
           await referrerDoc.ref.update({
             referralCount: admin.firestore.FieldValue.increment(1),
-            rank: admin.firestore.FieldValue.increment(-10) // Move up 10 positions
+            rank: admin.firestore.FieldValue.increment(-10)
           });
         }
       }
@@ -204,83 +234,86 @@ async function startServer() {
       }
 
       // 8. Send confirmation email
-      const apiKey = process.env.RESEND_API_KEY;
-      if (apiKey) {
-        const resendClient = new Resend(apiKey);
+      const resend = getResend();
+      if (resend) {
         const referralLink = `https://homologaplus.com.br/?ref=${referralCode}`;
         
-        await resendClient.emails.send({
-          from: 'HOMOLOGA Plus <contato@homologaplus.com.br>',
-          to: [cleanEmail],
-          subject: 'Você entrou na lista do HOMOLOGA Plus 🚀',
-          html: `
-            <!DOCTYPE html>
-            <html>
-              <head>
-                <meta charset="utf-8">
-                <meta name="viewport" content="width=device-width, initial-scale=1.0">
-                <title>Bem-vindo ao HOMOLOGA Plus</title>
-              </head>
-              <body style="margin: 0; padding: 0; background-color: #F8FAFC; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
-                <table border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 600px; margin: 20px auto; background-color: #ffffff; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.05);">
-                  <tr>
-                    <td align="center" style="padding: 40px 0; background-color: #1E293B;">
-                      <table border="0" cellpadding="0" cellspacing="0">
-                        <tr>
-                          <td align="center" style="background-color: #F27D26; padding: 12px; border-radius: 14px;">
-                            <img src="https://cdn-icons-png.flaticon.com/512/979/979585.png" alt="Logo" width="40" height="40" style="display: block;">
-                          </td>
-                          <td style="padding-left: 15px;">
-                            <span style="font-size: 24px; font-weight: bold; color: #ffffff; letter-spacing: -0.5px;">HOMOLOGA <span style="color: #F27D26;">Plus</span></span>
-                          </td>
-                        </tr>
-                      </table>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td style="padding: 40px 30px; text-align: center;">
-                      <h1 style="color: #1E293B; font-size: 28px; margin: 0 0 20px 0; font-weight: 800;">Acesso Confirmado! 🚀</h1>
-                      <p style="color: #64748B; font-size: 16px; line-height: 1.6; margin: 0;">
-                        Olá!<br><br>
-                        Seu acesso antecipado foi confirmado. Você agora faz parte do grupo de projetistas que terão prioridade no lançamento da plataforma <strong>HOMOLOGA Plus</strong>.
-                      </p>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td style="padding: 0 30px;">
-                      <div style="background-color: #F8FAFC; padding: 30px; border-radius: 20px; border: 2px dashed #E2E8F0; text-align: center;">
-                        <p style="margin: 0; font-size: 13px; text-transform: uppercase; letter-spacing: 0.1em; color: #94A3B8; font-weight: 700;">SUA POSIÇÃO NA FILA</p>
-                        <p style="margin: 10px 0 0 0; font-size: 48px; font-weight: 900; color: #F27D26;">#${newRank}</p>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td style="padding: 40px 30px;">
-                      <div style="background-color: #FFF7ED; border-left: 4px solid #F27D26; padding: 20px; border-radius: 0 12px 12px 0; margin-bottom: 25px;">
-                        <h4 style="color: #C2410C; margin: 0 0 10px 0; font-size: 16px;">💡 Quer subir na fila?</h4>
-                        <p style="color: #C2410C; font-size: 14px; margin: 0; line-height: 1.5;">
-                          Compartilhe seu link exclusivo com outros projetistas solares. Cada indicação válida faz você subir posições.
+        try {
+          await resend.emails.send({
+            from: 'HOMOLOGA Plus <contato@homologaplus.com.br>',
+            to: [cleanEmail],
+            subject: 'Você entrou na lista do HOMOLOGA Plus 🚀',
+            html: `
+              <!DOCTYPE html>
+              <html>
+                <head>
+                  <meta charset="utf-8">
+                  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                  <title>Bem-vindo ao HOMOLOGA Plus</title>
+                </head>
+                <body style="margin: 0; padding: 0; background-color: #F8FAFC; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
+                  <table border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 600px; margin: 20px auto; background-color: #ffffff; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.05);">
+                    <tr>
+                      <td align="center" style="padding: 40px 0; background-color: #1E293B;">
+                        <table border="0" cellpadding="0" cellspacing="0">
+                          <tr>
+                            <td align="center" style="background-color: #F27D26; padding: 12px; border-radius: 14px;">
+                              <img src="https://cdn-icons-png.flaticon.com/512/979/979585.png" alt="Logo" width="40" height="40" style="display: block;">
+                            </td>
+                            <td style="padding-left: 15px;">
+                              <span style="font-size: 24px; font-weight: bold; color: #ffffff; letter-spacing: -0.5px;">HOMOLOGA <span style="color: #F27D26;">Plus</span></span>
+                            </td>
+                          </tr>
+                        </table>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td style="padding: 40px 30px; text-align: center;">
+                        <h1 style="color: #1E293B; font-size: 28px; margin: 0 0 20px 0; font-weight: 800;">Acesso Confirmado! 🚀</h1>
+                        <p style="color: #64748B; font-size: 16px; line-height: 1.6; margin: 0;">
+                          Olá!<br><br>
+                          Seu acesso antecipado foi confirmado. Você agora faz parte do grupo de projetistas que terão prioridade no lançamento da plataforma <strong>HOMOLOGA Plus</strong>.
                         </p>
-                        <p style="margin-top: 15px; font-family: monospace; background: #fff; padding: 10px; border-radius: 8px; border: 1px solid #FED7AA; color: #F27D26; font-weight: bold; text-align: center;">
-                          ${referralLink}
+                      </td>
+                    </tr>
+                    <tr>
+                      <td style="padding: 0 30px;">
+                        <div style="background-color: #F8FAFC; padding: 30px; border-radius: 20px; border: 2px dashed #E2E8F0; text-align: center;">
+                          <p style="margin: 0; font-size: 13px; text-transform: uppercase; letter-spacing: 0.1em; color: #94A3B8; font-weight: 700;">SUA POSIÇÃO NA FILA</p>
+                          <p style="margin: 10px 0 0 0; font-size: 48px; font-weight: 900; color: #F27D26;">#${newRank}</p>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td style="padding: 40px 30px;">
+                        <div style="background-color: #FFF7ED; border-left: 4px solid #F27D26; padding: 20px; border-radius: 0 12px 12px 0; margin-bottom: 25px;">
+                          <h4 style="color: #C2410C; margin: 0 0 10px 0; font-size: 16px;">💡 Quer subir na fila?</h4>
+                          <p style="color: #C2410C; font-size: 14px; margin: 0; line-height: 1.5;">
+                            Compartilhe seu link exclusivo com outros projetistas solares. Cada indicação válida faz você subir posições.
+                          </p>
+                          <p style="margin-top: 15px; font-family: monospace; background: #fff; padding: 10px; border-radius: 8px; border: 1px solid #FED7AA; color: #F27D26; font-weight: bold; text-align: center;">
+                            ${referralLink}
+                          </p>
+                        </div>
+                        <p style="color: #64748B; font-size: 15px; line-height: 1.6; text-align: center; margin: 0;">
+                          Estamos preparando a plataforma que vai simplificar a homologação de usinas fotovoltaicas nas concessionárias.<br><br>
+                          Em breve enviaremos novidades do lançamento.
                         </p>
-                      </div>
-                      <p style="color: #64748B; font-size: 15px; line-height: 1.6; text-align: center; margin: 0;">
-                        Estamos preparando a plataforma que vai simplificar a homologação de usinas fotovoltaicas nas concessionárias.<br><br>
-                        Em breve enviaremos novidades do lançamento.
-                      </p>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td style="padding: 30px; background-color: #F1F5F9; text-align: center; border-radius: 0 0 16px 16px;">
-                      <p style="margin: 0 0 10px 0; color: #1E293B; font-size: 14px; font-weight: 700;">Equipe HOMOLOGA Plus</p>
-                    </td>
-                  </tr>
-                </table>
-              </body>
-            </html>
-          `,
-        });
+                      </td>
+                    </tr>
+                    <tr>
+                      <td style="padding: 30px; background-color: #F1F5F9; text-align: center; border-radius: 0 0 16px 16px;">
+                        <p style="margin: 0 0 10px 0; color: #1E293B; font-size: 14px; font-weight: 700;">Equipe HOMOLOGA Plus</p>
+                      </td>
+                    </tr>
+                  </table>
+                </body>
+              </html>
+            `,
+          });
+        } catch (emailErr) {
+          console.error('Failed to send email:', emailErr);
+        }
       }
 
       res.json({ 
@@ -324,4 +357,7 @@ async function startServer() {
   });
 }
 
-startServer();
+startServer().catch(err => {
+  console.error('Failed to start server:', err);
+  process.exit(1);
+});

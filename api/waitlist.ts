@@ -116,9 +116,9 @@ export default async function handler(req: any, res: any) {
                         <!-- Header -->
                         <tr>
                           <td style="background-color: #0E1A35; padding: 40px 30px; text-align: center; color: white;">
-                            <div style="font-size: 20px; font-weight: bold; margin-bottom: 30px;">HOMOLOGA <span style="color: #60A5FA;">Plus</span></div>
-                            <div style="width: 48px; height: 48px; border-radius: 50%; border: 1px solid #334155; margin: 0 auto 20px auto; text-align: center; line-height: 48px; font-size: 24px;">🎉</div>
-                            <h1 style="margin: 0 0 10px 0; font-size: 28px; font-weight: 800; color: #ffffff;">Você está na lista! 🎉</h1>
+                            <div align="center" style="font-size: 20px; font-weight: bold; margin-bottom: 30px; text-align: center;">HOMOLOGA <span style="color: #60A5FA;">Plus</span></div>
+                            <div align="center" style="width: 48px; height: 48px; border-radius: 50%; border: 1px solid #334155; margin: 0 auto 20px auto; text-align: center; line-height: 48px; font-size: 24px;">🎉</div>
+                            <h1 align="center" style="margin: 0 0 10px 0; font-size: 28px; font-weight: 800; color: #ffffff; text-align: center;">Você está na lista! 🎉</h1>
                             <p style="margin: 0; color: #94A3B8; font-size: 16px;">Sua vaga foi confirmada com sucesso</p>
                           </td>
                         </tr>

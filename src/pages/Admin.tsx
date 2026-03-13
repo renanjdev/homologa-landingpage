@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { Shield, Users, Mail, Phone, Calendar, Search } from 'lucide-react';
+import { Shield, Users, Mail, Phone, Calendar, Search, Download, MessageCircle } from 'lucide-react';
 import { motion } from 'motion/react';
+import * as XLSX from 'xlsx';
 
 interface Lead {
   id: string;
@@ -61,6 +62,37 @@ export default function Admin() {
     (lead.name && lead.name.toLowerCase().includes(search.toLowerCase())) ||
     (lead.whatsapp && lead.whatsapp.includes(search))
   );
+
+  const exportToExcel = () => {
+    // Transform leads to a format suitable for Excel
+    const dataToExport = filteredLeads.map((lead, index) => ({
+      'Posição Inicial (Estimado)': index + 1, // Optional: gives an idea of queue assuming ordered
+      'Nome': lead.name || 'Não informado',
+      'Email': lead.email,
+      'WhatsApp': lead.whatsapp || 'Não informado',
+      'Origem (UTM Source)': lead.utm_source || 'Orgânico',
+      'Data de Cadastro': new Date(lead.created_at).toLocaleString('pt-BR')
+    }));
+
+    // Create workbook and worksheet
+    const worksheet = XLSX.utils.json_to_sheet(dataToExport);
+    const workbook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(workbook, worksheet, "Leads Waitlist");
+
+    // Auto-size columns (basic estimation)
+    const wscols = [
+      {wch: 25}, // Posição
+      {wch: 30}, // Nome
+      {wch: 40}, // Email
+      {wch: 20}, // WhatsApp
+      {wch: 20}, // Origem
+      {wch: 25}  // Data
+    ];
+    worksheet['!cols'] = wscols;
+
+    // Generate buffer and trigger download
+    XLSX.writeFile(workbook, `HOMOLOGAPlus_Leads_${new Date().toISOString().split('T')[0]}.xlsx`);
+  };
 
   if (!isAuthenticated) {
     return (
@@ -140,7 +172,15 @@ export default function Admin() {
                 className="w-full pl-9 pr-4 py-2 bg-slate-50 border border-slate-200 rounded-lg text-sm focus:ring-2 focus:ring-primary focus:border-transparent outline-none"
               />
             </div>
-            <div className="bg-primary/10 text-primary px-4 py-2 rounded-lg font-bold text-sm whitespace-nowrap">
+            <button 
+              onClick={exportToExcel}
+              disabled={leads.length === 0}
+              className="flex items-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white px-4 py-2 rounded-lg font-medium text-sm transition-colors whitespace-nowrap disabled:opacity-50 disabled:cursor-not-allowed"
+            >
+              <Download className="w-4 h-4" />
+              <span className="hidden sm:inline">Exportar Planilha</span>
+            </button>
+            <div className="bg-primary/10 text-primary px-4 py-2 rounded-lg font-bold text-sm whitespace-nowrap hidden sm:block">
               Total: {leads.length}
             </div>
           </div>
@@ -156,6 +196,7 @@ export default function Admin() {
                   <th className="px-6 py-4 font-semibold">Contato</th>
                   <th className="px-6 py-4 font-semibold">Origem</th>
                   <th className="px-6 py-4 font-semibold">Data de Cadastro</th>
+                  <th className="px-6 py-4 font-semibold text-right">Ações</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-slate-100">
@@ -167,7 +208,7 @@ export default function Admin() {
                   </tr>
                 ) : filteredLeads.length === 0 ? (
                   <tr>
-                    <td colSpan={4} className="px-6 py-8 text-center text-slate-400">
+                    <td colSpan={5} className="px-6 py-8 text-center text-slate-400">
                       Nenhum lead encontrado.
                     </td>
                   </tr>
@@ -205,6 +246,21 @@ export default function Admin() {
                             hour: '2-digit', minute: '2-digit'
                           })}
                         </div>
+                      </td>
+                      <td className="px-6 py-4 text-right">
+                        {lead.whatsapp && (
+                          <a 
+                            href={`https://wa.me/55${lead.whatsapp.replace(/\D/g, '')}?text=${encodeURIComponent(`Olá ${lead.name || 'Projetista'}, vi que você se inscreveu na lista de espera do HOMOLOGA Plus! Tudo bem?`)}`}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center gap-1.5 px-3 py-1.5 border border-emerald-200 bg-emerald-50 hover:bg-emerald-100 text-emerald-700 rounded-lg text-sm font-medium transition-colors"
+                            title="Chamar no WhatsApp"
+                          >
+                            <MessageCircle className="w-4 h-4" />
+                            <span className="hidden sm:inline">WhatsApp</span>
+                          </a>
+                        )}
+                        {!lead.whatsapp && <span className="text-slate-300 text-sm">Sem nº</span>}
                       </td>
                     </tr>
                   ))

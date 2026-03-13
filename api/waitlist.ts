@@ -43,7 +43,7 @@ export default async function handler(req: any, res: any) {
         .select("*", { count: "exact", head: true });
 
       if (error) throw error;
-      return res.status(200).json({ count: (count || 0) + 87 });
+      return res.status(200).json({ count: (count || 0) + 82 });
     } catch (err: any) {
       return res.status(500).json({ error: "Failed to fetch count", message: err.message });
     }
@@ -91,7 +91,7 @@ export default async function handler(req: any, res: any) {
       console.error('Supabase count error:', countError);
     }
 
-    const position = (count || 0) + 87; // Adding base offset as in current app
+    const position = (count || 0) + 82; // Adding base offset as in current app
 
     // 3. Send email via Resend
     if (process.env.RESEND_API_KEY) {

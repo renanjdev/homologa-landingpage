@@ -5,7 +5,7 @@ export type WaitlistStatus = 'idle' | 'loading' | 'success' | 'error';
 export const useWaitlist = (referralId: string | null) => {
   const [status, setStatus] = useState<WaitlistStatus>('idle');
   const [errorMessage, setErrorMessage] = useState('');
-  const [waitlistCount, setWaitlistCount] = useState(87);
+  const [waitlistCount, setWaitlistCount] = useState(82);
   const [userId, setUserId] = useState<string | null>(null);
   const [userReferrals, setUserReferrals] = useState(0);
   const [userInitialRank, setUserInitialRank] = useState(0);
@@ -17,7 +17,7 @@ export const useWaitlist = (referralId: string | null) => {
         const response = await fetch('/api/waitlist');
         if (response.ok) {
           const data = await response.json();
-          setWaitlistCount(data.count || 87);
+          setWaitlistCount(data.count || 82);
         }
       } catch (err) {
         console.error('Failed to fetch waitlist count:', err);

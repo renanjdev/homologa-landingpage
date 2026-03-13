@@ -40,7 +40,7 @@ const WaitlistHero = ({ waitlistCount }: { waitlistCount: number }) => (
       Oportunidade Antecipada
     </div>
     
-    <h1 className="text-3xl sm:text-4xl md:text-5xl font-display font-extrabold text-slate-900 leading-tight mb-6">
+    <h1 className="text-2xl sm:text-4xl md:text-5xl font-display font-extrabold text-slate-900 leading-tight mb-6">
       O fim da burocracia na aprovação de <span className="text-primary">projetos solares.</span>
     </h1>
     
@@ -95,11 +95,11 @@ const WaitlistHero = ({ waitlistCount }: { waitlistCount: number }) => (
       </div>
     </div>
 
-    <div className="flex items-start gap-4 p-4 bg-primary/5 rounded-2xl border border-primary/10 mb-8">
-      <ShieldCheck className="w-6 h-6 text-primary shrink-0 mt-1" />
+    <div className="flex items-start gap-4 p-3.5 sm:p-4 bg-primary/5 rounded-2xl border border-primary/10 mb-8">
+      <ShieldCheck className="w-5 h-5 sm:w-6 sm:h-6 text-primary shrink-0 mt-1" />
       <div className="text-left">
-        <p className="font-bold text-slate-900">Benefício Exclusivo</p>
-        <p className="text-sm text-slate-600">Os primeiros usuários terão acesso ao <strong>plano fundador</strong> com condições especiais e vitalícias.</p>
+        <p className="font-bold text-slate-900 text-sm sm:text-base">Benefício Exclusivo</p>
+        <p className="text-xs sm:text-sm text-slate-600">Os primeiros usuários terão acesso ao <strong>plano fundador</strong> com condições especiais e vitalícias.</p>
       </div>
     </div>
 
@@ -235,8 +235,8 @@ const WaitlistForm = ({
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
     >
-      <h2 className="text-2xl font-bold text-slate-900 mb-2">Entrar na lista de acesso antecipado</h2>
-      <p className="text-slate-500 mb-8">
+      <h2 className="text-xl sm:text-2xl font-bold text-slate-900 mb-2">Entrar na lista de acesso antecipado</h2>
+      <p className="text-sm sm:text-base text-slate-500 mb-8">
         Seja um dos primeiros a utilizar a plataforma que vai mudar sua rotina.
       </p>
 
@@ -256,7 +256,7 @@ const WaitlistForm = ({
               value={name}
               onChange={handleNameChange}
               placeholder="João Silva"
-              className={`w-full bg-slate-50 border rounded-2xl pl-12 pr-4 py-4 focus:outline-none focus:ring-4 transition-all text-lg ${
+              className={`w-full bg-slate-50 border rounded-2xl pl-12 pr-4 py-3.5 sm:py-4 focus:outline-none focus:ring-4 transition-all text-base sm:text-lg ${
                 inputError?.includes('nome')
                   ? 'border-red-300 focus:ring-red-100 focus:border-red-400' 
                   : 'border-slate-200 focus:ring-primary/10 focus:border-primary'
@@ -278,7 +278,7 @@ const WaitlistForm = ({
               value={email}
               onChange={handleEmailChange}
               placeholder="exemplo@email.com"
-              className={`w-full bg-slate-50 border rounded-2xl pl-12 pr-4 py-4 focus:outline-none focus:ring-4 transition-all text-lg ${
+              className={`w-full bg-slate-50 border rounded-2xl pl-12 pr-4 py-3.5 sm:py-4 focus:outline-none focus:ring-4 transition-all text-base sm:text-lg ${
                 inputError?.includes('e-mail')
                   ? 'border-red-300 focus:ring-red-100 focus:border-red-400' 
                   : 'border-slate-200 focus:ring-primary/10 focus:border-primary'
@@ -300,7 +300,7 @@ const WaitlistForm = ({
               value={whatsapp}
               onChange={handleWhatsappChange}
               placeholder="(00) 00000-0000"
-              className={`w-full bg-slate-50 border rounded-2xl pl-12 pr-4 py-4 focus:outline-none focus:ring-4 transition-all text-lg ${
+              className={`w-full bg-slate-50 border rounded-2xl pl-12 pr-4 py-3.5 sm:py-4 focus:outline-none focus:ring-4 transition-all text-base sm:text-lg ${
                 inputError?.includes('WhatsApp') 
                   ? 'border-red-300 focus:ring-red-100 focus:border-red-400' 
                   : 'border-slate-200 focus:ring-primary/10 focus:border-primary'
@@ -319,7 +319,7 @@ const WaitlistForm = ({
         <button
           type="submit"
           disabled={status === 'loading'}
-          className="w-full bg-primary hover:bg-primary-dark text-white py-5 rounded-2xl font-bold text-lg shadow-xl shadow-primary/20 transition-all flex items-center justify-center gap-2 disabled:opacity-70 active:scale-[0.98]"
+          className="w-full bg-primary hover:bg-primary-dark text-white py-4 sm:py-5 rounded-2xl font-bold text-base sm:text-lg shadow-xl shadow-primary/20 transition-all flex items-center justify-center gap-2 disabled:opacity-70 active:scale-[0.98]"
         >
           {status === 'loading' ? (
             <Loader2 className="w-6 h-6 animate-spin" />
@@ -363,8 +363,8 @@ const Waitlist = () => {
 
       <WaitlistHeader />
 
-      <main className="flex-1 flex items-center justify-center p-4 py-8 md:py-20">
-        <div className="max-w-5xl w-full grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center">
+      <main className="flex-1 flex items-center justify-center p-4 py-12 md:py-20">
+        <div className="max-w-5xl w-full grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           <WaitlistHero waitlistCount={waitlistCount} />
 
           <motion.div

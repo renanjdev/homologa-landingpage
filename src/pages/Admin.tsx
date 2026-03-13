@@ -102,14 +102,13 @@ export default function Admin() {
 
       if (!response.ok) {
         const errorData = await response.json();
-        const debugInfo = errorData.debug_project ? `\n(Projeto API: ${errorData.debug_project})` : '';
-        throw new Error((errorData.message || 'Erro no banco') + debugInfo);
+        throw new Error(errorData.message || 'Erro ao atualizar no banco de dados');
       }
     } catch (err: any) {
       console.error('Failed to update status:', err);
       // 2. Reverte em caso de erro
       setLeads(oldLeads);
-      alert(`⚠️ Erro ao salvar: ${err.message}\n\nSe o projeto acima for diferente do que você está vendo no Supabase, as chaves estão trocadas.`);
+      alert(`⚠️ Erro ao salvar: ${err.message}`);
     }
   };
 

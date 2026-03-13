@@ -79,13 +79,7 @@ export default async function handler(req: any, res: any) {
       return res.status(200).json(data[0]);
     } catch (err: any) {
       console.error('API Error:', err);
-      const url = process.env.SUPABASE_URL || '';
-      const maskedUrl = url.substring(0, 15) + '...';
-      return res.status(500).json({ 
-        error: "Failed to update lead", 
-        message: err.message,
-        debug_project: maskedUrl 
-      });
+      return res.status(500).json({ error: "Failed to update lead", message: err.message });
     }
   }
 

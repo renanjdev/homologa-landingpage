@@ -10,7 +10,15 @@ interface Lead {
   whatsapp: string | null;
   created_at: string;
   utm_source?: string;
+  status?: string;
 }
+
+const STATUS_OPTIONS = [
+  { label: 'Novo', color: 'bg-blue-100 text-blue-700' },
+  { label: 'Em Contato', color: 'bg-amber-100 text-amber-700' },
+  { label: 'Convertido', color: 'bg-emerald-100 text-emerald-700' },
+  { label: 'Perdido', color: 'bg-slate-100 text-slate-600' }
+];
 
 export default function Admin() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -73,6 +81,36 @@ export default function Admin() {
     setLoading(false);
   };
 
+  const updateLeadStatus = async (id: string, newStatus: string) => {
+    try {
+      const b64Token = btoa('admin@homologaplus.com.br:7698398*Re');
+      const response = await fetch('/api/leads', {
+        method: 'PATCH',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Basic ${b64Token}`
+        },
+        body: JSON.stringify({ id, status: newStatus })
+      });
+
+      if (response.ok) {
+        setLeads(prev => prev.map(l => l.id === id ? { ...l, status: newStatus } : l));
+      }
+    } catch (err) {
+      console.error('Failed to update status:', err);
+    }
+  };
+
+  const handleWhatsappClick = (lead: Lead) => {
+    if (lead.status === 'Novo' || !lead.status) {
+      updateLeadStatus(lead.id, 'Em Contato');
+    }
+    
+    const phone = lead.whatsapp?.replace(/\D/g, '');
+    const text = `Olá ${lead.name || 'Projetista'}, vi que você se inscreveu na lista de espera do HOMOLOGA Plus! Tudo bem?`;
+    window.open(`https://wa.me/55${phone}?text=${encodeURIComponent(text)}`, '_blank');
+  };
+
   // Cálculo de Métricas (Memoizado para performance)
   const metrics = useMemo(() => {
     const total = leads.length;
@@ -116,6 +154,7 @@ export default function Admin() {
       'Nome': lead.name || 'Não informado',
       'Email': lead.email,
       'WhatsApp': lead.whatsapp || 'Não informado',
+      'Status': lead.status || 'Novo',
       'Origem': lead.utm_source || 'Orgânico',
       'Data': new Date(lead.created_at).toLocaleString('pt-BR')
     }));
@@ -124,7 +163,7 @@ export default function Admin() {
     const workbook = XLSX.utils.book_new();
     XLSX.utils.book_append_sheet(workbook, worksheet, "Leads Waitlist");
 
-    const wscols = [{wch: 10}, {wch: 30}, {wch: 40}, {wch: 20}, {wch: 20}, {wch: 25}];
+    const wscols = [{wch: 10}, {wch: 30}, {wch: 40}, {wch: 20}, {wch: 15}, {wch: 20}, {wch: 25}];
     worksheet['!cols'] = wscols;
 
     XLSX.writeFile(workbook, `HOMOLOGAPlus_Leads_${new Date().toISOString().split('T')[0]}.xlsx`);
@@ -278,15 +317,14 @@ export default function Admin() {
                 <tr>
                   <th className="px-6 py-4 font-semibold">Lead</th>
                   <th className="px-6 py-4 font-semibold">Contato</th>
-                  <th className="px-6 py-4 font-semibold">Origem</th>
-                  <th className="px-6 py-4 font-semibold">Data</th>
+                  <th className="px-6 py-4 font-semibold">Status</th>
                   <th className="px-6 py-4 font-semibold text-right">Ações</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-slate-100">
                 {loading && leads.length === 0 ? (
                   <tr>
-                    <td colSpan={5} className="px-6 py-8 text-center text-slate-400">
+                    <td colSpan={4} className="px-6 py-8 text-center text-slate-400">
                       Carregando leads...
                     </td>
                   </tr>
@@ -304,6 +342,10 @@ export default function Admin() {
                           <Users className="w-4 h-4 text-slate-400" />
                           {lead.name || 'Projetista'}
                         </div>
+                        <div className="text-[10px] text-slate-400 mt-0.5 flex items-center gap-1">
+                          <TrendingUp className="w-3 h-3" />
+                          {lead.utm_source || 'Direto'}
+                        </div>
                       </td>
                       <td className="px-6 py-4 space-y-1">
                         <div className="flex items-center gap-2 text-slate-600">
@@ -311,37 +353,38 @@ export default function Admin() {
                           {lead.email}
                         </div>
                         {lead.whatsapp && (
-                          <div className="flex items-center gap-2 text-slate-500 text-xs">
+                          <div className="flex items-center gap-2 text-slate-500 text-xs text-nowrap">
                             <Phone className="w-4 h-4 text-slate-400" />
                             {lead.whatsapp}
                           </div>
                         )}
                       </td>
                       <td className="px-6 py-4">
-                        <span className="inline-flex items-center px-2 py-1 rounded-md bg-slate-100 text-slate-600 text-xs font-medium">
-                          {lead.utm_source || 'Direto'}
-                        </span>
-                      </td>
-                      <td className="px-6 py-4">
-                        <div className="text-slate-500 text-xs">
-                          {new Date(lead.created_at).toLocaleDateString('pt-BR')}
-                        </div>
-                        <div className="text-slate-400 text-[10px]">
-                          {new Date(lead.created_at).toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' })}
+                        <select 
+                          value={lead.status || 'Novo'}
+                          onChange={(e) => updateLeadStatus(lead.id, e.target.value)}
+                          className={`text-xs font-bold px-2 py-1 rounded-lg border-none focus:ring-2 focus:ring-primary outline-none transition-colors ${
+                            STATUS_OPTIONS.find(opt => opt.label === (lead.status || 'Novo'))?.color || 'bg-slate-100'
+                          }`}
+                        >
+                          {STATUS_OPTIONS.map(opt => (
+                            <option key={opt.label} value={opt.label}>{opt.label}</option>
+                          ))}
+                        </select>
+                        <div className="text-slate-400 text-[9px] mt-1 ml-1">
+                          Desde: {new Date(lead.created_at).toLocaleDateString('pt-BR')}
                         </div>
                       </td>
                       <td className="px-6 py-4 text-right">
                         {lead.whatsapp && (
-                          <a 
-                            href={`https://wa.me/55${lead.whatsapp.replace(/\D/g, '')}?text=${encodeURIComponent(`Olá ${lead.name || 'Projetista'}, vi que você se inscreveu na lista de espera do HOMOLOGA Plus! Tudo bem?`)}`}
-                            target="_blank"
-                            rel="noopener noreferrer"
+                          <button 
+                            onClick={() => handleWhatsappClick(lead)}
                             className="text-emerald-600 hover:text-emerald-700 p-2 rounded-lg hover:bg-emerald-50 inline-flex items-center gap-1 transition-colors"
                             title="Chamar no WhatsApp"
                           >
                             <MessageCircle className="w-5 h-5" />
                             <span className="text-xs font-bold sm:inline hidden">Chat</span>
-                          </a>
+                          </button>
                         )}
                       </td>
                     </tr>
@@ -356,3 +399,4 @@ export default function Admin() {
     </div>
   );
 }
+

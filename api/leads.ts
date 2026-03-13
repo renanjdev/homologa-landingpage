@@ -18,19 +18,17 @@ export default async function handler(req: any, res: any) {
   // Enable CORS
   res.setHeader('Access-Control-Allow-Credentials', 'true');
   res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS');
+  res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS,PATCH');
   res.setHeader(
     'Access-Control-Allow-Headers',
-    'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version'
+    'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version, Authorization'
   );
 
   if (req.method === 'OPTIONS') {
     return res.status(200).end();
   }
 
-  // Basic authorization using the hardcoded credentials (passed through Authorization header for simplicity)
-  // Or we can just respond to the data and let the frontend hide it behind the prompt.
-  // Since we want this to be secure, let's validate the credentials on the backend.
+  // Basic authorization using the hardcoded credentials
   const authHeader = req.headers.authorization;
   if (!authHeader || authHeader !== 'Basic YWRtaW5AaG9tb2xvZ2FwbHVzLmNvbS5icjo3Njk4Mzk4KlJl') {
       return res.status(401).json({ error: "Unauthorized" });
@@ -41,20 +39,41 @@ export default async function handler(req: any, res: any) {
     return res.status(500).json({ error: "Supabase not configured. Please set SUPABASE_URL and SUPABASE_KEY." });
   }
 
-  if (req.method !== 'GET') {
-      return res.status(405).json({ error: "Method not allowed" });
+  if (req.method === 'GET') {
+    try {
+      const { data, error } = await supabase
+        .from("waitlist")
+        .select("*")
+        .order("created_at", { ascending: false });
+
+      if (error) throw error;
+      return res.status(200).json(data);
+    } catch (err: any) {
+      console.error('API Error:', err);
+      return res.status(500).json({ error: "Failed to fetch leads", message: err.message });
+    }
   }
 
-  try {
-    const { data, error } = await supabase
-      .from("waitlist")
-      .select("*")
-      .order("created_at", { ascending: false });
+  if (req.method === 'PATCH') {
+    try {
+      const { id, status } = req.body;
+      if (!id || !status) {
+        return res.status(400).json({ error: "Missing id or status" });
+      }
 
-    if (error) throw error;
-    return res.status(200).json(data);
-  } catch (err: any) {
-    console.error('API Error:', err);
-    return res.status(500).json({ error: "Failed to fetch leads", message: err.message });
+      const { data, error } = await supabase
+        .from("waitlist")
+        .update({ status })
+        .eq("id", id)
+        .select();
+
+      if (error) throw error;
+      return res.status(200).json(data[0]);
+    } catch (err: any) {
+      console.error('API Error:', err);
+      return res.status(500).json({ error: "Failed to update lead", message: err.message });
+    }
   }
+
+  return res.status(405).json({ error: "Method not allowed" });
 }

@@ -86,7 +86,9 @@ const WaitlistHero = ({ waitlistCount }: { waitlistCount: number }) => (
               initial={{ width: 0 }}
               animate={{ width: `${Math.min(100, (waitlistCount / 100) * 100)}%` }}
               transition={{ duration: 1, ease: "easeOut" }}
-              className="h-full bg-primary rounded-full"
+              className={`h-full rounded-full transition-colors ${
+                waitlistCount >= 80 ? 'bg-rose-500 shadow-[0_0_10px_rgba(244,63,94,0.4)]' : 'bg-primary'
+              }`}
             />
           </div>
         </div>

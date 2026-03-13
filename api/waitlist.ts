@@ -107,25 +107,36 @@ export default async function handler(req: any, res: any) {
                 <meta charset="utf-8">
                 <meta name="viewport" content="width=device-width, initial-scale=1.0">
                 <title>Lista de Espera HOMOLOGA Plus</title>
+                <style>
+                  @media screen and (max-width: 600px) {
+                    .email-container { width: 100% !important; border-radius: 0 !important; }
+                    .email-header { padding: 30px 20px !important; }
+                    .email-body { padding: 30px 20px !important; }
+                    .email-title { font-size: 24px !important; }
+                    .position-number { font-size: 48px !important; }
+                    .detail-cell { display: block !important; width: 100% !important; text-align: left !important; padding: 5px 0 !important; border: none !important; }
+                    .detail-value { font-size: 14px !important; padding-bottom: 15px !important; border-bottom: 1px solid #F8FAFC !important; }
+                  }
+                </style>
               </head>
               <body style="margin: 0; padding: 0; background-color: #F8FAFC; font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
                 <table border="0" cellpadding="0" cellspacing="0" width="100%" style="background-color: #F8FAFC; padding: 20px 0;">
                   <tr>
                     <td align="center">
-                      <table border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 600px; background-color: #ffffff; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.05);">
+                      <table class="email-container" border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 600px; background-color: #ffffff; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.05);">
                         <!-- Header -->
                         <tr>
-                          <td style="background-color: #0E1A35; padding: 40px 30px; text-align: center; color: white;">
+                          <td class="email-header" style="background-color: #0E1A35; padding: 40px 30px; text-align: center; color: white;">
                             <div align="center" style="font-size: 20px; font-weight: bold; margin-bottom: 30px; text-align: center;">HOMOLOGA <span style="color: #60A5FA;">Plus</span></div>
                             <div align="center" style="width: 48px; height: 48px; border-radius: 50%; border: 1px solid #334155; margin: 0 auto 20px auto; text-align: center; line-height: 48px; font-size: 24px;">🎉</div>
-                            <h1 align="center" style="margin: 0 0 10px 0; font-size: 28px; font-weight: 800; color: #ffffff; text-align: center;">Você está na lista! 🎉</h1>
+                            <h1 class="email-title" align="center" style="margin: 0 0 10px 0; font-size: 28px; font-weight: 800; color: #ffffff; text-align: center;">Você está na lista! 🎉</h1>
                             <p style="margin: 0; color: #94A3B8; font-size: 16px;">Sua vaga foi confirmada com sucesso</p>
                           </td>
                         </tr>
                         
                         <!-- Body -->
                         <tr>
-                          <td style="padding: 40px 30px;">
+                          <td class="email-body" style="padding: 40px 30px;">
                             <p style="margin: 0 0 20px 0; font-size: 15px; color: #334155;">Olá, <strong style="color: #0F172A;">${name || 'Projetista'}</strong> 👋</p>
                             <p style="margin: 0 0 30px 0; font-size: 15px; color: #475569; line-height: 1.6;">
                               Obrigado por se inscrever na lista de espera do <strong>HOMOLOGA Plus</strong>! Estamos animados em ter você conosco. Em breve você terá acesso à plataforma.
@@ -136,7 +147,7 @@ export default async function handler(req: any, res: any) {
                               <tr>
                                 <td align="center" style="padding: 30px;">
                                   <p style="margin: 0 0 10px 0; color: #94A3B8; font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase;">SUA POSIÇÃO NA FILA</p>
-                                  <p style="margin: 0 0 10px 0; font-size: 64px; font-weight: 900; color: #60A5FA; line-height: 1;">#${position}</p>
+                                  <p class="position-number" style="margin: 0 0 10px 0; font-size: 64px; font-weight: 900; color: #60A5FA; line-height: 1;">#${position}</p>
                                   <p style="margin: 0; color: #94A3B8; font-size: 13px;">Você será notificado assim que for sua vez</p>
                                 </td>
                               </tr>
@@ -149,19 +160,19 @@ export default async function handler(req: any, res: any) {
                                 <td style="padding: 15px 20px;">
                                   <table border="0" cellpadding="0" cellspacing="0" width="100%">
                                     <tr>
-                                      <td width="30" style="color: #64748B; font-size: 14px;">✉️</td>
-                                      <td style="color: #64748B; font-size: 14px; padding: 10px 0; border-bottom: 1px solid #F8FAFC;">Email</td>
-                                      <td align="right" style="color: #0F172A; font-size: 14px; font-weight: 600; padding: 10px 0; border-bottom: 1px solid #F8FAFC;">${email}</td>
+                                      <td width="30" class="detail-cell" style="color: #64748B; font-size: 14px;">✉️</td>
+                                      <td class="detail-cell" style="color: #64748B; font-size: 14px; padding: 10px 0; border-bottom: 1px solid #F8FAFC;">Email</td>
+                                      <td align="right" class="detail-cell detail-value" style="color: #0F172A; font-size: 14px; font-weight: 600; padding: 10px 0; border-bottom: 1px solid #F8FAFC;">${email}</td>
                                     </tr>
                                     <tr>
-                                      <td width="30" style="color: #64748B; font-size: 14px;">📦</td>
-                                      <td style="color: #64748B; font-size: 14px; padding: 10px 0; border-bottom: 1px solid #F8FAFC;">Produto</td>
-                                      <td align="right" style="color: #0F172A; font-size: 14px; font-weight: 600; padding: 10px 0; border-bottom: 1px solid #F8FAFC;">HOMOLOGA Plus</td>
+                                      <td width="30" class="detail-cell" style="color: #64748B; font-size: 14px;">📦</td>
+                                      <td class="detail-cell" style="color: #64748B; font-size: 14px; padding: 10px 0; border-bottom: 1px solid #F8FAFC;">Produto</td>
+                                      <td align="right" class="detail-cell detail-value" style="color: #0F172A; font-size: 14px; font-weight: 600; padding: 10px 0; border-bottom: 1px solid #F8FAFC;">HOMOLOGA Plus</td>
                                     </tr>
                                     <tr>
-                                      <td width="30" style="color: #64748B; font-size: 14px;">📅</td>
-                                      <td style="color: #64748B; font-size: 14px; padding: 10px 0;">Data de inscrição</td>
-                                      <td align="right" style="color: #0F172A; font-size: 14px; font-weight: 600; padding: 10px 0;">${new Date().toLocaleDateString('pt-BR')}</td>
+                                      <td width="30" class="detail-cell" style="color: #64748B; font-size: 14px;">📅</td>
+                                      <td class="detail-cell" style="color: #64748B; font-size: 14px; padding: 10px 0;">Data de inscrição</td>
+                                      <td align="right" class="detail-cell detail-value" style="color: #0F172A; font-size: 14px; font-weight: 600; padding: 10px 0;">${new Date().toLocaleDateString('pt-BR')}</td>
                                     </tr>
                                   </table>
                                 </td>

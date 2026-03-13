@@ -28,12 +28,12 @@ const Hero = () => {
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-12 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.2fr] gap-12 lg:gap-16 items-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="text-center md:text-left"
+            className="text-center lg:text-left"
           >
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 text-primary text-[10px] md:text-xs font-bold uppercase tracking-wider mb-6">
               <Zap className="w-3.5 h-3.5" />
@@ -44,10 +44,10 @@ const Hero = () => {
               <span className="block text-primary">para homologação</span>
               <span className="block">de usinas solares</span>
             </h1>
-            <p className="text-base md:text-xl text-slate-600 leading-relaxed mb-8 md:mb-10 max-w-xl mx-auto md:mx-0 break-words">
+            <p className="text-base md:text-xl text-slate-600 leading-relaxed mb-8 md:mb-10 max-w-xl mx-auto lg:mx-0 break-words">
               Toda a gestão de projetos, integradores e etapas da homologação na palma da sua mão, em um único sistema profissional.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
+            <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
               <Link 
                 to="/waitlist"
                 className="bg-primary hover:bg-primary-dark text-white px-8 py-4 rounded-2xl text-lg font-bold transition-all shadow-xl shadow-primary/20 flex items-center justify-center gap-2 w-full sm:w-auto"
@@ -55,7 +55,7 @@ const Hero = () => {
                 Testar gratuitamente
               </Link>
             </div>
-            <div className="mt-8 md:mt-10 flex flex-col sm:flex-row items-center gap-4 text-sm text-slate-500 justify-center md:justify-start">
+            <div className="mt-8 md:mt-10 flex flex-col sm:flex-row items-center gap-4 text-sm text-slate-500 justify-center lg:justify-start">
               <div className="flex -space-x-2">
                 {[1, 2, 3, 4].map((i) => (
                   <img 
@@ -68,7 +68,7 @@ const Hero = () => {
                   />
                 ))}
               </div>
-              <span className="text-center sm:text-left">Utilizado por mais de 50 empresas de engenharia</span>
+              <span className="text-center sm:text-left font-medium">Utilizado por mais de 50 empresas de engenharia</span>
             </div>
           </motion.div>
 
@@ -76,12 +76,12 @@ const Hero = () => {
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="relative flex justify-center md:justify-end"
+            className="relative flex justify-center lg:justify-end lg:-mr-16"
           >
             <motion.div 
               animate={{ y: [0, -8, 0] }}
               transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-              className="relative w-full max-w-[440px] sm:max-w-[500px] lg:max-w-[600px] xl:max-w-[700px]"
+              className="relative w-full max-w-[440px] sm:max-w-[500px] lg:max-w-[750px] xl:max-w-[900px]"
             >
               <img 
                 src="https://i.imgur.com/x2s6AVw.png" 

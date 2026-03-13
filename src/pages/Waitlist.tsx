@@ -325,7 +325,7 @@ const WaitlistForm = ({
             <Loader2 className="w-6 h-6 animate-spin" />
           ) : (
             <>
-              Garantir minha vaga no Plano Fundador
+              Garantir Acesso VIP
               <ChevronRight className="w-5 h-5" />
             </>
           )}

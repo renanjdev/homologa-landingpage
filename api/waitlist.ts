@@ -54,7 +54,7 @@ export default async function handler(req: any, res: any) {
   }
 
   try {
-    const { email, whatsapp, utm_source, utm_medium, utm_campaign, referrer } = req.body;
+    const { name, email, whatsapp, utm_source, utm_medium, utm_campaign, referrer } = req.body;
 
     if (!email) {
       return res.status(400).json({ error: "Email is required" });
@@ -65,6 +65,7 @@ export default async function handler(req: any, res: any) {
       .from("waitlist")
       .upsert([
         { 
+          name: name || null,
           email: email.toLowerCase().trim(), 
           whatsapp,
           utm_source,
@@ -98,61 +99,170 @@ export default async function handler(req: any, res: any) {
         await resend.emails.send({
           from: 'HOMOLOGA Plus <contato@homologaplus.com.br>',
           to: [email],
-          subject: 'Você entrou na lista do HOMOLOGA Plus 🚀',
+          subject: 'Você está na lista! 🎉',
           html: `
             <!DOCTYPE html>
             <html>
               <head>
                 <meta charset="utf-8">
                 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-                <title>Bem-vindo ao HOMOLOGA Plus</title>
+                <title>Lista de Espera HOMOLOGA Plus</title>
               </head>
-              <body style="margin: 0; padding: 0; background-color: #F8FAFC; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
-                <table border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 600px; margin: 20px auto; background-color: #ffffff; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.05);">
+              <body style="margin: 0; padding: 0; background-color: #F8FAFC; font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
+                <table border="0" cellpadding="0" cellspacing="0" width="100%" style="background-color: #F8FAFC; padding: 20px 0;">
                   <tr>
-                    <td align="center" style="padding: 40px 0; background-color: #1E293B;">
-                      <table border="0" cellpadding="0" cellspacing="0">
+                    <td align="center">
+                      <table border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 600px; background-color: #ffffff; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.05);">
+                        <!-- Header -->
                         <tr>
-                          <td align="center" style="background-color: #F27D26; padding: 12px; border-radius: 14px;">
-                            <img src="https://cdn-icons-png.flaticon.com/512/979/979585.png" alt="Logo" width="40" height="40" style="display: block;">
+                          <td style="background-color: #0E1A35; padding: 40px 30px; text-align: center; color: white;">
+                            <div style="font-size: 20px; font-weight: bold; margin-bottom: 30px;">HOMOLOGA <span style="color: #60A5FA;">Plus</span></div>
+                            <div style="width: 48px; height: 48px; border-radius: 50%; border: 1px solid #334155; margin: 0 auto 20px auto; text-align: center; line-height: 48px; font-size: 24px;">🎉</div>
+                            <h1 style="margin: 0 0 10px 0; font-size: 28px; font-weight: 800; color: #ffffff;">Você está na lista! 🎉</h1>
+                            <p style="margin: 0; color: #94A3B8; font-size: 16px;">Sua vaga foi confirmada com sucesso</p>
                           </td>
-                          <td style="padding-left: 15px;">
-                            <span style="font-size: 24px; font-weight: bold; color: #ffffff; letter-spacing: -0.5px;">HOMOLOGA <span style="color: #F27D26;">Plus</span></span>
+                        </tr>
+                        
+                        <!-- Body -->
+                        <tr>
+                          <td style="padding: 40px 30px;">
+                            <p style="margin: 0 0 20px 0; font-size: 15px; color: #334155;">Olá, <strong style="color: #0F172A;">\${name || 'Projetista'}</strong> 👋</p>
+                            <p style="margin: 0 0 30px 0; font-size: 15px; color: #475569; line-height: 1.6;">
+                              Obrigado por se inscrever na lista de espera do <strong>Nossa Plataforma</strong>! Estamos animados em ter você conosco. Em breve você terá acesso à plataforma.
+                            </p>
+                            
+                            <!-- Position Card -->
+                            <table border="0" cellpadding="0" cellspacing="0" width="100%" style="background-color: #172445; border-radius: 12px; margin-bottom: 30px;">
+                              <tr>
+                                <td align="center" style="padding: 30px;">
+                                  <p style="margin: 0 0 10px 0; color: #94A3B8; font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase;">SUA POSIÇÃO NA FILA</p>
+                                  <p style="margin: 0 0 10px 0; font-size: 64px; font-weight: 900; color: #60A5FA; line-height: 1;">#\${position}</p>
+                                  <p style="margin: 0; color: #94A3B8; font-size: 13px;">Você será notificado assim que for sua vez</p>
+                                </td>
+                              </tr>
+                            </table>
+                            
+                            <!-- Detail List -->
+                            <h3 style="margin: 0 0 15px 0; font-size: 13px; font-weight: 800; color: #0F172A; text-transform: uppercase; letter-spacing: 0.5px;">Detalhes da inscrição</h3>
+                            <table border="0" cellpadding="0" cellspacing="0" width="100%" style="border: 1px solid #E2E8F0; border-radius: 8px; margin-bottom: 35px;">
+                              <tr>
+                                <td style="padding: 15px 20px;">
+                                  <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                                    <tr>
+                                      <td width="30" style="color: #64748B; font-size: 14px;">✉️</td>
+                                      <td style="color: #64748B; font-size: 14px; padding: 10px 0; border-bottom: 1px solid #F8FAFC;">Email</td>
+                                      <td align="right" style="color: #0F172A; font-size: 14px; font-weight: 600; padding: 10px 0; border-bottom: 1px solid #F8FAFC;">\${email}</td>
+                                    </tr>
+                                    <tr>
+                                      <td width="30" style="color: #64748B; font-size: 14px;">📦</td>
+                                      <td style="color: #64748B; font-size: 14px; padding: 10px 0; border-bottom: 1px solid #F8FAFC;">Produto</td>
+                                      <td align="right" style="color: #0F172A; font-size: 14px; font-weight: 600; padding: 10px 0; border-bottom: 1px solid #F8FAFC;">Nossa Plataforma</td>
+                                    </tr>
+                                    <tr>
+                                      <td width="30" style="color: #64748B; font-size: 14px;">📅</td>
+                                      <td style="color: #64748B; font-size: 14px; padding: 10px 0;">Data de inscrição</td>
+                                      <td align="right" style="color: #0F172A; font-size: 14px; font-weight: 600; padding: 10px 0;">\${new Date().toLocaleDateString('pt-BR')}</td>
+                                    </tr>
+                                  </table>
+                                </td>
+                              </tr>
+                            </table>
+                            
+                            <!-- Next Steps List -->
+                            <h3 style="margin: 0 0 15px 0; font-size: 13px; font-weight: 800; color: #0F172A; text-transform: uppercase; letter-spacing: 0.5px;">O que acontece agora?</h3>
+                            
+                            <table border="0" cellpadding="0" cellspacing="0" width="100%" style="border: 1px solid #E2E8F0; border-radius: 8px; margin-bottom: 12px;">
+                              <tr>
+                                <td style="padding: 15px;">
+                                  <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                                    <tr>
+                                      <td width="46" valign="middle">
+                                        <div style="width: 32px; height: 32px; background-color: #EFF6FF; border-radius: 6px; text-align: center; line-height: 32px; font-size: 16px;">🔔</div>
+                                      </td>
+                                      <td valign="middle" style="color: #475569; font-size: 14px; line-height: 1.5;">Você receberá atualizações regulares sobre nosso progresso e novidades.</td>
+                                    </tr>
+                                  </table>
+                                </td>
+                              </tr>
+                            </table>
+
+                            <table border="0" cellpadding="0" cellspacing="0" width="100%" style="border: 1px solid #E2E8F0; border-radius: 8px; margin-bottom: 12px;">
+                              <tr>
+                                <td style="padding: 15px;">
+                                  <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                                    <tr>
+                                      <td width="46" valign="middle">
+                                        <div style="width: 32px; height: 32px; background-color: #EFF6FF; border-radius: 6px; text-align: center; line-height: 32px; font-size: 16px;">✉️</div>
+                                      </td>
+                                      <td valign="middle" style="color: #475569; font-size: 14px; line-height: 1.5;">Quando chegar sua vez, enviaremos um convite de acesso exclusivo.</td>
+                                    </tr>
+                                  </table>
+                                </td>
+                              </tr>
+                            </table>
+
+                            <table border="0" cellpadding="0" cellspacing="0" width="100%" style="border: 1px solid #E2E8F0; border-radius: 8px; margin-bottom: 35px;">
+                              <tr>
+                                <td style="padding: 15px;">
+                                  <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                                    <tr>
+                                      <td width="46" valign="middle">
+                                        <div style="width: 32px; height: 32px; background-color: #EFF6FF; border-radius: 6px; text-align: center; line-height: 32px; font-size: 16px;">🔗</div>
+                                      </td>
+                                      <td valign="middle" style="color: #475569; font-size: 14px; line-height: 1.5;">Compartilhe com amigos para avançar na fila mais rapidamente!</td>
+                                    </tr>
+                                  </table>
+                                </td>
+                              </tr>
+                            </table>
+                            
+                            <!-- Button -->
+                            <table border="0" cellpadding="0" cellspacing="0" width="100%" style="margin-bottom: 35px;">
+                              <tr>
+                                <td align="center">
+                                  <table border="0" cellpadding="0" cellspacing="0">
+                                    <tr>
+                                      <td align="center" bgcolor="#2563EB" style="border-radius: 8px;">
+                                        <a href="https://homologaplus.com.br" target="_blank" style="display: inline-block; padding: 16px 36px; font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-size: 15px; color: #ffffff; text-decoration: none; font-weight: 600; border-radius: 8px;">🔗 Compartilhar com Amigos</a>
+                                      </td>
+                                    </tr>
+                                  </table>
+                                  <p style="margin: 12px 0 0 0; color: #94A3B8; font-size: 12px;">Cada indicação move você para cima na fila</p>
+                                </td>
+                              </tr>
+                            </table>
+                            
+                            <!-- Help Card -->
+                            <table border="0" cellpadding="0" cellspacing="0" width="100%" style="background-color: #EFF6FF; border-radius: 8px; border: 1px solid #DBEAFE;">
+                              <tr>
+                                <td align="center" style="padding: 16px;">
+                                  <p style="margin: 0; color: #3B82F6; font-size: 13px; font-weight: 500;">💬 Tem dúvidas? Responda este email ou acesse nosso suporte.</p>
+                                </td>
+                              </tr>
+                            </table>
+                            
+                          </td>
+                        </tr>
+                        
+                        <!-- Footer -->
+                        <tr>
+                          <td style="background-color: #0F172A; padding: 30px; text-align: center;">
+                            <div style="font-size: 16px; font-weight: bold; color: white; margin-bottom: 12px;">HOMOLOGA <span style="color: #3B82F6;">Plus</span></div>
+                            <p style="margin: 0 0 8px 0; color: #94A3B8; font-size: 12px;">© \${new Date().getFullYear()} Nossa Plataforma. Todos os direitos reservados.</p>
+                            <p style="margin: 0; color: #64748B; font-size: 11px;">Você está recebendo este email porque se inscreveu na lista de espera.</p>
                           </td>
                         </tr>
                       </table>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td style="padding: 40px 30px; text-align: center;">
-                      <h1 style="color: #1E293B; font-size: 28px; margin: 0 0 20px 0; font-weight: 800;">Acesso Confirmado! 🚀</h1>
-                      <p style="color: #64748B; font-size: 16px; line-height: 1.6; margin: 0;">
-                        Olá!<br><br>
-                        Seu acesso antecipado foi confirmado. Você agora faz parte do grupo de projetistas que terão prioridade no lançamento da plataforma <strong>HOMOLOGA Plus</strong>.
-                      </p>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td style="padding: 0 30px;">
-                      <div style="background-color: #F8FAFC; padding: 30px; border-radius: 20px; border: 2px dashed #E2E8F0; text-align: center;">
-                        <p style="margin: 0; font-size: 13px; text-transform: uppercase; letter-spacing: 0.1em; color: #94A3B8; font-weight: 700;">SUA POSIÇÃO NA FILA</p>
-                        <p style="margin: 10px 0 0 0; font-size: 48px; font-weight: 900; color: #F27D26;">#${position}</p>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td style="padding: 40px 30px;">
-                      <p style="color: #64748B; font-size: 15px; line-height: 1.6; text-align: center; margin: 0;">
-                        Estamos preparando a plataforma que vai simplificar a homologação de usinas fotovoltaicas nas concessionárias.<br><br>
-                        Em breve enviaremos novidades do lançamento.
-                      </p>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td style="padding: 30px; background-color: #F1F5F9; text-align: center; border-radius: 0 0 16px 16px;">
-                      <p style="margin: 0 0 10px 0; color: #1E293B; font-size: 14px; font-weight: 700;">
-                        Equipe HOMOLOGA Plus
-                      </p>
+                      
+                      <!-- Automation Note -->
+                      <table border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 600px;">
+                        <tr>
+                          <td align="center" style="padding: 20px 0;">
+                            <p style="margin: 0; color: #94A3B8; font-size: 11px;">Este é um email automático — por favor, não responda diretamente a este endereço.</p>
+                          </td>
+                        </tr>
+                      </table>
+                      
                     </td>
                   </tr>
                 </table>

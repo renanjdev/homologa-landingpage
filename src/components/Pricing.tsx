@@ -42,7 +42,7 @@ const Pricing = () => {
             <div className="mb-8">
               <div className="flex items-baseline gap-1">
                 <span className="text-slate-500 text-lg font-medium">R$</span>
-                <span className="text-4xl font-display font-black text-slate-900">249</span>
+                <span className="text-4xl font-display font-black text-slate-900">189</span>
                 <span className="text-slate-500 text-sm">/mês</span>
               </div>
             </div>
@@ -100,7 +100,7 @@ const Pricing = () => {
             <div className="mb-8">
               <div className="flex items-baseline gap-1">
                 <span className="text-slate-500 text-lg font-medium">R$</span>
-                <span className="text-4xl font-display font-black text-slate-900">219</span>
+                <span className="text-4xl font-display font-black text-slate-900">159</span>
                 <span className="text-slate-500 text-sm">/mês</span>
               </div>
               <p className="text-xs text-primary font-bold mt-1">Cobrança semestral</p>
@@ -158,7 +158,7 @@ const Pricing = () => {
             <div className="mb-8">
               <div className="flex items-baseline gap-1">
                 <span className="text-slate-500 text-lg font-medium">R$</span>
-                <span className="text-4xl font-display font-black text-slate-900">189</span>
+                <span className="text-4xl font-display font-black text-slate-900">119</span>
                 <span className="text-slate-500 text-sm">/mês</span>
               </div>
               <p className="text-xs text-orange-600 font-bold mt-1">Cobrança anual</p>

@@ -126,7 +126,7 @@ export default async function handler(req: any, res: any) {
                         <!-- Body -->
                         <tr>
                           <td style="padding: 40px 30px;">
-                            <p style="margin: 0 0 20px 0; font-size: 15px; color: #334155;">Olá, <strong style="color: #0F172A;">\${name || 'Projetista'}</strong> 👋</p>
+                            <p style="margin: 0 0 20px 0; font-size: 15px; color: #334155;">Olá, <strong style="color: #0F172A;">${name || 'Projetista'}</strong> 👋</p>
                             <p style="margin: 0 0 30px 0; font-size: 15px; color: #475569; line-height: 1.6;">
                               Obrigado por se inscrever na lista de espera do <strong>Nossa Plataforma</strong>! Estamos animados em ter você conosco. Em breve você terá acesso à plataforma.
                             </p>
@@ -136,7 +136,7 @@ export default async function handler(req: any, res: any) {
                               <tr>
                                 <td align="center" style="padding: 30px;">
                                   <p style="margin: 0 0 10px 0; color: #94A3B8; font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase;">SUA POSIÇÃO NA FILA</p>
-                                  <p style="margin: 0 0 10px 0; font-size: 64px; font-weight: 900; color: #60A5FA; line-height: 1;">#\${position}</p>
+                                  <p style="margin: 0 0 10px 0; font-size: 64px; font-weight: 900; color: #60A5FA; line-height: 1;">#${position}</p>
                                   <p style="margin: 0; color: #94A3B8; font-size: 13px;">Você será notificado assim que for sua vez</p>
                                 </td>
                               </tr>
@@ -151,7 +151,7 @@ export default async function handler(req: any, res: any) {
                                     <tr>
                                       <td width="30" style="color: #64748B; font-size: 14px;">✉️</td>
                                       <td style="color: #64748B; font-size: 14px; padding: 10px 0; border-bottom: 1px solid #F8FAFC;">Email</td>
-                                      <td align="right" style="color: #0F172A; font-size: 14px; font-weight: 600; padding: 10px 0; border-bottom: 1px solid #F8FAFC;">\${email}</td>
+                                      <td align="right" style="color: #0F172A; font-size: 14px; font-weight: 600; padding: 10px 0; border-bottom: 1px solid #F8FAFC;">${email}</td>
                                     </tr>
                                     <tr>
                                       <td width="30" style="color: #64748B; font-size: 14px;">📦</td>
@@ -161,7 +161,7 @@ export default async function handler(req: any, res: any) {
                                     <tr>
                                       <td width="30" style="color: #64748B; font-size: 14px;">📅</td>
                                       <td style="color: #64748B; font-size: 14px; padding: 10px 0;">Data de inscrição</td>
-                                      <td align="right" style="color: #0F172A; font-size: 14px; font-weight: 600; padding: 10px 0;">\${new Date().toLocaleDateString('pt-BR')}</td>
+                                      <td align="right" style="color: #0F172A; font-size: 14px; font-weight: 600; padding: 10px 0;">${new Date().toLocaleDateString('pt-BR')}</td>
                                     </tr>
                                   </table>
                                 </td>
@@ -248,7 +248,7 @@ export default async function handler(req: any, res: any) {
                         <tr>
                           <td style="background-color: #0F172A; padding: 30px; text-align: center;">
                             <div style="font-size: 16px; font-weight: bold; color: white; margin-bottom: 12px;">HOMOLOGA <span style="color: #3B82F6;">Plus</span></div>
-                            <p style="margin: 0 0 8px 0; color: #94A3B8; font-size: 12px;">© \${new Date().getFullYear()} Nossa Plataforma. Todos os direitos reservados.</p>
+                            <p style="margin: 0 0 8px 0; color: #94A3B8; font-size: 12px;">© ${new Date().getFullYear()} Nossa Plataforma. Todos os direitos reservados.</p>
                             <p style="margin: 0; color: #64748B; font-size: 11px;">Você está recebendo este email porque se inscreveu na lista de espera.</p>
                           </td>
                         </tr>

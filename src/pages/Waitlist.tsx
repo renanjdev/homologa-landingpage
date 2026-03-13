@@ -41,21 +41,26 @@ const WaitlistHero = ({ waitlistCount }: { waitlistCount: number }) => (
     </div>
     
     <h1 className="text-3xl sm:text-4xl md:text-5xl font-display font-extrabold text-slate-900 leading-tight mb-6">
-      Estamos preparando algo <span className="text-primary">extraordinário</span>.
+      O fim da burocracia na aprovação de <span className="text-primary">projetos solares.</span>
     </h1>
     
     <p className="text-base sm:text-lg text-slate-600 mb-8 leading-relaxed max-w-xl mx-auto lg:mx-0">
-      O <strong>HOMOLOGA Plus</strong> está chegando para revolucionar a gestão de homologação solar. Entre na lista e garanta benefícios exclusivos de lançamento.
+      Zere as pendências nas concessionárias. O <strong>HOMOLOGA Plus</strong> é a plataforma definitiva de gestão para Projetistas e Empresas Homologadoras. Entre na lista e garanta benefícios exclusivos de lançamento.
     </p>
 
     <div className="mb-8 inline-block lg:block">
       <div className="flex items-center gap-4 justify-center lg:justify-start">
         <div className="flex -space-x-3">
-          {[1, 2, 3, 4].map((i) => (
+          {[
+            'https://i.pravatar.cc/150?img=68', 
+            'https://i.pravatar.cc/150?img=11', 
+            'https://i.pravatar.cc/150?img=33', 
+            'https://i.pravatar.cc/150?img=47'
+          ].map((imgUrl, i) => (
             <img 
               key={i}
-              src={`https://picsum.photos/seed/user${i}/100/100`} 
-              alt="User" 
+              src={imgUrl} 
+              alt="Integrador na lista" 
               className="w-10 h-10 rounded-full border-2 border-white shadow-sm object-cover"
               referrerPolicy="no-referrer"
               loading="lazy"
@@ -318,11 +323,15 @@ const WaitlistForm = ({
             <Loader2 className="w-6 h-6 animate-spin" />
           ) : (
             <>
-              Quero acesso antecipado
+              Garantir minha vaga no Plano Fundador
               <ChevronRight className="w-5 h-5" />
             </>
           )}
         </button>
+
+        <p className="text-center text-xs text-slate-400 mt-4">
+          🔒 Suas informações estão seguras. Sem spam.
+        </p>
       </form>
 
       <div className="mt-8 pt-8 border-t border-slate-100 flex items-center justify-center gap-6 opacity-50 grayscale">

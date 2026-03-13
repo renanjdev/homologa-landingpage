@@ -335,8 +335,6 @@ const WaitlistForm = ({
           🔒 Suas informações estão seguras. Sem spam.
         </p>
       </form>
-
-      </form>
     </motion.div>
   );
 };

@@ -62,7 +62,7 @@ const MobilePreview = () => {
                 className="relative z-10"
               >
                 <img 
-                  src="https://i.imgur.com/NruoIEi.png" 
+                  src="https://i.imgur.com/4bZCkIG.png" 
                   alt="Interface Mobile HOMOLOGA Plus" 
                   className="w-full h-auto drop-shadow-[0_45px_60px_rgba(0,0,0,0.15)] rounded-[3rem]"
                 />

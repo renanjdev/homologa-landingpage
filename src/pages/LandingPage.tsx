@@ -8,6 +8,7 @@ import { SpeedInsights } from "@vercel/speed-insights/react";
 // Lazy load components below the fold
 const BeforeAfter = lazy(() => import('../components/BeforeAfter'));
 const Flow = lazy(() => import('../components/Flow'));
+const MobilePreview = lazy(() => import('../components/MobilePreview'));
 const Features = lazy(() => import('../components/Features'));
 const WhoIsItFor = lazy(() => import('../components/WhoIsItFor'));
 const Testimonials = lazy(() => import('../components/Testimonials'));
@@ -78,14 +79,14 @@ const Hero = () => {
             className="relative flex justify-center md:justify-end"
           >
             <motion.div 
-              animate={{ y: [0, -12, 0] }}
-              transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
-              className="relative w-full max-w-[280px] sm:max-w-[340px] lg:max-w-[380px]"
+              animate={{ y: [0, -8, 0] }}
+              transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+              className="relative w-full max-w-[440px] sm:max-w-[500px] lg:max-w-[600px] xl:max-w-[700px]"
             >
               <img 
-                src="https://i.imgur.com/NruoIEi.png" 
-                alt="Dashboard Homologa Plus" 
-                className="w-full h-auto drop-shadow-[0_25px_50px_rgba(0,0,0,0.15)]"
+                src="https://i.imgur.com/x2s6AVw.png" 
+                alt="Dashboard Homologa Plus no MacBook" 
+                className="w-full h-auto drop-shadow-[0_35px_60px_rgba(0,0,0,0.2)] rounded-xl"
                 referrerPolicy="no-referrer"
                 loading="eager"
               />
@@ -125,6 +126,7 @@ const LandingPage = () => {
       <Suspense fallback={<div className="h-20" />}>
         <BeforeAfter />
         <Flow />
+        <MobilePreview />
         <Features />
         <WhoIsItFor />
         <Testimonials />

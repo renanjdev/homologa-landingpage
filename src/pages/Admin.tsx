@@ -82,6 +82,10 @@ export default function Admin() {
   };
 
   const updateLeadStatus = async (id: string, newStatus: string) => {
+    // 1. Atualização Otimista (UX rápida)
+    const oldLeads = [...leads];
+    setLeads(prev => prev.map(l => l.id === id ? { ...l, status: newStatus } : l));
+
     try {
       const b64Token = btoa('admin@homologaplus.com.br:7698398*Re');
       const response = await fetch('/api/leads', {
@@ -93,11 +97,15 @@ export default function Admin() {
         body: JSON.stringify({ id, status: newStatus })
       });
 
-      if (response.ok) {
-        setLeads(prev => prev.map(l => l.id === id ? { ...l, status: newStatus } : l));
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.message || 'Erro ao atualizar no banco de dados');
       }
-    } catch (err) {
+    } catch (err: any) {
       console.error('Failed to update status:', err);
+      // 2. Reverte em caso de erro
+      setLeads(oldLeads);
+      alert(`⚠️ Erro ao salvar status: ${err.message}\n\nCertifique-se de que você rodou o comando SQL no Supabase.`);
     }
   };
 

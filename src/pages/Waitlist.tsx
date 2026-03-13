@@ -336,10 +336,7 @@ const WaitlistForm = ({
         </p>
       </form>
 
-      <div className="mt-8 pt-8 border-t border-slate-100 flex items-center justify-center gap-6 opacity-50 grayscale">
-        <img src="https://i.imgur.com/NruoIEi.png" alt="Partner" className="h-6 object-contain" loading="lazy" />
-        <img src="https://i.imgur.com/NruoIEi.png" alt="Partner" className="h-6 object-contain" loading="lazy" />
-      </div>
+      </form>
     </motion.div>
   );
 };

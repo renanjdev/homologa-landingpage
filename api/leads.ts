@@ -56,14 +56,22 @@ export default async function handler(req: any, res: any) {
 
   if (req.method === 'PATCH') {
     try {
-      const { id, status } = req.body;
-      if (!id || !status) {
-        return res.status(400).json({ error: "Missing id or status" });
+      const { id, status, notes } = req.body;
+      if (!id) {
+        return res.status(400).json({ error: "Missing id" });
+      }
+
+      const updateData: any = {};
+      if (status !== undefined) updateData.status = status;
+      if (notes !== undefined) updateData.notes = notes;
+
+      if (Object.keys(updateData).length === 0) {
+        return res.status(400).json({ error: "No data to update" });
       }
 
       const { data, error } = await supabase
         .from("waitlist")
-        .update({ status })
+        .update(updateData)
         .eq("id", id)
         .select();
 

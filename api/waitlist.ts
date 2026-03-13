@@ -35,13 +35,13 @@ export default async function handler(req: any, res: any) {
   if (!supabase) {
     return res.status(500).json({ error: "Supabase not configured. Please set SUPABASE_URL and SUPABASE_KEY." });
   }
-  
+
   if (req.method === 'GET') {
     try {
       const { count, error } = await supabase
         .from("waitlist")
         .select("*", { count: "exact", head: true });
-      
+
       if (error) throw error;
       return res.status(200).json({ count: (count || 0) + 87 });
     } catch (err: any) {
@@ -64,9 +64,9 @@ export default async function handler(req: any, res: any) {
     const { data, error } = await supabase
       .from("waitlist")
       .upsert([
-        { 
+        {
           name: name || null,
-          email: email.toLowerCase().trim(), 
+          email: email.toLowerCase().trim(),
           whatsapp,
           utm_source,
           utm_medium,
@@ -128,7 +128,7 @@ export default async function handler(req: any, res: any) {
                           <td style="padding: 40px 30px;">
                             <p style="margin: 0 0 20px 0; font-size: 15px; color: #334155;">Olá, <strong style="color: #0F172A;">${name || 'Projetista'}</strong> 👋</p>
                             <p style="margin: 0 0 30px 0; font-size: 15px; color: #475569; line-height: 1.6;">
-                              Obrigado por se inscrever na lista de espera do <strong>Nossa Plataforma</strong>! Estamos animados em ter você conosco. Em breve você terá acesso à plataforma.
+                              Obrigado por se inscrever na lista de espera do <strong>HOMOLOGA Plus</strong>! Estamos animados em ter você conosco. Em breve você terá acesso à plataforma.
                             </p>
                             
                             <!-- Position Card -->
@@ -156,7 +156,7 @@ export default async function handler(req: any, res: any) {
                                     <tr>
                                       <td width="30" style="color: #64748B; font-size: 14px;">📦</td>
                                       <td style="color: #64748B; font-size: 14px; padding: 10px 0; border-bottom: 1px solid #F8FAFC;">Produto</td>
-                                      <td align="right" style="color: #0F172A; font-size: 14px; font-weight: 600; padding: 10px 0; border-bottom: 1px solid #F8FAFC;">Nossa Plataforma</td>
+                                      <td align="right" style="color: #0F172A; font-size: 14px; font-weight: 600; padding: 10px 0; border-bottom: 1px solid #F8FAFC;">HOMOLOGA Plus</td>
                                     </tr>
                                     <tr>
                                       <td width="30" style="color: #64748B; font-size: 14px;">📅</td>
@@ -236,7 +236,7 @@ export default async function handler(req: any, res: any) {
                             <table border="0" cellpadding="0" cellspacing="0" width="100%" style="background-color: #EFF6FF; border-radius: 8px; border: 1px solid #DBEAFE;">
                               <tr>
                                 <td align="center" style="padding: 16px;">
-                                  <p style="margin: 0; color: #3B82F6; font-size: 13px; font-weight: 500;">💬 Tem dúvidas? Responda este email ou acesse nosso suporte.</p>
+                                  <p style="margin: 0; color: #3B82F6; font-size: 13px; font-weight: 500;">💬 Tem dúvidas? Acesse nosso suporte.</p>
                                 </td>
                               </tr>
                             </table>
@@ -248,7 +248,7 @@ export default async function handler(req: any, res: any) {
                         <tr>
                           <td style="background-color: #0F172A; padding: 30px; text-align: center;">
                             <div style="font-size: 16px; font-weight: bold; color: white; margin-bottom: 12px;">HOMOLOGA <span style="color: #3B82F6;">Plus</span></div>
-                            <p style="margin: 0 0 8px 0; color: #94A3B8; font-size: 12px;">© ${new Date().getFullYear()} Nossa Plataforma. Todos os direitos reservados.</p>
+                            <p style="margin: 0 0 8px 0; color: #94A3B8; font-size: 12px;">© ${new Date().getFullYear()} HOMOLOGA Plus. Todos os direitos reservados.</p>
                             <p style="margin: 0; color: #64748B; font-size: 11px;">Você está recebendo este email porque se inscreveu na lista de espera.</p>
                           </td>
                         </tr>

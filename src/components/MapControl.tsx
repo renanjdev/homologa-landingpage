@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'motion/react';
 import mapProjetosUnico from '../assets/map-projetos-transparente.png';
-import { MapPin, Navigation } from 'lucide-react';
+import { MapPin, Navigation, CheckCircle2 } from 'lucide-react';
 
 const MapControl = () => {
   return (
@@ -22,12 +22,12 @@ const MapControl = () => {
           >
             <div className="relative z-10 w-full flex justify-center lg:justify-start">
                <motion.div
-                 whileHover={{ y: -5, scale: 1.02 }}
-                 transition={{ type: "spring", stiffness: 300 }}
+                 animate={{ y: [0, -10, 0] }}
+                 transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
                  className="w-full relative"
                >
                  {/* Efeito de brilho sutil atrás do mapa transparente */}
-                 <div className="absolute inset-0 bg-primary/5 rounded-full blur-3xl -z-10 transform scale-75" />
+                 <div className="absolute inset-0 bg-primary/20 rounded-full blur-3xl -z-10 transform scale-75" />
                  
                  <img 
                    src={mapProjetosUnico} 
@@ -35,6 +35,23 @@ const MapControl = () => {
                    className="w-full h-auto object-contain drop-shadow-2xl"
                    loading="lazy"
                  />
+
+                 {/* Floating Notification Pop-up */}
+                 <motion.div
+                   initial={{ opacity: 0, scale: 0.8, x: -20 }}
+                   whileInView={{ opacity: 1, scale: 1, x: 0 }}
+                   viewport={{ once: true }}
+                   transition={{ delay: 0.8, duration: 0.5 }}
+                   className="absolute bottom-10 right-0 bg-white p-4 rounded-2xl shadow-xl border border-slate-100 flex items-center gap-4 z-20"
+                 >
+                   <div className="w-10 h-10 rounded-full bg-emerald-100 flex items-center justify-center shrink-0">
+                     <CheckCircle2 className="w-5 h-5 text-emerald-600" />
+                   </div>
+                   <div>
+                     <p className="text-sm font-bold text-slate-900 leading-tight">Projeto Aprovado</p>
+                     <p className="text-xs text-slate-500">Usina UFV 75kWp - SP</p>
+                   </div>
+                 </motion.div>
                </motion.div>
             </div>
             {/* Decoração atrás das imagens */}

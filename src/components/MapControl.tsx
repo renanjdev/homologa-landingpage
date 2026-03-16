@@ -58,7 +58,7 @@ const MapControl = () => {
           >
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-bold uppercase tracking-wider mb-6">
               <MapPin className="w-4 h-4" />
-              Mobilidade e Logística
+              Visão Geográfica
             </div>
             
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-display font-bold text-slate-900 mb-6 leading-tight">
@@ -66,16 +66,16 @@ const MapControl = () => {
             </h2>
             
             <p className="text-lg text-slate-600 mb-8 leading-relaxed">
-              Visualize todas as suas obras e homologações em andamento de forma geográfica. 
-              Organize rotas para suas equipes de campo e acompanhe o status de cada projeto 
-              diretamente pelo mapa interativo.
+              Visualize todas as suas obras e projetos em andamento de forma geográfica. 
+              Identifique rapidamente a concentração de novos negócios e acompanhe o 
+              volume de homologações diretamente pelo mapa interativo.
             </p>
 
             <ul className="space-y-4 mb-8">
               {[
-                "Integração com Google Maps e aplicativos de rotas (Waze)",
-                "Filtros de status visualizados por cores no mapa",
-                "Planejamento logístico eficiente para as equipes técnicas",
+                "Visão ampla de todos os projetos em um único mapa",
+                "Filtros de status visualizados por cores no território",
+                "Análise rápida da concentração comercial das equipes",
                 "Acesso rápido aos detalhes das obras pela visualização geográfica"
               ].map((item, idx) => (
                 <li key={idx} className="flex items-start gap-4">

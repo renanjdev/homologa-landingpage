@@ -1,7 +1,6 @@
 import React from 'react';
 import { motion } from 'motion/react';
-import mapaProjetos1 from '../assets/mapa-projetos-1.png';
-import mapaProjetos2 from '../assets/mapa-projetos-2.png';
+import mapProjetosUnico from '../assets/map-projetos-unico.png';
 import { MapPin, Navigation } from 'lucide-react';
 
 const MapControl = () => {
@@ -21,24 +20,13 @@ const MapControl = () => {
             transition={{ duration: 0.6 }}
             className="order-2 lg:order-1 relative"
           >
-            <div className="relative z-10 space-y-8">
+            <div className="relative z-10 w-full flex justify-center lg:justify-start">
                <motion.div
                  whileHover={{ y: -5 }}
-                 className="rounded-2xl overflow-hidden shadow-2xl border-4 border-white transform lg:-rotate-2 lg:translate-x-12 scale-110 origin-bottom-right"
+                 className="rounded-2xl overflow-hidden shadow-[0_20px_50px_rgba(8,_112,_184,_0.1)] border border-slate-100"
                >
                  <img 
-                   src={mapaProjetos1} 
-                   alt="Controle de projetos no mapa detalhado" 
-                   className="w-full h-auto object-cover"
-                   loading="lazy"
-                 />
-               </motion.div>
-               <motion.div
-                 whileHover={{ y: -5 }}
-                 className="rounded-2xl overflow-hidden shadow-2xl border-4 border-white transform lg:rotate-3 lg:-translate-x-8 lg:translate-y-8 relative z-20 -mt-12 lg:-mt-24 w-3/4 max-w-[300px]"
-               >
-                 <img 
-                   src={mapaProjetos2} 
+                   src={mapProjetosUnico} 
                    alt="Visão geral do mapa de projetos" 
                    className="w-full h-auto object-cover"
                    loading="lazy"

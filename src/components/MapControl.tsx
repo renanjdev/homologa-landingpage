@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'motion/react';
-import mapProjetosUnico from '../assets/map-projetos-unico.png';
+import mapProjetosUnico from '../assets/map-projetos-transparente.png';
 import { MapPin, Navigation } from 'lucide-react';
 
 const MapControl = () => {
@@ -22,13 +22,17 @@ const MapControl = () => {
           >
             <div className="relative z-10 w-full flex justify-center lg:justify-start">
                <motion.div
-                 whileHover={{ y: -5 }}
-                 className="rounded-2xl overflow-hidden shadow-[0_20px_50px_rgba(8,_112,_184,_0.1)] border border-slate-100"
+                 whileHover={{ y: -5, scale: 1.02 }}
+                 transition={{ type: "spring", stiffness: 300 }}
+                 className="w-full relative"
                >
+                 {/* Efeito de brilho sutil atrás do mapa transparente */}
+                 <div className="absolute inset-0 bg-primary/5 rounded-full blur-3xl -z-10 transform scale-75" />
+                 
                  <img 
                    src={mapProjetosUnico} 
                    alt="Visão geral do mapa de projetos" 
-                   className="w-full h-auto object-cover"
+                   className="w-full h-auto object-contain drop-shadow-2xl"
                    loading="lazy"
                  />
                </motion.div>

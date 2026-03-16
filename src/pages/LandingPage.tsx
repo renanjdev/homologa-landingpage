@@ -90,6 +90,7 @@ const Hero = () => {
                 className="w-full h-auto drop-shadow-[0_35px_60px_rgba(0,0,0,0.2)] rounded-xl"
                 referrerPolicy="no-referrer"
                 loading="eager"
+                fetchPriority="high"
               />
               
               {/* Decorative elements */}

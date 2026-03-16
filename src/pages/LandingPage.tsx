@@ -9,8 +9,8 @@ import { SpeedInsights } from "@vercel/speed-insights/react";
 const BeforeAfter = lazy(() => import('../components/BeforeAfter'));
 const Flow = lazy(() => import('../components/Flow'));
 const MobilePreview = lazy(() => import('../components/MobilePreview'));
-const MapControl = lazy(() => import('../components/MapControl'));
 const Features = lazy(() => import('../components/Features'));
+const MapControl = lazy(() => import('../components/MapControl'));
 const WhoIsItFor = lazy(() => import('../components/WhoIsItFor'));
 const Testimonials = lazy(() => import('../components/Testimonials'));
 const FAQ = lazy(() => import('../components/FAQ'));
@@ -127,9 +127,9 @@ const LandingPage = () => {
       <Suspense fallback={<div className="h-20" />}>
         <BeforeAfter />
         <Flow />
-        <MapControl />
         <MobilePreview />
         <Features />
+        <MapControl />
         <WhoIsItFor />
         <Testimonials />
         <Pricing />

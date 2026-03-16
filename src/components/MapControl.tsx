@@ -24,7 +24,7 @@ const MapControl = () => {
             <div className="relative z-10 space-y-8">
                <motion.div
                  whileHover={{ y: -5 }}
-                 className="rounded-2xl overflow-hidden shadow-2xl border-4 border-white transform lg:-rotate-2 lg:translate-x-4"
+                 className="rounded-2xl overflow-hidden shadow-2xl border-4 border-white transform lg:-rotate-2 lg:translate-x-12 scale-110 origin-bottom-right"
                >
                  <img 
                    src={mapaProjetos1} 
@@ -35,7 +35,7 @@ const MapControl = () => {
                </motion.div>
                <motion.div
                  whileHover={{ y: -5 }}
-                 className="rounded-2xl overflow-hidden shadow-2xl border-4 border-white transform lg:rotate-3 lg:-translate-x-4 relative z-20 -mt-12 lg:-mt-24"
+                 className="rounded-2xl overflow-hidden shadow-2xl border-4 border-white transform lg:rotate-3 lg:-translate-x-8 lg:translate-y-8 relative z-20 -mt-12 lg:-mt-24 w-3/4 max-w-[300px]"
                >
                  <img 
                    src={mapaProjetos2} 

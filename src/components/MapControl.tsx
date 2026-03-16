@@ -24,7 +24,7 @@ const MapControl = () => {
                <motion.div
                  animate={{ y: [0, -10, 0] }}
                  transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-                 className="w-full relative"
+                 className="w-[115%] sm:w-[120%] lg:w-[135%] xl:w-[150%] relative lg:-ml-8 xl:-ml-12"
                >
                  {/* Efeito de brilho sutil atrás do mapa transparente */}
                  <div className="absolute inset-0 bg-primary/20 rounded-full blur-3xl -z-10 transform scale-75" />

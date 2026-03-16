@@ -16,7 +16,7 @@ const FAQ = () => {
     },
     {
       question: "Quais planos estão disponíveis?",
-      answer: "Oferecemos planos Mensal, Semestral (com 15% de desconto) e Anual (com 25% de desconto), todos com acesso completo às funcionalidades do sistema."
+      answer: "Oferecemos planos Mensal, Semestral e Anual, todos com acesso completo às funcionalidades do sistema."
     },
     {
       question: "Como entrar em contato com o suporte?",

@@ -42,7 +42,7 @@ const Pricing = () => {
             <div className="mb-8">
               <div className="flex items-baseline gap-1">
                 <span className="text-slate-500 text-lg font-medium">R$</span>
-                <span className="text-4xl font-display font-black text-slate-900">189</span>
+                <span className="text-4xl font-display font-black text-slate-900">249</span>
                 <span className="text-slate-500 text-sm">/mês</span>
               </div>
             </div>
@@ -78,12 +78,8 @@ const Pricing = () => {
             </div>
           </div>
 
-          {/* Plano Semestral - DESTAQUE */}
-          <div className="bg-white p-8 rounded-3xl border-2 border-primary shadow-xl relative flex flex-col transform lg:scale-105 z-10 w-full max-w-md mx-auto lg:max-w-none my-4 lg:my-0">
-            <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-primary text-white text-[10px] font-bold uppercase px-4 py-1 rounded-full shadow-md flex items-center gap-1.5 tracking-wider whitespace-nowrap">
-              <Star className="w-3 h-3 fill-white" />
-              MAIS POPULAR
-            </div>
+          {/* Plano Semestral */}
+          <div className="bg-white p-6 sm:p-8 rounded-3xl border border-slate-200 shadow-sm flex flex-col hover:shadow-md transition-shadow w-full max-w-md mx-auto lg:max-w-none lg:my-0 relative">
             
             <div className="mb-6">
               <div className="w-12 h-12 bg-primary/10 text-primary rounded-2xl flex items-center justify-center mb-4">
@@ -100,10 +96,10 @@ const Pricing = () => {
             <div className="mb-8">
               <div className="flex items-baseline gap-1">
                 <span className="text-slate-500 text-lg font-medium">R$</span>
-                <span className="text-4xl font-display font-black text-slate-900">159</span>
+                <span className="text-4xl font-display font-black text-slate-900">229</span>
                 <span className="text-slate-500 text-sm">/mês</span>
               </div>
-              <p className="text-xs text-primary font-bold mt-1">Cobrança semestral</p>
+              <p className="text-xs text-slate-500 font-bold mt-1">Cobrança semestral</p>
             </div>
 
             <ul className="space-y-4 mb-8 flex-grow">
@@ -136,11 +132,11 @@ const Pricing = () => {
             </div>
           </div>
 
-          {/* Plano Anual */}
-          <div className="bg-white p-8 rounded-3xl border border-slate-200 shadow-sm flex flex-col hover:shadow-md transition-shadow w-full max-w-md mx-auto lg:max-w-none relative">
-            <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-amber-50 text-amber-600 border border-amber-200 text-[10px] font-bold uppercase px-4 py-1 rounded-full shadow-sm flex items-center gap-1.5 tracking-wider whitespace-nowrap">
-              <Star className="w-3 h-3 fill-amber-600" />
-              MAIS ECONÔMICO
+          {/* Plano Anual - DESTAQUE */}
+          <div className="bg-white p-8 rounded-3xl border-2 border-primary shadow-xl relative flex flex-col transform lg:scale-105 z-10 w-full max-w-md mx-auto lg:max-w-none my-4 lg:my-0">
+            <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-primary text-white text-[10px] font-bold uppercase px-4 py-1 rounded-full shadow-md flex items-center gap-1.5 tracking-wider whitespace-nowrap">
+              <Star className="w-3 h-3 fill-white" />
+              MAIS POPULAR
             </div>
             
             <div className="mb-6 relative">
@@ -158,10 +154,10 @@ const Pricing = () => {
             <div className="mb-8">
               <div className="flex items-baseline gap-1">
                 <span className="text-slate-500 text-lg font-medium">R$</span>
-                <span className="text-4xl font-display font-black text-slate-900">119</span>
+                <span className="text-4xl font-display font-black text-slate-900">197</span>
                 <span className="text-slate-500 text-sm">/mês</span>
               </div>
-              <p className="text-xs text-orange-600 font-bold mt-1">Cobrança anual</p>
+              <p className="text-xs text-primary font-bold mt-1">Cobrança anual</p>
             </div>
 
             <ul className="space-y-4 mb-8 flex-grow">

@@ -65,12 +65,12 @@ const Pricing = () => {
 
             <div className="mt-auto">
               <a 
-                href="https://wa.me/5514991273245?text=Olá! Gostaria de saber mais sobre o Plano Mensal do HOMOLOGA Plus."
+                href="https://wa.me/5514991273245?text=Olá! Quero assinar o Plano Mensal do HOMOLOGA Plus."
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-full py-4 rounded-2xl bg-primary text-white font-bold hover:bg-primary-dark transition-all shadow-xl shadow-primary/20 mb-4 block text-center"
               >
-                Falar com consultor
+                Assinar Agora
               </a>
               <p className="text-[10px] text-slate-400 text-center italic">
                 Indicado para: profissionais autônomos e pequenas empresas que estão iniciando.
@@ -119,12 +119,12 @@ const Pricing = () => {
 
             <div className="mt-auto">
               <a 
-                href="https://wa.me/5514991273245?text=Olá! Gostaria de saber mais sobre o Plano Semestral do HOMOLOGA Plus."
+                href="https://wa.me/5514991273245?text=Olá! Quero assinar o Plano Semestral do HOMOLOGA Plus."
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-full py-4 rounded-2xl bg-primary text-white font-bold hover:bg-primary-dark transition-all shadow-xl shadow-primary/20 mb-4 block text-center"
               >
-                Falar com consultor
+                Assinar Agora
               </a>
               <p className="text-[10px] text-slate-400 text-center italic">
                 Indicado para empresas com fluxo constante de projetos.
@@ -177,12 +177,12 @@ const Pricing = () => {
 
             <div className="mt-auto">
               <a 
-                href="https://wa.me/5514991273245?text=Olá! Gostaria de saber mais sobre o Plano Anual do HOMOLOGA Plus."
+                href="https://wa.me/5514991273245?text=Olá! Quero assinar o Plano Anual do HOMOLOGA Plus."
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-full py-4 rounded-2xl bg-primary text-white font-bold hover:bg-primary-dark transition-all shadow-xl shadow-primary/20 mb-4 block text-center"
               >
-                Falar com consultor
+                Assinar Agora
               </a>
               <p className="text-[10px] text-slate-400 text-center italic">
                 Indicado para empresas estruturadas com grande volume de projetos.

@@ -65,10 +65,12 @@ const Pricing = () => {
 
             <div className="mt-auto">
               <a 
-                href="https://pay.kiwify.com.br/dMEXuIP"
+                href="https://wa.me/553492723326?text=Ol%C3%A1%21+Gostaria+de+saber+mais+sobre+o+Plano+Mensal+do+Homologa+Plus."
+                target="_blank"
+                rel="noopener noreferrer"
                 className="w-full py-4 rounded-2xl bg-primary text-white font-bold hover:bg-primary-dark transition-all shadow-xl shadow-primary/20 mb-4 block text-center"
               >
-                Assinar Agora
+                Falar com consultor
               </a>
               <p className="text-[10px] text-slate-400 text-center italic">
                 Indicado para: profissionais autônomos e pequenas empresas que estão iniciando.
@@ -117,10 +119,12 @@ const Pricing = () => {
 
             <div className="mt-auto">
               <a 
-                href="https://pay.kiwify.com.br/LXF1GB4"
+                href="https://wa.me/553492723326?text=Ol%C3%A1%21+Gostaria+de+saber+mais+sobre+o+Plano+Semestral+do+Homologa+Plus."
+                target="_blank"
+                rel="noopener noreferrer"
                 className="w-full py-4 rounded-2xl bg-primary text-white font-bold hover:bg-primary-dark transition-all shadow-xl shadow-primary/20 mb-4 block text-center"
               >
-                Assinar Agora
+                Falar com consultor
               </a>
               <p className="text-[10px] text-slate-400 text-center italic">
                 Indicado para empresas com fluxo constante de projetos.
@@ -173,10 +177,12 @@ const Pricing = () => {
 
             <div className="mt-auto">
               <a 
-                href="https://pay.kiwify.com.br/KItrd82"
+                href="https://wa.me/553492723326?text=Ol%C3%A1%21+Gostaria+de+saber+mais+sobre+o+Plano+Anual+do+Homologa+Plus."
+                target="_blank"
+                rel="noopener noreferrer"
                 className="w-full py-4 rounded-2xl bg-primary text-white font-bold hover:bg-primary-dark transition-all shadow-xl shadow-primary/20 mb-4 block text-center"
               >
-                Assinar Agora
+                Falar com consultor
               </a>
               <p className="text-[10px] text-slate-400 text-center italic">
                 Indicado para empresas estruturadas com grande volume de projetos.

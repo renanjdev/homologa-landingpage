@@ -9,6 +9,7 @@ const Waitlist = lazy(() => import('./pages/Waitlist'));
 const TermsOfUse = lazy(() => import('./pages/TermsOfUse'));
 const PrivacyPolicy = lazy(() => import('./pages/PrivacyPolicy'));
 const Admin = lazy(() => import('./pages/Admin'));
+const ThankYou = lazy(() => import('./pages/ThankYou'));
 
 const ScrollToTop = () => {
   const { pathname } = useLocation();
@@ -29,6 +30,7 @@ export default function App() {
           <Route path="/termos" element={<TermsOfUse />} />
           <Route path="/privacidade" element={<PrivacyPolicy />} />
           <Route path="/admin" element={<Admin />} />
+          <Route path="/obrigado" element={<ThankYou />} />
         </Routes>
       </Suspense>
     </BrowserRouter>

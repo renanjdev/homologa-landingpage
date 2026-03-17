@@ -65,7 +65,7 @@ const Pricing = () => {
 
             <div className="mt-auto">
               <a 
-                href="https://wa.me/553492723326?text=Ol%C3%A1%21+Gostaria+de+saber+mais+sobre+o+Plano+Mensal+do+Homologa+Plus."
+                href="https://wa.me/5514991273245?text=Ol%C3%A1%21+Gostaria+de+saber+mais+sobre+o+Plano+Mensal+do+Homologa+Plus."
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-full py-4 rounded-2xl bg-primary text-white font-bold hover:bg-primary-dark transition-all shadow-xl shadow-primary/20 mb-4 block text-center"
@@ -119,7 +119,7 @@ const Pricing = () => {
 
             <div className="mt-auto">
               <a 
-                href="https://wa.me/553492723326?text=Ol%C3%A1%21+Gostaria+de+saber+mais+sobre+o+Plano+Semestral+do+Homologa+Plus."
+                href="https://wa.me/5514991273245?text=Ol%C3%A1%21+Gostaria+de+saber+mais+sobre+o+Plano+Semestral+do+Homologa+Plus."
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-full py-4 rounded-2xl bg-primary text-white font-bold hover:bg-primary-dark transition-all shadow-xl shadow-primary/20 mb-4 block text-center"
@@ -177,7 +177,7 @@ const Pricing = () => {
 
             <div className="mt-auto">
               <a 
-                href="https://wa.me/553492723326?text=Ol%C3%A1%21+Gostaria+de+saber+mais+sobre+o+Plano+Anual+do+Homologa+Plus."
+                href="https://wa.me/5514991273245?text=Ol%C3%A1%21+Gostaria+de+saber+mais+sobre+o+Plano+Anual+do+Homologa+Plus."
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-full py-4 rounded-2xl bg-primary text-white font-bold hover:bg-primary-dark transition-all shadow-xl shadow-primary/20 mb-4 block text-center"

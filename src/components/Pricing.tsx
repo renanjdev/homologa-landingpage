@@ -65,9 +65,7 @@ const Pricing = () => {
 
             <div className="mt-auto">
               <a 
-                href="https://wa.me/5514991273245?text=Olá! Quero assinar o Plano Mensal do HOMOLOGA Plus."
-                target="_blank"
-                rel="noopener noreferrer"
+                href="https://pay.kiwify.com.br/dMEXuIP"
                 className="w-full py-4 rounded-2xl bg-primary text-white font-bold hover:bg-primary-dark transition-all shadow-xl shadow-primary/20 mb-4 block text-center"
               >
                 Assinar Agora
@@ -119,9 +117,7 @@ const Pricing = () => {
 
             <div className="mt-auto">
               <a 
-                href="https://wa.me/5514991273245?text=Olá! Quero assinar o Plano Semestral do HOMOLOGA Plus."
-                target="_blank"
-                rel="noopener noreferrer"
+                href="https://pay.kiwify.com.br/LXF1GB4"
                 className="w-full py-4 rounded-2xl bg-primary text-white font-bold hover:bg-primary-dark transition-all shadow-xl shadow-primary/20 mb-4 block text-center"
               >
                 Assinar Agora
@@ -177,9 +173,7 @@ const Pricing = () => {
 
             <div className="mt-auto">
               <a 
-                href="https://wa.me/5514991273245?text=Olá! Quero assinar o Plano Anual do HOMOLOGA Plus."
-                target="_blank"
-                rel="noopener noreferrer"
+                href="https://pay.kiwify.com.br/KItrd82"
                 className="w-full py-4 rounded-2xl bg-primary text-white font-bold hover:bg-primary-dark transition-all shadow-xl shadow-primary/20 mb-4 block text-center"
               >
                 Assinar Agora

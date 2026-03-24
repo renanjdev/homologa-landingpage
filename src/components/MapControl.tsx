@@ -11,7 +11,7 @@ const MapControl = () => {
       <div className="absolute bottom-[-10%] left-[-10%] w-96 h-96 bg-blue-400/10 rounded-full blur-3xl -z-10" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid lg:grid-cols-2 gap-16 items-center">
+        <div className="grid lg:grid-cols-[1.1fr_0.9fr] gap-12 items-center">
           
           <motion.div
             initial={{ opacity: 0, x: -30 }}
@@ -24,7 +24,7 @@ const MapControl = () => {
                <motion.div
                  animate={{ y: [0, -10, 0] }}
                  transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-                 className="relative w-full max-w-[440px] sm:max-w-[500px] lg:max-w-[750px] xl:max-w-[900px] lg:-ml-12 xl:-ml-24"
+                 className="relative w-full max-w-[440px] sm:max-w-[550px] lg:max-w-[850px] xl:max-w-[1000px] lg:-ml-16 xl:-ml-32"
                >
                  {/* Efeito de brilho sutil atrás do mapa transparente */}
                  <div className="absolute inset-0 bg-primary/20 rounded-full blur-3xl -z-10 transform scale-75" />

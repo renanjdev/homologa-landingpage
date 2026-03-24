@@ -17,14 +17,29 @@ export default function AdminLogin({ onLogin }: LoginProps) {
     setLoading(true);
     setError('');
 
-    // Mock Authentication mapped matching previous code requirements
-    if (email === 'admin@homologaplus.com.br' && password === '7698398*Re') {
-      localStorage.setItem('homologa_admin_session', 'active');
-      onLogin(true);
-    } else {
-      setError('Credenciais inválidas. Tente novamente.');
+    try {
+      const response = await fetch('/api/admin/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ email, password })
+      });
+
+      const data = await response.json();
+
+      if (response.ok && data.success) {
+        // Armazenamos o token de sessão retornado de forma mais segura que apenas um "active"
+        localStorage.setItem('homologa_admin_session', data.token);
+        onLogin(true);
+      } else {
+        setError(data.error || 'Credenciais inválidas. Tente novamente.');
+      }
+    } catch (err) {
+      setError('Erro ao conectar com o servidor de autenticação.');
+    } finally {
+      setLoading(false);
     }
-    setLoading(false);
   };
 
   return (

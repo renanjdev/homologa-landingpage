@@ -4,6 +4,7 @@ import path from "path";
 import { Resend } from 'resend';
 import dotenv from 'dotenv';
 import { createClient } from "@supabase/supabase-js";
+import rateLimit from "express-rate-limit";
 
 dotenv.config();
 
@@ -23,7 +24,7 @@ function getSupabase() {
   return supabaseClient;
 }
 
-const resend = new Resend(process.env.RESEND_API_KEY || '');
+const resend = new Resend(process.env.RESEND_API_KEY || 're_mock_1234567890');
 
 async function startServer() {
   const app = express();
@@ -32,9 +33,42 @@ async function startServer() {
   app.use(express.json());
   app.use(express.urlencoded({ extended: true }));
 
+  // Security: Rate Limiting
+  const loginLimiter = rateLimit({
+    windowMs: 15 * 60 * 1000, 
+    max: 5, // 5 requests per 15 minutes
+    message: { error: "Muitas tentativas de login. Tente novamente mais tarde." }
+  });
+
+  const apiLimiter = rateLimit({
+    windowMs: 15 * 60 * 1000,
+    max: 100, // 100 requests per 15 minutes for normal API routes
+    message: { error: "Muitas requisições. Tente novamente mais tarde." }
+  });
+
+  app.use("/api/waitlist", apiLimiter);
+  app.use("/api/contact", apiLimiter);
+
   // Health check route
   app.get("/api/health", (req, res) => {
     res.json({ status: "ok", mode: process.env.NODE_ENV });
+  });
+
+  // Security: Secure Admin Login Route
+  app.post("/api/admin/login", loginLimiter, (req, res) => {
+    const { email, password } = req.body;
+    
+    // In a real app, use environment variables and bcrypt
+    const ADMIN_EMAIL = process.env.ADMIN_EMAIL || 'admin@homologaplus.com.br';
+    const ADMIN_PASS = process.env.ADMIN_PASSWORD || '7698398*Re';
+
+    if (email === ADMIN_EMAIL && password === ADMIN_PASS) {
+      // Return a mock session token
+      const sessionToken = Buffer.from(Date.now() + "_" + ADMIN_EMAIL).toString('base64');
+      return res.json({ success: true, token: sessionToken });
+    }
+    
+    return res.status(401).json({ error: "Credenciais inválidas" });
   });
 
   // Helper to send confirmation email
@@ -248,19 +282,25 @@ async function startServer() {
       return res.status(400).json({ error: "Name, email and message are required" });
     }
 
+    // Security: Basic XSS sanitization for the message
+    const sanitizedName = String(name).replace(/</g, "&lt;").replace(/>/g, "&gt;");
+    const sanitizedEmail = String(email).replace(/</g, "&lt;").replace(/>/g, "&gt;");
+    const sanitizedSubject = String(subject || 'Nova mensagem').replace(/</g, "&lt;").replace(/>/g, "&gt;");
+    const sanitizedMessage = String(message).replace(/</g, "&lt;").replace(/>/g, "&gt;");
+
     try {
       const { data, error } = await resend.emails.send({
         from: 'HOMOLOGA Plus <contato@homologaplus.com.br>',
         to: ['contato@homologaplus.com.br'],
-        subject: `Contato: ${subject || 'Nova mensagem'}`,
-        text: `Nome: ${name}\nE-mail: ${email}\nAssunto: ${subject}\n\nMensagem:\n${message}`,
+        subject: `Contato: ${sanitizedSubject}`,
+        text: `Nome: ${sanitizedName}\nE-mail: ${sanitizedEmail}\nAssunto: ${sanitizedSubject}\n\nMensagem:\n${sanitizedMessage}`,
         html: `
           <h3>Nova mensagem de contato</h3>
-          <p><strong>Nome:</strong> ${name}</p>
-          <p><strong>E-mail:</strong> ${email}</p>
-          <p><strong>Assunto:</strong> ${subject}</p>
+          <p><strong>Nome:</strong> ${sanitizedName}</p>
+          <p><strong>E-mail:</strong> ${sanitizedEmail}</p>
+          <p><strong>Assunto:</strong> ${sanitizedSubject}</p>
           <p><strong>Mensagem:</strong></p>
-          <p>${message.replace(/\n/g, '<br>')}</p>
+          <p>${sanitizedMessage.replace(/\n/g, '<br>')}</p>
         `,
       });
 

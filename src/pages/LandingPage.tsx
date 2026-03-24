@@ -62,7 +62,7 @@ const Hero = () => {
                   <img 
                     key={i}
                     src={`https://picsum.photos/seed/user${i}/64/64`} 
-                    alt="User" 
+                    alt={`Usuário da plataforma ${i}`} 
                     className="w-8 h-8 rounded-full border-2 border-white"
                     referrerPolicy="no-referrer"
                     loading="eager"
@@ -115,27 +115,59 @@ const LandingPage = () => {
 
   return (
     <div className="min-h-screen">
+      {/* ... Helmet below ... */}
       <Helmet>
         <title>HOMOLOGA Plus | Homologação Solar e Gestão de Usinas Fotovoltaicas</title>
         <meta name="description" content="Simplifique a homologação solar e a gestão de usinas fotovoltaicas com o HOMOLOGA Plus. Agilidade e segurança para empresas de energia solar e engenheiros." />
         <meta name="keywords" content="homologação solar, energia fotovoltaica, gestão de usinas, engenharia solar, homologa plus, projetos solares, usina solar" />
-        <link rel="canonical" href="https://ais-pre-mugp3ltyrxmavzsrbd7ya7-203218294417.us-east1.run.app/" />
+        <link rel="canonical" href="https://homologaplus.com.br/" />
+        <script type="application/ld+json">{`
+          {
+            "@context": "https://schema.org",
+            "@type": "SoftwareApplication",
+            "name": "HOMOLOGA Plus",
+            "url": "https://homologaplus.com.br",
+            "applicationCategory": "BusinessApplication",
+            "operatingSystem": "Web",
+            "description": "Sistema de gestão para homologação de usinas solares fotovoltaicas. Controle projetos, integradores e etapas da homologação em um único sistema profissional.",
+            "offers": {
+              "@type": "AggregateOffer",
+              "priceCurrency": "BRL",
+              "lowPrice": "199.90",
+              "highPrice": "399.90"
+            },
+            "provider": {
+              "@type": "Organization",
+              "name": "HOMOLOGA Plus",
+              "url": "https://homologaplus.com.br",
+              "email": "contato@homologaplus.com.br",
+              "address": {
+                "@type": "PostalAddress",
+                "addressLocality": "Bauru",
+                "addressRegion": "SP",
+                "addressCountry": "BR"
+              }
+            }
+          }
+        `}</script>
       </Helmet>
       <Suspense fallback={<div className="h-16" />}>
         <Navbar scrolled={scrolled} />
       </Suspense>
       <Hero />
       <Suspense fallback={<div className="h-20" />}>
-        <BeforeAfter />
-        <Flow />
-        <MobilePreview />
-        <Features />
-        <MapControl />
-        <WhoIsItFor />
-        <Testimonials />
-        <Pricing />
-        <FAQ />
-        <CTA />
+        <main>
+          <BeforeAfter />
+          <Flow />
+          <MobilePreview />
+          <Features />
+          <MapControl />
+          <WhoIsItFor />
+          <Testimonials />
+          <Pricing />
+          <FAQ />
+          <CTA />
+        </main>
         <Footer />
       </Suspense>
       <SpeedInsights />

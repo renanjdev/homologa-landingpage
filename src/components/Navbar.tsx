@@ -101,13 +101,13 @@ const Navbar = ({ scrolled }: { scrolled: boolean }) => {
               ))}
               
               <div className="pt-8 px-2">
-                <Link 
-                  to="/waitlist"
+                <a 
+                  href="https://app.homologaplus.com.br/cadastro"
                   onClick={() => setIsOpen(false)}
                   className="w-full bg-primary text-white px-5 py-4 rounded-2xl text-base font-bold shadow-xl shadow-primary/20 block text-center active:scale-[0.98] transition-transform"
                 >
                   Testar Gratuitamente
-                </Link>
+                </a>
               </div>
             </div>
           </motion.div>

@@ -49,12 +49,12 @@ const Hero = () => {
               Toda a gestão de projetos, integradores e etapas da homologação na palma da sua mão, em um único sistema profissional.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-              <Link 
-                to="/waitlist"
+              <a 
+                href="https://app.homologaplus.com.br/cadastro"
                 className="bg-primary hover:bg-primary-dark text-white px-8 py-4 rounded-2xl text-lg font-bold transition-all shadow-xl shadow-primary/20 flex items-center justify-center gap-2 w-full sm:w-auto"
               >
                 Testar gratuitamente
-              </Link>
+              </a>
             </div>
             <div className="mt-8 md:mt-10 flex flex-col sm:flex-row items-center gap-4 text-sm text-slate-500 justify-center lg:justify-start">
               <div className="flex -space-x-2">

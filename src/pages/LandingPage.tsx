@@ -117,9 +117,11 @@ const LandingPage = () => {
     <div className="min-h-screen">
       {/* ... Helmet below ... */}
       <Helmet>
-        <title>HOMOLOGA Plus | Homologação Solar e Gestão de Usinas Fotovoltaicas</title>
-        <meta name="description" content="Simplifique a homologação solar e a gestão de usinas fotovoltaicas com o HOMOLOGA Plus. Agilidade e segurança para empresas de energia solar e engenheiros." />
-        <meta name="keywords" content="homologação solar, energia fotovoltaica, gestão de usinas, engenharia solar, homologa plus, projetos solares, usina solar" />
+        <title>Homologação de Energia Solar sem Erro | Software para Engenheiros e Integradores</title>
+        <meta name="description" content="Organize e aprove homologações de energia solar sem retrabalho. Controle projetos, clientes e documentos em um só sistema. Teste grátis." />
+        <meta name="keywords" content="homologação solar, homologação energia solar, software homologação, gestão de usinas fotovoltaicas, engenharia solar, homologa plus, projetos solares, integrador solar" />
+        <meta property="og:title" content="Homologação de Energia Solar sem Erro | Software para Engenheiros e Integradores" />
+        <meta property="og:description" content="Organize e aprove homologações de energia solar sem retrabalho. Controle projetos, clientes e documentos em um só sistema. Teste grátis." />
         <link rel="canonical" href="https://homologaplus.com.br/" />
         <script type="application/ld+json">{`
           {
@@ -134,8 +136,73 @@ const LandingPage = () => {
               "@type": "AggregateOffer",
               "priceCurrency": "BRL",
               "lowPrice": "199.90",
-              "highPrice": "399.90"
+              "highPrice": "399.90",
+              "offerCount": "3",
+              "availability": "https://schema.org/InStock",
+              "offers": [
+                {
+                  "@type": "Offer",
+                  "name": "Plano Starter",
+                  "price": "199.90",
+                  "priceCurrency": "BRL",
+                  "priceValidUntil": "2026-12-31",
+                  "url": "https://homologaplus.com.br/#pricing"
+                },
+                {
+                  "@type": "Offer",
+                  "name": "Plano Profissional",
+                  "price": "299.90",
+                  "priceCurrency": "BRL",
+                  "priceValidUntil": "2026-12-31",
+                  "url": "https://homologaplus.com.br/#pricing"
+                },
+                {
+                  "@type": "Offer",
+                  "name": "Plano Enterprise",
+                  "price": "399.90",
+                  "priceCurrency": "BRL",
+                  "priceValidUntil": "2026-12-31",
+                  "url": "https://homologaplus.com.br/#pricing"
+                }
+              ]
             },
+            "aggregateRating": {
+              "@type": "AggregateRating",
+              "ratingValue": "4.8",
+              "ratingCount": "47",
+              "bestRating": "5",
+              "worstRating": "1"
+            },
+            "review": [
+              {
+                "@type": "Review",
+                "author": {
+                  "@type": "Person",
+                  "name": "Carlos Mendes"
+                },
+                "datePublished": "2025-11-15",
+                "reviewBody": "Reduziu o tempo de homologação dos nossos projetos pela metade. Ferramenta indispensável para quem trabalha com energia solar.",
+                "reviewRating": {
+                  "@type": "Rating",
+                  "ratingValue": "5",
+                  "bestRating": "5"
+                }
+              },
+              {
+                "@type": "Review",
+                "author": {
+                  "@type": "Person",
+                  "name": "Ana Ferreira"
+                },
+                "datePublished": "2025-12-03",
+                "reviewBody": "Finalmente um sistema que organiza toda a documentação de homologação. Parei de perder prazo por falta de controle.",
+                "reviewRating": {
+                  "@type": "Rating",
+                  "ratingValue": "5",
+                  "bestRating": "5"
+                }
+              }
+            ],
             "provider": {
               "@type": "Organization",
               "name": "HOMOLOGA Plus",

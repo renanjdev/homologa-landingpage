@@ -12,6 +12,13 @@ const Admin = lazy(() => import('./pages/Admin'));
 const ThankYou = lazy(() => import('./pages/ThankYou'));
 const Start = lazy(() => import('./pages/Start'));
 
+// SEO Pages
+const HomologacaoEnergiaSolar = lazy(() => import('./pages/seo/HomologacaoEnergiaSolar'));
+const ComoHomologarEnergiaSolar = lazy(() => import('./pages/seo/ComoHomologarEnergiaSolar'));
+const HomologacaoCpfl = lazy(() => import('./pages/seo/HomologacaoCpfl'));
+const DocumentosHomologacao = lazy(() => import('./pages/seo/DocumentosHomologacao'));
+const ErrosHomologacaoSolar = lazy(() => import('./pages/seo/ErrosHomologacaoSolar'));
+
 const ScrollToTop = () => {
   const { pathname } = useLocation();
   React.useEffect(() => {
@@ -33,6 +40,12 @@ export default function App() {
           <Route path="/privacidade" element={<PrivacyPolicy />} />
           <Route path="/admin" element={<Admin />} />
           <Route path="/obrigado" element={<ThankYou />} />
+          {/* SEO Pages */}
+          <Route path="/homologacao-energia-solar" element={<HomologacaoEnergiaSolar />} />
+          <Route path="/como-homologar-energia-solar" element={<ComoHomologarEnergiaSolar />} />
+          <Route path="/homologacao-cpfl" element={<HomologacaoCpfl />} />
+          <Route path="/documentos-homologacao-fotovoltaica" element={<DocumentosHomologacao />} />
+          <Route path="/erros-homologacao-solar" element={<ErrosHomologacaoSolar />} />
         </Routes>
       </Suspense>
     </BrowserRouter>

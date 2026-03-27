@@ -10,6 +10,7 @@ const TermsOfUse = lazy(() => import('./pages/TermsOfUse'));
 const PrivacyPolicy = lazy(() => import('./pages/PrivacyPolicy'));
 const Admin = lazy(() => import('./pages/Admin'));
 const ThankYou = lazy(() => import('./pages/ThankYou'));
+const Start = lazy(() => import('./pages/Start'));
 
 const ScrollToTop = () => {
   const { pathname } = useLocation();
@@ -26,6 +27,7 @@ export default function App() {
       <Suspense fallback={<div className="min-h-screen bg-slate-50 flex items-center justify-center"><Sun className="w-8 h-8 text-primary animate-spin" /></div>}>
         <Routes>
           <Route path="/" element={<LandingPage />} />
+          <Route path="/start" element={<Start />} />
           <Route path="/waitlist" element={<Waitlist />} />
           <Route path="/termos" element={<TermsOfUse />} />
           <Route path="/privacidade" element={<PrivacyPolicy />} />

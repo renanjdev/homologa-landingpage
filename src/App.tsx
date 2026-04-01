@@ -11,6 +11,7 @@ const PrivacyPolicy = lazy(() => import('./pages/PrivacyPolicy'));
 const Admin = lazy(() => import('./pages/Admin'));
 const ThankYou = lazy(() => import('./pages/ThankYou'));
 const Start = lazy(() => import('./pages/Start'));
+const CRMPage = lazy(() => import('./pages/CRM/CRMPage'));
 
 // SEO Pages
 const HomologacaoEnergiaSolar = lazy(() => import('./pages/seo/HomologacaoEnergiaSolar'));
@@ -40,6 +41,7 @@ export default function App() {
           <Route path="/privacidade" element={<PrivacyPolicy />} />
           <Route path="/admin" element={<Admin />} />
           <Route path="/obrigado" element={<ThankYou />} />
+          <Route path="/crm" element={<CRMPage />} />
           {/* SEO Pages */}
           <Route path="/homologacao-energia-solar" element={<HomologacaoEnergiaSolar />} />
           <Route path="/como-homologar-energia-solar" element={<ComoHomologarEnergiaSolar />} />

@@ -15,7 +15,6 @@ const WhoIsItFor = lazy(() => import('../components/WhoIsItFor'));
 const Testimonials = lazy(() => import('../components/Testimonials'));
 const FAQ = lazy(() => import('../components/FAQ'));
 const Pricing = lazy(() => import('../components/Pricing'));
-const CTA = lazy(() => import('../components/CTA'));
 const Footer = lazy(() => import('../components/Footer'));
 
 const Navbar = lazy(() => import('../components/Navbar')); // I'll move Navbar too
@@ -233,7 +232,6 @@ const LandingPage = () => {
           <Testimonials />
           <Pricing />
           <FAQ />
-          <CTA />
         </main>
         <Footer />
       </Suspense>

@@ -41,7 +41,7 @@ const Pricing = () => {
         { text: "Notificações automáticas (email)", included: true },
         { text: "Mapa de projetos", included: true },
       ],
-      ctaText: "Começar teste grátis (30 dias)",
+      ctaText: "Começar teste grátis (7 dias)",
       highlight: true,
       badge: "SEU PRODUTO PRINCIPAL"
     },

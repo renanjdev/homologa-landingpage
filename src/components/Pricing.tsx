@@ -129,8 +129,9 @@ const Pricing = () => {
               </ul>
 
               <div className="mt-auto">
-                <a 
+                <a
                   href="https://app.homologaplus.com.br/cadastro"
+                  onClick={() => window.fbq('track', 'InitiateCheckout', { content_name: plan.name })}
                   className={`w-full py-4 rounded-2xl ${plan.highlight ? 'bg-primary hover:bg-primary-dark' : 'bg-slate-900 hover:bg-black'} text-white font-bold transition-all shadow-xl ${plan.highlight ? 'shadow-primary/20' : 'shadow-slate-200'} mb-4 block text-center`}
                 >
                   {plan.ctaText}

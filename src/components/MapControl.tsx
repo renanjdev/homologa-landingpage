@@ -1,6 +1,5 @@
 import React from 'react';
 import { motion } from 'motion/react';
-import mapProjetosUnico from '../assets/map-projetos-transparente.png';
 import { MapPin, Navigation, CheckCircle2 } from 'lucide-react';
 
 const MapControl = () => {
@@ -29,11 +28,13 @@ const MapControl = () => {
                  {/* Efeito de brilho sutil atrás do mapa transparente */}
                  <div className="absolute inset-0 bg-primary/20 rounded-full blur-3xl -z-10 transform scale-75" />
                  
-                 <img 
-                   src={mapProjetosUnico} 
-                   alt="Visão geral do mapa de projetos" 
-                   className="w-full h-auto object-contain drop-shadow-2xl"
-                   loading="lazy"
+                 <video
+                   src="https://i.imgur.com/QYBORNo.mp4"
+                   autoPlay
+                   loop
+                   muted
+                   playsInline
+                   className="w-full h-auto object-contain drop-shadow-2xl rounded-2xl"
                  />
 
                  {/* Floating Notification Pop-up */}

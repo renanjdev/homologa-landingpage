@@ -85,7 +85,7 @@ const Hero = () => {
               className="relative w-full max-w-[440px] sm:max-w-[500px] lg:max-w-[750px] xl:max-w-[900px]"
             >
               <img 
-                src="https://i.imgur.com/x2s6AVw.png" 
+                src="https://i.imgur.com/GZGcSIL.png"
                 alt="Dashboard Homologa Plus no MacBook" 
                 className="w-full h-auto drop-shadow-[0_35px_60px_rgba(0,0,0,0.2)] rounded-xl"
                 referrerPolicy="no-referrer"

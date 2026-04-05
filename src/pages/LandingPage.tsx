@@ -48,8 +48,9 @@ const Hero = () => {
               Toda a gestão de projetos, integradores e etapas da homologação na palma da sua mão, em um único sistema profissional.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-              <a 
+              <a
                 href="https://app.homologaplus.com.br/cadastro"
+                onClick={() => window.fbq('track', 'Lead')}
                 className="bg-primary hover:bg-primary-dark text-white px-8 py-4 rounded-2xl text-lg font-bold transition-all shadow-xl shadow-primary/20 flex items-center justify-center gap-2 w-full sm:w-auto"
               >
                 Testar gratuitamente

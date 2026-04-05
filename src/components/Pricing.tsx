@@ -3,8 +3,6 @@ import { motion } from 'motion/react';
 import { CheckCircle2, XCircle, Star, Zap, Award, ShieldCheck } from 'lucide-react';
 
 const Pricing = () => {
-  const whatsappNumber = "5514991273245"; // Troque pelo seu número
-
   const plans = [
     {
       name: "Plano Essencial",
@@ -132,9 +130,7 @@ const Pricing = () => {
 
               <div className="mt-auto">
                 <a 
-                  href={`https://wa.me/${whatsappNumber}?text=Ol%C3%A1%21+Gostaria+de+saber+mais+sobre+o+${encodeURIComponent(plan.name)}+do+Homologa+Plus.`}
-                  target="_blank"
-                  rel="noopener noreferrer"
+                  href="https://app.homologaplus.com.br/cadastro"
                   className={`w-full py-4 rounded-2xl ${plan.highlight ? 'bg-primary hover:bg-primary-dark' : 'bg-slate-900 hover:bg-black'} text-white font-bold transition-all shadow-xl ${plan.highlight ? 'shadow-primary/20' : 'shadow-slate-200'} mb-4 block text-center`}
                 >
                   {plan.ctaText}

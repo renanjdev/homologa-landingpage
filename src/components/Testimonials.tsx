@@ -53,9 +53,11 @@ const Testimonials = () => {
               </div>
               <p className="text-slate-700 italic mb-8 flex-grow">"{t.content}"</p>
               <div className="flex items-center gap-4">
-                <img 
-                  src={t.avatar} 
-                  alt={t.name} 
+                <img
+                  src={t.avatar}
+                  alt={t.name}
+                  width={48}
+                  height={48}
                   className="w-12 h-12 rounded-full border-2 border-white shadow-sm"
                   referrerPolicy="no-referrer"
                   loading="lazy"

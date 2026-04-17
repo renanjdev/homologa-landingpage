@@ -3,8 +3,6 @@ import { motion } from 'motion/react';
 import { CheckCircle2, XCircle, Zap, ShieldCheck, TrendingUp } from 'lucide-react';
 
 const Pricing = () => {
-  const whatsappNumber = "5514991273245"; // Troque pelo seu número
-
   const plans = [
     {
       name: "Essencial",
@@ -46,7 +44,7 @@ const Pricing = () => {
         { text: "Alertas automáticos de prazo", included: true },
         { text: "Catálogo de equipamentos", included: true },
       ],
-      ctaText: "Quero escalar minha operação",
+      ctaText: "Começar teste grátis (7 dias)",
       highlight: true,
       badge: "Mais escolhido",
       badgeClass: "bg-blue-600 text-white",
@@ -149,11 +147,10 @@ const Pricing = () => {
               </ul>
 
               <div className="mt-auto flex flex-col items-center">
-                <a 
-                  href={`https://wa.me/${whatsappNumber}?text=Ol%C3%A1%21+Gostaria+de+saber+mais+sobre+o+Plano+${encodeURIComponent(plan.name)}+do+Homologa+Plus.`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={`w-full py-3 md:py-3.5 rounded-xl ${plan.highlight ? 'bg-blue-600 hover:bg-blue-700 shadow-blue-600/20 shadow-lg' : 'bg-slate-900 hover:bg-black shadow-lg'} text-white font-semibold transition-all text-center text-sm md:text-base`}
+                <a
+                  href="https://app.homologaplus.com.br/cadastro"
+                  onClick={() => window.fbq && window.fbq('track', 'InitiateCheckout', { content_name: plan.name })}
+                  className={`w-full py-3 md:py-3.5 rounded-xl ${plan.highlight ? 'bg-blue-600 hover:bg-blue-700 shadow-blue-600/20 shadow-lg' : 'bg-slate-900 hover:bg-black shadow-lg'} text-white font-semibold transition-all text-center text-sm md:text-base block`}
                 >
                   {plan.ctaText}
                 </a>

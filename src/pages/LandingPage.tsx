@@ -15,7 +15,6 @@ const WhoIsItFor = lazy(() => import('../components/WhoIsItFor'));
 const Testimonials = lazy(() => import('../components/Testimonials'));
 const FAQ = lazy(() => import('../components/FAQ'));
 const Pricing = lazy(() => import('../components/Pricing'));
-const CTA = lazy(() => import('../components/CTA'));
 const Footer = lazy(() => import('../components/Footer'));
 
 const Navbar = lazy(() => import('../components/Navbar')); // I'll move Navbar too
@@ -49,8 +48,9 @@ const Hero = () => {
               Toda a gestão de projetos, integradores e etapas da homologação na palma da sua mão, em um único sistema profissional.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-              <a 
+              <a
                 href="https://app.homologaplus.com.br/cadastro"
+                onClick={() => window.fbq('track', 'Lead')}
                 className="bg-primary hover:bg-primary-dark text-white px-8 py-4 rounded-2xl text-lg font-bold transition-all shadow-xl shadow-primary/20 flex items-center justify-center gap-2 w-full sm:w-auto"
               >
                 Testar gratuitamente
@@ -59,13 +59,15 @@ const Hero = () => {
             <div className="mt-8 md:mt-10 flex flex-col sm:flex-row items-center gap-4 text-sm text-slate-500 justify-center lg:justify-start">
               <div className="flex -space-x-2">
                 {[1, 2, 3, 4].map((i) => (
-                  <img 
+                  <img
                     key={i}
-                    src={`https://picsum.photos/seed/user${i}/64/64`} 
-                    alt={`Usuário da plataforma ${i}`} 
+                    src={`https://picsum.photos/seed/user${i}/64/64`}
+                    alt={`Usuário da plataforma ${i}`}
+                    width={32}
+                    height={32}
                     className="w-8 h-8 rounded-full border-2 border-white"
                     referrerPolicy="no-referrer"
-                    loading="eager"
+                    loading="lazy"
                   />
                 ))}
               </div>
@@ -79,14 +81,12 @@ const Hero = () => {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="relative flex justify-center lg:justify-end lg:-mr-16"
           >
-            <motion.div 
-              animate={{ y: [0, -8, 0] }}
-              transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-              className="relative w-full max-w-[440px] sm:max-w-[500px] lg:max-w-[750px] xl:max-w-[900px]"
-            >
-              <img 
-                src="https://i.imgur.com/x2s6AVw.png" 
-                alt="Dashboard Homologa Plus no MacBook" 
+            <div className="relative w-full max-w-[440px] sm:max-w-[500px] lg:max-w-[750px] xl:max-w-[900px]">
+              <img
+                src="https://i.imgur.com/GZGcSIL.png"
+                alt="Dashboard Homologa Plus no MacBook"
+                width={900}
+                height={562}
                 className="w-full h-auto drop-shadow-[0_35px_60px_rgba(0,0,0,0.2)] rounded-xl"
                 referrerPolicy="no-referrer"
                 loading="eager"
@@ -96,7 +96,7 @@ const Hero = () => {
               {/* Decorative elements */}
               <div className="absolute -bottom-6 -right-6 w-32 h-32 bg-primary/15 rounded-full blur-3xl -z-10" />
               <div className="absolute -top-6 -left-6 w-24 h-24 bg-blue-400/15 rounded-full blur-3xl -z-10" />
-            </motion.div>
+            </div>
           </motion.div>
         </div>
       </div>
@@ -233,7 +233,6 @@ const LandingPage = () => {
           <Testimonials />
           <Pricing />
           <FAQ />
-          <CTA />
         </main>
         <Footer />
       </Suspense>

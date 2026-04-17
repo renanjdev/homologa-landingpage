@@ -1,6 +1,5 @@
 import React from 'react';
 import { motion } from 'motion/react';
-import mapProjetosUnico from '../assets/map-projetos-transparente.png';
 import { MapPin, Navigation, CheckCircle2 } from 'lucide-react';
 
 const MapControl = () => {
@@ -21,18 +20,16 @@ const MapControl = () => {
             className="order-2 lg:order-1 relative"
           >
             <div className="relative z-10 w-full flex justify-center lg:justify-start">
-               <motion.div
-                 animate={{ y: [0, -10, 0] }}
-                 transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-                 className="relative w-full max-w-[440px] sm:max-w-[550px] lg:max-w-[850px] xl:max-w-[1000px] lg:-ml-16 xl:-ml-32"
-               >
+               <div className="relative w-full max-w-[440px] sm:max-w-[550px] lg:max-w-[850px] xl:max-w-[1000px] lg:-ml-16 xl:-ml-32">
                  {/* Efeito de brilho sutil atrás do mapa transparente */}
                  <div className="absolute inset-0 bg-primary/20 rounded-full blur-3xl -z-10 transform scale-75" />
                  
-                 <img 
-                   src={mapProjetosUnico} 
-                   alt="Visão geral do mapa de projetos" 
-                   className="w-full h-auto object-contain drop-shadow-2xl"
+                 <img
+                   src="https://i.imgur.com/k5TTke3.gif"
+                   alt="Visão geral do mapa de projetos"
+                   width={850}
+                   height={530}
+                   className="w-full h-auto object-contain drop-shadow-2xl rounded-2xl"
                    loading="lazy"
                  />
 
@@ -52,7 +49,7 @@ const MapControl = () => {
                      <p className="text-xs text-slate-500">Usina UFV 75kWp - SP</p>
                    </div>
                  </motion.div>
-               </motion.div>
+               </div>
             </div>
             {/* Decoração atrás das imagens */}
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-gradient-to-br from-primary/10 to-transparent rounded-full blur-3xl -z-10" />

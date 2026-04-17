@@ -19,7 +19,8 @@ export default defineConfig(({mode}) => {
       rollupOptions: {
         output: {
           manualChunks: {
-            vendor: ['react', 'react-dom', 'react-router-dom', 'motion/react'],
+            vendor: ['react', 'react-dom', 'react-router-dom'],
+            motion: ['motion/react'],
             charts: ['recharts', 'react-is'],
             ui: ['lucide-react']
           }

@@ -56,24 +56,19 @@ const MobilePreview = () => {
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-primary/5 rounded-full blur-[100px] -z-10" />
             
             <div className="relative group max-w-[320px] sm:max-w-[380px]">
-              <motion.div
-                animate={{ y: [0, -15, 0] }}
-                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-                className="relative z-10"
-              >
-                <img 
-                  src="https://i.imgur.com/4bZCkIG.png" 
-                  alt="Interface Mobile HOMOLOGA Plus" 
+              <div className="relative z-10">
+                <img
+                  src="https://i.imgur.com/4bZCkIG.png"
+                  alt="Interface Mobile HOMOLOGA Plus"
+                  width={380}
+                  height={760}
                   className="w-full h-auto drop-shadow-[0_45px_60px_rgba(0,0,0,0.15)] rounded-[3rem]"
+                  loading="lazy"
                 />
-              </motion.div>
-              
+              </div>
+
               {/* Feature Cards Floating */}
-              <motion.div 
-                animate={{ x: [0, 10, 0] }}
-                transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-                className="absolute -right-6 top-1/4 bg-white p-4 rounded-2xl shadow-xl border border-slate-100 z-20 hidden sm:block"
-              >
+              <div className="absolute -right-6 top-1/4 bg-white p-4 rounded-2xl shadow-xl border border-slate-100 z-20 hidden sm:block">
                 <div className="flex items-center gap-3">
                   <div className="w-10 h-10 bg-success/10 rounded-full flex items-center justify-center">
                     <Zap className="w-5 h-5 text-success" />
@@ -83,7 +78,7 @@ const MobilePreview = () => {
                     <p className="text-sm font-bold text-slate-900">Acesso Mobile</p>
                   </div>
                 </div>
-              </motion.div>
+              </div>
             </div>
           </motion.div>
         </div>

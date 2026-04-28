@@ -1,7 +1,7 @@
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import { motion } from 'motion/react';
-import { Sun, CheckCircle2, MessageCircle, PlayCircle, FileText, Users, DollarSign, Clock, ShieldCheck, BarChart3 } from 'lucide-react';
+import { CheckCircle2, MessageCircle, PlayCircle, FileText, Users, DollarSign, Clock, ShieldCheck, BarChart3 } from 'lucide-react';
 
 const Start = () => {
   return (
@@ -32,11 +32,9 @@ const Start = () => {
           transition={{ duration: 0.5 }}
           className="flex items-center gap-2 mb-12"
         >
-          <div className="bg-primary p-2 rounded-xl shadow-lg shadow-primary/20">
-            <Sun className="w-8 h-8 text-white" />
-          </div>
-          <span className="text-2xl font-display font-bold tracking-tight text-slate-900">
-            HOMOLOGA <span className="text-primary">Plus</span>
+          <img src="/logo-h.png" alt="Homologa Plus" width={48} height={48} className="w-12 h-12" />
+          <span className="text-2xl font-bold tracking-tight text-slate-900">
+            Homologa <span className="text-bright-sky font-medium">Plus</span>
           </span>
         </motion.div>
 
@@ -179,7 +177,7 @@ const Start = () => {
 
         {/* Footer */}
         <div className="mt-auto pt-8 pb-8 text-slate-400 text-xs font-medium tracking-wide">
-          HOMOLOGA PLUS © {new Date().getFullYear()}
+          Homologa Plus © {new Date().getFullYear()}
         </div>
       </main>
     </div>

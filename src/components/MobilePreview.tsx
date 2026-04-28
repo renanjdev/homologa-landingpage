@@ -24,7 +24,7 @@ const MobilePreview = () => {
             </h2>
             
             <p className="text-lg text-slate-600 mb-8 leading-relaxed">
-              Dê autonomia total aos seus integradores. Com o HOMOLOGA Plus, seus parceiros cadastram projetos e acompanham o status direto do canteiro de obras, com uma interface 100% responsiva e veloz.
+              Dê autonomia total aos seus integradores. Com o Homologa Plus, seus parceiros cadastram projetos e acompanham o status direto do canteiro de obras, com uma interface 100% responsiva e veloz.
             </p>
             
             <div className="space-y-4 mb-10">
@@ -59,7 +59,7 @@ const MobilePreview = () => {
               <div className="relative z-10">
                 <img
                   src="https://i.imgur.com/4bZCkIG.png"
-                  alt="Interface Mobile HOMOLOGA Plus"
+                  alt="Interface Mobile Homologa Plus"
                   width={380}
                   height={760}
                   className="w-full h-auto drop-shadow-[0_45px_60px_rgba(0,0,0,0.15)] rounded-[3rem]"

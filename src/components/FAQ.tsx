@@ -8,7 +8,7 @@ const FAQ = () => {
   const faqs = [
     {
       question: "Quais funcionalidades o sistema oferece?",
-      answer: "O HOMOLOGA Plus oferece gestão completa de projetos, controle de documentos, acompanhamento de etapas de homologação, dashboard de indicadores, gestão de integradores e muito mais."
+      answer: "O Homologa Plus oferece gestão completa de projetos, controle de documentos, acompanhamento de etapas de homologação, dashboard de indicadores, gestão de integradores e muito mais."
     },
     {
       question: "Como funciona a área do integrador?",
@@ -38,7 +38,7 @@ const FAQ = () => {
             Perguntas Frequentes
           </h2>
           <p className="text-slate-600 text-sm md:text-base">
-            Tire suas dúvidas sobre como o HOMOLOGA Plus pode ajudar sua empresa.
+            Tire suas dúvidas sobre como o Homologa Plus pode ajudar sua empresa.
           </p>
         </div>
 

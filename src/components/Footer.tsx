@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Sun } from 'lucide-react';
 
 const Footer = () => {
   return (
@@ -9,11 +8,9 @@ const Footer = () => {
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-10 md:gap-12 mb-12 md:mb-16">
           <div className="sm:col-span-2">
             <Link to="/" className="flex items-center gap-2 mb-6" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
-              <div className="bg-primary p-1.5 rounded-xl">
-                <Sun className="w-6 h-6 text-white" />
-              </div>
-              <span className="text-xl font-display font-bold text-slate-900">
-                HOMOLOGA <span className="text-primary">Plus</span>
+              <img src="/logo-h.png" alt="Homologa Plus" width={36} height={36} className="w-9 h-9" />
+              <span className="text-xl font-bold text-slate-900">
+                Homologa <span className="text-bright-sky font-medium">Plus</span>
               </span>
             </Link>
             <p className="text-slate-500 max-w-sm mb-8">
@@ -42,7 +39,7 @@ const Footer = () => {
         </div>
         
         <div className="pt-8 border-t border-slate-50 flex flex-col md:flex-row justify-between items-center gap-6 text-sm text-slate-400">
-          <p>© {new Date().getFullYear()} HOMOLOGA Plus. Todos os direitos reservados.</p>
+          <p>© {new Date().getFullYear()} Homologa Plus. Todos os direitos reservados.</p>
           <div className="flex gap-8">
             <Link to="/admin" className="hover:text-slate-600">Admin</Link>
             <Link to="/termos" className="hover:text-slate-600">Termos de Uso</Link>

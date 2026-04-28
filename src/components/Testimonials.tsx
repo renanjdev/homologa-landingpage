@@ -7,7 +7,7 @@ const Testimonials = () => {
     {
       name: "Eng. Ricardo Santos",
       role: "Diretor Técnico na SolarEng",
-      content: "O HOMOLOGA Plus transformou nossa gestão. Antes perdíamos prazos por falta de organização, agora temos controle total de cada etapa da homologação.",
+      content: "O Homologa Plus transformou nossa gestão. Antes perdíamos prazos por falta de organização, agora temos controle total de cada etapa da homologação.",
       avatar: "https://picsum.photos/seed/ricardo/128/128"
     },
     {
@@ -32,7 +32,7 @@ const Testimonials = () => {
             O que dizem nossos clientes
           </h2>
           <p className="text-slate-600 max-w-2xl mx-auto">
-            Empresas de engenharia que já profissionalizaram sua gestão com o HOMOLOGA Plus.
+            Empresas de engenharia que já profissionalizaram sua gestão com o Homologa Plus.
           </p>
         </div>
 

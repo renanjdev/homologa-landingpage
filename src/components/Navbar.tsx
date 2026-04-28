@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion, useScroll, useSpring, AnimatePresence } from 'motion/react';
 import { Link } from 'react-router-dom';
-import { Sun, ChevronRight, Menu, X } from 'lucide-react';
+import { ChevronRight, Menu, X } from 'lucide-react';
 
 const Navbar = ({ scrolled }: { scrolled: boolean }) => {
   const [isOpen, setIsOpen] = React.useState(false);
@@ -33,11 +33,15 @@ const Navbar = ({ scrolled }: { scrolled: boolean }) => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16 items-center">
           <Link to="/" className="flex items-center gap-2 group cursor-pointer" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
-            <div className="bg-primary p-1.5 rounded-xl shadow-lg shadow-primary/20 group-hover:scale-110 transition-transform">
-              <Sun className="w-6 h-6 text-white" />
-            </div>
-            <span className="text-lg sm:text-xl font-display font-bold tracking-tight text-slate-900">
-              HOMOLOGA <span className="text-primary">Plus</span>
+            <img
+              src="/logo-h.png"
+              alt="Homologa Plus"
+              width={36}
+              height={36}
+              className="w-9 h-9 group-hover:scale-110 transition-transform"
+            />
+            <span className="text-lg sm:text-xl font-bold tracking-tight text-slate-900">
+              Homologa <span className="text-bright-sky font-medium">Plus</span>
             </span>
           </Link>
           

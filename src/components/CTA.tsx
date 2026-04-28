@@ -59,7 +59,7 @@ const CTA = () => {
             </h2>
             
             <p className="text-base md:text-xl text-slate-400 mb-10 md:mb-14 leading-relaxed">
-              O HOMOLOGA Plus está sendo construído com os maiores especialistas do setor. 
+              O Homologa Plus está sendo construído com os maiores especialistas do setor. 
               Entre na lista agora e garanta o <span className="text-white font-semibold">Plano Fundador</span> com benefícios vitalícios.
             </p>
 

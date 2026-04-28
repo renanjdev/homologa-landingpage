@@ -33,7 +33,7 @@ const ThankYou = () => {
               Obrigado pela sua assinatura!
             </h1>
             <p className="text-lg text-slate-600 mb-8 max-w-xl mx-auto">
-              Sua escolha pelo HOMOLOGA Plus foi confirmada. Estamos preparando seu ambiente e, em breve, nossa equipe entrará em contato com os próximos passos.
+              Sua escolha pelo Homologa Plus foi confirmada. Estamos preparando seu ambiente e, em breve, nossa equipe entrará em contato com os próximos passos.
             </p>
 
             {/* Passos / Instruções */}
@@ -60,7 +60,7 @@ const ThankYou = () => {
             {/* Ações */}
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
               <a 
-                href="https://wa.me/5514991273245?text=Olá! Acabei de assinar o HOMOLOGA Plus e gostaria de falar com o time de suporte."
+                href="https://wa.me/5514991273245?text=Olá! Acabei de assinar o Homologa Plus e gostaria de falar com o time de suporte."
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-full sm:w-auto px-6 py-3.5 bg-green-500 hover:bg-green-600 text-white rounded-xl font-bold transition-all flex items-center justify-center gap-2 shadow-lg shadow-green-500/20"

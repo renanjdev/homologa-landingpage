@@ -14,7 +14,7 @@ const WhoIsItFor = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12 md:mb-16">
           <h2 className="text-2xl md:text-3xl lg:text-4xl font-display font-bold text-slate-900 mb-4 md:mb-6">
-            Para quem é o HOMOLOGA Plus
+            Para quem é o Homologa Plus
           </h2>
         </div>
 

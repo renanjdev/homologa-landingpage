@@ -1,7 +1,7 @@
 import React, { lazy, Suspense } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { motion } from 'motion/react';
-import { Sun, Zap, ChevronRight } from 'lucide-react';
+import { Zap, ChevronRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { SpeedInsights } from "@vercel/speed-insights/react";
 
@@ -127,7 +127,7 @@ const LandingPage = () => {
           {
             "@context": "https://schema.org",
             "@type": "SoftwareApplication",
-            "name": "HOMOLOGA Plus",
+            "name": "Homologa Plus",
             "url": "https://homologaplus.com.br",
             "applicationCategory": "BusinessApplication",
             "operatingSystem": "Web",
@@ -205,7 +205,7 @@ const LandingPage = () => {
             ],
             "provider": {
               "@type": "Organization",
-              "name": "HOMOLOGA Plus",
+              "name": "Homologa Plus",
               "url": "https://homologaplus.com.br",
               "email": "contato@homologaplus.com.br",
               "address": {

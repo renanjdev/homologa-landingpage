@@ -1,7 +1,6 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 import { Suspense, lazy } from 'react';
-import { Sun } from 'lucide-react';
 
 // Lazy load pages
 const LandingPage = lazy(() => import('./pages/LandingPage'));
@@ -32,7 +31,7 @@ export default function App() {
   return (
     <BrowserRouter>
       <ScrollToTop />
-      <Suspense fallback={<div className="min-h-screen bg-slate-50 flex items-center justify-center"><Sun className="w-8 h-8 text-primary animate-spin" /></div>}>
+      <Suspense fallback={<div className="min-h-screen bg-slate-50 flex items-center justify-center"><img src="/logo-h.png" alt="Homologa Plus" width={48} height={48} className="w-12 h-12 animate-pulse" /></div>}>
         <Routes>
           <Route path="/" element={<LandingPage />} />
           <Route path="/start" element={<Start />} />

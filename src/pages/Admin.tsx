@@ -101,7 +101,7 @@ export default function Admin() {
       updateLeadStatus(lead.id, 'Em Contato');
     }
     const phone = lead.whatsapp?.replace(/\D/g, '');
-    const text = `Olá ${lead.name || 'Projetista'}, vi que se inscreveu no HOMOLOGA Plus! Tudo bem?`;
+    const text = `Olá ${lead.name || 'Projetista'}, vi que se inscreveu no Homologa Plus! Tudo bem?`;
     window.open(`https://wa.me/55${phone}?text=${encodeURIComponent(text)}`, '_blank');
   };
 

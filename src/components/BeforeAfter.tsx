@@ -21,7 +21,7 @@ const BeforeAfter = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
           <div className="bg-white p-6 md:p-8 rounded-3xl border border-slate-200 shadow-sm">
             <h3 className="text-lg md:text-xl font-bold text-red-600 mb-4 md:mb-6 flex items-center gap-2">
-              <X className="w-5 h-5" /> ANTES DO HOMOLOGA Plus
+              <X className="w-5 h-5" /> ANTES DO Homologa Plus
             </h3>
             <ul className="space-y-3 md:space-y-4">
               {[
@@ -40,7 +40,7 @@ const BeforeAfter = () => {
 
           <div className="bg-white p-6 md:p-8 rounded-3xl border border-primary/20 shadow-lg shadow-primary/5">
             <h3 className="text-lg md:text-xl font-bold text-primary mb-4 md:mb-6 flex items-center gap-2">
-              <CheckCircle2 className="w-5 h-5" /> COM HOMOLOGA Plus
+              <CheckCircle2 className="w-5 h-5" /> COM Homologa Plus
             </h3>
             <ul className="space-y-3 md:space-y-4">
               {[

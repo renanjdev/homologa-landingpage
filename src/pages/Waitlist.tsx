@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Helmet } from 'react-helmet-async';
-import { Mail, CheckCircle2, Phone, ArrowLeft, Zap, ShieldCheck, Loader2, AlertCircle, Sun, ChevronRight, Share2, Trophy } from 'lucide-react';
+import { Mail, CheckCircle2, Phone, ArrowLeft, Zap, ShieldCheck, Loader2, AlertCircle, ChevronRight, Share2, Trophy } from 'lucide-react';
 import { Link, useSearchParams } from 'react-router-dom';
 import { useWaitlist } from '../hooks/useWaitlist';
 import { formatWhatsApp, validateWhatsApp, validateEmail } from '../utils/whatsapp';
@@ -10,11 +10,9 @@ const WaitlistHeader = () => (
   <nav className="bg-white/80 backdrop-blur-lg border-b border-slate-200 py-4 sticky top-0 z-50">
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center">
       <Link to="/" className="flex items-center gap-2 group">
-        <div className="bg-primary p-1.5 rounded-xl shadow-lg shadow-primary/20 group-hover:scale-110 transition-transform">
-          <Sun className="w-6 h-6 text-white" />
-        </div>
-        <span className="text-lg font-display font-bold tracking-tight text-slate-900">
-          HOMOLOGA <span className="text-primary">Plus</span>
+        <img src="/logo-h.png" alt="Homologa Plus" width={36} height={36} className="w-9 h-9 group-hover:scale-110 transition-transform" />
+        <span className="text-lg font-bold tracking-tight text-slate-900">
+          Homologa <span className="text-bright-sky font-medium">Plus</span>
         </span>
       </Link>
       <Link 
@@ -45,7 +43,7 @@ const WaitlistHero = ({ waitlistCount }: { waitlistCount: number }) => (
     </h1>
     
     <p className="text-base sm:text-lg text-slate-600 mb-8 leading-relaxed max-w-xl mx-auto lg:mx-0">
-      Zere as pendências nas concessionárias. O <strong>HOMOLOGA Plus</strong> é a plataforma definitiva de gestão para Projetistas e Empresas Homologadoras. Entre na lista e garanta benefícios exclusivos de lançamento.
+      Zere as pendências nas concessionárias. O <strong>Homologa Plus</strong> é a plataforma definitiva de gestão para Projetistas e Empresas Homologadoras. Entre na lista e garanta benefícios exclusivos de lançamento.
     </p>
 
     <div className="mb-8 inline-block lg:block">
@@ -125,7 +123,7 @@ const SuccessState = ({
 
   const shareOnWhatsApp = () => {
     const shareUrl = `${window.location.origin}/waitlist?ref=${userId}`;
-    const text = `🚀 Acabei de entrar na lista de espera do *HOMOLOGA Plus*!\n\nA plataforma definitiva para *gestão de projetos e homologação* solar. ☀️\n\nFeito de projetista para projetista. Organize seus processos e ganhe escala. Garanta sua vaga no *Plano Fundador* antes que as 100 vagas acabem! ⏳\n\nEntre pelo meu link para subir na fila:\n${shareUrl}`;
+    const text = `🚀 Acabei de entrar na lista de espera do *Homologa Plus*!\n\nA plataforma definitiva para *gestão de projetos e homologação* solar. ☀️\n\nFeito de projetista para projetista. Organize seus processos e ganhe escala. Garanta sua vaga no *Plano Fundador* antes que as 100 vagas acabem! ⏳\n\nEntre pelo meu link para subir na fila:\n${shareUrl}`;
     window.open(`https://wa.me/?text=${encodeURIComponent(text)}`, '_blank');
   };
 
@@ -357,8 +355,8 @@ const Waitlist = () => {
   return (
     <div className="min-h-screen bg-slate-50 flex flex-col">
       <Helmet>
-        <title>Lista de Espera | HOMOLOGA Plus - Acesso Antecipado</title>
-        <meta name="description" content="Entre na lista de espera do HOMOLOGA Plus e garanta benefícios exclusivos de lançamento." />
+        <title>Lista de Espera | Homologa Plus - Acesso Antecipado</title>
+        <meta name="description" content="Entre na lista de espera do Homologa Plus e garanta benefícios exclusivos de lançamento." />
       </Helmet>
 
       <WaitlistHeader />
@@ -396,7 +394,7 @@ const Waitlist = () => {
       <footer className="bg-white border-t border-slate-200 py-8">
         <div className="max-w-7xl mx-auto px-4 text-center">
           <p className="text-sm text-slate-500">
-            &copy; {new Date().getFullYear()} HOMOLOGA Plus. Todos os direitos reservados.
+            &copy; {new Date().getFullYear()} Homologa Plus. Todos os direitos reservados.
           </p>
         </div>
       </footer>

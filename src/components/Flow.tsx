@@ -4,12 +4,12 @@ import { FileText, ShieldCheck, Zap, Clock, Gauge, CheckCircle2 } from 'lucide-r
 
 const Flow = () => {
   const steps = [
-    { title: "Projeto cadastrado", icon: <FileText className="w-6 h-6" />, color: "bg-blue-500" },
-    { title: "Análise documental", icon: <ShieldCheck className="w-6 h-6" />, color: "bg-indigo-500" },
-    { title: "Envio para concessionária", icon: <Zap className="w-6 h-6" />, color: "bg-amber-500" },
-    { title: "Aguardando parecer", icon: <Clock className="w-6 h-6" />, color: "bg-purple-500" },
-    { title: "Medidor Trocado", icon: <Gauge className="w-6 h-6" />, color: "bg-rose-500" },
-    { title: "Homologado", icon: <CheckCircle2 className="w-6 h-6" />, color: "bg-emerald-500" }
+    { title: "Projeto cadastrado", icon: <FileText className="w-6 h-6" />, color: "bg-bright-sky" },
+    { title: "Análise documental", icon: <ShieldCheck className="w-6 h-6" />, color: "bg-bright-sky" },
+    { title: "Envio para concessionária", icon: <Zap className="w-6 h-6" />, color: "bg-primary" },
+    { title: "Aguardando parecer", icon: <Clock className="w-6 h-6" />, color: "bg-primary" },
+    { title: "Medidor Trocado", icon: <Gauge className="w-6 h-6" />, color: "bg-primary-dark" },
+    { title: "Homologado", icon: <CheckCircle2 className="w-6 h-6" />, color: "bg-success" }
   ];
 
   return (
@@ -21,7 +21,7 @@ const Flow = () => {
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16 md:mb-24">
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-display font-bold text-slate-900 mb-6 tracking-tight">
+          <h2 className="text-clamp-h2 font-display font-bold text-slate-900 mb-6">
             Fluxo organizado da <span className="text-primary">homologação</span>
           </h2>
           <p className="text-slate-600 max-w-2xl mx-auto text-base md:text-lg">
@@ -37,7 +37,7 @@ const Flow = () => {
               whileInView={{ width: "100%" }}
               viewport={{ once: true }}
               transition={{ duration: 1.5, ease: "easeInOut" }}
-              className="h-full bg-gradient-to-r from-primary/20 via-primary to-emerald-500"
+              className="h-full bg-gradient-to-r from-bright-sky via-primary to-success"
             />
           </div>
 

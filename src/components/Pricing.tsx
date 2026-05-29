@@ -32,8 +32,8 @@ const Pricing = () => {
       description: "Ganhe controle dos prazos e centralize sua operação.",
       priceSubtitle: "Menos de R$ 10 por dia para controlar toda a sua operação.",
       icon: <Zap className="w-5 h-5 md:w-6 md:h-6" />,
-      iconBg: "bg-blue-50",
-      iconColor: "text-blue-600",
+      iconBg: "bg-primary/10",
+      iconColor: "text-primary",
       features: [
         { text: "3 usuários técnicos", included: true },
         { text: "Até 50 integradoras", included: true },
@@ -47,7 +47,7 @@ const Pricing = () => {
       ctaText: "Começar teste grátis (7 dias)",
       highlight: true,
       badge: "Mais escolhido",
-      badgeClass: "bg-blue-600 text-white",
+      badgeClass: "bg-primary text-white",
       bottomText: "Plano mais escolhido neste mês",
     },
     {
@@ -84,10 +84,10 @@ const Pricing = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Título Principal da Seção */}
         <div className="text-center mb-12 md:mb-16">
-          <p className="text-blue-600 text-xs md:text-sm font-bold tracking-[0.15em] uppercase mb-3">
+          <p className="text-primary text-xs md:text-sm font-bold tracking-[0.15em] uppercase mb-3">
             Planos e preços
           </p>
-          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-display font-bold text-slate-900 mb-3 md:mb-5">
+          <h2 className="text-clamp-h2 font-display font-bold text-slate-900 mb-3 md:mb-5">
             Escolha o plano ideal para sua operação
           </h2>
           <p className="text-sm sm:text-base md:text-lg text-slate-500 max-w-2xl mx-auto">
@@ -99,7 +99,7 @@ const Pricing = () => {
           {plans.map((plan, index) => (
             <div 
               key={index}
-              className={`bg-white p-6 sm:p-8 rounded-3xl border-2 ${plan.highlight ? 'border-blue-500 shadow-xl scale-100 lg:scale-105 z-10' : 'border-slate-100 shadow-sm'} flex flex-col hover:shadow-md transition-all w-full max-w-md mx-auto lg:max-w-none relative h-full`}
+              className={`bg-white p-6 sm:p-8 rounded-3xl border-2 ${plan.highlight ? 'border-primary shadow-xl shadow-primary/10 scale-100 lg:scale-105 z-10' : 'border-slate-100 shadow-sm'} flex flex-col hover:shadow-md transition-all w-full max-w-md mx-auto lg:max-w-none relative h-full`}
             >
               {plan.badge && (
                 <div className={`absolute -top-3.5 left-1/2 -translate-x-1/2 ${plan.badgeClass} text-[11px] md:text-xs font-bold px-4 py-1.5 rounded-full shadow-sm whitespace-nowrap`}>
@@ -112,24 +112,24 @@ const Pricing = () => {
                   <div className={`w-10 h-10 md:w-12 md:h-12 ${plan.iconBg} ${plan.iconColor} rounded-xl flex items-center justify-center shrink-0`}>
                     {plan.icon}
                   </div>
-                  <h3 className={`text-lg sm:text-xl font-bold ${plan.highlight ? 'text-blue-600' : 'text-slate-900'}`}>{plan.name}</h3>
+                  <h3 className={`text-lg sm:text-xl font-bold ${plan.highlight ? 'text-primary' : 'text-slate-900'}`}>{plan.name}</h3>
                 </div>
                 <p className="text-slate-500 text-sm">{plan.description}</p>
               </div>
 
               <div className="mb-6 md:mb-8">
                 <div className="flex items-baseline gap-1">
-                  <span className={`text-2xl md:text-3xl font-bold ${plan.highlight ? 'text-blue-600' : 'text-slate-900'}`}>R$</span>
-                  <span className={`text-4xl sm:text-5xl md:text-[56px] font-black tracking-tight ${plan.highlight ? 'text-blue-600' : 'text-slate-900'}`}>{plan.price}</span>
+                  <span className={`text-2xl md:text-3xl font-bold ${plan.highlight ? 'text-primary' : 'text-slate-900'}`}>R$</span>
+                  <span className={`text-4xl sm:text-5xl md:text-[56px] font-black tracking-tight ${plan.highlight ? 'text-primary' : 'text-slate-900'}`}>{plan.price}</span>
                   <span className="text-slate-500 text-sm md:text-base font-medium ml-1">/mês</span>
                 </div>
                 {plan.priceSubtitle && (
-                  <p className="text-blue-500 text-[13px] md:text-sm font-semibold mt-3 md:mt-4 leading-snug">
+                  <p className="text-primary text-[13px] md:text-sm font-semibold mt-3 md:mt-4 leading-snug">
                     {plan.priceSubtitle}
                   </p>
                 )}
                 {plan.highlight && (
-                   <hr className="mt-5 md:mt-6 border-blue-100" />
+                   <hr className="mt-5 md:mt-6 border-primary/15" />
                 )}
               </div>
 
@@ -137,9 +137,9 @@ const Pricing = () => {
                 {plan.features.map((feature, idx) => (
                   <li key={idx} className={`flex items-start gap-3 text-xs sm:text-sm ${feature.included ? 'text-slate-700' : 'text-slate-400'}`}>
                     {feature.included ? (
-                      <CheckCircle2 className="w-4 h-4 md:w-5 md:h-5 text-green-500 shrink-0 mt-[2px]" />
+                      <CheckCircle2 className="w-4 h-4 md:w-5 md:h-5 text-success shrink-0 mt-[2px]" />
                     ) : (
-                      <XCircle className="w-4 h-4 md:w-5 md:h-5 text-slate-200 shrink-0 mt-[2px]" />
+                      <XCircle className="w-4 h-4 md:w-5 md:h-5 text-slate-300 shrink-0 mt-[2px]" />
                     )}
                     <span className="leading-tight">{feature.text}</span>
                   </li>
@@ -150,12 +150,12 @@ const Pricing = () => {
                 <a
                   href="https://app.homologaplus.com.br/cadastro"
                   onClick={() => window.fbq && window.fbq('track', 'InitiateCheckout', { content_name: plan.name })}
-                  className={`w-full py-3 md:py-3.5 rounded-xl ${plan.highlight ? 'bg-blue-600 hover:bg-blue-700 shadow-blue-600/20 shadow-lg' : 'bg-slate-900 hover:bg-black shadow-lg'} text-white font-semibold transition-all text-center text-sm md:text-base block`}
+                  className={`w-full py-3 md:py-3.5 rounded-xl font-semibold transition-all text-center text-sm md:text-base block ${plan.highlight ? 'bg-primary hover:bg-primary-dark text-white shadow-lg shadow-primary/30 hover:-translate-y-0.5' : 'bg-white hover:bg-surface text-primary border-2 border-slate-200 hover:border-primary'}`}
                 >
                   {plan.ctaText}
                 </a>
                 {plan.bottomText && (
-                  <span className="text-[11px] md:text-xs text-blue-500 font-medium mt-3">
+                  <span className="text-[11px] md:text-xs text-primary font-medium mt-3">
                     {plan.bottomText}
                   </span>
                 )}

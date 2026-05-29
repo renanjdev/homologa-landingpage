@@ -1,6 +1,7 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 import { Suspense, lazy } from 'react';
+import { MotionConfig } from 'motion/react';
 
 // Lazy load pages
 const LandingPage = lazy(() => import('./pages/LandingPage'));
@@ -30,6 +31,7 @@ const ScrollToTop = () => {
 export default function App() {
   return (
     <BrowserRouter>
+      <MotionConfig reducedMotion="user">
       <ScrollToTop />
       <Suspense fallback={<div className="min-h-screen bg-slate-50 flex items-center justify-center"><img src="/logo-h.png" alt="Homologa Plus" width={48} height={48} className="w-12 h-12 animate-pulse" /></div>}>
         <Routes>
@@ -49,6 +51,7 @@ export default function App() {
           <Route path="/erros-homologacao-solar" element={<ErrosHomologacaoSolar />} />
         </Routes>
       </Suspense>
+      </MotionConfig>
     </BrowserRouter>
   );
 }

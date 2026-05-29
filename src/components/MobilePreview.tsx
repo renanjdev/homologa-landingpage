@@ -19,7 +19,7 @@ const MobilePreview = () => {
               Gestão na palma da mão
             </div>
             
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-display font-bold text-slate-900 mb-6 leading-tight">
+            <h2 className="text-clamp-h2 font-display font-bold text-slate-900 mb-6">
               Seu sistema de homologação, <span className="text-primary">em qualquer lugar.</span>
             </h2>
             

@@ -31,14 +31,26 @@
     font-size: clamp(2.25rem, 5vw + 1rem, 4.5rem);
     line-height: 1.1;
   }
-}
 
-.glass-card {
-  @apply bg-white/80 backdrop-blur-md border border-slate-200 shadow-sm;
-}
+  /* Section headings: single fluid scale so every section reads with the
+     same weight instead of six divergent breakpoint ramps. */
+  .text-clamp-h2 {
+    font-size: clamp(1.875rem, 3vw + 1rem, 3rem);
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+  }
 
-.gradient-text {
-  @apply bg-clip-text text-transparent bg-gradient-to-r from-primary-dark via-primary to-bright-sky;
+  /* Visible keyboard focus across all interactive elements (WCAG AA). */
+  a:focus-visible,
+  button:focus-visible,
+  [role="button"]:focus-visible,
+  input:focus-visible,
+  textarea:focus-visible,
+  select:focus-visible {
+    outline: 2px solid var(--color-bright-sky);
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
 }
 
 /* Optimization for touch targets on mobile */
@@ -50,4 +62,17 @@
 
 .nav-link {
   @apply min-h-0 inline-flex; /* Reset for desktop nav links */
+}
+
+/* Respect reduced-motion: collapse entrance animations, the scroll progress
+   bar, pulses, and transitions to near-instant so the page reads static. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
 }

@@ -24,7 +24,7 @@ const Hero = () => {
     <section className="relative pt-24 pb-12 md:pt-32 md:pb-20 lg:pt-48 lg:pb-32 overflow-hidden">
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full -z-10 opacity-10">
         <div className="absolute top-0 left-1/4 w-64 h-64 md:w-96 md:h-96 bg-primary rounded-full blur-[80px] md:blur-[120px]" />
-        <div className="absolute bottom-0 right-1/4 w-64 h-64 md:w-96 md:h-96 bg-blue-400 rounded-full blur-[80px] md:blur-[120px]" />
+        <div className="absolute bottom-0 right-1/4 w-64 h-64 md:w-96 md:h-96 bg-bright-sky rounded-full blur-[80px] md:blur-[120px]" />
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -51,7 +51,7 @@ const Hero = () => {
               <a
                 href="https://app.homologaplus.com.br/cadastro"
                 onClick={() => window.fbq('track', 'Lead')}
-                className="bg-primary hover:bg-primary-dark text-white px-8 py-4 rounded-2xl text-lg font-bold transition-all shadow-xl shadow-primary/20 flex items-center justify-center gap-2 w-full sm:w-auto"
+                className="bg-primary hover:bg-primary-dark text-white px-8 py-4 rounded-xl text-lg font-bold transition-all shadow-lg shadow-primary/30 hover:-translate-y-0.5 flex items-center justify-center gap-2 w-full sm:w-auto"
               >
                 Testar gratuitamente
               </a>
@@ -95,7 +95,7 @@ const Hero = () => {
               
               {/* Decorative elements */}
               <div className="absolute -bottom-6 -right-6 w-32 h-32 bg-primary/15 rounded-full blur-3xl -z-10" />
-              <div className="absolute -top-6 -left-6 w-24 h-24 bg-blue-400/15 rounded-full blur-3xl -z-10" />
+              <div className="absolute -top-6 -left-6 w-24 h-24 bg-bright-sky/15 rounded-full blur-3xl -z-10" />
             </div>
           </motion.div>
         </div>

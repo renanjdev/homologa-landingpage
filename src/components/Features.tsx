@@ -14,7 +14,7 @@ const Features = () => {
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12 md:mb-20">
-          <h2 className="text-2xl md:text-3xl lg:text-4xl font-display font-bold text-slate-900 mb-4 md:mb-6">Funcionalidades</h2>
+          <h2 className="text-clamp-h2 font-display font-bold text-slate-900 mb-4 md:mb-6">Funcionalidades</h2>
           <p className="text-slate-600 max-w-2xl mx-auto text-sm md:text-base">
             Tudo o que você precisa para escalar sua empresa de homologação.
           </p>

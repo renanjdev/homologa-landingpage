@@ -7,7 +7,7 @@ const MapControl = () => {
     <section className="py-20 bg-slate-50 relative overflow-hidden">
       {/* Elementos decorativos de fundo */}
       <div className="absolute top-0 right-0 w-1/2 h-full bg-primary/5 rounded-l-full blur-3xl -z-10" />
-      <div className="absolute bottom-[-10%] left-[-10%] w-96 h-96 bg-blue-400/10 rounded-full blur-3xl -z-10" />
+      <div className="absolute bottom-[-10%] left-[-10%] w-96 h-96 bg-bright-sky/10 rounded-full blur-3xl -z-10" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid lg:grid-cols-[1.1fr_0.9fr] gap-12 items-center">
@@ -41,8 +41,8 @@ const MapControl = () => {
                    transition={{ delay: 0.8, duration: 0.5 }}
                    className="absolute bottom-10 right-0 bg-white p-4 rounded-2xl shadow-xl border border-slate-100 flex items-center gap-4 z-20"
                  >
-                   <div className="w-10 h-10 rounded-full bg-emerald-100 flex items-center justify-center shrink-0">
-                     <CheckCircle2 className="w-5 h-5 text-emerald-600" />
+                   <div className="w-10 h-10 rounded-full bg-success/10 flex items-center justify-center shrink-0">
+                     <CheckCircle2 className="w-5 h-5 text-success" />
                    </div>
                    <div>
                      <p className="text-sm font-bold text-slate-900 leading-tight">Projeto Aprovado</p>
@@ -67,7 +67,7 @@ const MapControl = () => {
               Visão Geográfica
             </div>
             
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-display font-bold text-slate-900 mb-6 leading-tight">
+            <h2 className="text-clamp-h2 font-display font-bold text-slate-900 mb-6">
               Controle de Projetos <span className="text-primary">no Mapa</span>
             </h2>
             
@@ -100,7 +100,7 @@ const MapControl = () => {
                   plansSection.scrollIntoView({ behavior: 'smooth' });
                 }
               }}
-              className="px-8 py-4 bg-primary text-white font-bold rounded-2xl hover:bg-primary-dark transition-colors shadow-lg shadow-primary/20"
+              className="px-8 py-4 bg-primary text-white font-bold rounded-xl hover:bg-primary-dark hover:-translate-y-0.5 transition-all shadow-lg shadow-primary/30"
             >
               Conhecer a Plataforma
             </button>

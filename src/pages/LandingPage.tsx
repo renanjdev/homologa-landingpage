@@ -21,21 +21,21 @@ const Navbar = lazy(() => import('../components/Navbar')); // I'll move Navbar t
 
 const Hero = () => {
   return (
-    <section className="relative pt-24 pb-12 md:pt-32 md:pb-20 lg:pt-48 lg:pb-32 overflow-hidden">
+    <section className="relative pt-[clamp(6rem,12vw,12rem)] pb-[clamp(3rem,8vw,8rem)] overflow-hidden">
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full -z-10 opacity-10">
         <div className="absolute top-0 left-1/4 w-64 h-64 md:w-96 md:h-96 bg-primary rounded-full blur-[80px] md:blur-[120px]" />
         <div className="absolute bottom-0 right-1/4 w-64 h-64 md:w-96 md:h-96 bg-bright-sky rounded-full blur-[80px] md:blur-[120px]" />
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.2fr] gap-12 lg:gap-16 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.2fr] gap-[clamp(3rem,6vw,4rem)] items-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
             className="text-center lg:text-left"
           >
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 text-primary text-[10px] md:text-xs font-bold uppercase tracking-wider mb-6">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 text-primary text-[10px] md:text-xs font-bold uppercase tracking-wider mb-4">
               <Zap className="w-3.5 h-3.5" />
               Lançamento Oficial
             </div>
@@ -56,7 +56,7 @@ const Hero = () => {
                 Testar gratuitamente
               </a>
             </div>
-            <div className="mt-8 md:mt-10 flex flex-col sm:flex-row items-center gap-4 text-sm text-slate-500 justify-center lg:justify-start">
+            <div className="mt-10 md:mt-14 flex flex-col sm:flex-row items-center gap-4 text-sm text-slate-500 justify-center lg:justify-start">
               <div className="flex -space-x-2">
                 {[1, 2, 3, 4].map((i) => (
                   <img

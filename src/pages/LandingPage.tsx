@@ -35,23 +35,23 @@ const Hero = () => {
             transition={{ duration: 0.6 }}
             className="text-center lg:text-left"
           >
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 text-primary text-[10px] md:text-xs font-bold uppercase tracking-wider mb-4">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 text-primary text-[11px] md:text-xs font-bold uppercase tracking-wider mb-4">
               <Zap className="w-3.5 h-3.5" />
               Lançamento Oficial
             </div>
-            <h1 className="text-2xl xs:text-3xl sm:text-4xl md:text-5xl lg:text-5xl xl:text-6xl font-display font-extrabold text-slate-900 leading-[1.2] xs:leading-[1.15] sm:leading-[1.1] mb-6 break-words">
+            <h1 className="text-[clamp(1.75rem,4vw+0.5rem,3.75rem)] font-display font-extrabold text-slate-900 leading-[1.1] tracking-[-0.02em] mb-6 text-balance">
               <span className="block">Sistema de gestão</span>
               <span className="block text-primary">para homologação</span>
               <span className="block">de usinas solares</span>
             </h1>
-            <p className="text-base md:text-xl text-slate-600 leading-relaxed mb-8 md:mb-10 max-w-xl mx-auto lg:mx-0 break-words">
+            <p className="text-base md:text-xl text-slate-600 leading-relaxed mb-8 md:mb-10 max-w-xl mx-auto lg:mx-0 text-pretty">
               Toda a gestão de projetos, integradores e etapas da homologação na palma da sua mão, em um único sistema profissional.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
               <a
                 href="https://app.homologaplus.com.br/cadastro"
                 onClick={() => window.fbq('track', 'Lead')}
-                className="bg-primary hover:bg-primary-dark text-white px-8 py-4 rounded-xl text-lg font-bold transition-all shadow-lg shadow-primary/30 hover:-translate-y-0.5 flex items-center justify-center gap-2 w-full sm:w-auto"
+                className="bg-primary hover:bg-primary-dark text-white px-8 py-4 rounded-xl text-lg font-bold transition-all duration-200 ease-out shadow-lg shadow-primary/30 hover:-translate-y-0.5 active:translate-y-0 flex items-center justify-center gap-2 w-full sm:w-auto"
               >
                 Testar gratuitamente
               </a>
@@ -87,7 +87,7 @@ const Hero = () => {
                 alt="Dashboard Homologa Plus no MacBook"
                 width={900}
                 height={562}
-                className="w-full h-auto drop-shadow-[0_35px_60px_rgba(0,0,0,0.2)] rounded-xl"
+                className="w-full h-auto drop-shadow-[0_35px_60px_rgba(15,23,42,0.22)] rounded-xl"
                 referrerPolicy="no-referrer"
                 loading="eager"
                 fetchPriority="high"

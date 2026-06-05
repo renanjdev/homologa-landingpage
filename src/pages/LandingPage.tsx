@@ -8,7 +8,6 @@ import { SpeedInsights } from "@vercel/speed-insights/react";
 
 // Lazy load components below the fold
 const BeforeAfter = lazy(() => import('../components/BeforeAfter'));
-const Logos = lazy(() => import('../components/Logos'));
 const Flow = lazy(() => import('../components/Flow'));
 const MobilePreview = lazy(() => import('../components/MobilePreview'));
 const Features = lazy(() => import('../components/Features'));
@@ -262,7 +261,6 @@ const LandingPage = () => {
       <Hero />
       <Suspense fallback={<div className="h-20" />}>
         <main>
-          <Logos />
           <BeforeAfter />
           <WhoIsItFor />
           <Flow />

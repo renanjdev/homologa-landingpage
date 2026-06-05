@@ -125,15 +125,18 @@ const Hero = () => {
           </div>
 
           <div className="overflow-hidden rounded-2xl border border-slate-200 shadow-[0_26px_70px_-34px_rgba(15,23,42,0.34)]">
-            <img
-              src="/dashboard.png"
-              alt="Painel do Homologa Plus com total de projetos, concluídos, pendências, potência total e o pipeline por etapa"
-              width={1919}
-              height={1041}
-              className="w-full"
-              loading="eager"
-              fetchPriority="high"
-            />
+            <picture>
+              <source srcSet="/dashboard.webp" type="image/webp" />
+              <img
+                src="/dashboard.png"
+                alt="Painel do Homologa Plus com total de projetos, concluídos, pendências, potência total e o pipeline por etapa"
+                width={1919}
+                height={1041}
+                className="w-full"
+                loading="eager"
+                fetchPriority="high"
+              />
+            </picture>
           </div>
         </motion.div>
       </div>

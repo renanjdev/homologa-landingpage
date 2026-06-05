@@ -130,14 +130,17 @@ const Features = () => {
                   </div>
                 )}
                 <div className="rounded-2xl overflow-hidden border border-slate-200 bg-white shadow-[0_30px_60px_-30px_rgba(15,23,42,0.35)]">
-                  <img
-                    src={f.img}
-                    alt={f.alt}
-                    width={1919}
-                    height={964}
-                    className="w-full h-auto block"
-                    loading="lazy"
-                  />
+                  <picture>
+                    <source srcSet={f.img.replace('.png', '.webp')} type="image/webp" />
+                    <img
+                      src={f.img}
+                      alt={f.alt}
+                      width={1919}
+                      height={964}
+                      className="w-full h-auto block"
+                      loading="lazy"
+                    />
+                  </picture>
                 </div>
               </div>
             </motion.div>

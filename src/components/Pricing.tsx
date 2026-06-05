@@ -85,9 +85,6 @@ const Pricing = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Título Principal da Seção */}
         <div className="text-center mb-12 md:mb-16">
-          <p className="text-primary text-xs md:text-sm font-bold tracking-[0.15em] uppercase mb-3">
-            Planos e preços
-          </p>
           <h2 className="text-clamp-h2 font-display font-bold text-slate-900 mb-3 md:mb-5">
             Escolha o plano ideal para sua operação
           </h2>

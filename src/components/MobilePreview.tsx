@@ -14,11 +14,6 @@ const MobilePreview = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-bold uppercase tracking-wider mb-6">
-              <Smartphone className="w-4 h-4" />
-              Gestão na palma da mão
-            </div>
-            
             <h2 className="text-clamp-h2 font-display font-bold text-slate-900 mb-6">
               Seu sistema de homologação, <span className="text-primary">em qualquer lugar.</span>
             </h2>

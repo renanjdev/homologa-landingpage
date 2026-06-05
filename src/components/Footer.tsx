@@ -38,7 +38,7 @@ const Footer = () => {
           </div>
         </div>
         
-        <div className="pt-8 border-t border-slate-50 flex flex-col md:flex-row justify-between items-center gap-6 text-sm text-slate-400">
+        <div className="pt-8 border-t border-slate-50 flex flex-col md:flex-row justify-between items-center gap-6 text-sm text-slate-500">
           <p>© {new Date().getFullYear()} Homologa Plus. Todos os direitos reservados.</p>
           <div className="flex gap-8">
             <Link to="/admin" className="hover:text-slate-600">Admin</Link>

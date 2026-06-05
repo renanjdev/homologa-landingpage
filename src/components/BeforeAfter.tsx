@@ -20,7 +20,7 @@ const BeforeAfter = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
           <div className="bg-white p-6 md:p-8 rounded-3xl border border-slate-200 shadow-sm">
-            <h3 className="text-lg md:text-xl font-bold text-slate-400 mb-4 md:mb-6 flex items-center gap-2">
+            <h3 className="text-lg md:text-xl font-bold text-slate-500 mb-4 md:mb-6 flex items-center gap-2">
               <X className="w-5 h-5" /> ANTES DO Homologa Plus
             </h3>
             <ul className="space-y-3 md:space-y-4">
@@ -30,7 +30,7 @@ const BeforeAfter = () => {
                 "Integradores cobrando status",
                 "Projetos difíceis de acompanhar"
               ].map((item, idx) => (
-                <li key={idx} className="flex items-center gap-3 text-slate-400 text-sm md:text-base">
+                <li key={idx} className="flex items-center gap-3 text-slate-500 text-sm md:text-base">
                   <div className="w-1.5 h-1.5 rounded-full bg-slate-300 shrink-0" />
                   {item}
                 </li>

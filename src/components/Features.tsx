@@ -125,7 +125,7 @@ const Features = () => {
                     </span>
                     <span>
                       <span className="block text-sm font-bold leading-tight text-slate-900">{f.badge.title}</span>
-                      <span className="block font-mono text-[11px] text-slate-400">{f.badge.sub}</span>
+                      <span className="block font-mono text-[11px] text-slate-500">{f.badge.sub}</span>
                     </span>
                   </div>
                 )}

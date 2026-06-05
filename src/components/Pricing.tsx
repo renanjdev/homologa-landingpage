@@ -141,7 +141,7 @@ const Pricing = () => {
 
               <ul className="space-y-3.5 md:space-y-4 mb-8 flex-grow">
                 {plan.features.map((feature, idx) => (
-                  <li key={idx} className={`flex items-start gap-3 text-xs sm:text-sm ${feature.included ? 'text-slate-700' : 'text-slate-400'}`}>
+                  <li key={idx} className={`flex items-start gap-3 text-xs sm:text-sm ${feature.included ? 'text-slate-700' : 'text-slate-500'}`}>
                     {feature.included ? (
                       <CheckCircle2 className="w-4 h-4 md:w-5 md:h-5 text-success shrink-0 mt-[2px]" />
                     ) : (
@@ -174,10 +174,10 @@ const Pricing = () => {
 
         <div className="mt-12 md:mt-16 text-center flex flex-col items-center gap-2">
           <p className="text-slate-500 text-sm md:text-base flex items-center justify-center gap-2">
-            <ShieldCheck className="w-4 h-4 md:w-5 md:h-5 text-slate-400" />
+            <ShieldCheck className="w-4 h-4 md:w-5 md:h-5 text-slate-500" />
             Sem fidelidade. Cancele quando quiser.
           </p>
-          <p className="text-slate-400 text-xs md:text-sm">
+          <p className="text-slate-500 text-xs md:text-sm">
             Pagamento seguro via Stripe com criptografia de ponta a ponta.
           </p>
         </div>

@@ -108,7 +108,7 @@ const Hero = () => {
             </span>
             <span className="text-left">
               <span className="block text-sm font-bold leading-tight text-slate-900">78% de aprovação</span>
-              <span className="block font-mono text-[11px] text-slate-400">taxa de homologação</span>
+              <span className="block font-mono text-[11px] text-slate-500">taxa de homologação</span>
             </span>
           </div>
           <div
@@ -120,7 +120,7 @@ const Hero = () => {
             </span>
             <span className="text-left">
               <span className="block text-sm font-bold leading-tight text-slate-900">935.6 kWp</span>
-              <span className="block font-mono text-[11px] text-slate-400">potência gerenciada</span>
+              <span className="block font-mono text-[11px] text-slate-500">potência gerenciada</span>
             </span>
           </div>
 
@@ -281,9 +281,12 @@ const LandingPage = () => {
         initial={{ opacity: 0, scale: 0.5 }}
         animate={{ opacity: scrolled ? 1 : 0, scale: scrolled ? 1 : 0 }}
         onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-        className="fixed bottom-8 right-8 z-40 bg-white text-primary p-4 rounded-2xl shadow-2xl border border-slate-100 hover:bg-primary hover:text-white transition-all group"
+        aria-label="Voltar ao topo"
+        aria-hidden={!scrolled}
+        tabIndex={scrolled ? 0 : -1}
+        className={`fixed bottom-8 right-8 z-40 bg-white text-primary p-4 rounded-2xl shadow-2xl border border-slate-100 hover:bg-primary hover:text-white transition-all group ${scrolled ? '' : 'pointer-events-none'}`}
       >
-        <ChevronRight className="w-6 h-6 -rotate-90 group-hover:-translate-y-1 transition-transform" />
+        <ChevronRight className="w-6 h-6 -rotate-90 group-hover:-translate-y-1 transition-transform" aria-hidden="true" />
       </motion.button>
     </div>
   );

@@ -69,10 +69,7 @@ const Features = () => {
           transition={{ duration: 0.6 }}
           className="text-center max-w-2xl mx-auto mb-16 md:mb-24"
         >
-          <span className="inline-flex items-center gap-2 rounded-full bg-primary/10 px-3.5 py-1.5 font-mono text-[11px] md:text-xs font-semibold uppercase tracking-[0.16em] text-primary">
-            Funcionalidades
-          </span>
-          <h2 className="text-clamp-h2 font-display font-extrabold text-slate-900 mt-5 mb-4 text-balance">
+          <h2 className="text-clamp-h2 font-display font-extrabold text-slate-900 mb-4 text-balance">
             Tudo o que você precisa para escalar sua homologação
           </h2>
           <p className="text-base md:text-lg text-slate-600 leading-relaxed">

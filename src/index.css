@@ -64,6 +64,13 @@
   @apply min-h-0 inline-flex; /* Reset for desktop nav links */
 }
 
+/* Chips flutuantes do hero (degrada para estático em prefers-reduced-motion) */
+@keyframes floaty {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+.animate-floaty { animation: floaty 6s ease-in-out infinite; }
+
 /* Respect reduced-motion: collapse entrance animations, the scroll progress
    bar, pulses, and transitions to near-instant so the page reads static. */
 @media (prefers-reduced-motion: reduce) {

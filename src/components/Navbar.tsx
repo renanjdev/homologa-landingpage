@@ -58,11 +58,18 @@ const Navbar = ({ scrolled }: { scrolled: boolean }) => {
             
             <div className="h-6 w-px bg-slate-200 mx-4"></div>
 
-            <a 
+            <a
               href="https://app.homologaplus.com.br/login"
+              className="px-4 py-2 text-sm font-semibold text-slate-600 hover:text-primary rounded-lg transition-colors"
+            >
+              Acessar
+            </a>
+            <a
+              href="https://app.homologaplus.com.br/cadastro"
+              onClick={() => window.fbq && window.fbq('track', 'Lead')}
               className="inline-flex items-center justify-center bg-primary hover:bg-primary-dark text-white px-6 py-2.5 rounded-xl text-sm font-bold transition-all shadow-lg shadow-primary/20 hover:shadow-primary/30 active:scale-95"
             >
-              Acessar Plataforma
+              Testar grátis
             </a>
           </div>
 

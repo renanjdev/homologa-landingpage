@@ -1,3 +1,14 @@
+// Canal de contato oficial do Homologa Plus (Bauru/SP).
+export const WHATSAPP_NUMBER = '5514991273245';
+
+/**
+ * Monta o link wa.me com mensagem pré-preenchida para os CTAs de contato
+ * de baixo atrito (alternativa ao cadastro direto).
+ */
+export const buildWhatsAppLink = (
+  message = 'Olá! Quero saber mais sobre o Homologa Plus.',
+) => `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
+
 export const formatWhatsApp = (value: string) => {
   const numbers = value.replace(/\D/g, '');
   if (numbers.length <= 11) {

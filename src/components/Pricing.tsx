@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'motion/react';
 import { CheckCircle2, XCircle, Zap, ShieldCheck, TrendingUp } from 'lucide-react';
+import { buildWhatsAppLink } from '../utils/whatsapp';
 
 const Pricing = () => {
   const plans = [
@@ -96,8 +97,13 @@ const Pricing = () => {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-6 xl:gap-8 items-start px-2 sm:px-0">
-          {plans.map((plan, index) => (
-            <div 
+          {plans.map((plan, index) => {
+            const isContact = plan.ctaText === 'Falar com especialista';
+            const ctaHref = isContact
+              ? buildWhatsAppLink('Olá! Tenho interesse no plano Empresarial do Homologa Plus.')
+              : 'https://app.homologaplus.com.br/cadastro';
+            return (
+            <div
               key={index}
               className={`bg-white p-6 sm:p-8 rounded-3xl border-2 ${plan.highlight ? 'border-primary shadow-xl shadow-primary/10 scale-100 lg:scale-105 z-10' : 'border-slate-100 shadow-sm'} flex flex-col hover:shadow-md transition-all w-full max-w-md mx-auto lg:max-w-none relative h-full`}
             >
@@ -148,8 +154,9 @@ const Pricing = () => {
 
               <div className="mt-auto flex flex-col items-center">
                 <a
-                  href="https://app.homologaplus.com.br/cadastro"
-                  onClick={() => window.fbq && window.fbq('track', 'InitiateCheckout', { content_name: plan.name })}
+                  href={ctaHref}
+                  {...(isContact ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+                  onClick={() => window.fbq && window.fbq('track', isContact ? 'Contact' : 'InitiateCheckout', { content_name: plan.name })}
                   className={`w-full py-3 md:py-3.5 rounded-xl font-semibold transition-all text-center text-sm md:text-base block ${plan.highlight ? 'bg-primary hover:bg-primary-dark text-white shadow-lg shadow-primary/30 hover:-translate-y-0.5' : 'bg-white hover:bg-surface text-primary border-2 border-slate-200 hover:border-primary'}`}
                 >
                   {plan.ctaText}
@@ -161,7 +168,8 @@ const Pricing = () => {
                 )}
               </div>
             </div>
-          ))}
+            );
+          })}
         </div>
 
         <div className="mt-12 md:mt-16 text-center flex flex-col items-center gap-2">

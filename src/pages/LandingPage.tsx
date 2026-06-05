@@ -1,8 +1,9 @@
 import React, { lazy, Suspense } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { motion } from 'motion/react';
-import { Zap, ChevronRight } from 'lucide-react';
+import { Zap, ChevronRight, Star, MessageCircle, CheckCircle2 } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { buildWhatsAppLink } from '../utils/whatsapp';
 import { SpeedInsights } from "@vercel/speed-insights/react";
 
 // Lazy load components below the fold
@@ -14,6 +15,7 @@ const MapControl = lazy(() => import('../components/MapControl'));
 const WhoIsItFor = lazy(() => import('../components/WhoIsItFor'));
 const Testimonials = lazy(() => import('../components/Testimonials'));
 const FAQ = lazy(() => import('../components/FAQ'));
+const FinalCTA = lazy(() => import('../components/FinalCTA'));
 const Pricing = lazy(() => import('../components/Pricing'));
 const Footer = lazy(() => import('../components/Footer'));
 
@@ -21,84 +23,119 @@ const Navbar = lazy(() => import('../components/Navbar')); // I'll move Navbar t
 
 const Hero = () => {
   return (
-    <section className="relative pt-[clamp(6rem,12vw,12rem)] pb-[clamp(3rem,8vw,8rem)] overflow-hidden">
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full -z-10 opacity-10">
-        <div className="absolute top-0 left-1/4 w-64 h-64 md:w-96 md:h-96 bg-primary rounded-full blur-[80px] md:blur-[120px]" />
-        <div className="absolute bottom-0 right-1/4 w-64 h-64 md:w-96 md:h-96 bg-bright-sky rounded-full blur-[80px] md:blur-[120px]" />
-      </div>
+    <section className="relative overflow-hidden pt-[clamp(7rem,12vw,11rem)] pb-16 md:pb-24">
+      {/* Atmosfera: brilho azul + grade sutil */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute left-1/2 top-[-200px] -z-10 h-[600px] w-[1060px] -translate-x-1/2 rounded-full"
+        style={{ background: 'radial-gradient(circle, rgba(59,130,246,0.17), rgba(37,99,235,0.05) 46%, transparent 70%)' }}
+      />
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0 -z-10"
+        style={{
+          backgroundImage:
+            'linear-gradient(rgba(15,23,42,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(15,23,42,0.03) 1px, transparent 1px)',
+          backgroundSize: '46px 46px',
+          WebkitMaskImage: 'radial-gradient(ellipse 90% 64% at 50% 0, #000 28%, transparent 70%)',
+          maskImage: 'radial-gradient(ellipse 90% 64% at 50% 0, #000 28%, transparent 70%)',
+        }}
+      />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.2fr] gap-[clamp(3rem,6vw,4rem)] items-center">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="text-center lg:text-left"
-          >
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 text-primary text-[11px] md:text-xs font-bold uppercase tracking-wider mb-4">
-              <Zap className="w-3.5 h-3.5" />
-              Lançamento Oficial
-            </div>
-            <h1 className="text-[clamp(1.75rem,4vw+0.5rem,3.75rem)] font-display font-extrabold text-slate-900 leading-[1.1] tracking-[-0.02em] mb-6 text-balance">
-              <span className="block">Sistema de gestão</span>
-              <span className="block text-primary">para homologação</span>
-              <span className="block">de usinas solares</span>
-            </h1>
-            <p className="text-base md:text-xl text-slate-600 leading-relaxed mb-8 md:mb-10 max-w-xl mx-auto lg:mx-0 text-pretty">
-              Toda a gestão de projetos, integradores e etapas da homologação na palma da sua mão, em um único sistema profissional.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-              <a
-                href="https://app.homologaplus.com.br/cadastro"
-                onClick={() => window.fbq('track', 'Lead')}
-                className="bg-primary hover:bg-primary-dark text-white px-8 py-4 rounded-xl text-lg font-bold transition-all duration-200 ease-out shadow-lg shadow-primary/30 hover:-translate-y-0.5 active:translate-y-0 flex items-center justify-center gap-2 w-full sm:w-auto"
-              >
-                Testar gratuitamente
-              </a>
-            </div>
-            <div className="mt-10 md:mt-14 flex flex-col sm:flex-row items-center gap-4 text-sm text-slate-500 justify-center lg:justify-start">
-              <div className="flex -space-x-2">
-                {[1, 2, 3, 4].map((i) => (
-                  <img
-                    key={i}
-                    src={`https://picsum.photos/seed/user${i}/64/64`}
-                    alt={`Usuário da plataforma ${i}`}
-                    width={32}
-                    height={32}
-                    className="w-8 h-8 rounded-full border-2 border-white"
-                    referrerPolicy="no-referrer"
-                    loading="lazy"
-                  />
+      <div className="px-4 sm:px-6 lg:px-8">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          className="mx-auto max-w-3xl text-center"
+        >
+          <span className="inline-flex items-center gap-2 rounded-full bg-primary/10 px-3.5 py-1.5 font-mono text-[11px] md:text-xs font-semibold uppercase tracking-[0.14em] text-primary">
+            Para empresas de engenharia e integradores
+          </span>
+          <h1 className="mx-auto mt-5 max-w-[18ch] text-[clamp(2rem,4vw+0.5rem,3.6rem)] font-display font-extrabold leading-[1.06] tracking-[-0.025em] text-slate-900 text-balance">
+            O sistema de gestão preferido de quem <span className="text-primary">homologa energia solar</span>
+          </h1>
+          <p className="mx-auto mt-5 max-w-[42em] text-base md:text-xl leading-relaxed text-slate-600 text-pretty">
+            Centralize projetos, integradores, documentos e prazos em um só painel. Do cadastro do projeto à aprovação na concessionária, sem planilhas e sem retrabalho.
+          </p>
+          <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row sm:gap-4">
+            <a
+              href="https://app.homologaplus.com.br/cadastro"
+              onClick={() => window.fbq && window.fbq('track', 'Lead')}
+              className="flex w-full items-center justify-center gap-2 rounded-xl bg-primary px-8 py-4 text-lg font-bold text-white shadow-lg shadow-primary/30 transition-all duration-200 ease-out hover:-translate-y-0.5 hover:bg-primary-dark active:translate-y-0 sm:w-auto"
+            >
+              Testar gratuitamente
+            </a>
+            <a
+              href={buildWhatsAppLink()}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => window.fbq && window.fbq('track', 'Contact')}
+              className="flex w-full items-center justify-center gap-2 rounded-xl bg-surface px-8 py-4 text-lg font-bold text-primary transition-all duration-200 ease-out hover:bg-slate-200 sm:w-auto"
+            >
+              <MessageCircle className="h-5 w-5" />
+              Falar no WhatsApp
+            </a>
+          </div>
+          <p className="mt-4 text-sm text-slate-500">7 dias grátis. Cancele quando quiser.</p>
+          <div className="mt-7 flex flex-col items-center justify-center gap-3 text-sm sm:flex-row sm:gap-5">
+            <div className="flex items-center gap-1.5">
+              <div className="flex">
+                {[1, 2, 3, 4, 5].map((i) => (
+                  <Star key={i} className="h-4 w-4 fill-primary text-primary" />
                 ))}
               </div>
-              <span className="text-center sm:text-left font-medium">Utilizado por mais de 50 empresas de engenharia</span>
+              <span className="font-mono text-sm font-semibold text-slate-700">4,8/5</span>
             </div>
-          </motion.div>
+            <div className="hidden h-4 w-px bg-slate-200 sm:block" />
+            <span className="font-medium text-slate-500">Mais de 200 empresas de engenharia já usam</span>
+          </div>
+        </motion.div>
 
-          <motion.div
-            initial={{ opacity: 0, x: 20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="relative flex justify-center lg:justify-end lg:-mr-16"
+        {/* Painel real do produto: recortado, gradiente de continuidade e chips de destaque */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, delay: 0.2 }}
+          className="relative mx-auto mt-12 max-w-[1120px]"
+        >
+          <div
+            className="animate-floaty absolute -top-5 -left-3 z-20 hidden items-center gap-3 rounded-2xl border border-slate-200 bg-white px-3.5 py-3 shadow-[0_20px_44px_-16px_rgba(15,23,42,0.32)] md:flex lg:-left-6"
+            style={{ animationDelay: '1.4s' }}
           >
-            <div className="relative w-full max-w-[440px] sm:max-w-[500px] lg:max-w-[750px] xl:max-w-[900px]">
-              <img
-                src="https://i.imgur.com/GZGcSIL.png"
-                alt="Dashboard Homologa Plus no MacBook"
-                width={900}
-                height={562}
-                className="w-full h-auto drop-shadow-[0_35px_60px_rgba(15,23,42,0.22)] rounded-xl"
-                referrerPolicy="no-referrer"
-                loading="eager"
-                fetchPriority="high"
-              />
-              
-              {/* Decorative elements */}
-              <div className="absolute -bottom-6 -right-6 w-32 h-32 bg-primary/15 rounded-full blur-3xl -z-10" />
-              <div className="absolute -top-6 -left-6 w-24 h-24 bg-bright-sky/15 rounded-full blur-3xl -z-10" />
-            </div>
-          </motion.div>
-        </div>
+            <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-success/15 text-success">
+              <CheckCircle2 className="h-5 w-5" />
+            </span>
+            <span className="text-left">
+              <span className="block text-sm font-bold leading-tight text-slate-900">78% de aprovação</span>
+              <span className="block font-mono text-[11px] text-slate-400">taxa de homologação</span>
+            </span>
+          </div>
+          <div
+            className="animate-floaty absolute top-[46%] -right-3 z-20 hidden items-center gap-3 rounded-2xl border border-slate-200 bg-white px-3.5 py-3 shadow-[0_20px_44px_-16px_rgba(15,23,42,0.32)] md:flex lg:-right-6"
+            style={{ animationDelay: '1.9s' }}
+          >
+            <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary/10 text-primary">
+              <Zap className="h-5 w-5" />
+            </span>
+            <span className="text-left">
+              <span className="block text-sm font-bold leading-tight text-slate-900">935.6 kWp</span>
+              <span className="block font-mono text-[11px] text-slate-400">potência gerenciada</span>
+            </span>
+          </div>
+
+          <div className="overflow-hidden rounded-2xl border border-slate-200 shadow-[0_26px_70px_-34px_rgba(15,23,42,0.34)]">
+            <img
+              src="/dashboard.png"
+              alt="Painel do Homologa Plus com total de projetos, concluídos, pendências, potência total e o pipeline por etapa"
+              width={1919}
+              height={1041}
+              className="w-full"
+              loading="eager"
+              fetchPriority="high"
+            />
+          </div>
+        </motion.div>
       </div>
     </section>
   );
@@ -233,6 +270,7 @@ const LandingPage = () => {
           <Testimonials />
           <Pricing />
           <FAQ />
+          <FinalCTA />
         </main>
         <Footer />
       </Suspense>

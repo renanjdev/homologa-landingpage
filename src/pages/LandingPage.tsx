@@ -262,11 +262,11 @@ const LandingPage = () => {
       <Suspense fallback={<div className="h-20" />}>
         <main>
           <BeforeAfter />
+          <WhoIsItFor />
           <Flow />
           <MobilePreview />
           <Features />
           <MapControl />
-          <WhoIsItFor />
           <Testimonials />
           <Pricing />
           <FAQ />

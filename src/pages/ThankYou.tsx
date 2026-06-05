@@ -8,7 +8,7 @@ import Footer from '../components/Footer';
 const ThankYou = () => {
   return (
     <div className="min-h-screen flex flex-col bg-surface">
-      <Navbar />
+      <Navbar scrolled={true} />
 
       <main className="flex-grow flex items-center justify-center pt-24 pb-16 px-4 sm:px-6 lg:px-8">
         <div className="max-w-2xl w-full">

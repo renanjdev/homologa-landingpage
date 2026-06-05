@@ -1,8 +1,9 @@
 import React, { lazy, Suspense } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { motion } from 'motion/react';
-import { Zap, ChevronRight } from 'lucide-react';
+import { Zap, ChevronRight, Star, MessageCircle } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { buildWhatsAppLink } from '../utils/whatsapp';
 import { SpeedInsights } from "@vercel/speed-insights/react";
 
 // Lazy load components below the fold
@@ -14,6 +15,7 @@ const MapControl = lazy(() => import('../components/MapControl'));
 const WhoIsItFor = lazy(() => import('../components/WhoIsItFor'));
 const Testimonials = lazy(() => import('../components/Testimonials'));
 const FAQ = lazy(() => import('../components/FAQ'));
+const FinalCTA = lazy(() => import('../components/FinalCTA'));
 const Pricing = lazy(() => import('../components/Pricing'));
 const Footer = lazy(() => import('../components/Footer'));
 
@@ -40,38 +42,46 @@ const Hero = () => {
               Lançamento Oficial
             </div>
             <h1 className="text-[clamp(1.75rem,4vw+0.5rem,3.75rem)] font-display font-extrabold text-slate-900 leading-[1.1] tracking-[-0.02em] mb-6 text-balance">
-              <span className="block">Sistema de gestão</span>
-              <span className="block text-primary">para homologação</span>
-              <span className="block">de usinas solares</span>
+              <span className="block">Homologue usinas solares</span>
+              <span className="block text-primary">sem retrabalho</span>
+              <span className="block">e sem perder prazo</span>
             </h1>
             <p className="text-base md:text-xl text-slate-600 leading-relaxed mb-8 md:mb-10 max-w-xl mx-auto lg:mx-0 text-pretty">
-              Toda a gestão de projetos, integradores e etapas da homologação na palma da sua mão, em um único sistema profissional.
+              O sistema de gestão para empresas de engenharia e integradores: centralize projetos, documentos e o status de cada homologação em um só lugar, do cadastro à aprovação na concessionária.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center lg:justify-start">
               <a
                 href="https://app.homologaplus.com.br/cadastro"
-                onClick={() => window.fbq('track', 'Lead')}
+                onClick={() => window.fbq && window.fbq('track', 'Lead')}
                 className="bg-primary hover:bg-primary-dark text-white px-8 py-4 rounded-xl text-lg font-bold transition-all duration-200 ease-out shadow-lg shadow-primary/30 hover:-translate-y-0.5 active:translate-y-0 flex items-center justify-center gap-2 w-full sm:w-auto"
               >
                 Testar gratuitamente
               </a>
+              <a
+                href={buildWhatsAppLink()}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => window.fbq && window.fbq('track', 'Contact')}
+                className="bg-surface hover:bg-slate-200 text-primary px-8 py-4 rounded-xl text-lg font-bold transition-all duration-200 ease-out flex items-center justify-center gap-2 w-full sm:w-auto"
+              >
+                <MessageCircle className="w-5 h-5" />
+                Falar no WhatsApp
+              </a>
             </div>
-            <div className="mt-10 md:mt-14 flex flex-col sm:flex-row items-center gap-4 text-sm text-slate-500 justify-center lg:justify-start">
-              <div className="flex -space-x-2">
-                {[1, 2, 3, 4].map((i) => (
-                  <img
-                    key={i}
-                    src={`https://picsum.photos/seed/user${i}/64/64`}
-                    alt={`Usuário da plataforma ${i}`}
-                    width={32}
-                    height={32}
-                    className="w-8 h-8 rounded-full border-2 border-white"
-                    referrerPolicy="no-referrer"
-                    loading="lazy"
-                  />
-                ))}
+            <p className="mt-4 text-sm text-slate-500 text-center lg:text-left">
+              7 dias grátis. Cancele quando quiser.
+            </p>
+            <div className="mt-8 md:mt-10 flex flex-col sm:flex-row items-center gap-3 sm:gap-5 text-sm justify-center lg:justify-start">
+              <div className="flex items-center gap-1.5">
+                <div className="flex">
+                  {[1, 2, 3, 4, 5].map((i) => (
+                    <Star key={i} className="w-4 h-4 text-primary fill-primary" />
+                  ))}
+                </div>
+                <span className="font-mono text-sm font-semibold text-slate-700">4,8/5</span>
               </div>
-              <span className="text-center sm:text-left font-medium">Utilizado por mais de 50 empresas de engenharia</span>
+              <div className="hidden sm:block h-4 w-px bg-slate-200" />
+              <span className="text-center sm:text-left font-medium text-slate-500">Mais de 200 empresas de engenharia já usam</span>
             </div>
           </motion.div>
 
@@ -233,6 +243,7 @@ const LandingPage = () => {
           <Testimonials />
           <Pricing />
           <FAQ />
+          <FinalCTA />
         </main>
         <Footer />
       </Suspense>

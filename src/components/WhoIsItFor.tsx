@@ -1,39 +1,67 @@
 import React from 'react';
 import { motion } from 'motion/react';
-import { CheckCircle2 } from 'lucide-react';
+import { Building2, Zap, Handshake } from 'lucide-react';
+
+const personas = [
+  {
+    Icon: Building2,
+    label: 'Empresas de homologação',
+    desc: 'Quem presta serviço de homologação de usinas solares para terceiros e precisa de escala.',
+  },
+  {
+    Icon: Zap,
+    label: 'Engenharia elétrica',
+    desc: 'Empresas de engenharia elétrica que assinam e respondem pelos projetos fotovoltaicos.',
+  },
+  {
+    Icon: Handshake,
+    label: 'Integradores',
+    desc: 'Quem instala e terceiriza a homologação dos sistemas, sem perder o controle do status.',
+  },
+];
 
 const WhoIsItFor = () => {
   return (
-    <motion.section 
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-100px" }}
-      transition={{ duration: 0.6 }}
-      className="py-16 md:py-24 bg-white"
-    >
+    <section className="py-16 md:py-24 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-12 md:mb-16">
-          <h2 className="text-clamp-h2 font-display font-bold text-slate-900 mb-4 md:mb-6">
-            Para quem é o Homologa Plus
-          </h2>
-        </div>
+        <div className="grid items-start gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:gap-20">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: '-100px' }}
+            transition={{ duration: 0.6 }}
+          >
+            <h2 className="text-clamp-h2 font-display font-bold text-slate-900 mb-4">
+              Para quem é o Homologa Plus
+            </h2>
+            <p className="text-lg text-slate-600 leading-relaxed max-w-md">
+              Feito para quem vive a homologação de usinas solares no dia a dia, do projeto ao parecer da concessionária.
+            </p>
+          </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
-          {[
-            "Empresas que prestam serviços de homologação de usinas solares",
-            "Empresas de engenharia elétrica",
-            "Integradores que terceirizam homologação de sistemas fotovoltaicos"
-          ].map((item, idx) => (
-            <div key={idx} className="bg-surface p-6 md:p-8 rounded-3xl border border-slate-100 flex items-start gap-4">
-              <div className="w-8 h-8 md:w-10 md:h-10 bg-primary text-white rounded-xl flex items-center justify-center shrink-0">
-                <CheckCircle2 className="w-4 h-4 md:w-5 md:h-5" />
-              </div>
-              <p className="text-slate-700 font-medium leading-relaxed text-sm md:text-base">{item}</p>
-            </div>
-          ))}
+          <ul className="flex flex-col">
+            {personas.map((p, idx) => (
+              <motion.li
+                key={p.label}
+                initial={{ opacity: 0, y: 16 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: '-80px' }}
+                transition={{ duration: 0.5, delay: idx * 0.08 }}
+                className="flex items-start gap-5 border-t border-slate-100 py-6 first:border-t-0 first:pt-0 md:gap-6 md:py-7"
+              >
+                <span className="flex h-12 w-12 flex-none items-center justify-center rounded-2xl bg-primary/10 text-primary md:h-14 md:w-14">
+                  <p.Icon className="h-6 w-6" />
+                </span>
+                <div>
+                  <h3 className="font-display text-lg md:text-xl font-bold text-slate-900 mb-1">{p.label}</h3>
+                  <p className="text-slate-600 leading-relaxed">{p.desc}</p>
+                </div>
+              </motion.li>
+            ))}
+          </ul>
         </div>
       </div>
-    </motion.section>
+    </section>
   );
 };
 

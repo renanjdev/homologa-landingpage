@@ -80,8 +80,13 @@ const Navbar = ({ scrolled }: { scrolled: boolean }) => {
             >
               Acessar Plataforma
             </a>
-            <button onClick={() => setIsOpen(!isOpen)} className="p-1.5 xs:p-2 text-slate-600 hover:bg-slate-100 rounded-lg transition-colors">
-              {isOpen ? <X className="w-5 h-5 xs:w-6 h-6" /> : <Menu className="w-5 h-5 xs:w-6 h-6" />}
+            <button
+              onClick={() => setIsOpen(!isOpen)}
+              aria-label={isOpen ? 'Fechar menu' : 'Abrir menu'}
+              aria-expanded={isOpen}
+              className="p-1.5 xs:p-2 text-slate-600 hover:bg-slate-100 rounded-lg transition-colors"
+            >
+              {isOpen ? <X className="w-5 h-5 xs:w-6 h-6" aria-hidden="true" /> : <Menu className="w-5 h-5 xs:w-6 h-6" aria-hidden="true" />}
             </button>
           </div>
         </div>
@@ -98,7 +103,7 @@ const Navbar = ({ scrolled }: { scrolled: boolean }) => {
             className="md:hidden bg-white border-b border-slate-100 overflow-hidden shadow-xl"
           >
             <div className="px-4 pt-2 pb-8 space-y-1">
-              <p className="px-3 py-2 text-[10px] font-bold text-slate-400 uppercase tracking-widest">Navegação</p>
+              <p className="px-3 py-2 text-[10px] font-bold text-slate-500 uppercase tracking-widest">Navegação</p>
               {navLinks.map((link) => (
                 <a 
                   key={link.name}

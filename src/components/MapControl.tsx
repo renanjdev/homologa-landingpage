@@ -62,11 +62,6 @@ const MapControl = () => {
             transition={{ duration: 0.6 }}
             className="order-1 lg:order-2"
           >
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-bold uppercase tracking-wider mb-6">
-              <MapPin className="w-4 h-4" />
-              Visão Geográfica
-            </div>
-            
             <h2 className="text-clamp-h2 font-display font-bold text-slate-900 mb-6">
               Controle de Projetos <span className="text-primary">no Mapa</span>
             </h2>

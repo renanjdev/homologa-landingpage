@@ -14,13 +14,13 @@ colors:
   canvas: "#FFFFFF"
 typography:
   display:
-    fontFamily: "Inter, ui-sans-serif, system-ui, sans-serif"
+    fontFamily: "Archivo, Inter, ui-sans-serif, system-ui, sans-serif"
     fontSize: "clamp(2.25rem, 5vw + 1rem, 4.5rem)"
     fontWeight: 800
     lineHeight: 1.1
     letterSpacing: "-0.02em"
   headline:
-    fontFamily: "Inter, ui-sans-serif, system-ui, sans-serif"
+    fontFamily: "Archivo, Inter, ui-sans-serif, system-ui, sans-serif"
     fontSize: "clamp(1.5rem, 2.5vw + 0.5rem, 2.25rem)"
     fontWeight: 700
     lineHeight: 1.2
@@ -125,11 +125,11 @@ Paleta de azul-engenharia sobre neutros frios, com verde e laranja reservados es
 
 ## 3. Typography
 
-**Display Font:** Inter (com ui-sans-serif, system-ui fallback)
-**Body Font:** Inter (mesma família, hierarquia por peso e escala)
+**Display Font:** Archivo (com Inter e system-ui como fallback) — usada em headlines e aberturas de seção
+**Body Font:** Inter (hierarquia por peso e escala)
 **Label/Mono Font:** JetBrains Mono (com ui-monospace fallback)
 
-**Character:** Inter carrega tudo com neutralidade competente, a fonte de interface que não chama atenção pra si, deixa o conteúdo comandar. JetBrains Mono entra como a voz "instrumento": labels, números, etiquetas técnicas que merecem o tratamento de leitura de painel.
+**Character:** Archivo carrega os títulos com firmeza técnica, uma grotesca de engenharia que dá personalidade às aberturas sem virar enfeite. Inter carrega o corpo com neutralidade competente, sem chamar atenção pra si. JetBrains Mono entra como a voz "instrumento": labels, números, etiquetas técnicas que merecem o tratamento de leitura de painel.
 
 ### Hierarchy
 - **Display** (800, clamp(2.25rem→4.5rem), 1.1, -0.02em): Headlines de hero e aberturas de seção. Fluido via clamp para escalar suave do mobile ao desktop.

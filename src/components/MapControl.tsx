@@ -4,7 +4,7 @@ import { MapPin, Navigation, CheckCircle2 } from 'lucide-react';
 
 const MapControl = () => {
   return (
-    <section className="py-20 bg-slate-50 relative overflow-hidden">
+    <section className="py-20 bg-white relative overflow-hidden">
       {/* Elementos decorativos de fundo */}
       <div className="absolute top-0 right-0 w-1/2 h-full bg-primary/5 rounded-l-full blur-3xl -z-10" />
       <div className="absolute bottom-[-10%] left-[-10%] w-96 h-96 bg-bright-sky/10 rounded-full blur-3xl -z-10" />

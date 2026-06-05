@@ -61,7 +61,7 @@ const features: Feature[] = [
 const Features = () => {
   return (
     <section id="solucao" className="py-16 md:py-28 bg-surface overflow-hidden">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -88,7 +88,7 @@ const Features = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-80px' }}
               transition={{ duration: 0.6 }}
-              className="grid items-center gap-10 md:gap-14 lg:grid-cols-[1fr_1.1fr]"
+              className="grid items-center gap-10 lg:gap-12 lg:grid-cols-[0.8fr_1.4fr]"
             >
               {/* Copy */}
               <div className={f.flip ? 'lg:order-2' : ''}>

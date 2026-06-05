@@ -124,7 +124,7 @@ const Hero = () => {
             </span>
           </div>
 
-          <div className="aspect-[1919/800] overflow-hidden rounded-t-2xl border border-b-0 border-slate-200 shadow-[0_26px_70px_-34px_rgba(15,23,42,0.34)]">
+          <div className="overflow-hidden rounded-2xl border border-slate-200 shadow-[0_26px_70px_-34px_rgba(15,23,42,0.34)]">
             <img
               src="/dashboard.png"
               alt="Painel do Homologa Plus com total de projetos, concluídos, pendências, potência total e o pipeline por etapa"
@@ -135,10 +135,6 @@ const Hero = () => {
               fetchPriority="high"
             />
           </div>
-          <div
-            aria-hidden="true"
-            className="pointer-events-none absolute inset-x-0 bottom-0 h-24 bg-gradient-to-b from-transparent via-white/70 to-white"
-          />
         </motion.div>
       </div>
     </section>

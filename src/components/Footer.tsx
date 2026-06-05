@@ -24,7 +24,7 @@ const Footer = () => {
               <li><a href="#problema" className="hover:text-primary transition-colors">O Problema</a></li>
               <li><a href="#solucao" className="hover:text-primary transition-colors">Solução</a></li>
               <li><a href="#planos" className="hover:text-primary transition-colors">Planos</a></li>
-              <li><a href="https://app.homologaplus.com.br/login" className="hover:text-primary transition-colors">Acessar Sistema</a></li>
+              <li><a href="https://app.homologaplus.com.br/login" className="hover:text-primary transition-colors">Acessar Plataforma</a></li>
             </ul>
           </div>
 

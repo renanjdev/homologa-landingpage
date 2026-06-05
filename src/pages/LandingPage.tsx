@@ -19,7 +19,7 @@ const FinalCTA = lazy(() => import('../components/FinalCTA'));
 const Pricing = lazy(() => import('../components/Pricing'));
 const Footer = lazy(() => import('../components/Footer'));
 
-const Navbar = lazy(() => import('../components/Navbar')); // I'll move Navbar too
+const Navbar = lazy(() => import('../components/Navbar'));
 
 const Hero = () => {
   return (

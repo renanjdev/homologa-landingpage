@@ -122,7 +122,7 @@ const Navbar = ({ scrolled }: { scrolled: boolean }) => {
                   onClick={() => setIsOpen(false)}
                   className="w-full bg-primary text-white px-5 py-4 rounded-2xl text-base font-bold shadow-xl shadow-primary/20 block text-center active:scale-[0.98] transition-transform"
                 >
-                  Testar Gratuitamente
+                  Testar gratuitamente
                 </a>
               </div>
             </div>

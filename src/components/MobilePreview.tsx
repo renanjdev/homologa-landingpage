@@ -52,14 +52,17 @@ const MobilePreview = () => {
             
             <div className="relative group max-w-[320px] sm:max-w-[380px]">
               <div className="relative z-10">
-                <img
-                  src="https://i.imgur.com/4bZCkIG.png"
-                  alt="Interface Mobile Homologa Plus"
-                  width={380}
-                  height={760}
-                  className="w-full h-auto drop-shadow-[0_45px_60px_rgba(0,0,0,0.15)] rounded-[3rem]"
-                  loading="lazy"
-                />
+                <picture>
+                  <source srcSet="/mobile-preview.webp" type="image/webp" />
+                  <img
+                    src="/mobile-preview.png"
+                    alt="Interface Mobile Homologa Plus"
+                    width={380}
+                    height={770}
+                    className="w-full h-auto drop-shadow-[0_45px_60px_rgba(0,0,0,0.15)] rounded-[3rem]"
+                    loading="lazy"
+                  />
+                </picture>
               </div>
 
               {/* Feature Cards Floating */}

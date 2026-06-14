@@ -329,6 +329,18 @@ const LandingPage = () => {
         </a>
       </motion.div>
 
+      {/* Botão flutuante de WhatsApp (desktop — no mobile o WhatsApp já fica na barra fixa de CTA) */}
+      <a
+        href={buildWhatsAppLink()}
+        target="_blank"
+        rel="noopener noreferrer"
+        onClick={() => window.fbq && window.fbq('track', 'Contact')}
+        aria-label="Falar no WhatsApp"
+        className="fixed bottom-8 right-8 z-40 hidden h-14 w-14 items-center justify-center rounded-full bg-success text-white shadow-xl shadow-success/30 transition-transform hover:-translate-y-0.5 md:flex"
+      >
+        <MessageCircle className="h-7 w-7" />
+      </a>
+
       {/* Back to Top Button (apenas desktop — no mobile a barra de CTA ocupa o rodapé) */}
       <motion.button
         initial={{ opacity: 0, scale: 0.5 }}
@@ -337,7 +349,7 @@ const LandingPage = () => {
         aria-label="Voltar ao topo"
         aria-hidden={!scrolled}
         tabIndex={scrolled ? 0 : -1}
-        className={`fixed bottom-8 right-8 z-40 hidden bg-white text-primary p-4 rounded-2xl shadow-2xl border border-slate-100 hover:bg-primary hover:text-white transition-all group md:block ${scrolled ? '' : 'pointer-events-none'}`}
+        className={`fixed bottom-28 right-8 z-40 hidden bg-white text-primary p-4 rounded-2xl shadow-2xl border border-slate-100 hover:bg-primary hover:text-white transition-all group md:block ${scrolled ? '' : 'pointer-events-none'}`}
       >
         <ChevronRight className="w-6 h-6 -rotate-90 group-hover:-translate-y-1 transition-transform" aria-hidden="true" />
       </motion.button>

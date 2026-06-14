@@ -1,7 +1,7 @@
 import React, { lazy, Suspense } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { motion } from 'motion/react';
-import { Zap, ChevronRight, Star, MessageCircle, CheckCircle2 } from 'lucide-react';
+import { Zap, ChevronRight, MessageCircle, CheckCircle2 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { buildWhatsAppLink } from '../utils/whatsapp';
 import { SpeedInsights } from "@vercel/speed-insights/react";
@@ -13,8 +13,8 @@ const MobilePreview = lazy(() => import('../components/MobilePreview'));
 const Features = lazy(() => import('../components/Features'));
 const MapControl = lazy(() => import('../components/MapControl'));
 const WhoIsItFor = lazy(() => import('../components/WhoIsItFor'));
-const Testimonials = lazy(() => import('../components/Testimonials'));
 const FAQ = lazy(() => import('../components/FAQ'));
+const LeadCapture = lazy(() => import('../components/LeadCapture'));
 const FinalCTA = lazy(() => import('../components/FinalCTA'));
 const Pricing = lazy(() => import('../components/Pricing'));
 const Footer = lazy(() => import('../components/Footer'));
@@ -80,17 +80,8 @@ const Hero = () => {
           <p className="mt-4 text-sm font-medium text-slate-500">
             <span className="font-semibold text-success">7 dias grátis</span> · Sem cartão de crédito · Cancele quando quiser
           </p>
-          <div className="mt-7 flex flex-col items-center justify-center gap-3 text-sm sm:flex-row sm:gap-5">
-            <div className="flex items-center gap-1.5">
-              <div className="flex">
-                {[1, 2, 3, 4, 5].map((i) => (
-                  <Star key={i} className="h-4 w-4 fill-primary text-primary" />
-                ))}
-              </div>
-              <span className="font-mono text-sm font-semibold text-slate-700">4,8/5</span>
-            </div>
-            <div className="hidden h-4 w-px bg-slate-200 sm:block" />
-            <span className="font-medium text-slate-500">Mais de 200 empresas de engenharia já usam</span>
+          <div className="mt-7 flex items-center justify-center text-sm">
+            <span className="font-medium text-slate-500">Mais de 200 empresas de engenharia já usam o Homologa Plus</span>
           </div>
 
           {/* Prova de resultado visível no mobile (no desktop ela vira card flutuante sobre o painel) */}
@@ -226,43 +217,6 @@ const LandingPage = () => {
                 }
               ]
             },
-            "aggregateRating": {
-              "@type": "AggregateRating",
-              "ratingValue": "4.8",
-              "ratingCount": "47",
-              "bestRating": "5",
-              "worstRating": "1"
-            },
-            "review": [
-              {
-                "@type": "Review",
-                "author": {
-                  "@type": "Person",
-                  "name": "Carlos Mendes"
-                },
-                "datePublished": "2025-11-15",
-                "reviewBody": "Reduziu o tempo de homologação dos nossos projetos pela metade. Ferramenta indispensável para quem trabalha com energia solar.",
-                "reviewRating": {
-                  "@type": "Rating",
-                  "ratingValue": "5",
-                  "bestRating": "5"
-                }
-              },
-              {
-                "@type": "Review",
-                "author": {
-                  "@type": "Person",
-                  "name": "Ana Ferreira"
-                },
-                "datePublished": "2025-12-03",
-                "reviewBody": "Finalmente um sistema que organiza toda a documentação de homologação. Parei de perder prazo por falta de controle.",
-                "reviewRating": {
-                  "@type": "Rating",
-                  "ratingValue": "5",
-                  "bestRating": "5"
-                }
-              }
-            ],
             "provider": {
               "@type": "Organization",
               "name": "Homologa Plus",
@@ -290,9 +244,9 @@ const LandingPage = () => {
           <MobilePreview />
           <Features />
           <MapControl />
-          <Testimonials />
           <Pricing />
           <FAQ />
+          <LeadCapture />
           <FinalCTA />
         </main>
         <Footer />

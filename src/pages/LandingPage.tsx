@@ -168,10 +168,10 @@ const LandingPage = () => {
     <div className="min-h-screen">
       {/* ... Helmet below ... */}
       <Helmet>
-        <title>Homologação de Energia Solar sem Erro | Software para Engenheiros e Integradores</title>
+        <title>Homologação de Energia Solar sem Erro | Software para Empresas de Homologação e Engenharia</title>
         <meta name="description" content="Organize e aprove homologações de energia solar sem retrabalho. Controle projetos, clientes e documentos em um só sistema. Teste grátis." />
         <meta name="keywords" content="homologação solar, homologação energia solar, software homologação, gestão de usinas fotovoltaicas, engenharia solar, homologa plus, projetos solares" />
-        <meta property="og:title" content="Homologação de Energia Solar sem Erro | Software para Engenheiros e Integradores" />
+        <meta property="og:title" content="Homologação de Energia Solar sem Erro | Software para Empresas de Homologação e Engenharia" />
         <meta property="og:description" content="Organize e aprove homologações de energia solar sem retrabalho. Controle projetos, clientes e documentos em um só sistema. Teste grátis." />
         <link rel="canonical" href="https://homologaplus.com.br/" />
         <script type="application/ld+json">{`

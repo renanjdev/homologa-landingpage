@@ -50,10 +50,10 @@ const Hero = () => {
           className="mx-auto max-w-3xl text-center"
         >
           <span className="inline-flex items-center gap-2 rounded-full bg-primary/10 px-3.5 py-1.5 font-mono text-[11px] md:text-xs font-semibold uppercase tracking-[0.14em] text-primary">
-            Para empresas de engenharia e integradores
+            Para empresas de homologação, engenharia e integradores
           </span>
-          <h1 className="mx-auto mt-5 max-w-[18ch] text-[clamp(2rem,4vw+0.5rem,3.6rem)] font-display font-extrabold leading-[1.06] tracking-[-0.025em] text-slate-900 text-balance">
-            O sistema de gestão preferido de quem <span className="text-primary">homologa energia solar</span>
+          <h1 className="mx-auto mt-5 max-w-[20ch] text-[clamp(2rem,4vw+0.5rem,3.6rem)] font-display font-extrabold leading-[1.06] tracking-[-0.025em] text-slate-900 text-balance">
+            Pare de perder prazo na <span className="text-primary">homologação solar</span> por documento espalhado
           </h1>
           <p className="mx-auto mt-5 max-w-[42em] text-base md:text-xl leading-relaxed text-slate-600 text-pretty">
             Centralize projetos, integradores, documentos e prazos em um só painel. Do cadastro do projeto à aprovação na concessionária, sem planilhas e sem retrabalho.
@@ -77,7 +77,9 @@ const Hero = () => {
               Falar no WhatsApp
             </a>
           </div>
-          <p className="mt-4 text-sm text-slate-500">7 dias grátis. Cancele quando quiser.</p>
+          <p className="mt-4 text-sm font-medium text-slate-500">
+            <span className="font-semibold text-success">7 dias grátis</span> · Sem cartão de crédito · Cancele quando quiser
+          </p>
           <div className="mt-7 flex flex-col items-center justify-center gap-3 text-sm sm:flex-row sm:gap-5">
             <div className="flex items-center gap-1.5">
               <div className="flex">
@@ -89,6 +91,24 @@ const Hero = () => {
             </div>
             <div className="hidden h-4 w-px bg-slate-200 sm:block" />
             <span className="font-medium text-slate-500">Mais de 200 empresas de engenharia já usam</span>
+          </div>
+
+          {/* Prova de resultado visível no mobile (no desktop ela vira card flutuante sobre o painel) */}
+          <div className="mt-6 flex justify-center gap-2.5 md:hidden">
+            <span className="inline-flex items-center gap-2 rounded-xl border border-slate-200 bg-white px-3 py-2 shadow-sm">
+              <CheckCircle2 className="h-4 w-4 shrink-0 text-success" />
+              <span className="text-left">
+                <span className="block text-sm font-bold leading-tight text-slate-900">78% de aprovação</span>
+                <span className="block font-mono text-[10px] text-slate-500">taxa de homologação</span>
+              </span>
+            </span>
+            <span className="inline-flex items-center gap-2 rounded-xl border border-slate-200 bg-white px-3 py-2 shadow-sm">
+              <Zap className="h-4 w-4 shrink-0 text-primary" />
+              <span className="text-left">
+                <span className="block text-sm font-bold leading-tight text-slate-900">935.6 kWp</span>
+                <span className="block font-mono text-[10px] text-slate-500">potência gerenciada</span>
+              </span>
+            </span>
           </div>
         </motion.div>
 
@@ -278,8 +298,38 @@ const LandingPage = () => {
         <Footer />
       </Suspense>
       <SpeedInsights />
-      
-      {/* Back to Top Button */}
+
+      {/* CTA fixo no mobile: recaptura a intenção durante a rolagem (aparece após sair do hero) */}
+      <motion.div
+        initial={{ y: 120 }}
+        animate={{ y: scrolled ? 0 : 120 }}
+        transition={{ duration: 0.25, ease: 'easeOut' }}
+        aria-hidden={!scrolled}
+        className="fixed inset-x-0 bottom-0 z-40 flex items-center gap-2.5 border-t border-slate-200 bg-white/95 px-4 py-3 shadow-[0_-8px_24px_-12px_rgba(15,23,42,0.18)] backdrop-blur-lg md:hidden"
+        style={{ paddingBottom: 'calc(0.75rem + env(safe-area-inset-bottom))' }}
+      >
+        <a
+          href="https://app.homologaplus.com.br/cadastro"
+          onClick={() => window.fbq && window.fbq('track', 'Lead')}
+          tabIndex={scrolled ? 0 : -1}
+          className="flex flex-1 items-center justify-center gap-2 rounded-xl bg-primary px-5 py-3.5 text-base font-bold text-white shadow-lg shadow-primary/30 active:scale-[0.98]"
+        >
+          Testar grátis
+        </a>
+        <a
+          href={buildWhatsAppLink()}
+          target="_blank"
+          rel="noopener noreferrer"
+          onClick={() => window.fbq && window.fbq('track', 'Contact')}
+          aria-label="Falar no WhatsApp"
+          tabIndex={scrolled ? 0 : -1}
+          className="flex items-center justify-center rounded-xl border border-slate-200 bg-white px-4 py-3.5 text-success active:scale-[0.98]"
+        >
+          <MessageCircle className="h-6 w-6" />
+        </a>
+      </motion.div>
+
+      {/* Back to Top Button (apenas desktop — no mobile a barra de CTA ocupa o rodapé) */}
       <motion.button
         initial={{ opacity: 0, scale: 0.5 }}
         animate={{ opacity: scrolled ? 1 : 0, scale: scrolled ? 1 : 0 }}
@@ -287,7 +337,7 @@ const LandingPage = () => {
         aria-label="Voltar ao topo"
         aria-hidden={!scrolled}
         tabIndex={scrolled ? 0 : -1}
-        className={`fixed bottom-8 right-8 z-40 bg-white text-primary p-4 rounded-2xl shadow-2xl border border-slate-100 hover:bg-primary hover:text-white transition-all group ${scrolled ? '' : 'pointer-events-none'}`}
+        className={`fixed bottom-8 right-8 z-40 hidden bg-white text-primary p-4 rounded-2xl shadow-2xl border border-slate-100 hover:bg-primary hover:text-white transition-all group md:block ${scrolled ? '' : 'pointer-events-none'}`}
       >
         <ChevronRight className="w-6 h-6 -rotate-90 group-hover:-translate-y-1 transition-transform" aria-hidden="true" />
       </motion.button>

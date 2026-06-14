@@ -24,7 +24,7 @@ const Pricing = () => {
         { text: "Visão territorial no mapa", included: false },
         { text: "Dashboards e relatórios", included: false },
       ],
-      ctaText: "Começar com o básico",
+      ctaText: "Começar teste grátis (7 dias)",
       highlight: false,
     },
     {
@@ -172,7 +172,7 @@ const Pricing = () => {
         <div className="mt-12 md:mt-16 text-center flex flex-col items-center gap-2">
           <p className="text-slate-500 text-sm md:text-base flex items-center justify-center gap-2">
             <ShieldCheck className="w-4 h-4 md:w-5 md:h-5 text-slate-500" />
-            Sem fidelidade. Cancele quando quiser.
+            7 dias grátis, sem cartão de crédito. Sem fidelidade, cancele quando quiser.
           </p>
           <p className="text-slate-500 text-xs md:text-sm">
             Pagamento seguro via Stripe com criptografia de ponta a ponta.

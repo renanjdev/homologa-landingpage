@@ -7,11 +7,11 @@ const Start = () => {
   return (
     <div className="min-h-screen bg-white font-sans overflow-x-hidden selection:bg-primary/20">
       <Helmet>
-        <title>Teste Grátis por 30 Dias | Homologa Plus - Gestão de Homologação Solar</title>
-        <meta name="description" content="Pare de gerenciar homologações solares por planilha e WhatsApp. Controle projetos, clientes e documentos em um só lugar. Teste grátis por 30 dias." />
+        <title>Teste Grátis por 7 Dias | Homologa Plus - Gestão de Homologação Solar</title>
+        <meta name="description" content="Pare de gerenciar homologações solares por planilha e WhatsApp. Controle projetos, clientes e documentos em um só lugar. Teste grátis por 7 dias, sem cartão de crédito." />
         <meta name="keywords" content="teste grátis homologa plus, software homologação solar, gestão projetos solares" />
         <link rel="canonical" href="https://homologaplus.com.br/start" />
-        <meta property="og:title" content="Teste Grátis por 30 Dias | Homologa Plus" />
+        <meta property="og:title" content="Teste Grátis por 7 Dias | Homologa Plus" />
         <meta property="og:description" content="Pare de gerenciar homologações solares por planilha e WhatsApp. Controle projetos, clientes e documentos em um só lugar." />
         <meta property="og:url" content="https://homologaplus.com.br/start" />
         <meta property="og:type" content="website" />
@@ -68,7 +68,7 @@ const Start = () => {
             className="w-full flex items-center justify-center gap-3 bg-primary hover:bg-primary-dark text-white text-lg font-extrabold py-5 px-8 rounded-2xl transition-all shadow-xl shadow-primary/20 hover:shadow-primary/30 active:scale-[0.98] min-h-[56px]"
           >
             <PlayCircle className="w-5 h-5" />
-            Testar grátis por 30 dias
+            Testar grátis por 7 dias
           </motion.a>
 
           <motion.a
@@ -147,7 +147,7 @@ const Start = () => {
             "Sem cartão de crédito para começar",
             "Configuração em menos de 5 minutos",
             "Suporte humano por WhatsApp",
-            "Utilizado por mais de 50 empresas"
+            "Utilizado por mais de 200 empresas"
           ].map((bullet, idx) => (
             <div key={idx} className="flex items-center gap-3 text-slate-600 font-medium text-sm sm:text-base">
               <div className="flex-shrink-0">

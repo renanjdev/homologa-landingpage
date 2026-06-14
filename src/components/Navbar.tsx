@@ -73,12 +73,13 @@ const Navbar = ({ scrolled }: { scrolled: boolean }) => {
             </a>
           </div>
 
-          <div className="md:hidden flex items-center gap-3">
-            <a 
-              href="https://app.homologaplus.com.br/login"
-              className="inline-flex items-center justify-center text-xs font-bold text-primary px-4 py-2 bg-primary/10 rounded-xl whitespace-nowrap active:scale-95 transition-transform"
+          <div className="md:hidden flex items-center gap-2">
+            <a
+              href="https://app.homologaplus.com.br/cadastro"
+              onClick={() => window.fbq && window.fbq('track', 'Lead')}
+              className="inline-flex items-center justify-center text-xs font-bold text-white px-4 py-2 bg-primary rounded-xl whitespace-nowrap shadow-lg shadow-primary/20 active:scale-95 transition-transform"
             >
-              Acessar Plataforma
+              Testar grátis
             </a>
             <button
               onClick={() => setIsOpen(!isOpen)}
@@ -117,12 +118,20 @@ const Navbar = ({ scrolled }: { scrolled: boolean }) => {
               ))}
               
               <div className="pt-8 px-2">
-                <a 
+                <a
                   href="https://app.homologaplus.com.br/cadastro"
-                  onClick={() => setIsOpen(false)}
+                  onClick={() => { window.fbq && window.fbq('track', 'Lead'); setIsOpen(false); }}
                   className="w-full bg-primary text-white px-5 py-4 rounded-2xl text-base font-bold shadow-xl shadow-primary/20 block text-center active:scale-[0.98] transition-transform"
                 >
                   Testar gratuitamente
+                </a>
+                <p className="mt-3 text-center text-xs font-medium text-slate-400">7 dias grátis · Sem cartão de crédito</p>
+                <a
+                  href="https://app.homologaplus.com.br/login"
+                  onClick={() => setIsOpen(false)}
+                  className="mt-4 block text-center text-sm font-semibold text-slate-500 py-2"
+                >
+                  Já é cliente? Acessar plataforma
                 </a>
               </div>
             </div>

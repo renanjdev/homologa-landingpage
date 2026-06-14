@@ -58,7 +58,7 @@ const FinalCTA = () => {
 
             <div className="mt-8 flex items-center justify-center gap-2 text-sm text-slate-300">
               <ShieldCheck className="w-4 h-4 shrink-0" />
-              <span>7 dias grátis. Sem fidelidade. Cancele quando quiser.</span>
+              <span>7 dias grátis · Sem cartão de crédito · Cancele quando quiser.</span>
             </div>
           </div>
         </motion.div>

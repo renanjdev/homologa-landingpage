@@ -18,7 +18,7 @@ const features: Feature[] = [
   {
     label: 'Painel de gestão',
     Icon: LayoutDashboard,
-    title: 'Toda a sua operação de homologação em um só painel',
+    title: 'Saiba em 5 segundos quais projetos precisam de você hoje',
     desc: 'Projetos, prazos, pendências e potência instalada em uma visão única. Saiba na hora o que precisa de atenção, sem abrir dez planilhas.',
     bullets: [
       'Visão geral de todos os projetos e etapas',
@@ -32,7 +32,7 @@ const features: Feature[] = [
   {
     label: 'Fluxo de homologação',
     Icon: Workflow,
-    title: 'Acompanhe cada etapa, do projeto ao parecer',
+    title: 'Veja na hora qual projeto travou — e onde agir',
     desc: 'Cada projeto avança por um fluxo claro: análise documental, envio à concessionária, vistoria e homologação. Você vê na hora o que travou e onde agir.',
     bullets: [
       'Status em tempo real por etapa',
@@ -46,7 +46,7 @@ const features: Feature[] = [
   {
     label: 'Gestão financeira',
     Icon: LineChart,
-    title: 'Receita, recebíveis e vencidos sob controle',
+    title: 'Feche o mês sabendo o que entrou, o que falta e o que venceu',
     desc: 'Acompanhe o financeiro de cada homologação: o que já entrou, o que está a receber e o que venceu, mês a mês, sem controle paralelo.',
     bullets: [
       'Receita recebida x a receber',

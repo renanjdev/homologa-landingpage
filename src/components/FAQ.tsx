@@ -7,20 +7,28 @@ const FAQ = () => {
 
   const faqs = [
     {
-      question: "Quais funcionalidades o sistema oferece?",
-      answer: "O Homologa Plus oferece gestão completa de projetos, controle de documentos, acompanhamento de etapas de homologação, dashboard de indicadores, gestão de integradores e muito mais."
+      question: "Preciso cadastrar cartão de crédito para testar?",
+      answer: "Não. Você ativa o teste e usa o sistema completo por 7 dias sem informar nenhum cartão de crédito."
     },
     {
-      question: "Como funciona a área do integrador?",
-      answer: "Seus integradores parceiros têm um acesso restrito onde podem cadastrar novos projetos, fazer upload de documentos e acompanhar o status de cada homologação em tempo real."
+      question: "O que acontece quando o teste de 7 dias acaba?",
+      answer: "Como não pedimos cartão, não existe cobrança automática. Ao fim dos 7 dias você decide com calma se quer assinar um dos planos — sem surpresa na fatura."
     },
     {
-      question: "Quais planos estão disponíveis?",
-      answer: "Oferecemos planos Mensal, Semestral e Anual, todos com acesso completo às funcionalidades do sistema."
+      question: "Funciona com a minha concessionária?",
+      answer: "Sim. O Homologa Plus organiza todo o processo de homologação — documentos, etapas e prazos — independente da distribuidora (CPFL, Enel, Energisa, Neoenergia, Light e outras)."
     },
     {
-      question: "Como entrar em contato com o suporte?",
-      answer: "Nosso suporte é humanizado e realizado diretamente via WhatsApp para garantir agilidade no atendimento aos nossos clientes."
+      question: "Dá muito trabalho para começar a usar?",
+      answer: "Não precisa migrar tudo de uma vez. Você cadastra seus projetos ativos em poucos minutos e vai trazendo o restante conforme avança. E o suporte é humano, direto no WhatsApp, para te ajudar."
+    },
+    {
+      question: "E a área do integrador, como funciona?",
+      answer: "Seus integradores parceiros têm um acesso restrito onde cadastram projetos, enviam documentos e acompanham o status de cada homologação em tempo real — sem ficar te cobrando atualização."
+    },
+    {
+      question: "Posso cancelar quando quiser?",
+      answer: "Sim. Sem fidelidade e sem multa: você cancela quando quiser, direto pelo sistema."
     }
   ];
 

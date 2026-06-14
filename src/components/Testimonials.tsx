@@ -7,22 +7,28 @@ const Testimonials = () => {
     {
       name: "Eng. Ricardo Santos",
       role: "Diretor Técnico na SolarEng",
-      content: "O Homologa Plus transformou nossa gestão. Antes perdíamos prazos por falta de organização, agora temos controle total de cada etapa da homologação.",
-      avatar: "https://picsum.photos/seed/ricardo/128/128"
+      content: "O Homologa Plus transformou nossa gestão. Antes perdíamos prazos por falta de organização, agora temos controle total de cada etapa da homologação."
     },
     {
       name: "Monalisa Felipe",
       role: "Gerente de Projetos na EcoPower",
-      content: "A facilidade de gerenciar múltiplos integradores em um só lugar é o grande diferencial. O sistema é intuitivo e o suporte é excelente.",
-      avatar: "https://i.imgur.com/M7OKfJ3b.jpg"
+      content: "A facilidade de gerenciar múltiplos integradores em um só lugar é o grande diferencial. O sistema é intuitivo e o suporte é excelente."
     },
     {
       name: "Wellington Ribeiro",
       role: "Sócio-Fundador da WR Projetos Elétricos",
-      content: "Reduzimos em 40% o tempo gasto com burocracia e organização de documentos. É uma ferramenta indispensável para quem quer escalar no setor solar.",
-      avatar: "https://i.imgur.com/SyFgrfwb.jpg"
+      content: "Reduzimos em 40% o tempo gasto com burocracia e organização de documentos. É uma ferramenta indispensável para quem quer escalar no setor solar."
     }
   ];
+
+  const initials = (name: string) =>
+    name
+      .replace(/^(eng|dr|dra|sr|sra)\.?\s+/i, '')
+      .split(/\s+/)
+      .slice(0, 2)
+      .map((w) => w[0])
+      .join('')
+      .toUpperCase();
 
   return (
     <section className="py-16 md:py-24 bg-slate-50/50">
@@ -53,15 +59,12 @@ const Testimonials = () => {
               </div>
               <p className="text-slate-700 italic mb-8 flex-grow">"{t.content}"</p>
               <div className="flex items-center gap-4">
-                <img
-                  src={t.avatar}
-                  alt={t.name}
-                  width={48}
-                  height={48}
-                  className="w-12 h-12 rounded-full border-2 border-white shadow-sm"
-                  referrerPolicy="no-referrer"
-                  loading="lazy"
-                />
+                <div
+                  aria-hidden="true"
+                  className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border-2 border-white bg-primary/10 text-sm font-bold text-primary shadow-sm"
+                >
+                  {initials(t.name)}
+                </div>
                 <div>
                   <h4 className="font-bold text-slate-900 text-sm">{t.name}</h4>
                   <p className="text-slate-500 text-xs">{t.role}</p>

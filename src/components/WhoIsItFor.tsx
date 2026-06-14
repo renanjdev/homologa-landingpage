@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'motion/react';
-import { Building2, Zap, Handshake } from 'lucide-react';
+import { Building2, Zap } from 'lucide-react';
 
 const personas = [
   {
@@ -12,11 +12,6 @@ const personas = [
     Icon: Zap,
     label: 'Engenharia elétrica',
     desc: 'Empresas de engenharia elétrica que assinam e respondem pelos projetos fotovoltaicos.',
-  },
-  {
-    Icon: Handshake,
-    label: 'Integradores',
-    desc: 'Quem instala e terceiriza a homologação dos sistemas, sem perder o controle do status.',
   },
 ];
 

@@ -24,14 +24,17 @@ const MapControl = () => {
                  {/* Efeito de brilho sutil atrás do mapa transparente */}
                  <div className="absolute inset-0 bg-primary/20 rounded-full blur-3xl -z-10 transform scale-75" />
                  
-                 <img
-                   src="https://i.imgur.com/k5TTke3.gif"
-                   alt="Visão geral do mapa de projetos"
-                   width={850}
-                   height={530}
-                   className="w-full h-auto object-contain drop-shadow-2xl rounded-2xl"
-                   loading="lazy"
-                 />
+                 <picture>
+                   <source srcSet="/mapa-projetos.webp" type="image/webp" />
+                   <img
+                     src="/mapa-projetos.jpg"
+                     alt="Visão geral do mapa de projetos"
+                     width={760}
+                     height={760}
+                     className="w-full h-auto object-contain drop-shadow-2xl rounded-2xl"
+                     loading="lazy"
+                   />
+                 </picture>
 
                  {/* Floating Notification Pop-up */}
                  <motion.div

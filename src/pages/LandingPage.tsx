@@ -50,7 +50,7 @@ const Hero = () => {
           className="mx-auto max-w-3xl text-center"
         >
           <span className="inline-flex items-center gap-2 rounded-full bg-primary/10 px-3.5 py-1.5 font-mono text-[11px] md:text-xs font-semibold uppercase tracking-[0.14em] text-primary">
-            Para empresas de homologação, engenharia e integradores
+            Para empresas de homologação e engenharia
           </span>
           <h1 className="mx-auto mt-5 max-w-[20ch] text-[clamp(2rem,4vw+0.5rem,3.6rem)] font-display font-extrabold leading-[1.06] tracking-[-0.025em] text-slate-900 text-balance">
             Pare de perder prazo na <span className="text-primary">homologação solar</span> por documento espalhado

@@ -14,7 +14,7 @@ const BeforeAfter = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12 md:mb-16">
           <h2 className="text-clamp-h2 font-display font-bold text-slate-900 mb-4 md:mb-6">
-            Como as homologações são gerenciadas hoje
+            Da papelada manual à homologação automatizada
           </h2>
         </div>
 
@@ -25,9 +25,9 @@ const BeforeAfter = () => {
             </h3>
             <ul className="space-y-3 md:space-y-4">
               {[
-                "Planilhas espalhadas",
-                "Documentos no WhatsApp",
-                "Integradores cobrando status",
+                "Memorial e unifilar montados à mão, projeto a projeto",
+                "Retrabalho quando a concessionária reprova",
+                "Documentos espalhados em planilha e WhatsApp",
                 "Projetos difíceis de acompanhar"
               ].map((item, idx) => (
                 <li key={idx} className="flex items-center gap-3 text-slate-500 text-sm md:text-base">
@@ -44,10 +44,10 @@ const BeforeAfter = () => {
             </h3>
             <ul className="space-y-3 md:space-y-4">
               {[
-                "Projetos centralizados",
-                "Área exclusiva para integradores",
-                "Status atualizado em tempo real",
-                "Fluxo de homologação organizado"
+                "Documentação gerada e validada automaticamente",
+                "Impeditivos apontados antes de protocolar",
+                "Projetos, documentos e prazos centralizados",
+                "Status em tempo real, do projeto ao parecer"
               ].map((item, idx) => (
                 <li key={idx} className="flex items-center gap-3 text-slate-900 font-medium text-sm md:text-base">
                   <div className="w-1.5 h-1.5 rounded-full bg-primary shrink-0" />

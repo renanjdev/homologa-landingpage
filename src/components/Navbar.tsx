@@ -14,7 +14,7 @@ const Navbar = ({ scrolled }: { scrolled: boolean }) => {
   });
 
   const navLinks = [
-    { name: 'O Problema', href: '#problema' },
+    { name: 'Automação', href: '#automacao' },
     { name: 'Solução', href: '#solucao' },
     { name: 'Planos', href: '#planos' },
   ];

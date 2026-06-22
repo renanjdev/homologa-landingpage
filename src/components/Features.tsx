@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'motion/react';
-import { LayoutDashboard, Workflow, LineChart, Check, CheckCircle2 } from 'lucide-react';
+import { LayoutDashboard, Workflow, LineChart, Map, Check, CheckCircle2 } from 'lucide-react';
 
 type Feature = {
   label: string;
@@ -9,6 +9,9 @@ type Feature = {
   desc: string;
   bullets: string[];
   img: string;
+  webp?: string;
+  w?: number;
+  h?: number;
   alt: string;
   flip?: boolean;
   badge?: { title: string; sub: string };
@@ -56,6 +59,23 @@ const features: Feature[] = [
     img: '/financeiro.png',
     alt: 'Módulo financeiro com receita, valores a receber, vencidos e gráficos de evolução',
   },
+  {
+    label: 'Visão de território',
+    Icon: Map,
+    title: 'Veja onde estão suas obras — e onde vale vender mais',
+    desc: 'Acompanhe todos os projetos no mapa e enxergue a concentração de negócios por região, num relance.',
+    bullets: [
+      'Todos os projetos em um único mapa',
+      'Status por cores no território',
+      'Concentração comercial das equipes',
+    ],
+    img: '/mapa-projetos.jpg',
+    webp: '/mapa-projetos.webp',
+    w: 760,
+    h: 760,
+    alt: 'Mapa com a distribuição geográfica dos projetos de homologação',
+    flip: true,
+  },
 ];
 
 const Features = () => {
@@ -70,10 +90,10 @@ const Features = () => {
           className="text-center max-w-2xl mx-auto mb-16 md:mb-24"
         >
           <h2 className="text-clamp-h2 font-display font-extrabold text-slate-900 mb-4 text-balance">
-            Tudo o que você precisa para escalar sua homologação
+            A plataforma por trás da automação
           </h2>
           <p className="text-base md:text-lg text-slate-600 leading-relaxed">
-            Do cadastro do projeto ao parecer da concessionária, cada parte da operação em um só lugar.
+            Além de gerar e validar os documentos, o Homologa Plus controla projetos, prazos, financeiro e território — cada parte da operação em um só lugar.
           </p>
         </motion.div>
 
@@ -128,12 +148,12 @@ const Features = () => {
                 )}
                 <div className="rounded-2xl overflow-hidden border border-slate-200 bg-white shadow-[0_30px_60px_-30px_rgba(15,23,42,0.35)]">
                   <picture>
-                    <source srcSet={f.img.replace('.png', '.webp')} type="image/webp" />
+                    <source srcSet={f.webp || f.img.replace('.png', '.webp')} type="image/webp" />
                     <img
                       src={f.img}
                       alt={f.alt}
-                      width={1919}
-                      height={964}
+                      width={f.w ?? 1919}
+                      height={f.h ?? 964}
                       className="w-full h-auto block"
                       loading="lazy"
                     />

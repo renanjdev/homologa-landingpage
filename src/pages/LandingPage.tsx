@@ -11,7 +11,7 @@ const BeforeAfter = lazy(() => import('../components/BeforeAfter'));
 const Flow = lazy(() => import('../components/Flow'));
 const MobilePreview = lazy(() => import('../components/MobilePreview'));
 const Features = lazy(() => import('../components/Features'));
-const MapControl = lazy(() => import('../components/MapControl'));
+const Automacao = lazy(() => import('../components/Automacao'));
 const WhoIsItFor = lazy(() => import('../components/WhoIsItFor'));
 const FAQ = lazy(() => import('../components/FAQ'));
 const LeadCapture = lazy(() => import('../components/LeadCapture'));
@@ -50,13 +50,13 @@ const Hero = () => {
           className="mx-auto max-w-3xl text-center"
         >
           <span className="inline-flex items-center gap-2 rounded-full bg-primary/10 px-3.5 py-1.5 font-mono text-[11px] md:text-xs font-semibold uppercase tracking-[0.14em] text-primary">
-            Para empresas de homologação e engenharia
+            Software de homologação solar · Automação
           </span>
-          <h1 className="mx-auto mt-5 max-w-[20ch] text-[clamp(2rem,4vw+0.5rem,3.6rem)] font-display font-extrabold leading-[1.06] tracking-[-0.025em] text-slate-900 text-balance">
-            Pare de perder prazo na <span className="text-primary">homologação solar</span> por documento espalhado
+          <h1 className="mx-auto mt-5 max-w-[24ch] text-[clamp(2rem,4vw+0.5rem,3.6rem)] font-display font-extrabold leading-[1.06] tracking-[-0.025em] text-slate-900 text-balance">
+            Pare de montar memorial e unifilar à mão. O Homologa Plus <span className="text-primary">gera e valida</span> sozinho.
           </h1>
-          <p className="mx-auto mt-5 max-w-[42em] text-base md:text-xl leading-relaxed text-slate-600 text-pretty">
-            Centralize projetos, integradores, documentos e prazos em um só painel. Do cadastro do projeto à aprovação na concessionária, sem planilhas e sem retrabalho.
+          <p className="mx-auto mt-5 max-w-[44em] text-base md:text-xl leading-relaxed text-slate-600 text-pretty">
+            A partir do projeto cadastrado, o sistema dimensiona, gera memorial, diagramas e planta no padrão da sua distribuidora e checa a conformidade antes de você protocolar. E mais: toda a gestão de projetos, prazos e financeiro num só painel.
           </p>
           <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row sm:gap-4">
             <a
@@ -78,7 +78,7 @@ const Hero = () => {
             </a>
           </div>
           <p className="mt-4 text-sm font-medium text-slate-500">
-            <span className="font-semibold text-success">7 dias grátis</span> · Sem cartão de crédito · Cancele quando quiser
+            <span className="font-semibold text-success">7 dias grátis</span> · Sem cartão · Automação inclusa no teste
           </p>
           <div className="mt-7 flex items-center justify-center text-sm">
             <span className="font-medium text-slate-500">Mais de 200 empresas de engenharia já usam o Homologa Plus</span>
@@ -168,11 +168,11 @@ const LandingPage = () => {
     <div className="min-h-screen">
       {/* ... Helmet below ... */}
       <Helmet>
-        <title>Homologação de Energia Solar sem Erro | Software para Empresas de Homologação e Engenharia</title>
-        <meta name="description" content="Organize e aprove homologações de energia solar sem retrabalho. Controle projetos, clientes e documentos em um só sistema. Teste grátis." />
-        <meta name="keywords" content="homologação solar, homologação energia solar, software homologação, gestão de usinas fotovoltaicas, engenharia solar, homologa plus, projetos solares" />
-        <meta property="og:title" content="Homologação de Energia Solar sem Erro | Software para Empresas de Homologação e Engenharia" />
-        <meta property="og:description" content="Organize e aprove homologações de energia solar sem retrabalho. Controle projetos, clientes e documentos em um só sistema. Teste grátis." />
+        <title>Software de Homologação Solar com Automação | Homologa Plus</title>
+        <meta name="description" content="Gere memorial descritivo e diagrama unifilar no padrão da sua distribuidora e valide a conformidade antes de protocolar. Homologação solar sem retrabalho." />
+        <meta name="keywords" content="homologação solar, software homologação solar, automação homologação solar, memorial descritivo fotovoltaico, diagrama unifilar automático, dimensionamento elétrico fotovoltaico" />
+        <meta property="og:title" content="Software de Homologação Solar com Automação | Homologa Plus" />
+        <meta property="og:description" content="Gere memorial descritivo e diagrama unifilar no padrão da sua distribuidora e valide a conformidade antes de protocolar. Homologação solar sem retrabalho." />
         <link rel="canonical" href="https://homologaplus.com.br/" />
         <script type="application/ld+json">{`
           {
@@ -182,38 +182,46 @@ const LandingPage = () => {
             "url": "https://homologaplus.com.br",
             "applicationCategory": "BusinessApplication",
             "operatingSystem": "Web",
-            "description": "Sistema de gestão para homologação de usinas solares fotovoltaicas. Controle projetos, integradores e etapas da homologação em um único sistema profissional.",
+            "description": "Software de homologação de energia solar que gera automaticamente a documentação técnica (memorial descritivo, diagrama unifilar, diagrama de blocos e planta) no padrão de cada distribuidora e valida a conformidade do projeto antes do protocolo. Inclui dimensionamento elétrico, gestão de projetos, prazos e financeiro.",
+            "featureList": [
+              "Geração automática de memorial descritivo e de cálculo no padrão da distribuidora",
+              "Diagrama unifilar dimensionado (condutores, disjuntores, DPS, proteções)",
+              "Diagrama de blocos e planta de localização",
+              "Dimensionamento elétrico para inversor string e microinversor",
+              "Validação de conformidade (NBR 5410, NBR 16690, PRODIST, Lei 14.300) antes de protocolar",
+              "Gestão de homologação do projeto ao parecer da concessionária"
+            ],
             "offers": {
               "@type": "AggregateOffer",
               "priceCurrency": "BRL",
-              "lowPrice": "199.90",
-              "highPrice": "399.90",
+              "lowPrice": "197.00",
+              "highPrice": "397.00",
               "offerCount": "3",
               "availability": "https://schema.org/InStock",
               "offers": [
                 {
                   "@type": "Offer",
-                  "name": "Plano Starter",
-                  "price": "199.90",
+                  "name": "Plano Essencial",
+                  "price": "197.00",
                   "priceCurrency": "BRL",
-                  "priceValidUntil": "2026-12-31",
-                  "url": "https://homologaplus.com.br/#pricing"
+                  "priceValidUntil": "2027-12-31",
+                  "url": "https://homologaplus.com.br/#planos"
                 },
                 {
                   "@type": "Offer",
                   "name": "Plano Profissional",
-                  "price": "299.90",
+                  "price": "297.00",
                   "priceCurrency": "BRL",
-                  "priceValidUntil": "2026-12-31",
-                  "url": "https://homologaplus.com.br/#pricing"
+                  "priceValidUntil": "2027-12-31",
+                  "url": "https://homologaplus.com.br/#planos"
                 },
                 {
                   "@type": "Offer",
-                  "name": "Plano Enterprise",
-                  "price": "399.90",
+                  "name": "Plano Empresarial",
+                  "price": "397.00",
                   "priceCurrency": "BRL",
-                  "priceValidUntil": "2026-12-31",
-                  "url": "https://homologaplus.com.br/#pricing"
+                  "priceValidUntil": "2027-12-31",
+                  "url": "https://homologaplus.com.br/#planos"
                 }
               ]
             },
@@ -239,11 +247,11 @@ const LandingPage = () => {
       <Suspense fallback={<div className="h-20" />}>
         <main>
           <BeforeAfter />
-          <WhoIsItFor />
+          <Automacao />
           <Flow />
-          <MobilePreview />
           <Features />
-          <MapControl />
+          <MobilePreview />
+          <WhoIsItFor />
           <Pricing />
           <FAQ />
           <LeadCapture />

@@ -5,7 +5,7 @@ const Footer = () => {
   return (
     <footer className="bg-white border-t border-slate-100 pt-16 pb-10">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-10 md:gap-12 mb-12 md:mb-16">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-10 md:gap-12 mb-12 md:mb-16">
           <div className="sm:col-span-2">
             <Link to="/" className="flex items-center gap-2 mb-6" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
               <img src="/logo-h.png" alt="Homologa Plus" width={36} height={36} className="w-9 h-9" />
@@ -21,10 +21,21 @@ const Footer = () => {
           <div>
             <h4 className="font-bold text-slate-900 mb-6">Links Rápidos</h4>
             <ul className="space-y-4 text-slate-500">
-              <li><a href="#problema" className="hover:text-primary transition-colors">O Problema</a></li>
+              <li><a href="#automacao" className="hover:text-primary transition-colors">Automação</a></li>
               <li><a href="#solucao" className="hover:text-primary transition-colors">Solução</a></li>
               <li><a href="#planos" className="hover:text-primary transition-colors">Planos</a></li>
               <li><a href="https://app.homologaplus.com.br/login" className="hover:text-primary transition-colors">Acessar Plataforma</a></li>
+            </ul>
+          </div>
+
+          <div>
+            <h4 className="font-bold text-slate-900 mb-6">Guias de homologação</h4>
+            <ul className="space-y-4 text-slate-500">
+              <li><Link to="/homologacao-energia-solar" className="hover:text-primary transition-colors">Homologação de energia solar</Link></li>
+              <li><Link to="/como-homologar-energia-solar" className="hover:text-primary transition-colors">Como homologar (passo a passo)</Link></li>
+              <li><Link to="/documentos-homologacao-fotovoltaica" className="hover:text-primary transition-colors">Documentos da homologação</Link></li>
+              <li><Link to="/erros-homologacao-solar" className="hover:text-primary transition-colors">Erros na homologação</Link></li>
+              <li><Link to="/homologacao-cpfl" className="hover:text-primary transition-colors">Homologação CPFL</Link></li>
             </ul>
           </div>
 

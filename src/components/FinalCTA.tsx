@@ -29,10 +29,10 @@ const FinalCTA = () => {
               Comece hoje
             </p>
             <h2 className="text-clamp-h2 font-display font-extrabold text-white mb-5 text-balance">
-              Tire suas homologações do caos de planilhas
+              Gere e valide sua documentação a partir de hoje
             </h2>
             <p className="text-base md:text-lg text-slate-300 mb-10 leading-relaxed max-w-xl mx-auto text-pretty">
-              Centralize projetos, integradores e prazos em um único painel. Comece em minutos, sem instalar nada.
+              Gere os documentos no padrão da distribuidora, valide a conformidade antes de protocolar e gerencie tudo num só painel. Comece em minutos, sem instalar nada.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">

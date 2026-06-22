@@ -8,6 +8,22 @@ const FAQ = () => {
 
   const faqs = [
     {
+      question: "O sistema gera o memorial descritivo e o diagrama unifilar automaticamente?",
+      answer: "Sim. A partir dos dados do projeto, o Homologa Plus gera o memorial descritivo e de cálculo, o diagrama unifilar dimensionado, o diagrama de blocos e a planta de localização no padrão exigido pela sua distribuidora."
+    },
+    {
+      question: "A automação faz o dimensionamento elétrico (condutores, disjuntores, DPS)?",
+      answer: "Sim. O dimensionamento de condutores, disjuntores, DPS e demais proteções é calculado automaticamente, para inversor string e microinversor. Os documentos saem editáveis (DXF/SVG) para você revisar e assinar como responsável técnico."
+    },
+    {
+      question: "Como funciona a validação de conformidade antes de protocolar?",
+      answer: "Antes de protocolar, o sistema valida o projeto contra as referências normativas (NBR 5410, NBR 16690, PRODIST e Lei 14.300) e aponta os itens impeditivos, de atenção e conformes — para você corrigir o que reprova antes de enviar à concessionária."
+    },
+    {
+      question: "Em qual plano está a Automação? Consigo testar no período grátis?",
+      answer: "A Automação está no plano Empresarial e fica liberada nos 7 dias de teste grátis, sem cartão de crédito — assim você gera e valida documentos de verdade antes de decidir."
+    },
+    {
       question: "Preciso cadastrar cartão de crédito para testar?",
       answer: "Não. Você ativa o teste e usa o sistema completo por 7 dias sem informar nenhum cartão de crédito."
     },

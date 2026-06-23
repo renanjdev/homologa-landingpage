@@ -233,17 +233,21 @@ const Automacao = () => {
             </div>
             <span className="font-mono text-[11px] uppercase tracking-[0.14em] text-slate-500">gerado automaticamente</span>
           </div>
-          <div className="grid max-w-2xl grid-cols-3 gap-3 sm:gap-5">
-            {[1, 2, 3].map((n) => (
+          <div className="group relative mx-auto flex h-[300px] w-full max-w-xl items-center justify-center sm:h-[400px]">
+            {[
+              { n: 2, t: '-rotate-[7deg] -translate-x-[42%] group-hover:-rotate-[12deg] group-hover:-translate-x-[68%]', z: 'z-10' },
+              { n: 3, t: 'rotate-[7deg] translate-x-[42%] group-hover:rotate-[12deg] group-hover:translate-x-[68%]', z: 'z-20' },
+              { n: 1, t: 'group-hover:-translate-y-3', z: 'z-30' },
+            ].map(({ n, t, z }) => (
               <div
                 key={n}
-                className="overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm transition-transform hover:-translate-y-1"
+                className={`absolute w-[150px] overflow-hidden rounded-xl border border-slate-200 bg-white shadow-[0_22px_55px_-24px_rgba(15,23,42,0.42)] transition-transform duration-500 ease-out sm:w-[208px] ${z} ${t}`}
               >
                 <picture>
                   <source srcSet={`/doc-memorial-${n}.webp`} type="image/webp" />
                   <img
                     src={`/doc-memorial-${n}.jpg`}
-                    alt={`Trecho ${n} do memorial descritivo gerado pela Automação`}
+                    alt="Página do memorial descritivo gerado pela Automação"
                     width={620}
                     height={876}
                     className="block h-auto w-full"

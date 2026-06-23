@@ -135,19 +135,21 @@ const Hero = () => {
             </span>
           </div>
 
-          <div className="overflow-hidden rounded-2xl border border-slate-200 shadow-[0_26px_70px_-34px_rgba(15,23,42,0.34)]">
-            <picture>
-              <source srcSet="/dashboard.webp" type="image/webp" />
-              <img
-                src="/dashboard.png"
-                alt="Painel do Homologa Plus com total de projetos, concluídos, pendências, potência total e o pipeline por etapa"
-                width={1919}
-                height={1041}
-                className="w-full"
-                loading="eager"
-                fetchPriority="high"
-              />
-            </picture>
+          <div className="overflow-hidden rounded-2xl border border-slate-200 bg-slate-900 shadow-[0_26px_70px_-34px_rgba(15,23,42,0.34)]">
+            <video
+              className="block w-full"
+              autoPlay
+              muted
+              loop
+              playsInline
+              preload="metadata"
+              poster="/automacao-demo-poster.jpg"
+              width={1280}
+              height={694}
+              aria-label="Demonstração: o Homologa Plus gerando a documentação técnica e validando a conformidade da homologação"
+            >
+              <source src="/automacao-demo.mp4" type="video/mp4" />
+            </video>
           </div>
         </motion.div>
       </div>

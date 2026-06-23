@@ -14,6 +14,7 @@ type Feature = {
   h?: number;
   alt: string;
   flip?: boolean;
+  frameless?: boolean;
   badge?: { title: string; sub: string };
 };
 
@@ -30,7 +31,7 @@ const features: Feature[] = [
     ],
     img: '/dashboard.png',
     alt: 'Painel de gestão do Homologa Plus com projetos, pendências, potência e pipeline por etapa',
-    badge: { title: '78% de aprovação', sub: 'taxa de homologação' },
+    badge: { title: '98% de aprovação', sub: 'taxa de homologação' },
   },
   {
     label: 'Fluxo de homologação',
@@ -75,6 +76,7 @@ const features: Feature[] = [
     h: 760,
     alt: 'Mapa com a distribuição geográfica dos projetos de homologação',
     flip: true,
+    frameless: true,
   },
 ];
 
@@ -146,7 +148,7 @@ const Features = () => {
                     </span>
                   </div>
                 )}
-                <div className="rounded-2xl overflow-hidden border border-slate-200 bg-white shadow-[0_30px_60px_-30px_rgba(15,23,42,0.35)]">
+                <div className={f.frameless ? '' : 'rounded-2xl overflow-hidden border border-slate-200 bg-white shadow-[0_30px_60px_-30px_rgba(15,23,42,0.35)]'}>
                   <picture>
                     <source srcSet={f.webp || f.img.replace('.png', '.webp')} type="image/webp" />
                     <img
@@ -154,7 +156,7 @@ const Features = () => {
                       alt={f.alt}
                       width={f.w ?? 1919}
                       height={f.h ?? 964}
-                      className="w-full h-auto block"
+                      className={`block h-auto w-full ${f.frameless ? 'drop-shadow-2xl' : ''}`}
                       loading="lazy"
                     />
                   </picture>

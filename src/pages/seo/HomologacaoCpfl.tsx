@@ -1,6 +1,6 @@
 import React, { lazy, Suspense } from 'react';
 import { Helmet } from 'react-helmet-async';
-import { motion } from 'motion/react';
+import { Reveal } from '../../lib/anim';
 import { Link } from 'react-router-dom';
 import {
   ChevronLeft,
@@ -58,10 +58,10 @@ const HomologacaoCpfl = () => {
         </div>
 
         {/* Hero */}
-        <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
+        <Reveal
+          as="div"
+          y={24}
+          trigger="mount"
           className="max-w-4xl mx-auto mb-16"
         >
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-bold uppercase tracking-wider mb-6">
@@ -76,13 +76,14 @@ const HomologacaoCpfl = () => {
             aprovar projetos de geração distribuída na CPFL sem retrabalho e dentro dos prazos
             regulatórios.
           </p>
-        </motion.div>
+        </Reveal>
 
         {/* Content */}
-        <motion.article
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.15 }}
+        <Reveal
+          as="article"
+          y={20}
+          delay={0.15}
+          trigger="mount"
           className="max-w-4xl mx-auto"
         >
           <div className="bg-white rounded-3xl p-6 md:p-10 lg:p-14 shadow-xl shadow-slate-200/50 border border-slate-100 space-y-12">
@@ -405,7 +406,7 @@ const HomologacaoCpfl = () => {
               </p>
             </section>
           </div>
-        </motion.article>
+        </Reveal>
       </main>
 
       <Suspense fallback={null}>

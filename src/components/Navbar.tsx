@@ -1,17 +1,12 @@
 import React from 'react';
-import { motion, useScroll, useSpring, AnimatePresence } from 'motion/react';
+import { useScrollProgress } from '../lib/anim';
 import { Link } from 'react-router-dom';
 import { ChevronRight, Menu, X } from 'lucide-react';
 
 const Navbar = ({ scrolled }: { scrolled: boolean }) => {
   const [isOpen, setIsOpen] = React.useState(false);
 
-  const { scrollYProgress } = useScroll();
-  const scrollProgress = useSpring(scrollYProgress, {
-    stiffness: 100,
-    damping: 30,
-    restDelta: 0.001
-  });
+  const scrollProgress = useScrollProgress();
 
   const navLinks = [
     { name: 'Automação', href: '#automacao' },
@@ -22,9 +17,9 @@ const Navbar = ({ scrolled }: { scrolled: boolean }) => {
   return (
     <>
       <div className="fixed top-0 left-0 right-0 h-1 bg-slate-100 z-[60]">
-        <motion.div 
-          className="h-full bg-primary origin-left"
-          style={{ scaleX: scrollProgress }}
+        <div
+          className="h-full bg-primary origin-left transition-transform duration-150 ease-out"
+          style={{ transform: `scaleX(${scrollProgress})` }}
         />
       </div>
       <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
@@ -93,16 +88,16 @@ const Navbar = ({ scrolled }: { scrolled: boolean }) => {
         </div>
       </div>
 
-      {/* Mobile menu */}
-      <AnimatePresence>
-        {isOpen && (
-          <motion.div 
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: 'auto' }}
-            exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.3, ease: "easeInOut" }}
-            className="md:hidden bg-white border-b border-slate-100 overflow-hidden shadow-xl"
-          >
+      {/* Mobile menu — colapso via grid-template-rows (0fr↔1fr), sem dependência de animação.
+          inert quando fechado: links não recebem foco/clique enquanto invisíveis. */}
+      <div
+        inert={!isOpen}
+        className={`md:hidden grid transition-all duration-300 ease-in-out ${
+          isOpen ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0'
+        }`}
+      >
+        <div className="overflow-hidden">
+          <div className="bg-white border-b border-slate-100 shadow-xl">
             <div className="px-4 pt-2 pb-8 space-y-1">
               <p className="px-3 py-2 text-[10px] font-bold text-slate-500 uppercase tracking-widest">Navegação</p>
               {navLinks.map((link) => (
@@ -135,9 +130,9 @@ const Navbar = ({ scrolled }: { scrolled: boolean }) => {
                 </a>
               </div>
             </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+          </div>
+        </div>
+      </div>
     </nav>
     </>
   );

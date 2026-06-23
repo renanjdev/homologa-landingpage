@@ -1,5 +1,5 @@
 import React from 'react';
-import { motion } from 'motion/react';
+import { Reveal } from '../lib/anim';
 import { CheckCircle2, ArrowRight, MessageCircle } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import Navbar from '../components/Navbar';
@@ -12,21 +12,24 @@ const ThankYou = () => {
 
       <main className="flex-grow flex items-center justify-center pt-24 pb-16 px-4 sm:px-6 lg:px-8">
         <div className="max-w-2xl w-full">
-          <motion.div 
-            initial={{ opacity: 0, scale: 0.95, y: 20 }}
-            animate={{ opacity: 1, scale: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
+          <Reveal
+            as="div"
+            y={20}
+            scale={0.95}
+            trigger="mount"
             className="bg-white rounded-3xl p-8 sm:p-12 shadow-xl border border-slate-200 text-center"
           >
             {/* Ícone de Sucesso */}
-            <motion.div 
-              initial={{ scale: 0 }}
-              animate={{ scale: 1 }}
-              transition={{ delay: 0.2, type: 'spring', stiffness: 200, damping: 15 }}
+            <Reveal
+              as="div"
+              scale={0}
+              duration={0.5}
+              delay={0.2}
+              trigger="mount"
               className="w-24 h-24 bg-success/10 rounded-full flex items-center justify-center mx-auto mb-8"
             >
               <CheckCircle2 className="w-12 h-12 text-success" />
-            </motion.div>
+            </Reveal>
 
             {/* Títulos */}
             <h1 className="text-3xl sm:text-4xl font-display font-bold text-slate-900 mb-4">
@@ -76,7 +79,7 @@ const ThankYou = () => {
                 <ArrowRight className="w-4 h-4" />
               </Link>
             </div>
-          </motion.div>
+          </Reveal>
         </div>
       </main>
 

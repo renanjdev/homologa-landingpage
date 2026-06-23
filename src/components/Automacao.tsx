@@ -1,5 +1,5 @@
 import React from 'react';
-import { motion } from 'motion/react';
+import { Reveal } from '../lib/anim';
 import {
   Cpu,
   FileText,
@@ -109,11 +109,10 @@ const Automacao = () => {
 
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         {/* Cabeçalho */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: '-100px' }}
-          transition={{ duration: 0.6 }}
+        <Reveal
+          as="div"
+          y={20}
+          margin="-100px"
           className="max-w-3xl"
         >
           <span className="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/10 px-3.5 py-1.5 font-mono text-[11px] md:text-xs font-semibold uppercase tracking-[0.14em] text-primary">
@@ -129,16 +128,16 @@ const Automacao = () => {
             conformidade antes de você protocolar</strong> — apontando o que reprova e a referência normativa. Fonte
             única: nada diverge entre os documentos.
           </p>
-        </motion.div>
+        </Reveal>
 
         {/* Corpo: documentos gerados + validador */}
         <div className="mt-12 grid items-start gap-10 lg:mt-16 lg:grid-cols-[0.95fr_1.05fr] lg:gap-14">
           {/* Documentos que ela gera */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: '-80px' }}
-            transition={{ duration: 0.6, delay: 0.05 }}
+          <Reveal
+            as="div"
+            y={20}
+            delay={0.05}
+            margin="-80px"
           >
             <h3 className="mb-2 font-display text-xl font-bold text-slate-900">Os documentos que ela gera</h3>
             <p className="mb-6 text-slate-600">Prontos para protocolar — e editáveis quando você precisa ajustar.</p>
@@ -168,14 +167,15 @@ const Automacao = () => {
                 </li>
               ))}
             </ul>
-          </motion.div>
+          </Reveal>
 
           {/* Validador de conformidade — mostra o produto trabalhando */}
-          <motion.div
-            initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: '-80px' }}
-            transition={{ duration: 0.7, delay: 0.1 }}
+          <Reveal
+            as="div"
+            y={24}
+            duration={0.7}
+            delay={0.1}
+            margin="-80px"
             className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-[0_26px_70px_-34px_rgba(15,23,42,0.34)]"
           >
             <div className="flex items-center justify-between gap-3 border-b border-slate-100 px-5 py-4">
@@ -192,12 +192,12 @@ const Automacao = () => {
               {checagens.map((c, i) => {
                 const s = estadoStyle[c.estado];
                 return (
-                  <motion.li
+                  <Reveal
+                    as="li"
                     key={c.titulo}
-                    initial={{ opacity: 0, x: 12 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.4, delay: 0.15 + i * 0.08 }}
+                    x={12}
+                    duration={0.4}
+                    delay={0.15 + i * 0.08}
                     className="flex items-start gap-3 rounded-xl px-3 py-3 hover:bg-slate-50"
                   >
                     <s.Icon className={`mt-0.5 h-5 w-5 flex-none ${s.icon}`} />
@@ -208,7 +208,7 @@ const Automacao = () => {
                     <span className={`flex-none rounded-full px-2.5 py-1 text-[11px] font-semibold ${s.chip}`}>
                       {s.label}
                     </span>
-                  </motion.li>
+                  </Reveal>
                 );
               })}
               {/* reconcilia a contagem do rodapé com a lista exibida (2 conformes aqui + 12 abaixo = 14) */}
@@ -223,15 +223,15 @@ const Automacao = () => {
               </p>
               <p className="text-xs font-medium text-slate-600">Resolva os impeditivos antes de protocolar.</p>
             </div>
-          </motion.div>
+          </Reveal>
         </div>
 
         {/* Exemplo real do documento gerado */}
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: '-80px' }}
-          transition={{ duration: 0.6, delay: 0.05 }}
+        <Reveal
+          as="div"
+          y={16}
+          delay={0.05}
+          margin="-80px"
           className="mt-12 lg:mt-16"
         >
           <div className="mb-6 flex flex-wrap items-end justify-between gap-3">
@@ -262,14 +262,14 @@ const Automacao = () => {
               </div>
             ))}
           </div>
-        </motion.div>
+        </Reveal>
 
         {/* Ganchos + plano */}
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: '-80px' }}
-          transition={{ duration: 0.6, delay: 0.1 }}
+        <Reveal
+          as="div"
+          y={16}
+          delay={0.1}
+          margin="-80px"
           className="mt-12 border-t border-slate-200 pt-8"
         >
           <ul className="flex flex-wrap gap-x-6 gap-y-3">
@@ -295,7 +295,7 @@ const Automacao = () => {
               <strong className="font-semibold text-slate-900"> 7 dias grátis</strong>, sem cartão.
             </p>
           </div>
-        </motion.div>
+        </Reveal>
       </div>
     </section>
   );

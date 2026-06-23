@@ -1,5 +1,5 @@
 import React from 'react';
-import { motion } from 'motion/react';
+import { Reveal } from '../lib/anim';
 import { CheckCircle2, XCircle, Zap, ShieldCheck, TrendingUp, Cpu } from 'lucide-react';
 import { buildWhatsAppLink } from '../utils/whatsapp';
 
@@ -94,11 +94,10 @@ const Pricing = () => {
   ];
 
   return (
-    <motion.section
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-100px" }}
-      transition={{ duration: 0.6 }}
+    <Reveal
+      as="section"
+      y={20}
+      margin="-100px"
       id="planos"
       className="py-16 md:py-24 bg-surface"
     >
@@ -220,7 +219,7 @@ const Pricing = () => {
           </p>
         </div>
       </div>
-    </motion.section>
+    </Reveal>
   );
 };
 

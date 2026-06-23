@@ -1,5 +1,5 @@
 import React from 'react';
-import { motion } from 'motion/react';
+import { Reveal, useInView } from '../lib/anim';
 import { FileText, ShieldCheck, Zap, Clock, Gauge, CheckCircle2 } from 'lucide-react';
 
 const Flow = () => {
@@ -12,11 +12,12 @@ const Flow = () => {
     { title: "Homologado", icon: <CheckCircle2 className="w-6 h-6" />, color: "bg-success" }
   ];
 
+  const [lineRef, lineIn] = useInView<HTMLDivElement>({ once: true });
+
   return (
-    <motion.section 
-      initial={{ opacity: 0 }}
-      whileInView={{ opacity: 1 }}
-      viewport={{ once: true, margin: "-100px" }}
+    <Reveal
+      as="section"
+      margin="-100px"
       className="py-20 md:py-32 bg-white overflow-hidden"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -32,23 +33,21 @@ const Flow = () => {
         <div className="relative">
           {/* Desktop Connector Line */}
           <div className="hidden lg:block absolute top-12 left-0 w-full h-0.5 bg-slate-100 -z-10">
-            <motion.div 
-              initial={{ width: 0 }}
-              whileInView={{ width: "100%" }}
-              viewport={{ once: true }}
-              transition={{ duration: 1.5, ease: "easeInOut" }}
+            <div
+              ref={lineRef}
+              style={{ width: lineIn ? '100%' : 0, transition: 'width 1.5s ease-in-out' }}
               className="h-full bg-gradient-to-r from-bright-sky via-primary to-success"
             />
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-6 gap-12 lg:gap-4">
             {steps.map((step, idx) => (
-              <motion.div 
+              <Reveal
+                as="div"
                 key={idx}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: idx * 0.15, duration: 0.5 }}
+                y={20}
+                duration={0.5}
+                delay={idx * 0.15}
                 className="flex flex-col items-center group relative"
               >
                 {/* Step Number */}
@@ -79,12 +78,12 @@ const Flow = () => {
                 {idx < steps.length - 1 && (
                   <div className="lg:hidden absolute -bottom-8 left-1/2 -translate-x-1/2 w-0.5 h-8 bg-slate-100 md:hidden" />
                 )}
-              </motion.div>
+              </Reveal>
             ))}
           </div>
         </div>
       </div>
-    </motion.section>
+    </Reveal>
   );
 };
 

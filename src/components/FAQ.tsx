@@ -1,6 +1,6 @@
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
-import { motion, AnimatePresence } from 'motion/react';
+import { Reveal } from '../lib/anim';
 import { ChevronDown } from 'lucide-react';
 
 const FAQ = () => {
@@ -60,11 +60,10 @@ const FAQ = () => {
   };
 
   return (
-    <motion.section
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-100px" }}
-      transition={{ duration: 0.6 }}
+    <Reveal
+      as="section"
+      y={20}
+      margin="-100px"
       className="py-16 md:py-24 bg-white"
     >
       <Helmet>
@@ -88,32 +87,34 @@ const FAQ = () => {
             >
               <button
                 onClick={() => setOpenIndex(openIndex === idx ? null : idx)}
+                aria-expanded={openIndex === idx}
+                aria-controls={`faq-panel-${idx}`}
                 className="w-full flex items-center justify-between p-5 md:p-6 text-left hover:bg-slate-50 transition-colors"
               >
                 <span className="font-bold text-slate-900 text-sm md:text-base pr-4 md:pr-8">{faq.question}</span>
-                <ChevronDown 
-                  className={`w-4 h-4 md:w-5 md:h-5 text-slate-500 transition-transform duration-300 shrink-0 ${openIndex === idx ? 'rotate-180' : ''}`} 
+                <ChevronDown
+                  className={`w-4 h-4 md:w-5 md:h-5 text-slate-500 transition-transform duration-300 shrink-0 ${openIndex === idx ? 'rotate-180' : ''}`}
+                  aria-hidden="true"
                 />
               </button>
-              <AnimatePresence>
-                {openIndex === idx && (
-                  <motion.div
-                    initial={{ height: 0, opacity: 0 }}
-                    animate={{ height: 'auto', opacity: 1 }}
-                    exit={{ height: 0, opacity: 0 }}
-                    transition={{ duration: 0.3, ease: "easeInOut" }}
-                  >
-                    <div className="p-5 md:p-6 pt-0 text-slate-600 text-sm md:text-base leading-relaxed border-t border-slate-50">
-                      {faq.answer}
-                    </div>
-                  </motion.div>
-                )}
-              </AnimatePresence>
+              <div
+                id={`faq-panel-${idx}`}
+                inert={openIndex !== idx}
+                className={`grid transition-all duration-300 ease-in-out ${
+                  openIndex === idx ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0'
+                }`}
+              >
+                <div className="overflow-hidden">
+                  <div className="p-5 md:p-6 pt-0 text-slate-600 text-sm md:text-base leading-relaxed border-t border-slate-50">
+                    {faq.answer}
+                  </div>
+                </div>
+              </div>
             </div>
           ))}
         </div>
       </div>
-    </motion.section>
+    </Reveal>
   );
 };
 

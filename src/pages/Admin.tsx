@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { LayoutDashboard, Users, Settings, LogOut, Shield, Menu, X } from 'lucide-react';
-import { motion, AnimatePresence } from 'motion/react';
+import { Reveal, usePresence } from '../lib/anim';
 import AdminLogin from '../components/admin/AdminLogin';
 import DashboardOverview from '../components/admin/DashboardOverview';
 import LeadsCrm from '../components/admin/LeadsCrm';
@@ -31,6 +31,17 @@ export default function Admin() {
   const [startDate, setStartDate] = useState('');
   const [endDate, setEndDate] = useState('');
   const [statusFilter, setStatusFilter] = useState('Todos');
+
+  // Responsivo: no desktop a sidebar fica fixa/visível (lg:sticky); no mobile desliza com backdrop.
+  const [isDesktop, setIsDesktop] = useState(true);
+  useEffect(() => {
+    const mq = window.matchMedia('(min-width: 1024px)');
+    const update = () => setIsDesktop(mq.matches);
+    update();
+    mq.addEventListener?.('change', update);
+    return () => mq.removeEventListener?.('change', update);
+  }, []);
+  const backdrop = usePresence(!isDesktop && isSidebarOpen, 300);
 
   useEffect(() => {
     const session = localStorage.getItem('homologa_admin_session');
@@ -121,25 +132,22 @@ export default function Admin() {
   return (
     <div className="min-h-screen bg-slate-50 flex">
       {/* Sidebar Desktop & Mobile Overlay */}
-      <AnimatePresence>
-        {(isSidebarOpen || window.innerWidth > 1024) && (
-          <>
-            {/* Mobile Backdrop */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              onClick={() => setIsSidebarOpen(false)}
-              className="lg:hidden fixed inset-0 bg-slate-900/50 z-40 backdrop-blur-sm"
-            />
-            {/* Sidebar Pane */}
-            <motion.aside 
-              initial={{ x: -280 }}
-              animate={{ x: 0 }}
-              exit={{ x: -280 }}
-              transition={{ type: 'spring', damping: 25, stiffness: 200 }}
-              className="fixed lg:sticky top-0 left-0 h-screen w-[280px] bg-white border-r border-slate-200 z-50 flex flex-col"
-            >
+      {/* Mobile Backdrop */}
+      {backdrop.mounted && (
+        <div
+          onClick={() => setIsSidebarOpen(false)}
+          className={`lg:hidden fixed inset-0 bg-slate-900/50 z-40 backdrop-blur-sm transition-opacity duration-300 ${
+            backdrop.show ? 'opacity-100' : 'opacity-0'
+          }`}
+        />
+      )}
+      {/* Sidebar Pane — sempre montada (desktop sticky); no mobile desliza via translate-x */}
+      <aside
+        inert={!isDesktop && !isSidebarOpen}
+        className={`fixed lg:sticky top-0 left-0 h-screen w-[280px] bg-white border-r border-slate-200 z-50 flex flex-col transition-transform duration-300 ease-out lg:translate-x-0 ${
+          isSidebarOpen ? 'translate-x-0' : '-translate-x-[280px]'
+        }`}
+      >
               <div className="p-6 flex items-center justify-between">
                 <div className="flex items-center gap-3">
                   <div className="bg-primary text-white p-2 rounded-xl shadow-inner">
@@ -194,10 +202,7 @@ export default function Admin() {
                   Sair do Sístema
                 </button>
               </div>
-            </motion.aside>
-          </>
-        )}
-      </AnimatePresence>
+      </aside>
 
       {/* Main Content Area */}
       <main className="flex-1 flex flex-col min-w-0 h-screen overflow-y-auto">
@@ -232,13 +237,12 @@ export default function Admin() {
             </div>
           )}
 
-          <AnimatePresence mode="wait">
-            <motion.div
+            <Reveal
+              as="div"
               key={activeTab}
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -10 }}
-              transition={{ duration: 0.2 }}
+              y={10}
+              duration={0.2}
+              trigger="mount"
             >
               {activeTab === 'dashboard' && <DashboardOverview leads={leads} />}
               {activeTab === 'crm' && (
@@ -265,8 +269,7 @@ export default function Admin() {
                   <p className="text-slate-500">Esta área estará disponível na próxima atualização do sistema.</p>
                 </div>
               )}
-            </motion.div>
-          </AnimatePresence>
+            </Reveal>
         </div>
       </main>
     </div>

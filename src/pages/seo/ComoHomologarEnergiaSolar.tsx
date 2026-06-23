@@ -1,6 +1,6 @@
 import React, { lazy, Suspense, useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
-import { motion } from 'motion/react';
+import { Reveal } from '../../lib/anim';
 import { Link } from 'react-router-dom';
 import {
   Sun,
@@ -55,12 +55,7 @@ const ComoHomologarEnergiaSolar = () => {
       <main className="pt-32 pb-20 px-4">
         <article className="max-w-3xl mx-auto">
           {/* Breadcrumb */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.4 }}
-            className="mb-8"
-          >
+          <Reveal as="div" duration={0.4} trigger="mount" className="mb-8">
             <Link
               to="/"
               className="inline-flex items-center gap-2 text-sm text-slate-500 hover:text-primary transition-colors"
@@ -68,13 +63,13 @@ const ComoHomologarEnergiaSolar = () => {
               <ChevronLeft className="w-4 h-4" />
               Voltar para Home
             </Link>
-          </motion.div>
+          </Reveal>
 
           {/* Hero */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
+          <Reveal
+            as="div"
+            y={20}
+            trigger="mount"
             className="bg-white rounded-3xl p-8 md:p-12 shadow-xl shadow-slate-200/50 border border-slate-100 mb-10"
           >
             <div className="flex items-center gap-3 text-primary mb-6">
@@ -91,16 +86,15 @@ const ComoHomologarEnergiaSolar = () => {
               que tornam o investimento viável. Neste guia, você vai entender cada etapa do processo, os documentos
               necessários, os prazos envolvidos e como evitar os erros mais comuns que atrasam a aprovação.
             </p>
-          </motion.div>
+          </Reveal>
 
           {/* Content sections */}
           <div className="space-y-10">
             {/* Introdução */}
-            <motion.section
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5 }}
+            <Reveal
+              as="section"
+              y={20}
+              duration={0.5}
               className="bg-white rounded-3xl p-8 md:p-12 shadow-xl shadow-slate-200/50 border border-slate-100"
             >
               <div className="flex items-center gap-3 mb-4">
@@ -122,14 +116,13 @@ const ComoHomologarEnergiaSolar = () => {
                   uma questão burocrática, é uma questão de viabilidade financeira do projeto.
                 </p>
               </div>
-            </motion.section>
+            </Reveal>
 
             {/* Pré-requisitos */}
-            <motion.section
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5 }}
+            <Reveal
+              as="section"
+              y={20}
+              duration={0.5}
               className="bg-white rounded-3xl p-8 md:p-12 shadow-xl shadow-slate-200/50 border border-slate-100"
             >
               <div className="flex items-center gap-3 mb-4">
@@ -158,14 +151,13 @@ const ComoHomologarEnergiaSolar = () => {
                   ))}
                 </ul>
               </div>
-            </motion.section>
+            </Reveal>
 
             {/* Passo 1 */}
-            <motion.section
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5 }}
+            <Reveal
+              as="section"
+              y={20}
+              duration={0.5}
               className="bg-white rounded-3xl p-8 md:p-12 shadow-xl shadow-slate-200/50 border border-slate-100"
             >
               <div className="flex items-center gap-3 mb-4">
@@ -186,14 +178,13 @@ const ComoHomologarEnergiaSolar = () => {
                   causa número um de devoluções nessa fase.
                 </p>
               </div>
-            </motion.section>
+            </Reveal>
 
             {/* Passo 2 */}
-            <motion.section
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5 }}
+            <Reveal
+              as="section"
+              y={20}
+              duration={0.5}
               className="bg-white rounded-3xl p-8 md:p-12 shadow-xl shadow-slate-200/50 border border-slate-100"
             >
               <div className="flex items-center gap-3 mb-4">
@@ -213,14 +204,13 @@ const ComoHomologarEnergiaSolar = () => {
                   você trabalha, pois os requisitos podem variar bastante de uma região para outra.
                 </p>
               </div>
-            </motion.section>
+            </Reveal>
 
             {/* Passo 3 */}
-            <motion.section
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5 }}
+            <Reveal
+              as="section"
+              y={20}
+              duration={0.5}
               className="bg-white rounded-3xl p-8 md:p-12 shadow-xl shadow-slate-200/50 border border-slate-100"
             >
               <div className="flex items-center gap-3 mb-4">
@@ -241,14 +231,13 @@ const ComoHomologarEnergiaSolar = () => {
                   adicionar de 15 a 30 dias ao prazo total do projeto.
                 </p>
               </div>
-            </motion.section>
+            </Reveal>
 
             {/* Passo 4 */}
-            <motion.section
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5 }}
+            <Reveal
+              as="section"
+              y={20}
+              duration={0.5}
               className="bg-white rounded-3xl p-8 md:p-12 shadow-xl shadow-slate-200/50 border border-slate-100"
             >
               <div className="flex items-center gap-3 mb-4">
@@ -267,14 +256,13 @@ const ComoHomologarEnergiaSolar = () => {
                   é a garantia jurídica de que o sistema está regularizado perante a distribuidora.
                 </p>
               </div>
-            </motion.section>
+            </Reveal>
 
             {/* Passo 5 */}
-            <motion.section
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5 }}
+            <Reveal
+              as="section"
+              y={20}
+              duration={0.5}
               className="bg-white rounded-3xl p-8 md:p-12 shadow-xl shadow-slate-200/50 border border-slate-100"
             >
               <div className="flex items-center gap-3 mb-4">
@@ -295,14 +283,13 @@ const ComoHomologarEnergiaSolar = () => {
                   de vista regulatório.
                 </p>
               </div>
-            </motion.section>
+            </Reveal>
 
             {/* Dicas */}
-            <motion.section
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5 }}
+            <Reveal
+              as="section"
+              y={20}
+              duration={0.5}
               className="bg-white rounded-3xl p-8 md:p-12 shadow-xl shadow-slate-200/50 border border-slate-100"
             >
               <div className="flex items-center gap-3 mb-4">
@@ -330,14 +317,13 @@ const ComoHomologarEnergiaSolar = () => {
                   ))}
                 </ul>
               </div>
-            </motion.section>
+            </Reveal>
 
             {/* Erros comuns */}
-            <motion.section
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5 }}
+            <Reveal
+              as="section"
+              y={20}
+              duration={0.5}
               className="bg-white rounded-3xl p-8 md:p-12 shadow-xl shadow-slate-200/50 border border-slate-100"
             >
               <div className="flex items-center gap-3 mb-4">
@@ -365,14 +351,13 @@ const ComoHomologarEnergiaSolar = () => {
                   ))}
                 </ul>
               </div>
-            </motion.section>
+            </Reveal>
 
             {/* Homologa Plus */}
-            <motion.section
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5 }}
+            <Reveal
+              as="section"
+              y={20}
+              duration={0.5}
               className="bg-white rounded-3xl p-8 md:p-12 shadow-xl shadow-slate-200/50 border border-slate-100"
             >
               <div className="flex items-center gap-3 mb-4">
@@ -401,14 +386,13 @@ const ComoHomologarEnergiaSolar = () => {
                   clientes mais satisfeitos.
                 </p>
               </div>
-            </motion.section>
+            </Reveal>
 
             {/* CTA Final */}
-            <motion.section
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5 }}
+            <Reveal
+              as="section"
+              y={20}
+              duration={0.5}
               className="bg-gradient-to-br from-primary to-blue-600 rounded-3xl p-8 md:p-12 shadow-xl shadow-primary/20 text-white text-center"
             >
               <Clock className="w-10 h-10 mx-auto mb-4 text-white/80" />
@@ -426,7 +410,7 @@ const ComoHomologarEnergiaSolar = () => {
                 Começar teste grátis
                 <ArrowRight className="w-5 h-5" />
               </a>
-            </motion.section>
+            </Reveal>
           </div>
         </article>
       </main>

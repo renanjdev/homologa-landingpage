@@ -1,14 +1,13 @@
 import React from 'react';
-import { motion } from 'motion/react';
+import { Reveal } from '../lib/anim';
 import { X, CheckCircle2 } from 'lucide-react';
 
 const BeforeAfter = () => {
   return (
-    <motion.section 
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-100px" }}
-      transition={{ duration: 0.6 }}
+    <Reveal
+      as="section"
+      y={20}
+      margin="-100px"
       className="py-16 md:py-24 bg-surface"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -58,7 +57,7 @@ const BeforeAfter = () => {
           </div>
         </div>
       </div>
-    </motion.section>
+    </Reveal>
   );
 };
 

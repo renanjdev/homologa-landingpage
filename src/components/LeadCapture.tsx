@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'motion/react';
+import { Reveal } from '../lib/anim';
 import { CheckCircle2, Loader2, AlertCircle, MessageCircle, ArrowRight } from 'lucide-react';
 import { buildWhatsAppLink, formatWhatsApp, validateWhatsApp, validateEmail } from '../utils/whatsapp';
 
@@ -66,12 +66,11 @@ const LeadCapture = () => {
     <section id="demonstracao" className="py-16 md:py-24 bg-surface">
       <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm sm:p-10">
-          <AnimatePresence mode="wait">
             {status === 'success' ? (
-              <motion.div
+              <Reveal
                 key="ok"
-                initial={{ opacity: 0, scale: 0.95 }}
-                animate={{ opacity: 1, scale: 1 }}
+                trigger="mount"
+                scale={0.95}
                 className="py-4 text-center"
               >
                 <div className="mx-auto mb-5 flex h-16 w-16 items-center justify-center rounded-full bg-success/10 text-success">
@@ -99,9 +98,9 @@ const LeadCapture = () => {
                     Ou comece o teste grátis <ArrowRight className="h-4 w-4" />
                   </a>
                 </div>
-              </motion.div>
+              </Reveal>
             ) : (
-              <motion.div key="form" initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
+              <Reveal key="form" trigger="mount">
                 <div className="mb-8 text-center">
                   <h2 className="mb-3 text-clamp-h2 font-display font-bold text-slate-900">
                     Prefere ver funcionando antes de assinar?
@@ -165,9 +164,8 @@ const LeadCapture = () => {
                   </button>
                   <p className="text-center text-xs text-slate-400">Sem compromisso. Seus dados estão seguros.</p>
                 </form>
-              </motion.div>
+              </Reveal>
             )}
-          </AnimatePresence>
         </div>
       </div>
     </section>

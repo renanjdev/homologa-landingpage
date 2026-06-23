@@ -1,6 +1,6 @@
 import React, { lazy, Suspense } from 'react';
 import { Helmet } from 'react-helmet-async';
-import { motion } from 'motion/react';
+import { Reveal } from '../../lib/anim';
 import { Link } from 'react-router-dom';
 import {
   AlertTriangle,
@@ -20,11 +20,6 @@ import {
 
 const Navbar = lazy(() => import('../../components/Navbar'));
 const Footer = lazy(() => import('../../components/Footer'));
-
-const sectionVariants = {
-  hidden: { opacity: 0, y: 30 },
-  visible: { opacity: 1, y: 0 },
-};
 
 const erros = [
   {
@@ -111,12 +106,7 @@ const ErrosHomologacaoSolar = () => {
         </div>
 
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            className="mb-6"
-          >
+          <Reveal as="div" y={20} duration={0.5} trigger="mount" className="mb-6">
             <Link
               to="/"
               className="inline-flex items-center gap-2 text-sm text-slate-500 hover:text-primary transition-colors"
@@ -124,38 +114,39 @@ const ErrosHomologacaoSolar = () => {
               <ArrowLeft className="w-4 h-4" />
               Voltar para Home
             </Link>
-          </motion.div>
+          </Reveal>
 
-          <motion.h1
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.1 }}
+          <Reveal
+            as="h1"
+            y={20}
+            delay={0.1}
+            trigger="mount"
             className="text-3xl sm:text-4xl md:text-5xl font-display font-extrabold leading-tight mb-6"
           >
             Erros na Homologação Solar:{' '}
             <span className="text-primary">Como Evitar Reprovações e Retrabalho</span>
-          </motion.h1>
+          </Reveal>
 
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
+          <Reveal
+            as="p"
+            y={20}
+            delay={0.2}
+            trigger="mount"
             className="text-lg sm:text-xl text-slate-600 leading-relaxed max-w-2xl mx-auto"
           >
             Guia completo com os 8 erros mais frequentes que causam reprovações na homologação
             de energia solar — e como eliminá-los de vez do seu fluxo de trabalho.
-          </motion.p>
+          </Reveal>
         </div>
       </header>
 
       <main className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pb-20">
         {/* Introdução */}
-        <motion.section
-          variants={sectionVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: '-50px' }}
-          transition={{ duration: 0.5 }}
+        <Reveal
+          as="section"
+          y={30}
+          duration={0.5}
+          margin="-50px"
           className="bg-white rounded-3xl p-8 md:p-12 shadow-xl shadow-slate-200/50 border border-slate-100 mb-10"
         >
           <div className="flex items-center gap-3 mb-6">
@@ -185,20 +176,20 @@ const ErrosHomologacaoSolar = () => {
               processos bem definidos e ferramentas adequadas.
             </p>
           </div>
-        </motion.section>
+        </Reveal>
 
         {/* Lista de Erros */}
         <div className="space-y-8 mb-16">
           {erros.map((erro, index) => {
             const Icon = erro.icon;
             return (
-              <motion.section
+              <Reveal
+                as="section"
                 key={index}
-                variants={sectionVariants}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true, margin: '-50px' }}
-                transition={{ duration: 0.5, delay: index * 0.05 }}
+                y={30}
+                duration={0.5}
+                delay={index * 0.05}
+                margin="-50px"
                 className="bg-white rounded-3xl p-8 md:p-10 shadow-lg shadow-slate-200/40 border border-slate-100"
               >
                 <div className="flex items-start gap-4 mb-4">
@@ -208,18 +199,17 @@ const ErrosHomologacaoSolar = () => {
                   <h2 className="text-xl md:text-2xl font-bold text-slate-900">{erro.titulo}</h2>
                 </div>
                 <p className="text-slate-600 leading-relaxed pl-14">{erro.conteudo}</p>
-              </motion.section>
+              </Reveal>
             );
           })}
         </div>
 
         {/* Como prevenir */}
-        <motion.section
-          variants={sectionVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: '-50px' }}
-          transition={{ duration: 0.5 }}
+        <Reveal
+          as="section"
+          y={30}
+          duration={0.5}
+          margin="-50px"
           className="bg-white rounded-3xl p-8 md:p-12 shadow-xl shadow-slate-200/50 border border-slate-100 mb-10"
         >
           <div className="flex items-center gap-3 mb-6">
@@ -250,15 +240,14 @@ const ErrosHomologacaoSolar = () => {
               operacional e muito mais satisfação do cliente.
             </p>
           </div>
-        </motion.section>
+        </Reveal>
 
         {/* Homologa Plus */}
-        <motion.section
-          variants={sectionVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: '-50px' }}
-          transition={{ duration: 0.5 }}
+        <Reveal
+          as="section"
+          y={30}
+          duration={0.5}
+          margin="-50px"
           className="bg-gradient-to-br from-primary/5 to-blue-50 rounded-3xl p-8 md:p-12 shadow-xl shadow-slate-200/50 border border-primary/10 mb-10"
         >
           <div className="flex items-center gap-3 mb-6">
@@ -288,15 +277,14 @@ const ErrosHomologacaoSolar = () => {
               total de reprovações por erros documentais.
             </p>
           </div>
-        </motion.section>
+        </Reveal>
 
         {/* CTA Final */}
-        <motion.section
-          variants={sectionVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: '-50px' }}
-          transition={{ duration: 0.5 }}
+        <Reveal
+          as="section"
+          y={30}
+          duration={0.5}
+          margin="-50px"
           className="text-center py-12"
         >
           <h2 className="text-2xl md:text-3xl font-bold text-slate-900 mb-4">
@@ -313,7 +301,7 @@ const ErrosHomologacaoSolar = () => {
             Começar teste grátis
             <ChevronRight className="w-5 h-5" />
           </a>
-        </motion.section>
+        </Reveal>
       </main>
 
       <Suspense fallback={null}>

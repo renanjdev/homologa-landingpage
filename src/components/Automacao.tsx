@@ -92,10 +92,10 @@ const ganchos = [
 const Automacao = () => {
   // Exemplos reais gerados. O diagrama unifilar é o foco (frente/centro do leque).
   const exemplos = [
-    { f: 'doc-unifilar', alt: 'Diagrama unifilar gerado pela Automação', fan: 'z-40 group-hover:-translate-y-3' },
-    { f: 'doc-blocos', alt: 'Diagrama de blocos gerado pela Automação', fan: 'z-30 translate-x-[44%] rotate-[8deg] group-hover:translate-x-[72%] group-hover:rotate-[13deg]' },
-    { f: 'doc-planta', alt: 'Planta de localização gerada pela Automação', fan: 'z-20 -translate-x-[32%] -rotate-[5deg] group-hover:-translate-x-[52%] group-hover:-rotate-[9deg]' },
-    { f: 'doc-memorial', alt: 'Memorial descritivo gerado pela Automação', fan: 'z-10 -translate-x-[74%] -rotate-[12deg] group-hover:-translate-x-[98%] group-hover:-rotate-[17deg]' },
+    { f: 'doc-unifilar', alt: 'Diagrama unifilar gerado pela Automação', fan: 'z-40 group-hover:-translate-y-4' },
+    { f: 'doc-blocos', alt: 'Diagrama de blocos gerado pela Automação', fan: 'z-30 translate-x-[54%] rotate-[9deg] group-hover:translate-x-[84%] group-hover:rotate-[14deg]' },
+    { f: 'doc-planta', alt: 'Planta de localização gerada pela Automação', fan: 'z-20 -translate-x-[42%] -rotate-[6deg] group-hover:-translate-x-[64%] group-hover:-rotate-[10deg]' },
+    { f: 'doc-memorial', alt: 'Memorial descritivo gerado pela Automação', fan: 'z-10 -translate-x-[88%] -rotate-[13deg] group-hover:-translate-x-[114%] group-hover:-rotate-[18deg]' },
   ];
 
   return (
@@ -252,11 +252,11 @@ const Automacao = () => {
           </div>
 
           {/* Desktop: leque com o diagrama unifilar em foco (frente/centro) */}
-          <div className="group relative mx-auto hidden h-[500px] w-full max-w-2xl items-center justify-center sm:flex">
+          <div className="group relative mx-auto hidden h-[560px] w-full max-w-3xl items-center justify-center sm:flex">
             {exemplos.map(({ f, alt, fan }) => (
               <div
                 key={f}
-                className={`absolute w-[260px] overflow-hidden rounded-xl border border-slate-200 bg-white shadow-[0_22px_55px_-24px_rgba(15,23,42,0.42)] transition-transform duration-500 ease-out ${fan}`}
+                className={`absolute w-[300px] overflow-hidden rounded-xl border border-slate-200 bg-white shadow-[0_22px_55px_-24px_rgba(15,23,42,0.42)] transition-transform duration-500 ease-out ${fan}`}
               >
                 <img src={`/${f}.webp`} alt={alt} width={620} height={876} className="block h-auto w-full" loading="lazy" />
               </div>

@@ -93,9 +93,9 @@ const Automacao = () => {
   // Exemplos reais gerados. O diagrama unifilar é o foco (frente/centro do leque).
   const exemplos = [
     { f: 'doc-unifilar', alt: 'Diagrama unifilar gerado pela Automação', fan: 'z-40 group-hover:-translate-y-4' },
-    { f: 'doc-blocos', alt: 'Diagrama de blocos gerado pela Automação', fan: 'z-30 translate-x-[54%] rotate-[9deg] group-hover:translate-x-[84%] group-hover:rotate-[14deg]' },
-    { f: 'doc-planta', alt: 'Planta de localização gerada pela Automação', fan: 'z-20 -translate-x-[42%] -rotate-[6deg] group-hover:-translate-x-[64%] group-hover:-rotate-[10deg]' },
-    { f: 'doc-memorial', alt: 'Memorial descritivo gerado pela Automação', fan: 'z-10 -translate-x-[88%] -rotate-[13deg] group-hover:-translate-x-[114%] group-hover:-rotate-[18deg]' },
+    { f: 'doc-blocos', alt: 'Diagrama de blocos gerado pela Automação', fan: 'z-30 translate-x-[68%] rotate-[10deg] group-hover:translate-x-[98%] group-hover:rotate-[15deg]' },
+    { f: 'doc-planta', alt: 'Planta de localização gerada pela Automação', fan: 'z-20 -translate-x-[56%] -rotate-[7deg] group-hover:-translate-x-[78%] group-hover:-rotate-[11deg]' },
+    { f: 'doc-memorial', alt: 'Memorial descritivo gerado pela Automação', fan: 'z-10 -translate-x-[106%] -rotate-[14deg] group-hover:-translate-x-[132%] group-hover:-rotate-[19deg]' },
   ];
 
   return (

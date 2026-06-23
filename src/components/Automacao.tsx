@@ -121,7 +121,7 @@ const Automacao = () => {
             A Automação por dentro
           </span>
           <h2 className="mt-5 text-clamp-h2 font-display font-extrabold text-slate-900 text-balance">
-            A documentação da homologação solar, <span className="text-primary">gerada e validada</span> automaticamente
+            A documentação da homologação solar, <span className="text-laminado">gerada e validada</span> automaticamente
           </h2>
           <p className="mt-5 max-w-2xl text-base md:text-lg leading-relaxed text-slate-600 text-pretty">
             A partir do projeto já cadastrado, o sistema faz o dimensionamento elétrico, gera memorial, diagramas e

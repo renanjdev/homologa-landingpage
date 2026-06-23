@@ -22,7 +22,7 @@ const Flow = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16 md:mb-24">
           <h2 className="text-clamp-h2 font-display font-bold text-slate-900 mb-6">
-            Fluxo organizado da <span className="text-primary">homologação</span>
+            Fluxo organizado da <span className="text-laminado">homologação</span>
           </h2>
           <p className="text-slate-600 max-w-2xl mx-auto text-base md:text-lg">
             Acompanhe cada etapa do processo de forma clara e automatizada, eliminando gargalos e erros manuais.

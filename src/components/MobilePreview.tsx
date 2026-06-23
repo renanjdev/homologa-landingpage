@@ -15,7 +15,7 @@ const MobilePreview = () => {
             transition={{ duration: 0.6 }}
           >
             <h2 className="text-clamp-h2 font-display font-bold text-slate-900 mb-6">
-              Seu sistema de homologação, <span className="text-primary">em qualquer lugar.</span>
+              Seu sistema de homologação, <span className="text-laminado">em qualquer lugar.</span>
             </h2>
             
             <p className="text-lg text-slate-600 mb-8 leading-relaxed">

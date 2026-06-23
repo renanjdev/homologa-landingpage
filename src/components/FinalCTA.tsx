@@ -49,7 +49,7 @@ const FinalCTA = () => {
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => window.fbq && window.fbq('track', 'Contact')}
-                className="border border-white/30 hover:border-white/60 hover:bg-white/5 text-white px-8 py-4 rounded-xl text-lg font-bold transition-all duration-200 ease-out flex items-center justify-center gap-2 w-full sm:w-auto"
+                className="border border-white/30 bg-white/10 backdrop-blur-md hover:bg-white/20 hover:border-white/60 text-white px-8 py-4 rounded-xl text-lg font-bold transition-all duration-200 ease-out flex items-center justify-center gap-2 w-full sm:w-auto"
               >
                 <MessageCircle className="w-5 h-5" />
                 Falar no WhatsApp

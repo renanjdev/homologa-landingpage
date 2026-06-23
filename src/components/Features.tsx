@@ -30,7 +30,7 @@ const features: Feature[] = [
     ],
     img: '/dashboard.png',
     alt: 'Painel de gestão do Homologa Plus com projetos, pendências, potência e pipeline por etapa',
-    badge: { title: '78% de aprovação', sub: 'taxa de homologação' },
+    badge: { title: '98% de aprovação', sub: 'taxa de homologação' },
   },
   {
     label: 'Fluxo de homologação',

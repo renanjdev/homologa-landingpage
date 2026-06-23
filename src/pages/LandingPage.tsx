@@ -89,7 +89,7 @@ const Hero = () => {
             <span className="inline-flex items-center gap-2 rounded-xl border border-slate-200 bg-white px-3 py-2 shadow-sm">
               <CheckCircle2 className="h-4 w-4 shrink-0 text-success" />
               <span className="text-left">
-                <span className="block text-sm font-bold leading-tight text-slate-900">78% de aprovação</span>
+                <span className="block text-sm font-bold leading-tight text-slate-900">98% de aprovação</span>
                 <span className="block font-mono text-[10px] text-slate-500">taxa de homologação</span>
               </span>
             </span>
@@ -118,7 +118,7 @@ const Hero = () => {
               <CheckCircle2 className="h-5 w-5" />
             </span>
             <span className="text-left">
-              <span className="block text-sm font-bold leading-tight text-slate-900">78% de aprovação</span>
+              <span className="block text-sm font-bold leading-tight text-slate-900">98% de aprovação</span>
               <span className="block font-mono text-[11px] text-slate-500">taxa de homologação</span>
             </span>
           </div>

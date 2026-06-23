@@ -1,6 +1,6 @@
 import React, { lazy, Suspense } from 'react';
 import { Helmet } from 'react-helmet-async';
-import { motion } from 'motion/react';
+import { Reveal } from '../../lib/anim';
 import { Link } from 'react-router-dom';
 import {
   Sun,
@@ -57,10 +57,10 @@ const HomologacaoEnergiaSolar = () => {
         </div>
 
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
+          <Reveal
+            as="div"
+            y={20}
+            trigger="mount"
             className="text-center"
           >
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-bold uppercase tracking-wider mb-6">
@@ -73,18 +73,17 @@ const HomologacaoEnergiaSolar = () => {
             <p className="text-lg md:text-xl text-slate-600 leading-relaxed max-w-2xl mx-auto">
               Tudo o que você precisa saber para conduzir o processo de homologação de sistemas fotovoltaicos junto às concessionárias de energia, de forma eficiente e sem retrabalho.
             </p>
-          </motion.div>
+          </Reveal>
         </div>
       </section>
 
       {/* Content */}
       <article className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pb-20">
         {/* Section 1 */}
-        <motion.section
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
+        <Reveal
+          as="section"
+          y={20}
+          duration={0.5}
           className="mb-16"
         >
           <div className="flex items-center gap-3 mb-4">
@@ -103,14 +102,13 @@ const HomologacaoEnergiaSolar = () => {
               Sem a homologação, o sistema fotovoltaico não pode injetar energia na rede de distribuição e o proprietário não recebe os créditos energéticos previstos no sistema de compensação. Isso significa que todo o investimento realizado na instalação dos módulos e inversores não gera o retorno financeiro esperado enquanto o processo não for concluído. Para engenheiros e integradores solares, dominar esse processo é fundamental para entregar projetos com excelência e garantir a satisfação dos clientes finais.
             </p>
           </div>
-        </motion.section>
+        </Reveal>
 
         {/* Section 2 */}
-        <motion.section
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
+        <Reveal
+          as="section"
+          y={20}
+          duration={0.5}
           className="mb-16"
         >
           <div className="flex items-center gap-3 mb-4">
@@ -132,14 +130,13 @@ const HomologacaoEnergiaSolar = () => {
               Além dos aspectos legais, a homologação confere credibilidade ao integrador solar perante seus clientes. Um processo conduzido de forma transparente e dentro dos prazos demonstra profissionalismo e fortalece a reputação da empresa no mercado de energia solar, cada vez mais competitivo.
             </p>
           </div>
-        </motion.section>
+        </Reveal>
 
         {/* Section 3 - Steps */}
-        <motion.section
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
+        <Reveal
+          as="section"
+          y={20}
+          duration={0.5}
           className="mb-16"
         >
           <div className="flex items-center gap-3 mb-6">
@@ -181,11 +178,10 @@ const HomologacaoEnergiaSolar = () => {
                 desc: 'Após aprovação na vistoria, a concessionária emite o parecer de conexão e autoriza o sistema a entrar em operação. A partir desse momento, a energia excedente gerada é injetada na rede e o consumidor passa a acumular créditos energéticos conforme a regulamentação vigente. O processo de homologação está formalmente concluído.',
               },
             ].map((item) => (
-              <motion.div
+              <Reveal
+                as="div"
                 key={item.step}
-                initial={{ opacity: 0, x: -10 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
+                x={-10}
                 className="flex gap-4 bg-slate-50 rounded-2xl p-6 border border-slate-100"
               >
                 <div className="flex-shrink-0 w-10 h-10 bg-primary rounded-xl flex items-center justify-center text-white font-bold text-sm">
@@ -195,17 +191,16 @@ const HomologacaoEnergiaSolar = () => {
                   <h3 className="text-lg font-semibold text-slate-900 mb-2">{item.title}</h3>
                   <p className="text-slate-600 leading-relaxed">{item.desc}</p>
                 </div>
-              </motion.div>
+              </Reveal>
             ))}
           </div>
-        </motion.section>
+        </Reveal>
 
         {/* Section 4 - Documents */}
-        <motion.section
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
+        <Reveal
+          as="section"
+          y={20}
+          duration={0.5}
           className="mb-16"
         >
           <div className="flex items-center gap-3 mb-6">
@@ -238,14 +233,13 @@ const HomologacaoEnergiaSolar = () => {
               </div>
             ))}
           </div>
-        </motion.section>
+        </Reveal>
 
         {/* Section 5 - Deadlines */}
-        <motion.section
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
+        <Reveal
+          as="section"
+          y={20}
+          duration={0.5}
           className="mb-16"
         >
           <div className="flex items-center gap-3 mb-4">
@@ -267,14 +261,13 @@ const HomologacaoEnergiaSolar = () => {
               Com a entrada em vigor da Lei 14.300/2022, o Marco Legal da Geração Distribuída trouxe novas regras sobre a tarifação da energia injetada e o Fio B, impactando diretamente o cálculo de retorno dos projetos. Engenheiros e integradores devem se manter atualizados sobre essas mudanças para orientar corretamente seus clientes sobre a viabilidade financeira dos sistemas fotovoltaicos.
             </p>
           </div>
-        </motion.section>
+        </Reveal>
 
         {/* Section 6 - Common Errors */}
-        <motion.section
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
+        <Reveal
+          as="section"
+          y={20}
+          duration={0.5}
           className="mb-16"
         >
           <div className="flex items-center gap-3 mb-6">
@@ -322,14 +315,13 @@ const HomologacaoEnergiaSolar = () => {
               </div>
             ))}
           </div>
-        </motion.section>
+        </Reveal>
 
         {/* Section 7 - Homologa Plus */}
-        <motion.section
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
+        <Reveal
+          as="section"
+          y={20}
+          duration={0.5}
           className="mb-16"
         >
           <div className="flex items-center gap-3 mb-4">
@@ -351,14 +343,13 @@ const HomologacaoEnergiaSolar = () => {
               O resultado é mais produtividade para a equipe, menos erros por falta de controle e uma experiência profissional que diferencia o integrador no mercado. Empresas que utilizam o Homologa Plus relatam redução significativa no tempo de gestão de cada projeto e maior satisfação dos clientes, o que se traduz em mais indicações e crescimento sustentável do negócio.
             </p>
           </div>
-        </motion.section>
+        </Reveal>
 
         {/* CTA Section */}
-        <motion.section
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
+        <Reveal
+          as="section"
+          y={20}
+          duration={0.5}
           className="mb-16"
         >
           <div className="bg-gradient-to-br from-primary to-blue-600 rounded-3xl p-8 md:p-12 text-center text-white">
@@ -376,7 +367,7 @@ const HomologacaoEnergiaSolar = () => {
               <ArrowRight className="w-5 h-5" />
             </a>
           </div>
-        </motion.section>
+        </Reveal>
 
         {/* Back to home */}
         <div className="text-center">

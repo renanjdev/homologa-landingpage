@@ -1,5 +1,5 @@
 import React from 'react';
-import { motion } from 'motion/react';
+import { Reveal } from '../lib/anim';
 import { ChevronLeft } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
@@ -26,9 +26,10 @@ const PrivacyPolicy = () => {
       </nav>
 
       <main className="pt-32 pb-20 px-4">
-        <motion.div 
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
+        <Reveal
+          as="div"
+          y={20}
+          trigger="mount"
           className="max-w-3xl mx-auto bg-white rounded-3xl p-8 md:p-12 shadow-xl shadow-slate-200/50 border border-slate-100"
         >
           <h1 className="text-4xl font-bold mb-8 text-slate-900">Política de Privacidade</h1>
@@ -64,7 +65,7 @@ const PrivacyPolicy = () => {
               <p>Utilizamos cookies para melhorar sua experiência de navegação e analisar o tráfego do site. Você pode gerenciar as preferências de cookies em seu navegador.</p>
             </section>
           </div>
-        </motion.div>
+        </Reveal>
       </main>
 
       <footer className="bg-white border-t border-slate-100 py-12">

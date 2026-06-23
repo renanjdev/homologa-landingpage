@@ -1,6 +1,6 @@
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
-import { motion } from 'motion/react';
+import { Reveal } from '../lib/anim';
 import { CheckCircle2, MessageCircle, PlayCircle, FileText, Users, DollarSign, Clock, ShieldCheck, BarChart3 } from 'lucide-react';
 
 const Start = () => {
@@ -26,68 +26,74 @@ const Start = () => {
       <main className="max-w-2xl mx-auto px-4 py-16 sm:py-24 flex flex-col items-center">
 
         {/* Logo */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0.9 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.5 }}
+        <Reveal
+          as="div"
+          scale={0.9}
+          duration={0.5}
+          trigger="mount"
           className="flex items-center gap-2 mb-12"
         >
           <img src="/logo-h.png" alt="Homologa Plus" width={48} height={48} className="w-12 h-12" />
           <span className="text-2xl font-bold tracking-tight text-slate-900">
             Homologa <span className="text-bright-sky font-medium">Plus</span>
           </span>
-        </motion.div>
+        </Reveal>
 
         {/* Hero - Pain Point */}
         <div className="text-center mb-10">
-          <motion.h1
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.1 }}
+          <Reveal
+            as="h1"
+            y={20}
+            delay={0.1}
+            trigger="mount"
             className="text-3xl sm:text-5xl font-display font-extrabold text-slate-900 leading-[1.1] mb-6 px-2"
           >
             Pare de gerenciar homologações no <span className="text-primary">WhatsApp</span>
-          </motion.h1>
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
+          </Reveal>
+          <Reveal
+            as="p"
+            y={20}
+            delay={0.2}
+            trigger="mount"
             className="text-lg sm:text-xl text-slate-600 leading-relaxed max-w-lg mx-auto px-4"
           >
             Chega de planilha, print de conversa e documento perdido. Tenha <strong>controle total</strong> dos seus projetos solares em um único sistema.
-          </motion.p>
+          </Reveal>
         </div>
 
         {/* Primary CTA */}
         <div className="w-full max-w-sm flex flex-col gap-4 mb-12">
-          <motion.a
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.3 }}
+          <Reveal
+            as="a"
+            y={20}
+            delay={0.3}
+            trigger="mount"
             href="https://app.homologaplus.com.br/cadastro"
             className="w-full flex items-center justify-center gap-3 bg-primary hover:bg-primary-dark text-white text-lg font-extrabold py-5 px-8 rounded-2xl transition-all shadow-xl shadow-primary/20 hover:shadow-primary/30 active:scale-[0.98] min-h-[56px]"
           >
             <PlayCircle className="w-5 h-5" />
             Testar grátis por 7 dias
-          </motion.a>
+          </Reveal>
 
-          <motion.a
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.4 }}
+          <Reveal
+            as="a"
+            y={20}
+            delay={0.4}
+            trigger="mount"
             href="https://wa.me/5514991273245?text=Quero%20testar%20o%20Homologa%20Plus"
             className="w-full flex items-center justify-center gap-3 bg-white hover:bg-slate-50 text-slate-900 text-lg font-bold py-5 px-8 rounded-2xl transition-all border border-slate-200 shadow-sm active:scale-[0.98] min-h-[56px]"
           >
             <MessageCircle className="w-5 h-5 text-success" />
             Falar no WhatsApp
-          </motion.a>
+          </Reveal>
         </div>
 
         {/* Pain Section - Before/After */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.5 }}
+        <Reveal
+          as="div"
+          y={20}
+          delay={0.5}
+          trigger="mount"
           className="w-full max-w-md mb-12"
         >
           <h2 className="text-xl font-bold text-slate-900 text-center mb-6">Você ainda gerencia assim?</h2>
@@ -104,13 +110,14 @@ const Start = () => {
               </div>
             ))}
           </div>
-        </motion.div>
+        </Reveal>
 
         {/* Benefits Section */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.6 }}
+        <Reveal
+          as="div"
+          y={20}
+          delay={0.6}
+          trigger="mount"
           className="w-full max-w-md mb-12"
         >
           <h2 className="text-xl font-bold text-slate-900 text-center mb-6">Com o Homologa Plus, você tem:</h2>
@@ -134,13 +141,14 @@ const Start = () => {
               </div>
             ))}
           </div>
-        </motion.div>
+        </Reveal>
 
         {/* Trust Bullets */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.8, delay: 0.7 }}
+        <Reveal
+          as="div"
+          duration={0.8}
+          delay={0.7}
+          trigger="mount"
           className="w-full max-w-sm space-y-4 px-4 mb-12"
         >
           {[
@@ -156,13 +164,14 @@ const Start = () => {
               <span>{bullet}</span>
             </div>
           ))}
-        </motion.div>
+        </Reveal>
 
         {/* Final CTA */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.8 }}
+        <Reveal
+          as="div"
+          y={20}
+          delay={0.8}
+          trigger="mount"
           className="w-full max-w-sm text-center mb-8"
         >
           <p className="text-slate-600 text-sm mb-4">Pronto para organizar suas homologações?</p>
@@ -173,7 +182,7 @@ const Start = () => {
             <PlayCircle className="w-5 h-5" />
             Começar teste grátis agora
           </a>
-        </motion.div>
+        </Reveal>
 
         {/* Footer */}
         <div className="mt-auto pt-8 pb-8 text-slate-400 text-xs font-medium tracking-wide">

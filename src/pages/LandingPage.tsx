@@ -1,6 +1,6 @@
 import React, { lazy, Suspense } from 'react';
 import { Helmet } from 'react-helmet-async';
-import { motion } from 'motion/react';
+import { Reveal } from '../lib/anim';
 import { ShieldCheck, ChevronRight, MessageCircle, CheckCircle2 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { buildWhatsAppLink } from '../utils/whatsapp';
@@ -44,10 +44,10 @@ const Hero = () => {
       />
 
       <div className="px-4 sm:px-6 lg:px-8">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
+        <Reveal
+          as="div"
+          y={20}
+          trigger="mount"
           className="mx-auto max-w-3xl text-center"
         >
           <span className="inline-flex items-center gap-2 rounded-full bg-primary/10 px-3.5 py-1.5 font-mono text-[11px] md:text-xs font-semibold uppercase tracking-[0.14em] text-primary">
@@ -102,13 +102,15 @@ const Hero = () => {
               </span>
             </span>
           </div>
-        </motion.div>
+        </Reveal>
 
         {/* Painel real do produto: recortado, gradiente de continuidade e chips de destaque */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.2 }}
+        <Reveal
+          as="div"
+          y={30}
+          duration={0.7}
+          delay={0.2}
+          trigger="mount"
           className="relative mx-auto mt-12 max-w-[1120px]"
         >
           <div
@@ -137,7 +139,7 @@ const Hero = () => {
           </div>
 
           <HeroMedia />
-        </motion.div>
+        </Reveal>
       </div>
     </section>
   );
@@ -250,13 +252,10 @@ const LandingPage = () => {
       <SpeedInsights />
 
       {/* CTA fixo no mobile: recaptura a intenção durante a rolagem (aparece após sair do hero) */}
-      <motion.div
-        initial={{ y: 120 }}
-        animate={{ y: scrolled ? 0 : 120 }}
-        transition={{ duration: 0.25, ease: 'easeOut' }}
+      <div
         aria-hidden={!scrolled}
-        className="fixed inset-x-0 bottom-0 z-40 flex items-center gap-2.5 border-t border-slate-200 bg-white/80 px-4 py-3 shadow-[0_-8px_24px_-12px_rgba(15,23,42,0.18)] backdrop-blur-xl md:hidden"
-        style={{ paddingBottom: 'calc(0.75rem + env(safe-area-inset-bottom))' }}
+        className="fixed inset-x-0 bottom-0 z-40 flex items-center gap-2.5 border-t border-slate-200 bg-white/80 px-4 py-3 shadow-[0_-8px_24px_-12px_rgba(15,23,42,0.18)] backdrop-blur-xl md:hidden transition-transform duration-[250ms] ease-out"
+        style={{ paddingBottom: 'calc(0.75rem + env(safe-area-inset-bottom))', transform: scrolled ? 'translateY(0)' : 'translateY(120px)' }}
       >
         <a
           href="https://app.homologaplus.com.br/cadastro"
@@ -277,7 +276,7 @@ const LandingPage = () => {
         >
           <MessageCircle className="h-6 w-6" />
         </a>
-      </motion.div>
+      </div>
 
       {/* Botão flutuante de WhatsApp (desktop — no mobile o WhatsApp já fica na barra fixa de CTA) */}
       <a
@@ -292,17 +291,16 @@ const LandingPage = () => {
       </a>
 
       {/* Back to Top Button (apenas desktop — no mobile a barra de CTA ocupa o rodapé) */}
-      <motion.button
-        initial={{ opacity: 0, scale: 0.5 }}
-        animate={{ opacity: scrolled ? 1 : 0, scale: scrolled ? 1 : 0 }}
+      <button
         onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
         aria-label="Voltar ao topo"
         aria-hidden={!scrolled}
         tabIndex={scrolled ? 0 : -1}
         className={`fixed bottom-28 right-8 z-40 hidden bg-white text-primary p-4 rounded-2xl shadow-2xl border border-slate-100 hover:bg-primary hover:text-white transition-all group md:block ${scrolled ? '' : 'pointer-events-none'}`}
+        style={{ opacity: scrolled ? 1 : 0, transform: scrolled ? 'scale(1)' : 'scale(0.5)' }}
       >
         <ChevronRight className="w-6 h-6 -rotate-90 group-hover:-translate-y-1 transition-transform" aria-hidden="true" />
-      </motion.button>
+      </button>
     </div>
   );
 };

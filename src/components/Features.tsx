@@ -1,5 +1,5 @@
 import React from 'react';
-import { motion } from 'motion/react';
+import { Reveal } from '../lib/anim';
 import { LayoutDashboard, Workflow, LineChart, Map, Check, CheckCircle2 } from 'lucide-react';
 
 type Feature = {
@@ -83,11 +83,10 @@ const Features = () => {
   return (
     <section id="solucao" className="py-16 md:py-28 bg-surface overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: '-100px' }}
-          transition={{ duration: 0.6 }}
+        <Reveal
+          as="div"
+          y={20}
+          margin="-100px"
           className="text-center max-w-2xl mx-auto mb-16 md:mb-24"
         >
           <h2 className="text-clamp-h2 font-display font-extrabold text-slate-900 mb-4 text-balance">
@@ -96,16 +95,15 @@ const Features = () => {
           <p className="text-base md:text-lg text-slate-600 leading-relaxed">
             Além de gerar e validar os documentos, o Homologa Plus controla projetos, prazos, financeiro e território — cada parte da operação em um só lugar.
           </p>
-        </motion.div>
+        </Reveal>
 
         <div className="flex flex-col gap-20 md:gap-28">
           {features.map((f) => (
-            <motion.div
+            <Reveal
+              as="div"
               key={f.label}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: '-80px' }}
-              transition={{ duration: 0.6 }}
+              y={30}
+              margin="-80px"
               className="grid items-center gap-10 lg:gap-12 lg:grid-cols-[0.8fr_1.4fr]"
             >
               {/* Copy */}
@@ -158,7 +156,7 @@ const Features = () => {
                   />
                 </div>
               </div>
-            </motion.div>
+            </Reveal>
           ))}
         </div>
       </div>

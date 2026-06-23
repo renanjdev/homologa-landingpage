@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { motion } from 'motion/react';
+import { Reveal } from '../../lib/anim';
 import { Shield } from 'lucide-react';
 
 interface LoginProps {
@@ -48,9 +48,10 @@ export default function AdminLogin({ onLogin }: LoginProps) {
       <div className="absolute top-0 left-1/4 w-96 h-96 bg-primary/20 rounded-full blur-[120px] -z-10" />
       <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-indigo-500/10 rounded-full blur-[120px] -z-10" />
       
-      <motion.div 
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
+      <Reveal
+        as="div"
+        y={20}
+        trigger="mount"
         className="bg-slate-800/80 backdrop-blur-xl p-8 sm:p-10 rounded-3xl shadow-2xl max-w-md w-full border border-slate-700/50"
       >
         <div className="flex justify-center mb-8">
@@ -66,13 +67,14 @@ export default function AdminLogin({ onLogin }: LoginProps) {
         
         <form onSubmit={handleLogin} className="space-y-5">
           {error && (
-            <motion.div 
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
+            <Reveal
+              as="div"
+              scale={0.95}
+              trigger="mount"
               className="bg-rose-500/10 border border-rose-500/20 text-rose-400 p-3 rounded-xl text-sm text-center"
             >
               {error}
-            </motion.div>
+            </Reveal>
           )}
           
           <div>
@@ -107,7 +109,7 @@ export default function AdminLogin({ onLogin }: LoginProps) {
             {loading ? 'Validando Acesso...' : 'Acessar Workspace'}
           </button>
         </form>
-      </motion.div>
+      </Reveal>
     </div>
   );
 }

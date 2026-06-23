@@ -1,5 +1,5 @@
 import React from 'react';
-import { motion } from 'motion/react';
+import { Reveal } from '../lib/anim';
 import { Smartphone, Zap, CheckCircle2 } from 'lucide-react';
 
 const MobilePreview = () => {
@@ -8,12 +8,7 @@ const MobilePreview = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           {/* Text Content */}
-          <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-          >
+          <Reveal as="div" x={-20}>
             <h2 className="text-clamp-h2 font-display font-bold text-slate-900 mb-6">
               Seu sistema de homologação, <span className="text-laminado">em qualquer lugar.</span>
             </h2>
@@ -37,14 +32,13 @@ const MobilePreview = () => {
                 </div>
               ))}
             </div>
-          </motion.div>
+          </Reveal>
 
           {/* Image Preview */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.7 }}
+          <Reveal
+            as="div"
+            scale={0.9}
+            duration={0.7}
             className="relative flex justify-center"
           >
             {/* Decorative backgrounds */}
@@ -75,7 +69,7 @@ const MobilePreview = () => {
                 </div>
               </div>
             </div>
-          </motion.div>
+          </Reveal>
         </div>
       </div>
     </section>

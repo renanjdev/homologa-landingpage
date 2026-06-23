@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'motion/react';
+import { Reveal } from '../lib/anim';
 import { Helmet } from 'react-helmet-async';
 import { Mail, CheckCircle2, Phone, ArrowLeft, Zap, ShieldCheck, Loader2, AlertCircle, ChevronRight, Share2, Trophy } from 'lucide-react';
 import { Link, useSearchParams } from 'react-router-dom';
@@ -27,10 +27,10 @@ const WaitlistHeader = () => (
 );
 
 const WaitlistHero = ({ waitlistCount }: { waitlistCount: number }) => (
-  <motion.div
-    initial={{ opacity: 0, x: -20 }}
-    animate={{ opacity: 1, x: 0 }}
-    transition={{ duration: 0.6 }}
+  <Reveal
+    as="div"
+    x={-20}
+    trigger="mount"
     className="text-center lg:text-left"
   >
     <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-100 text-amber-700 text-[10px] md:text-xs font-bold uppercase tracking-wider mb-6">
@@ -80,11 +80,9 @@ const WaitlistHero = ({ waitlistCount }: { waitlistCount: number }) => (
             <span className="text-primary">{waitlistCount}</span> / 100 vagas do plano fundador
           </p>
           <div className="w-full h-1.5 bg-slate-100 rounded-full mt-2 overflow-hidden">
-            <motion.div 
-              initial={{ width: 0 }}
-              animate={{ width: `${Math.min(100, (waitlistCount / 100) * 100)}%` }}
-              transition={{ duration: 1, ease: "easeOut" }}
-              className={`h-full rounded-full transition-colors ${
+            <div
+              style={{ width: `${Math.min(100, (waitlistCount / 100) * 100)}%`, transition: 'width 1s ease-out' }}
+              className={`h-full rounded-full ${
                 waitlistCount >= 80 ? 'bg-rose-500 shadow-[0_0_10px_rgba(244,63,94,0.4)]' : 'bg-primary'
               }`}
             />
@@ -104,10 +102,10 @@ const WaitlistHero = ({ waitlistCount }: { waitlistCount: number }) => (
     <p className="text-xs text-slate-400 italic">
       "Ferramenta criada por quem trabalha diariamente com projetos e homologação de usinas fotovoltaicas."
     </p>
-  </motion.div>
+  </Reveal>
 );
 
-const SuccessState = ({ 
+const SuccessState = ({
   userInitialRank, 
   userReferrals, 
   userId, 
@@ -128,11 +126,11 @@ const SuccessState = ({
   };
 
   return (
-    <motion.div
+    <Reveal
+      as="div"
       key="success"
-      initial={{ opacity: 0, scale: 0.9 }}
-      animate={{ opacity: 1, scale: 1 }}
-      exit={{ opacity: 0, scale: 0.9 }}
+      scale={0.9}
+      trigger="mount"
       className="text-center py-4"
     >
       <div className="w-20 h-20 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center mx-auto mb-6">
@@ -175,11 +173,11 @@ const SuccessState = ({
       >
         Cadastrar outro número
       </button>
-    </motion.div>
+    </Reveal>
   );
 };
 
-const WaitlistForm = ({ 
+const WaitlistForm = ({
   onSubmit, 
   status, 
   errorMessage 
@@ -227,11 +225,10 @@ const WaitlistForm = ({
   };
 
   return (
-    <motion.div
+    <Reveal
+      as="div"
       key="form"
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
+      trigger="mount"
     >
       <h2 className="text-xl sm:text-2xl font-bold text-slate-900 mb-2">Entrar na lista de acesso antecipado</h2>
       <p className="text-sm sm:text-base text-slate-500 mb-8">
@@ -333,7 +330,7 @@ const WaitlistForm = ({
           🔒 Suas informações estão seguras. Sem spam.
         </p>
       </form>
-    </motion.div>
+    </Reveal>
   );
 };
 
@@ -365,13 +362,13 @@ const Waitlist = () => {
         <div className="max-w-5xl w-full grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           <WaitlistHero waitlistCount={waitlistCount} />
 
-          <motion.div
-            initial={{ opacity: 0, x: 20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
+          <Reveal
+            as="div"
+            x={20}
+            delay={0.2}
+            trigger="mount"
             className="bg-white rounded-3xl shadow-2xl p-6 sm:p-10 border border-slate-100 relative"
           >
-            <AnimatePresence mode="wait">
               {status === 'success' ? (
                 <SuccessState 
                   userId={userId}
@@ -386,8 +383,7 @@ const Waitlist = () => {
                   errorMessage={errorMessage}
                 />
               )}
-            </AnimatePresence>
-          </motion.div>
+          </Reveal>
         </div>
       </main>
 

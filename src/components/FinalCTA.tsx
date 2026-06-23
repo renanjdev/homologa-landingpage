@@ -1,5 +1,5 @@
 import React from 'react';
-import { motion } from 'motion/react';
+import { Reveal } from '../lib/anim';
 import { ArrowRight, MessageCircle, ShieldCheck } from 'lucide-react';
 import { buildWhatsAppLink } from '../utils/whatsapp';
 
@@ -7,11 +7,10 @@ const FinalCTA = () => {
   return (
     <section className="py-16 md:py-24">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: '-100px' }}
-          transition={{ duration: 0.6, ease: 'easeOut' }}
+        <Reveal
+          as="div"
+          y={30}
+          margin="-100px"
           className="relative overflow-hidden rounded-[2rem] bg-primary-dark px-6 py-14 sm:px-12 md:py-20 text-center"
         >
           {/* Textura instrumental sutil: grade de pontos, sem blobs decorativos */}
@@ -61,7 +60,7 @@ const FinalCTA = () => {
               <span>7 dias grátis · Sem cartão de crédito · Cancele quando quiser.</span>
             </div>
           </div>
-        </motion.div>
+        </Reveal>
       </div>
     </section>
   );

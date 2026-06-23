@@ -1,6 +1,6 @@
 import React, { lazy, Suspense } from 'react';
 import { Helmet } from 'react-helmet-async';
-import { motion } from 'motion/react';
+import { Reveal } from '../../lib/anim';
 import {
   FileText,
   CheckCircle2,
@@ -43,10 +43,10 @@ const DocumentosHomologacao = () => {
       </Suspense>
 
       <main className="pt-32 pb-20 px-4">
-        <motion.article
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
+        <Reveal
+          as="article"
+          y={20}
+          trigger="mount"
           className="max-w-3xl mx-auto"
         >
           {/* Breadcrumb */}
@@ -79,11 +79,10 @@ const DocumentosHomologacao = () => {
           </div>
 
           {/* Section 1: Introduction */}
-          <motion.section
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
+          <Reveal
+            as="section"
+            y={20}
+            duration={0.5}
             className="bg-white rounded-3xl p-8 md:p-12 shadow-xl shadow-slate-200/50 border border-slate-100 mb-8"
           >
             <div className="flex items-center gap-3 mb-4">
@@ -111,14 +110,13 @@ const DocumentosHomologacao = () => {
                 A seguir, apresentamos a lista completa dividida por categorias para facilitar sua organização.
               </p>
             </div>
-          </motion.section>
+          </Reveal>
 
           {/* Section 2: Documentos do Titular */}
-          <motion.section
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
+          <Reveal
+            as="section"
+            y={20}
+            duration={0.5}
             className="bg-white rounded-3xl p-8 md:p-12 shadow-xl shadow-slate-200/50 border border-slate-100 mb-8"
           >
             <div className="flex items-center gap-3 mb-4">
@@ -166,14 +164,13 @@ const DocumentosHomologacao = () => {
                 </li>
               </ul>
             </div>
-          </motion.section>
+          </Reveal>
 
           {/* Section 3: Documentos Técnicos */}
-          <motion.section
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
+          <Reveal
+            as="section"
+            y={20}
+            duration={0.5}
             className="bg-white rounded-3xl p-8 md:p-12 shadow-xl shadow-slate-200/50 border border-slate-100 mb-8"
           >
             <div className="flex items-center gap-3 mb-4">
@@ -223,14 +220,13 @@ const DocumentosHomologacao = () => {
                 </li>
               </ul>
             </div>
-          </motion.section>
+          </Reveal>
 
           {/* Section 4: Documentos dos Equipamentos */}
-          <motion.section
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
+          <Reveal
+            as="section"
+            y={20}
+            duration={0.5}
             className="bg-white rounded-3xl p-8 md:p-12 shadow-xl shadow-slate-200/50 border border-slate-100 mb-8"
           >
             <div className="flex items-center gap-3 mb-4">
@@ -278,14 +274,13 @@ const DocumentosHomologacao = () => {
                 </li>
               </ul>
             </div>
-          </motion.section>
+          </Reveal>
 
           {/* Section 5: Formulários da Concessionária */}
-          <motion.section
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
+          <Reveal
+            as="section"
+            y={20}
+            duration={0.5}
             className="bg-white rounded-3xl p-8 md:p-12 shadow-xl shadow-slate-200/50 border border-slate-100 mb-8"
           >
             <div className="flex items-center gap-3 mb-4">
@@ -324,14 +319,13 @@ const DocumentosHomologacao = () => {
                 </li>
               </ul>
             </div>
-          </motion.section>
+          </Reveal>
 
           {/* Section 6: Checklist Completo */}
-          <motion.section
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
+          <Reveal
+            as="section"
+            y={20}
+            duration={0.5}
             className="bg-white rounded-3xl p-8 md:p-12 shadow-xl shadow-slate-200/50 border border-slate-100 mb-8"
           >
             <div className="flex items-center gap-3 mb-6">
@@ -390,14 +384,13 @@ const DocumentosHomologacao = () => {
                 </div>
               ))}
             </div>
-          </motion.section>
+          </Reveal>
 
           {/* Section 7: Erros Comuns */}
-          <motion.section
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
+          <Reveal
+            as="section"
+            y={20}
+            duration={0.5}
             className="bg-white rounded-3xl p-8 md:p-12 shadow-xl shadow-slate-200/50 border border-slate-100 mb-8"
           >
             <div className="flex items-center gap-3 mb-4">
@@ -458,14 +451,13 @@ const DocumentosHomologacao = () => {
                 </li>
               </ul>
             </div>
-          </motion.section>
+          </Reveal>
 
           {/* Section 8: Dicas para Organizar */}
-          <motion.section
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
+          <Reveal
+            as="section"
+            y={20}
+            duration={0.5}
             className="bg-white rounded-3xl p-8 md:p-12 shadow-xl shadow-slate-200/50 border border-slate-100 mb-8"
           >
             <div className="flex items-center gap-3 mb-4">
@@ -523,14 +515,13 @@ const DocumentosHomologacao = () => {
                 </li>
               </ul>
             </div>
-          </motion.section>
+          </Reveal>
 
           {/* Section 9: Como o Homologa Plus Ajuda */}
-          <motion.section
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
+          <Reveal
+            as="section"
+            y={20}
+            duration={0.5}
             className="bg-gradient-to-br from-primary/5 to-blue-50 rounded-3xl p-8 md:p-12 shadow-xl shadow-slate-200/50 border border-primary/10 mb-8"
           >
             <h2 className="text-2xl font-bold text-slate-900 mb-4">
@@ -561,14 +552,13 @@ const DocumentosHomologacao = () => {
                 projetos concluídos por mês.
               </p>
             </div>
-          </motion.section>
+          </Reveal>
 
           {/* Section 10: CTA Final */}
-          <motion.section
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
+          <Reveal
+            as="section"
+            y={20}
+            duration={0.5}
             className="bg-white rounded-3xl p-8 md:p-12 shadow-xl shadow-slate-200/50 border border-slate-100 text-center"
           >
             <h2 className="text-2xl md:text-3xl font-bold text-slate-900 mb-4">
@@ -588,8 +578,8 @@ const DocumentosHomologacao = () => {
             <p className="text-sm text-slate-400 mt-4">
               Sem cartão de crédito. Sem compromisso. 30 dias grátis.
             </p>
-          </motion.section>
-        </motion.article>
+          </Reveal>
+        </Reveal>
       </main>
 
       <Suspense fallback={null}>

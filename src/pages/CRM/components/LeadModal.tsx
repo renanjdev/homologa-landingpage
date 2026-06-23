@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { X, Trash2 } from 'lucide-react';
-import { motion, AnimatePresence } from 'motion/react';
+import { usePresence } from '../../../lib/anim';
 import type { Lead, ColumnId, Temperature } from '../types/crm';
 import { COLUMNS, TEMPERATURE_CONFIG } from '../types/crm';
 
@@ -58,23 +58,21 @@ export default function LeadModal({ isOpen, lead, onClose, onSave, onUpdate, onD
     }
   };
 
+  const { mounted, show } = usePresence(isOpen, 200);
+  if (!mounted) return null;
+
   return (
-    <AnimatePresence>
-      {isOpen && (
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/40 backdrop-blur-sm"
+        <div
+          className={`fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/40 backdrop-blur-sm transition-opacity duration-200 ${
+            show ? 'opacity-100' : 'opacity-0'
+          }`}
           onClick={onClose}
         >
-          <motion.div
-            initial={{ opacity: 0, scale: 0.95, y: 20 }}
-            animate={{ opacity: 1, scale: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 0.95, y: 20 }}
-            transition={{ duration: 0.2 }}
+          <div
             onClick={(e) => e.stopPropagation()}
-            className="bg-white rounded-2xl shadow-xl w-full max-w-lg max-h-[90vh] overflow-y-auto"
+            className={`bg-white rounded-2xl shadow-xl w-full max-w-lg max-h-[90vh] overflow-y-auto transition-all duration-200 ${
+              show ? 'opacity-100 scale-100 translate-y-0' : 'opacity-0 scale-95 translate-y-5'
+            }`}
           >
             <div className="flex items-center justify-between p-5 border-b border-slate-100">
               <h2 className="text-lg font-display font-bold text-slate-900">
@@ -223,9 +221,7 @@ export default function LeadModal({ isOpen, lead, onClose, onSave, onUpdate, onD
                 </div>
               </div>
             </form>
-          </motion.div>
-        </motion.div>
-      )}
-    </AnimatePresence>
+          </div>
+        </div>
   );
 }

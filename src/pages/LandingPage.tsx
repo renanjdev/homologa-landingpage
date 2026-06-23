@@ -1,7 +1,7 @@
 import React, { lazy, Suspense } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { motion } from 'motion/react';
-import { Zap, ChevronRight, MessageCircle, CheckCircle2 } from 'lucide-react';
+import { ShieldCheck, ChevronRight, MessageCircle, CheckCircle2 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { buildWhatsAppLink } from '../utils/whatsapp';
 import { SpeedInsights } from "@vercel/speed-insights/react";
@@ -94,10 +94,10 @@ const Hero = () => {
               </span>
             </span>
             <span className="inline-flex items-center gap-2 rounded-xl border border-slate-200 bg-white px-3 py-2 shadow-sm">
-              <Zap className="h-4 w-4 shrink-0 text-primary" />
+              <ShieldCheck className="h-4 w-4 shrink-0 text-primary" />
               <span className="text-left">
-                <span className="block text-sm font-bold leading-tight text-slate-900">935.6 kWp</span>
-                <span className="block font-mono text-[10px] text-slate-500">potência gerenciada</span>
+                <span className="block text-sm font-bold leading-tight text-slate-900">Conformidade</span>
+                <span className="block font-mono text-[10px] text-slate-500">validada</span>
               </span>
             </span>
           </div>
@@ -123,15 +123,15 @@ const Hero = () => {
             </span>
           </div>
           <div
-            className="animate-floaty absolute top-[46%] -right-3 z-20 hidden items-center gap-3 rounded-2xl border border-slate-200 bg-white px-3.5 py-3 shadow-[0_20px_44px_-16px_rgba(15,23,42,0.32)] md:flex lg:-right-6"
+            className="animate-floaty absolute -bottom-5 -right-3 z-20 hidden items-center gap-3 rounded-2xl border border-slate-200 bg-white px-3.5 py-3 shadow-[0_20px_44px_-16px_rgba(15,23,42,0.32)] md:flex lg:-right-6"
             style={{ animationDelay: '1.9s' }}
           >
             <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary/10 text-primary">
-              <Zap className="h-5 w-5" />
+              <ShieldCheck className="h-5 w-5" />
             </span>
             <span className="text-left">
-              <span className="block text-sm font-bold leading-tight text-slate-900">935.6 kWp</span>
-              <span className="block font-mono text-[11px] text-slate-500">potência gerenciada</span>
+              <span className="block text-sm font-bold leading-tight text-slate-900">Conformidade validada</span>
+              <span className="block font-mono text-[11px] text-slate-500">antes de protocolar</span>
             </span>
           </div>
 

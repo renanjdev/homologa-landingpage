@@ -7,8 +7,8 @@
   --font-mono: "JetBrains Mono", ui-monospace, monospace;
 
   /* Brand identity v1.0 — Homologa Plus */
-  --color-primary: #2563EB;        /* Plus Blue */
-  --color-primary-dark: #1E3A8A;   /* Deep Indigo */
+  --color-primary: #1B2A4A;        /* Navy — cor de marca (instrumento) */
+  --color-primary-dark: #131F39;   /* Navy profundo — hover / seções escuras */
   --color-bright-sky: #3B82F6;     /* Bright Sky — accent / Plus wordmark */
   --color-success: #10B981;
   --color-warning: #F97316;

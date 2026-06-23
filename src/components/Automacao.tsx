@@ -218,6 +218,43 @@ const Automacao = () => {
           </motion.div>
         </div>
 
+        {/* Exemplo real do documento gerado */}
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-80px' }}
+          transition={{ duration: 0.6, delay: 0.05 }}
+          className="mt-12 lg:mt-16"
+        >
+          <div className="mb-6 flex flex-wrap items-end justify-between gap-3">
+            <div>
+              <h3 className="font-display text-xl font-bold text-slate-900">Um exemplo do que ela gera</h3>
+              <p className="mt-1 text-slate-600">Memorial descritivo e de cálculo, no padrão da distribuidora.</p>
+            </div>
+            <span className="font-mono text-[11px] uppercase tracking-[0.14em] text-slate-500">gerado automaticamente</span>
+          </div>
+          <div className="grid max-w-2xl grid-cols-3 gap-3 sm:gap-5">
+            {[1, 2, 3].map((n) => (
+              <div
+                key={n}
+                className="overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm transition-transform hover:-translate-y-1"
+              >
+                <picture>
+                  <source srcSet={`/doc-memorial-${n}.webp`} type="image/webp" />
+                  <img
+                    src={`/doc-memorial-${n}.jpg`}
+                    alt={`Trecho ${n} do memorial descritivo gerado pela Automação`}
+                    width={620}
+                    height={876}
+                    className="block h-auto w-full"
+                    loading="lazy"
+                  />
+                </picture>
+              </div>
+            ))}
+          </div>
+        </motion.div>
+
         {/* Ganchos + plano */}
         <motion.div
           initial={{ opacity: 0, y: 16 }}

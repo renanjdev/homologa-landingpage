@@ -233,7 +233,7 @@ const Automacao = () => {
             </div>
             <span className="font-mono text-[11px] uppercase tracking-[0.14em] text-slate-500">gerado automaticamente</span>
           </div>
-          <div className="group relative mx-auto flex h-[300px] w-full max-w-xl items-center justify-center sm:h-[400px]">
+          <div className="group relative mx-auto flex h-[360px] w-full max-w-2xl items-center justify-center sm:h-[520px]">
             {[
               { n: 2, t: '-rotate-[7deg] -translate-x-[42%] group-hover:-rotate-[12deg] group-hover:-translate-x-[68%]', z: 'z-10' },
               { n: 3, t: 'rotate-[7deg] translate-x-[42%] group-hover:rotate-[12deg] group-hover:translate-x-[68%]', z: 'z-20' },
@@ -241,7 +241,7 @@ const Automacao = () => {
             ].map(({ n, t, z }) => (
               <div
                 key={n}
-                className={`absolute w-[150px] overflow-hidden rounded-xl border border-slate-200 bg-white shadow-[0_22px_55px_-24px_rgba(15,23,42,0.42)] transition-transform duration-500 ease-out sm:w-[208px] ${z} ${t}`}
+                className={`absolute w-[180px] overflow-hidden rounded-xl border border-slate-200 bg-white shadow-[0_22px_55px_-24px_rgba(15,23,42,0.42)] transition-transform duration-500 ease-out sm:w-[280px] ${z} ${t}`}
               >
                 <picture>
                   <source srcSet={`/doc-memorial-${n}.webp`} type="image/webp" />

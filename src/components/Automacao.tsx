@@ -228,26 +228,26 @@ const Automacao = () => {
         >
           <div className="mb-6 flex flex-wrap items-end justify-between gap-3">
             <div>
-              <h3 className="font-display text-xl font-bold text-slate-900">Um exemplo do que ela gera</h3>
-              <p className="mt-1 text-slate-600">Memorial descritivo e de cálculo, no padrão da distribuidora.</p>
+              <h3 className="font-display text-xl font-bold text-slate-900">Exemplos do que ela gera</h3>
+              <p className="mt-1 text-slate-600">Diagrama unifilar, diagrama de blocos e planta de localização — dimensionados e no padrão da distribuidora.</p>
             </div>
             <span className="font-mono text-[11px] uppercase tracking-[0.14em] text-slate-500">gerado automaticamente</span>
           </div>
           <div className="group relative mx-auto flex h-[360px] w-full max-w-2xl items-center justify-center sm:h-[520px]">
             {[
-              { n: 2, t: '-rotate-[7deg] -translate-x-[42%] group-hover:-rotate-[12deg] group-hover:-translate-x-[68%]', z: 'z-10' },
-              { n: 3, t: 'rotate-[7deg] translate-x-[42%] group-hover:rotate-[12deg] group-hover:translate-x-[68%]', z: 'z-20' },
-              { n: 1, t: 'group-hover:-translate-y-3', z: 'z-30' },
-            ].map(({ n, t, z }) => (
+              { f: 'doc-unifilar', alt: 'Diagrama unifilar gerado pela Automação', t: '-rotate-[7deg] -translate-x-[42%] group-hover:-rotate-[12deg] group-hover:-translate-x-[68%]', z: 'z-10' },
+              { f: 'doc-planta', alt: 'Planta de localização gerada pela Automação', t: 'rotate-[7deg] translate-x-[42%] group-hover:rotate-[12deg] group-hover:translate-x-[68%]', z: 'z-20' },
+              { f: 'doc-blocos', alt: 'Diagrama de blocos gerado pela Automação', t: 'group-hover:-translate-y-3', z: 'z-30' },
+            ].map(({ f, alt, t, z }) => (
               <div
-                key={n}
+                key={f}
                 className={`absolute w-[180px] overflow-hidden rounded-xl border border-slate-200 bg-white shadow-[0_22px_55px_-24px_rgba(15,23,42,0.42)] transition-transform duration-500 ease-out sm:w-[280px] ${z} ${t}`}
               >
                 <picture>
-                  <source srcSet={`/doc-memorial-${n}.webp`} type="image/webp" />
+                  <source srcSet={`/${f}.webp`} type="image/webp" />
                   <img
-                    src={`/doc-memorial-${n}.jpg`}
-                    alt="Página do memorial descritivo gerado pela Automação"
+                    src={`/${f}.jpg`}
+                    alt={alt}
                     width={620}
                     height={876}
                     className="block h-auto w-full"

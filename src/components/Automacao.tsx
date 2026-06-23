@@ -246,10 +246,7 @@ const Automacao = () => {
           <div className="grid grid-cols-2 gap-3 sm:hidden">
             {exemplos.map(({ f, alt }) => (
               <div key={f} className="overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm">
-                <picture>
-                  <source srcSet={`/${f}.webp`} type="image/webp" />
-                  <img src={`/${f}.jpg`} alt={alt} width={620} height={876} className="block h-auto w-full" loading="lazy" />
-                </picture>
+                <img src={`/${f}.webp`} alt={alt} width={620} height={876} className="block h-auto w-full" loading="lazy" />
               </div>
             ))}
           </div>
@@ -261,10 +258,7 @@ const Automacao = () => {
                 key={f}
                 className={`absolute w-[260px] overflow-hidden rounded-xl border border-slate-200 bg-white shadow-[0_22px_55px_-24px_rgba(15,23,42,0.42)] transition-transform duration-500 ease-out ${fan}`}
               >
-                <picture>
-                  <source srcSet={`/${f}.webp`} type="image/webp" />
-                  <img src={`/${f}.jpg`} alt={alt} width={620} height={876} className="block h-auto w-full" loading="lazy" />
-                </picture>
+                <img src={`/${f}.webp`} alt={alt} width={620} height={876} className="block h-auto w-full" loading="lazy" />
               </div>
             ))}
           </div>

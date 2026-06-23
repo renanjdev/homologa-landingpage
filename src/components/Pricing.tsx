@@ -143,7 +143,7 @@ const Pricing = () => {
               <div className="mb-6 md:mb-8">
                 <div className="flex items-baseline gap-1">
                   <span className={`text-2xl md:text-3xl font-bold ${plan.highlight ? 'text-primary' : 'text-slate-900'}`}>R$</span>
-                  <span className={`text-4xl sm:text-5xl md:text-[56px] font-black tracking-tight ${plan.highlight ? 'text-primary' : 'text-slate-900'}`}>{plan.price}</span>
+                  <span className={`text-4xl sm:text-5xl md:text-[56px] font-extrabold tracking-tight ${plan.highlight ? 'text-primary' : 'text-slate-900'}`}>{plan.price}</span>
                   <span className="text-slate-500 text-sm md:text-base font-medium ml-1">/mês</span>
                 </div>
                 {plan.priceSubtitle && (

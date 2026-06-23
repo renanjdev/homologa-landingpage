@@ -29,7 +29,7 @@ const features: Feature[] = [
       'Alertas do que requer ação imediata',
       'Indicadores de aprovação e potência',
     ],
-    img: '/dashboard.png',
+    img: '/dashboard.webp',
     alt: 'Painel de gestão do Homologa Plus com projetos, pendências, potência e pipeline por etapa',
     badge: { title: '98% de aprovação', sub: 'taxa de homologação' },
   },
@@ -43,7 +43,7 @@ const features: Feature[] = [
       'Identifique projetos parados há dias',
       'Fim da cobrança de status por WhatsApp',
     ],
-    img: '/fluxo.png',
+    img: '/fluxo.webp',
     alt: 'Acompanhamento do fluxo de homologação de um projeto, etapa por etapa',
     flip: true,
   },
@@ -57,7 +57,7 @@ const features: Feature[] = [
       'Alertas de recebíveis vencidos',
       'Resultado e evolução por período',
     ],
-    img: '/financeiro.png',
+    img: '/financeiro.webp',
     alt: 'Módulo financeiro com receita, valores a receber, vencidos e gráficos de evolução',
   },
   {
@@ -70,8 +70,7 @@ const features: Feature[] = [
       'Status por cores no território',
       'Concentração comercial das equipes',
     ],
-    img: '/mapa-projetos.jpg',
-    webp: '/mapa-projetos.webp',
+    img: '/mapa-projetos.webp',
     w: 760,
     h: 760,
     alt: 'Mapa com a distribuição geográfica dos projetos de homologação',
@@ -149,17 +148,14 @@ const Features = () => {
                   </div>
                 )}
                 <div className={f.frameless ? '' : 'rounded-2xl overflow-hidden border border-slate-200 bg-white shadow-[0_30px_60px_-30px_rgba(15,23,42,0.35)]'}>
-                  <picture>
-                    <source srcSet={f.webp || f.img.replace('.png', '.webp')} type="image/webp" />
-                    <img
-                      src={f.img}
-                      alt={f.alt}
-                      width={f.w ?? 1919}
-                      height={f.h ?? 964}
-                      className={`block h-auto w-full ${f.frameless ? 'drop-shadow-2xl' : ''}`}
-                      loading="lazy"
-                    />
-                  </picture>
+                  <img
+                    src={(f.webp || f.img).replace(/\.(png|jpe?g)$/, '.webp')}
+                    alt={f.alt}
+                    width={f.w ?? 1919}
+                    height={f.h ?? 964}
+                    className={`block h-auto w-full ${f.frameless ? 'drop-shadow-2xl' : ''}`}
+                    loading="lazy"
+                  />
                 </div>
               </div>
             </motion.div>

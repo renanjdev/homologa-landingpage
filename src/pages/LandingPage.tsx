@@ -5,6 +5,7 @@ import { ShieldCheck, ChevronRight, MessageCircle, CheckCircle2 } from 'lucide-r
 import { Link } from 'react-router-dom';
 import { buildWhatsAppLink } from '../utils/whatsapp';
 import { SpeedInsights } from "@vercel/speed-insights/react";
+import HeroMedia from '../components/HeroMedia';
 
 // Lazy load components below the fold
 const BeforeAfter = lazy(() => import('../components/BeforeAfter'));
@@ -135,22 +136,7 @@ const Hero = () => {
             </span>
           </div>
 
-          <div className="overflow-hidden rounded-2xl border border-slate-200 bg-slate-900 shadow-[0_26px_70px_-34px_rgba(15,23,42,0.34)]">
-            <video
-              className="block w-full"
-              autoPlay
-              muted
-              loop
-              playsInline
-              preload="metadata"
-              poster="/automacao-demo-poster.jpg"
-              width={1280}
-              height={694}
-              aria-label="Demonstração: o Homologa Plus gerando a documentação técnica e validando a conformidade da homologação"
-            >
-              <source src="/automacao-demo.mp4" type="video/mp4" />
-            </video>
-          </div>
+          <HeroMedia />
         </motion.div>
       </div>
     </section>

@@ -7,8 +7,8 @@
   --font-mono: "JetBrains Mono", ui-monospace, monospace;
 
   /* Brand identity v1.0 — Homologa Plus */
-  --color-primary: #2563EB;        /* Plus Blue */
-  --color-primary-dark: #1E3A8A;   /* Deep Indigo */
+  --color-primary: #1B2A4A;        /* Navy — cor de marca (instrumento) */
+  --color-primary-dark: #131F39;   /* Navy profundo — hover / seções escuras */
   --color-bright-sky: #3B82F6;     /* Bright Sky — accent / Plus wordmark */
   --color-success: #10B981;
   --color-warning: #F97316;
@@ -71,6 +71,22 @@
 }
 .animate-floaty { animation: floaty 6s ease-in-out infinite; }
 
+/* Laminação: brilho suave que varre o destaque do título (efeito de verniz/foil).
+   O texto fica navy; só uma faixa de luz passa. Degrada p/ navy sólido em reduced-motion. */
+@keyframes laminado {
+  0% { background-position: 180% 0; }
+  60%, 100% { background-position: -60% 0; }
+}
+.text-laminado {
+  background: linear-gradient(110deg, var(--color-primary) 0%, var(--color-primary) 42%, #a9c2ee 50%, var(--color-primary) 58%, var(--color-primary) 100%);
+  background-size: 220% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  animation: laminado 4s ease-in-out infinite;
+}
+
 /* Respect reduced-motion: collapse entrance animations, the scroll progress
    bar, pulses, and transitions to near-instant so the page reads static. */
 @media (prefers-reduced-motion: reduce) {
@@ -81,5 +97,10 @@
     animation-iteration-count: 1 !important;
     transition-duration: 0.001ms !important;
     scroll-behavior: auto !important;
+  }
+  .text-laminado {
+    background: none;
+    -webkit-text-fill-color: var(--color-primary);
+    color: var(--color-primary);
   }
 }

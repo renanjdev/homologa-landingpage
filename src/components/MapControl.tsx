@@ -66,7 +66,7 @@ const MapControl = () => {
             className="order-1 lg:order-2"
           >
             <h2 className="text-clamp-h2 font-display font-bold text-slate-900 mb-6">
-              Controle de Projetos <span className="text-primary">no Mapa</span>
+              Controle de Projetos <span className="text-laminado">no Mapa</span>
             </h2>
             
             <p className="text-lg text-slate-600 mb-8 leading-relaxed">

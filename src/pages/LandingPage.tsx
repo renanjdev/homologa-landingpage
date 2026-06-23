@@ -53,7 +53,7 @@ const Hero = () => {
             Sistema de gestão para homologação solar · Automação
           </span>
           <h1 className="mx-auto mt-5 max-w-[24ch] text-[clamp(2rem,4vw+0.5rem,3.6rem)] font-display font-extrabold leading-[1.06] tracking-[-0.025em] text-slate-900 text-balance">
-            Pare de montar memorial e unifilar à mão. O Homologa Plus <span className="text-primary">gera e valida</span> sozinho.
+            Pare de montar memorial e unifilar à mão. O Homologa Plus <span className="text-laminado">gera e valida</span> sozinho.
           </h1>
           <p className="mx-auto mt-5 max-w-[44em] text-base md:text-xl leading-relaxed text-slate-600 text-pretty">
             A partir do projeto cadastrado, o sistema dimensiona, gera memorial, diagramas e planta no padrão da sua distribuidora e checa a conformidade antes de você protocolar. E mais: toda a gestão de projetos, prazos e financeiro num só painel.
@@ -111,7 +111,7 @@ const Hero = () => {
           className="relative mx-auto mt-12 max-w-[1120px]"
         >
           <div
-            className="animate-floaty absolute -top-5 -left-3 z-20 hidden items-center gap-3 rounded-2xl border border-slate-200 bg-white px-3.5 py-3 shadow-[0_20px_44px_-16px_rgba(15,23,42,0.32)] md:flex lg:-left-6"
+            className="animate-floaty absolute -top-5 -left-3 z-20 hidden items-center gap-3 rounded-2xl border border-white/60 bg-white/75 backdrop-blur-md px-3.5 py-3 shadow-[0_20px_44px_-16px_rgba(15,23,42,0.32)] md:flex lg:-left-6"
             style={{ animationDelay: '1.4s' }}
           >
             <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-success/15 text-success">
@@ -123,7 +123,7 @@ const Hero = () => {
             </span>
           </div>
           <div
-            className="animate-floaty absolute -bottom-5 -right-3 z-20 hidden items-center gap-3 rounded-2xl border border-slate-200 bg-white px-3.5 py-3 shadow-[0_20px_44px_-16px_rgba(15,23,42,0.32)] md:flex lg:-right-6"
+            className="animate-floaty absolute -bottom-5 -right-3 z-20 hidden items-center gap-3 rounded-2xl border border-white/60 bg-white/75 backdrop-blur-md px-3.5 py-3 shadow-[0_20px_44px_-16px_rgba(15,23,42,0.32)] md:flex lg:-right-6"
             style={{ animationDelay: '1.9s' }}
           >
             <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary/10 text-primary">
@@ -269,7 +269,7 @@ const LandingPage = () => {
         animate={{ y: scrolled ? 0 : 120 }}
         transition={{ duration: 0.25, ease: 'easeOut' }}
         aria-hidden={!scrolled}
-        className="fixed inset-x-0 bottom-0 z-40 flex items-center gap-2.5 border-t border-slate-200 bg-white/95 px-4 py-3 shadow-[0_-8px_24px_-12px_rgba(15,23,42,0.18)] backdrop-blur-lg md:hidden"
+        className="fixed inset-x-0 bottom-0 z-40 flex items-center gap-2.5 border-t border-slate-200 bg-white/80 px-4 py-3 shadow-[0_-8px_24px_-12px_rgba(15,23,42,0.18)] backdrop-blur-xl md:hidden"
         style={{ paddingBottom: 'calc(0.75rem + env(safe-area-inset-bottom))' }}
       >
         <a

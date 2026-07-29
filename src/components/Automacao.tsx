@@ -245,7 +245,7 @@ const Automacao = () => {
           <div className="mb-6 flex flex-wrap items-end justify-between gap-3">
             <div>
               <h3 className="font-display text-xl font-bold text-slate-900">Exemplos do que ela gera</h3>
-              <p className="mt-1 text-slate-600">Memorial descritivo, diagrama unifilar, diagrama de blocos e planta de localização — dimensionados e no padrão da distribuidora.</p>
+              <p className="mt-1 text-slate-600">Memorial descritivo, diagrama unifilar, diagrama de blocos e planta de localização — dimensionados e no padrão da distribuidora. Os formulários e anexos de cada concessionária saem no mesmo pacote, já preenchidos.</p>
             </div>
             <span className="font-mono text-[11px] uppercase tracking-[0.14em] text-slate-500">gerado automaticamente</span>
           </div>

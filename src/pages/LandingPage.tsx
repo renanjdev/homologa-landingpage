@@ -178,6 +178,7 @@ const LandingPage = () => {
               "Geração automática de memorial descritivo e de cálculo no padrão da distribuidora",
               "Diagrama unifilar dimensionado (condutores, disjuntores, DPS, proteções)",
               "Diagrama de blocos e planta de localização",
+              "Formulários e anexos exigidos por cada distribuidora, já preenchidos com os dados do projeto",
               "Formulários e anexos exigidos por cada distribuidora, já preenchidos",
               "Dimensionamento elétrico para inversor string e microinversor",
               "Validação de conformidade (NBR 5410, NBR 16690, PRODIST, Lei 14.300) antes de protocolar",

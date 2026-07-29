@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import { Suspense, lazy } from 'react';
 
 // Lazy load pages
@@ -7,10 +7,8 @@ const LandingPage = lazy(() => import('./pages/LandingPage'));
 const Waitlist = lazy(() => import('./pages/Waitlist'));
 const TermsOfUse = lazy(() => import('./pages/TermsOfUse'));
 const PrivacyPolicy = lazy(() => import('./pages/PrivacyPolicy'));
-const Admin = lazy(() => import('./pages/Admin'));
 const ThankYou = lazy(() => import('./pages/ThankYou'));
 const Start = lazy(() => import('./pages/Start'));
-const CRMPage = lazy(() => import('./pages/CRM/CRMPage'));
 
 // SEO Pages
 const HomologacaoEnergiaSolar = lazy(() => import('./pages/seo/HomologacaoEnergiaSolar'));
@@ -54,15 +52,16 @@ export default function App() {
           <Route path="/waitlist" element={<Waitlist />} />
           <Route path="/termos" element={<TermsOfUse />} />
           <Route path="/privacidade" element={<PrivacyPolicy />} />
-          <Route path="/admin" element={<Admin />} />
           <Route path="/obrigado" element={<ThankYou />} />
-          <Route path="/crm" element={<CRMPage />} />
           {/* SEO Pages */}
           <Route path="/homologacao-energia-solar" element={<HomologacaoEnergiaSolar />} />
           <Route path="/como-homologar-energia-solar" element={<ComoHomologarEnergiaSolar />} />
           <Route path="/homologacao-cpfl" element={<HomologacaoCpfl />} />
           <Route path="/documentos-homologacao-fotovoltaica" element={<DocumentosHomologacao />} />
           <Route path="/erros-homologacao-solar" element={<ErrosHomologacaoSolar />} />
+          {/* Rota desconhecida (inclusive as antigas /admin e /crm) cai na home
+              em vez de renderizar uma página em branco. */}
+          <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </Suspense>
     </BrowserRouter>

@@ -20,7 +20,6 @@ export default defineConfig(({mode}) => {
         output: {
           manualChunks: {
             vendor: ['react', 'react-dom', 'react-router-dom'],
-            charts: ['recharts', 'react-is'],
             ui: ['lucide-react']
           }
         }

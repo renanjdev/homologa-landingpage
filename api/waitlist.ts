@@ -17,6 +17,17 @@ function getSupabase() {
 
 const resend = new Resend(process.env.RESEND_API_KEY || '');
 
+// Caixa que recebe o aviso de cada novo pedido de acesso.
+const TEAM_EMAIL = process.env.SUPPORT_EMAIL || 'contato@homologaplus.com.br';
+
+// Os dados vêm de um formulário público e são interpolados em HTML de e-mail.
+const escapeHtml = (value: any) =>
+  String(value ?? '')
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;');
+
 export default async function handler(req: any, res: any) {
   // Enable CORS
   res.setHeader('Access-Control-Allow-Credentials', 'true');
@@ -32,11 +43,11 @@ export default async function handler(req: any, res: any) {
   }
 
   const supabase = getSupabase();
-  if (!supabase) {
-    return res.status(500).json({ error: "Supabase not configured. Please set SUPABASE_URL and SUPABASE_KEY." });
-  }
 
   if (req.method === 'GET') {
+    if (!supabase) {
+      return res.status(500).json({ error: "Supabase not configured. Please set SUPABASE_URL and SUPABASE_KEY." });
+    }
     try {
       const { count, error } = await supabase
         .from("waitlist")
@@ -67,38 +78,84 @@ export default async function handler(req: any, res: any) {
       return res.status(400).json({ error: "O WhatsApp é obrigatório. Informe o número com DDD." });
     }
 
-    // 1. Save to Supabase
-    const { data, error } = await supabase
-      .from("waitlist")
-      .upsert([
-        {
-          name: name || null,
-          email: email.toLowerCase().trim(),
-          whatsapp,
-          utm_source,
-          utm_medium,
-          utm_campaign,
-          referrer,
-          created_at: new Date().toISOString()
-        }
-      ], { onConflict: 'email' })
-      .select();
+    // 1. Banco é BEST-EFFORT. O lead chega para a equipe por e-mail (passo 2),
+    //    então um Supabase pausado/fora do ar não pode derrubar o formulário.
+    let savedToDatabase = false;
+    let position = 82;
 
-    if (error) {
-      console.error('Supabase error:', error);
-      return res.status(500).json({ error: "Database error", details: error.message });
+    if (supabase) {
+      try {
+        const { error } = await supabase
+          .from("waitlist")
+          .upsert([
+            {
+              name: name || null,
+              email: email.toLowerCase().trim(),
+              whatsapp,
+              utm_source,
+              utm_medium,
+              utm_campaign,
+              referrer,
+              created_at: new Date().toISOString()
+            }
+          ], { onConflict: 'email' })
+          .select();
+
+        if (error) throw error;
+        savedToDatabase = true;
+
+        const { count } = await supabase
+          .from("waitlist")
+          .select("*", { count: "exact", head: true });
+        position = (count || 0) + 82;
+      } catch (dbErr: any) {
+        console.error('Supabase indisponível — seguindo apenas com e-mail:', dbErr?.message || dbErr);
+      }
+    } else {
+      console.warn('Supabase não configurado — lead entregue apenas por e-mail.');
     }
 
-    // 2. Get position (count)
-    const { count, error: countError } = await supabase
-      .from("waitlist")
-      .select("*", { count: "exact", head: true });
+    // 2. Aviso interno: é assim que a equipe fica sabendo do pedido e chama no WhatsApp.
+    let notifiedTeam = false;
+    if (process.env.RESEND_API_KEY) {
+      try {
+        // wa.me exige DDI; o form aceita 10-11 dígitos (DDD + número).
+        const waNumber = whatsappDigits.length <= 11 ? `55${whatsappDigits}` : whatsappDigits;
+        const firstName = String(name || '').trim().split(' ')[0];
+        const waLink = `https://wa.me/${waNumber}?text=${encodeURIComponent(
+          `Olá${firstName ? ` ${firstName}` : ''}! Aqui é do Homologa Plus — recebemos seu pedido de acesso ao teste. Posso te explicar como funciona?`
+        )}`;
 
-    if (countError) {
-      console.error('Supabase count error:', countError);
+        await resend.emails.send({
+          from: 'HOMOLOGA Plus <contato@homologaplus.com.br>',
+          to: [TEAM_EMAIL],
+          replyTo: email,
+          subject: `Novo pedido de acesso: ${name || 'sem nome'} — ${whatsapp}`,
+          html: `
+            <div style="font-family: -apple-system, 'Segoe UI', Arial, sans-serif; max-width: 560px; margin: 0 auto; color: #0F172A;">
+              <h2 style="margin: 0 0 4px 0; font-size: 18px;">Novo pedido de acesso ao teste</h2>
+              <p style="margin: 0 0 20px 0; color: #64748B; font-size: 13px;">
+                ${new Date().toLocaleString('pt-BR')}${savedToDatabase ? '' : ' · <strong style="color:#B91C1C;">não gravado no banco</strong>'}
+              </p>
+              <table cellpadding="0" cellspacing="0" width="100%" style="border: 1px solid #E2E8F0; border-radius: 8px; font-size: 14px;">
+                <tr><td style="padding: 12px 16px; color: #64748B; border-bottom: 1px solid #F1F5F9;">Nome</td><td style="padding: 12px 16px; font-weight: 600; border-bottom: 1px solid #F1F5F9;">${escapeHtml(name) || '—'}</td></tr>
+                <tr><td style="padding: 12px 16px; color: #64748B; border-bottom: 1px solid #F1F5F9;">WhatsApp</td><td style="padding: 12px 16px; font-weight: 600; border-bottom: 1px solid #F1F5F9;">${escapeHtml(whatsapp)}</td></tr>
+                <tr><td style="padding: 12px 16px; color: #64748B; border-bottom: 1px solid #F1F5F9;">E-mail</td><td style="padding: 12px 16px; font-weight: 600; border-bottom: 1px solid #F1F5F9;">${escapeHtml(email)}</td></tr>
+                <tr><td style="padding: 12px 16px; color: #64748B; border-bottom: 1px solid #F1F5F9;">Origem</td><td style="padding: 12px 16px; border-bottom: 1px solid #F1F5F9;">${escapeHtml(utm_source) || '—'} / ${escapeHtml(utm_medium) || '—'} / ${escapeHtml(utm_campaign) || '—'}</td></tr>
+                <tr><td style="padding: 12px 16px; color: #64748B;">Referrer</td><td style="padding: 12px 16px; word-break: break-all;">${escapeHtml(referrer) || '—'}</td></tr>
+              </table>
+              <p style="margin: 24px 0 0 0;">
+                <a href="${waLink}" style="display: inline-block; background: #22C55E; color: #fff; text-decoration: none; font-weight: 700; padding: 14px 28px; border-radius: 8px; font-size: 15px;">Chamar no WhatsApp</a>
+              </p>
+              <p style="margin: 16px 0 0 0; color: #94A3B8; font-size: 12px;">Responder a este e-mail escreve direto para o lead.</p>
+            </div>
+          `,
+        });
+        notifiedTeam = true;
+      } catch (notifyErr) {
+        console.error('Falha ao notificar a equipe:', notifyErr);
+      }
     }
-
-    const position = (count || 0) + 82; // Adding base offset as in current app
 
     // 3. Send email via Resend
     if (process.env.RESEND_API_KEY) {
@@ -143,7 +200,7 @@ export default async function handler(req: any, res: any) {
                         <!-- Body -->
                         <tr>
                           <td class="email-body" style="padding: 40px 30px;">
-                            <p style="margin: 0 0 20px 0; font-size: 15px; color: #334155;">Olá, <strong style="color: #0F172A;">${name || 'Projetista'}</strong> 👋</p>
+                            <p style="margin: 0 0 20px 0; font-size: 15px; color: #334155;">Olá, <strong style="color: #0F172A;">${escapeHtml(name) || 'Projetista'}</strong> 👋</p>
                             <p style="margin: 0 0 30px 0; font-size: 15px; color: #475569; line-height: 1.6;">
                               Recebemos sua solicitação de acesso ao <strong>HOMOLOGA Plus</strong>. O cadastro não é automático:
                               nossa equipe libera os acessos um a um, para acompanhar de perto cada teste.
@@ -161,12 +218,12 @@ export default async function handler(req: any, res: any) {
                                     <tr>
                                       <td width="30" class="detail-cell" style="color: #64748B; font-size: 14px;">✉️</td>
                                       <td class="detail-cell" style="color: #64748B; font-size: 14px; padding: 10px 0; border-bottom: 1px solid #F8FAFC;">E-mail</td>
-                                      <td align="right" class="detail-cell detail-value" style="color: #0F172A; font-size: 14px; font-weight: 600; padding: 10px 0; border-bottom: 1px solid #F8FAFC;">${email}</td>
+                                      <td align="right" class="detail-cell detail-value" style="color: #0F172A; font-size: 14px; font-weight: 600; padding: 10px 0; border-bottom: 1px solid #F8FAFC;">${escapeHtml(email)}</td>
                                     </tr>
                                     <tr>
                                       <td width="30" class="detail-cell" style="color: #64748B; font-size: 14px;">📱</td>
                                       <td class="detail-cell" style="color: #64748B; font-size: 14px; padding: 10px 0; border-bottom: 1px solid #F8FAFC;">WhatsApp</td>
-                                      <td align="right" class="detail-cell detail-value" style="color: #0F172A; font-size: 14px; font-weight: 600; padding: 10px 0; border-bottom: 1px solid #F8FAFC;">${whatsapp}</td>
+                                      <td align="right" class="detail-cell detail-value" style="color: #0F172A; font-size: 14px; font-weight: 600; padding: 10px 0; border-bottom: 1px solid #F8FAFC;">${escapeHtml(whatsapp)}</td>
                                     </tr>
                                     <tr>
                                       <td width="30" class="detail-cell" style="color: #64748B; font-size: 14px;">📅</td>
@@ -276,9 +333,19 @@ export default async function handler(req: any, res: any) {
       }
     }
 
+    // Sem banco E sem e-mail o pedido não chegaria a ninguém — nesse caso é
+    // melhor o visitante ver o erro do que uma confirmação falsa.
+    if (!savedToDatabase && !notifiedTeam) {
+      return res.status(500).json({
+        error: "Não foi possível registrar sua solicitação agora. Tente de novo ou chame a gente no WhatsApp.",
+      });
+    }
+
     return res.status(200).json({
       success: true,
-      position: position
+      position,
+      savedToDatabase,
+      notifiedTeam
     });
   } catch (err: any) {
     console.error('API Error:', err);

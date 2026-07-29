@@ -34,12 +34,6 @@ async function startServer() {
   app.use(express.urlencoded({ extended: true }));
 
   // Security: Rate Limiting
-  const loginLimiter = rateLimit({
-    windowMs: 15 * 60 * 1000, 
-    max: 5, // 5 requests per 15 minutes
-    message: { error: "Muitas tentativas de login. Tente novamente mais tarde." }
-  });
-
   const apiLimiter = rateLimit({
     windowMs: 15 * 60 * 1000,
     max: 100, // 100 requests per 15 minutes for normal API routes
@@ -52,23 +46,6 @@ async function startServer() {
   // Health check route
   app.get("/api/health", (req, res) => {
     res.json({ status: "ok", mode: process.env.NODE_ENV });
-  });
-
-  // Security: Secure Admin Login Route
-  app.post("/api/admin/login", loginLimiter, (req, res) => {
-    const { email, password } = req.body;
-    
-    // In a real app, use environment variables and bcrypt
-    const ADMIN_EMAIL = process.env.ADMIN_EMAIL || 'admin@homologaplus.com.br';
-    const ADMIN_PASS = process.env.ADMIN_PASSWORD || '7698398*Re';
-
-    if (email === ADMIN_EMAIL && password === ADMIN_PASS) {
-      // Return a mock session token
-      const sessionToken = Buffer.from(Date.now() + "_" + ADMIN_EMAIL).toString('base64');
-      return res.json({ success: true, token: sessionToken });
-    }
-    
-    return res.status(401).json({ error: "Credenciais inválidas" });
   });
 
   // Helper to send confirmation email
@@ -204,6 +181,48 @@ async function startServer() {
     }
   }
 
+  // Aviso interno de novo pedido de acesso — é por aqui que a equipe recebe o
+  // lead e chama no WhatsApp (não depende do banco).
+  async function sendTeamNotification(lead: any) {
+    if (!process.env.RESEND_API_KEY) {
+      console.warn("RESEND_API_KEY not configured. Skipping team notification for:", lead.email);
+      return false;
+    }
+    const escapeHtml = (v: any) =>
+      String(v ?? '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+    try {
+      const waNumber = lead.whatsappDigits.length <= 11 ? `55${lead.whatsappDigits}` : lead.whatsappDigits;
+      await resend.emails.send({
+        from: 'HOMOLOGA Plus <contato@homologaplus.com.br>',
+        to: [process.env.SUPPORT_EMAIL || 'contato@homologaplus.com.br'],
+        replyTo: lead.email,
+        subject: `Novo pedido de acesso: ${lead.name || 'sem nome'} — ${lead.whatsapp}`,
+        html: `
+          <div style="font-family: -apple-system, 'Segoe UI', Arial, sans-serif; max-width: 560px; color: #0F172A;">
+            <h2 style="margin: 0 0 4px 0; font-size: 18px;">Novo pedido de acesso ao teste</h2>
+            <p style="margin: 0 0 20px 0; color: #64748B; font-size: 13px;">
+              ${new Date().toLocaleString('pt-BR')}${lead.savedToDatabase ? '' : ' · <strong style="color:#B91C1C;">não gravado no banco</strong>'}
+            </p>
+            <table cellpadding="0" cellspacing="0" width="100%" style="border: 1px solid #E2E8F0; border-radius: 8px; font-size: 14px;">
+              <tr><td style="padding: 12px 16px; color: #64748B;">Nome</td><td style="padding: 12px 16px; font-weight: 600;">${escapeHtml(lead.name) || '—'}</td></tr>
+              <tr><td style="padding: 12px 16px; color: #64748B;">WhatsApp</td><td style="padding: 12px 16px; font-weight: 600;">${escapeHtml(lead.whatsapp)}</td></tr>
+              <tr><td style="padding: 12px 16px; color: #64748B;">E-mail</td><td style="padding: 12px 16px; font-weight: 600;">${escapeHtml(lead.email)}</td></tr>
+              <tr><td style="padding: 12px 16px; color: #64748B;">Origem</td><td style="padding: 12px 16px;">${escapeHtml(lead.utm_source) || '—'} / ${escapeHtml(lead.utm_medium) || '—'} / ${escapeHtml(lead.utm_campaign) || '—'}</td></tr>
+              <tr><td style="padding: 12px 16px; color: #64748B;">Referrer</td><td style="padding: 12px 16px; word-break: break-all;">${escapeHtml(lead.referrer) || '—'}</td></tr>
+            </table>
+            <p style="margin: 24px 0 0 0;">
+              <a href="https://wa.me/${waNumber}" style="display: inline-block; background: #22C55E; color: #fff; text-decoration: none; font-weight: 700; padding: 14px 28px; border-radius: 8px; font-size: 15px;">Chamar no WhatsApp</a>
+            </p>
+          </div>
+        `,
+      });
+      return true;
+    } catch (err) {
+      console.error("Failed to send team notification:", err);
+      return false;
+    }
+  }
+
   // API Route for Waitlist (Supabase)
   app.get("/api/waitlist", async (req, res) => {
     const supabase = getSupabase();
@@ -238,47 +257,53 @@ async function startServer() {
       return res.status(400).json({ error: "O WhatsApp é obrigatório. Informe o número com DDD." });
     }
 
-    if (!supabase) {
-      // Demo mode fallback
+    // Paridade com api/waitlist.ts: o banco é best-effort, quem entrega o lead
+    // para a equipe é o e-mail de notificação.
+    let position = 87;
+    let savedToDatabase = false;
+
+    if (supabase) {
+      try {
+        const { error } = await supabase
+          .from("waitlist")
+          .upsert([
+            {
+              name: name || '',
+              email: email.toLowerCase().trim(),
+              whatsapp,
+              utm_source,
+              utm_medium,
+              utm_campaign,
+              referrer,
+              created_at: new Date().toISOString()
+            }
+          ], { onConflict: 'email' })
+          .select();
+
+        if (error) throw error;
+        savedToDatabase = true;
+
+        const { count } = await supabase
+          .from("waitlist")
+          .select("*", { count: "exact", head: true });
+        position = (count || 0) + 87;
+      } catch (err) {
+        console.error('Supabase indisponível — seguindo apenas com e-mail:', err);
+      }
+    } else {
       console.warn("Supabase not configured. Using demo mode for email:", email);
-      const demoPosition = 88;
-      sendConfirmationEmail(name || 'Integrador', email, demoPosition);
-      return res.json({ success: true, position: demoPosition, demo: true });
     }
 
-    try {
-      const { data, error } = await supabase
-        .from("waitlist")
-        .upsert([
-          { 
-            name: name || '',
-            email: email.toLowerCase().trim(), 
-            whatsapp,
-            utm_source,
-            utm_medium,
-            utm_campaign,
-            referrer,
-            created_at: new Date().toISOString()
-          }
-        ], { onConflict: 'email' })
-        .select();
+    const notifiedTeam = await sendTeamNotification({ name, email, whatsapp, whatsappDigits, utm_source, utm_medium, utm_campaign, referrer, savedToDatabase });
+    sendConfirmationEmail(name || 'Integrador', email, position);
 
-      if (error) throw error;
-
-      const { count } = await supabase
-        .from("waitlist")
-        .select("*", { count: "exact", head: true });
-
-      const position = (count || 0) + 87;
-
-      // Send confirmation email in background
-      sendConfirmationEmail(name || 'Integrador', email, position);
-
-      res.json({ success: true, position });
-    } catch (err) {
-      console.error('Waitlist API Error:', err);
-      res.status(500).json({ error: "Failed to join waitlist" });
+    if (!savedToDatabase && !notifiedTeam) {
+      return res.status(500).json({
+        error: "Não foi possível registrar sua solicitação agora. Tente de novo ou chame a gente no WhatsApp.",
+      });
     }
+
+    res.json({ success: true, position, savedToDatabase, notifiedTeam, demo: !savedToDatabase });
   });
 
   // API Route for Contact Form

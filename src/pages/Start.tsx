@@ -1,17 +1,22 @@
-import React from 'react';
+import React, { lazy, Suspense } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Reveal } from '../lib/anim';
 import { CheckCircle2, MessageCircle, PlayCircle, FileText, Users, DollarSign, Clock, ShieldCheck, BarChart3 } from 'lucide-react';
+import { REQUEST_ACCESS_HASH, TRIAL_DIAS, scrollToRequestAccess } from '../utils/cta';
+
+// Mesmo formulário da landing: o cadastro livre está fechado, então esta página
+// também converte na solicitação de acesso, sem mandar o visitante pra fora.
+const LeadCapture = lazy(() => import('../components/LeadCapture'));
 
 const Start = () => {
   return (
     <div className="min-h-screen bg-white font-sans overflow-x-hidden selection:bg-primary/20">
       <Helmet>
-        <title>Teste Grátis por 7 Dias | Homologa Plus - Gestão de Homologação Solar</title>
-        <meta name="description" content="Pare de gerenciar homologações solares por planilha e WhatsApp. Controle projetos, clientes e documentos em um só lugar. Teste grátis por 7 dias, sem cartão de crédito." />
+        <title>Teste Grátis por 3 Dias | Homologa Plus - Gestão de Homologação Solar</title>
+        <meta name="description" content="Pare de gerenciar homologações solares por planilha e WhatsApp. Controle projetos, clientes e documentos em um só lugar. Solicite seu teste de 3 dias, sem cartão de crédito." />
         <meta name="keywords" content="teste grátis homologa plus, software homologação solar, gestão projetos solares" />
         <link rel="canonical" href="https://homologaplus.com.br/start" />
-        <meta property="og:title" content="Teste Grátis por 7 Dias | Homologa Plus" />
+        <meta property="og:title" content="Teste Grátis por 3 Dias | Homologa Plus" />
         <meta property="og:description" content="Pare de gerenciar homologações solares por planilha e WhatsApp. Controle projetos, clientes e documentos em um só lugar." />
         <meta property="og:url" content="https://homologaplus.com.br/start" />
         <meta property="og:type" content="website" />
@@ -68,11 +73,12 @@ const Start = () => {
             y={20}
             delay={0.3}
             trigger="mount"
-            href="https://app.homologaplus.com.br/cadastro"
+            href={REQUEST_ACCESS_HASH}
+            onClick={scrollToRequestAccess}
             className="w-full flex items-center justify-center gap-3 bg-primary hover:bg-primary-dark text-white text-lg font-extrabold py-5 px-8 rounded-2xl transition-all shadow-xl shadow-primary/20 hover:shadow-primary/30 active:scale-[0.98] min-h-[56px]"
           >
             <PlayCircle className="w-5 h-5" />
-            Testar grátis por 7 dias
+            Solicitar teste de {TRIAL_DIAS} dias
           </Reveal>
 
           <Reveal
@@ -153,7 +159,7 @@ const Start = () => {
         >
           {[
             "Sem cartão de crédito para começar",
-            "Configuração em menos de 5 minutos",
+            "Acesso liberado pela nossa equipe, um a um",
             "Suporte humano por WhatsApp",
             "Utilizado por mais de 200 empresas"
           ].map((bullet, idx) => (
@@ -166,23 +172,12 @@ const Start = () => {
           ))}
         </Reveal>
 
-        {/* Final CTA */}
-        <Reveal
-          as="div"
-          y={20}
-          delay={0.8}
-          trigger="mount"
-          className="w-full max-w-sm text-center mb-8"
-        >
-          <p className="text-slate-600 text-sm mb-4">Pronto para organizar suas homologações?</p>
-          <a
-            href="https://app.homologaplus.com.br/cadastro"
-            className="w-full flex items-center justify-center gap-3 bg-primary hover:bg-primary-dark text-white text-lg font-extrabold py-5 px-8 rounded-2xl transition-all shadow-xl shadow-primary/20 hover:shadow-primary/30 active:scale-[0.98] min-h-[56px]"
-          >
-            <PlayCircle className="w-5 h-5" />
-            Começar teste grátis agora
-          </a>
-        </Reveal>
+        {/* Conversão: formulário de solicitação de acesso (mesmo da landing) */}
+        <div className="w-full">
+          <Suspense fallback={<div className="h-64" />}>
+            <LeadCapture />
+          </Suspense>
+        </div>
 
         {/* Footer */}
         <div className="mt-auto pt-8 pb-8 text-slate-400 text-xs font-medium tracking-wide">

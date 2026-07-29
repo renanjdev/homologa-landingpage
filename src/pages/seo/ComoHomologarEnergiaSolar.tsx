@@ -1,6 +1,7 @@
 import React, { lazy, Suspense, useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Reveal } from '../../lib/anim';
+import { REQUEST_ACCESS_URL } from '../../utils/cta';
 import { Link } from 'react-router-dom';
 import {
   Sun,
@@ -401,13 +402,13 @@ const ComoHomologarEnergiaSolar = () => {
               </h2>
               <p className="text-lg text-white/90 leading-relaxed max-w-xl mx-auto mb-8">
                 Organize seus projetos, acompanhe prazos e dê visibilidade aos seus clientes com o Homologa
-                Plus. Teste gratuitamente por 30 dias e descubra como simplificar sua operação.
+                Plus. Solicite seu teste de 3 dias — nossa equipe libera o acesso e fala com você pelo WhatsApp.
               </p>
               <a
-                href="https://app.homologaplus.com.br/cadastro"
+                href={REQUEST_ACCESS_URL}
                 className="inline-flex items-center gap-3 bg-white text-primary font-bold text-lg py-4 px-10 rounded-2xl hover:bg-slate-50 transition-all shadow-lg hover:shadow-xl active:scale-[0.98]"
               >
-                Começar teste grátis
+                Solicitar acesso ao teste
                 <ArrowRight className="w-5 h-5" />
               </a>
             </Reveal>

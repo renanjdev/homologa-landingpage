@@ -12,6 +12,7 @@ import {
   Check,
   ArrowRight,
 } from 'lucide-react';
+import { REQUEST_ACCESS_URL, TRIAL_DIAS, scrollToRequestAccess } from '../utils/cta';
 
 type Documento = {
   Icon: React.ComponentType<{ className?: string }>;
@@ -283,16 +284,16 @@ const Automacao = () => {
 
           <div className="mt-8 flex flex-col items-start gap-3 sm:flex-row sm:items-center sm:gap-5">
             <a
-              href="https://app.homologaplus.com.br/cadastro"
-              onClick={() => window.fbq && window.fbq('track', 'Lead')}
+              href={REQUEST_ACCESS_URL}
+              onClick={scrollToRequestAccess}
               className="inline-flex items-center justify-center gap-2 rounded-xl bg-primary px-7 py-3.5 text-base font-bold text-white shadow-lg shadow-primary/30 transition-all hover:-translate-y-0.5 hover:bg-primary-dark"
             >
-              Testar a Automação grátis
+              Quero testar a Automação
               <ArrowRight className="h-4 w-4" />
             </a>
             <p className="text-sm text-slate-600">
-              Incluída no plano <strong className="font-semibold text-slate-900">Empresarial</strong> — e nos
-              <strong className="font-semibold text-slate-900"> 7 dias grátis</strong>, sem cartão.
+              Incluída nos <strong className="font-semibold text-slate-900">dois planos</strong> — e nos
+              <strong className="font-semibold text-slate-900"> {TRIAL_DIAS} dias de teste</strong>, sem cartão.
             </p>
           </div>
         </Reveal>

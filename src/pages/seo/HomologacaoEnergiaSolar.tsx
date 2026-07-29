@@ -1,6 +1,7 @@
 import React, { lazy, Suspense } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Reveal } from '../../lib/anim';
+import { REQUEST_ACCESS_URL } from '../../utils/cta';
 import { Link } from 'react-router-dom';
 import {
   Sun,
@@ -357,13 +358,13 @@ const HomologacaoEnergiaSolar = () => {
               Simplifique suas homologações agora mesmo
             </h2>
             <p className="text-white/90 text-lg leading-relaxed max-w-2xl mx-auto mb-8">
-              Pare de perder tempo com planilhas e mensagens desorganizadas. Experimente o Homologa Plus gratuitamente por 30 dias e veja como a gestão profissional de homologações transforma o seu negócio.
+              Pare de perder tempo com planilhas e mensagens desorganizadas. Solicite seu teste de 3 dias e veja como a gestão profissional de homologações transforma o seu negócio.
             </p>
             <a
-              href="https://app.homologaplus.com.br/cadastro"
+              href={REQUEST_ACCESS_URL}
               className="inline-flex items-center gap-2 bg-white text-primary font-bold text-lg px-8 py-4 rounded-2xl hover:bg-slate-50 transition-all shadow-xl shadow-black/10 active:scale-[0.98]"
             >
-              Testar grátis por 30 dias
+              Solicitar teste de 3 dias
               <ArrowRight className="w-5 h-5" />
             </a>
           </div>

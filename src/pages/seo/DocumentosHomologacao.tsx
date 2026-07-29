@@ -1,6 +1,7 @@
 import React, { lazy, Suspense } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Reveal } from '../../lib/anim';
+import { REQUEST_ACCESS_URL } from '../../utils/cta';
 import {
   FileText,
   CheckCircle2,
@@ -565,18 +566,18 @@ const DocumentosHomologacao = () => {
               Organize Seus Documentos de Homologação Agora
             </h2>
             <p className="text-lg text-slate-600 mb-8 max-w-xl mx-auto">
-              Pare de perder tempo com documentação desorganizada e reprovações evitáveis. Experimente
-              o Homologa Plus gratuitamente por 30 dias e veja como a gestão documental pode ser simples.
+              Pare de perder tempo com documentação desorganizada e reprovações evitáveis. Solicite seu
+              teste de 3 dias e veja como a gestão documental pode ser simples.
             </p>
             <a
-              href="https://app.homologaplus.com.br/cadastro"
+              href={REQUEST_ACCESS_URL}
               className="inline-flex items-center gap-3 bg-primary hover:bg-primary-dark text-white text-lg font-extrabold py-4 px-10 rounded-2xl transition-all shadow-xl shadow-primary/20 hover:shadow-primary/30 active:scale-[0.98]"
             >
-              Começar teste grátis
+              Solicitar acesso ao teste
               <ArrowRight className="w-5 h-5" />
             </a>
             <p className="text-sm text-slate-400 mt-4">
-              Sem cartão de crédito. Sem compromisso. 30 dias grátis.
+              Sem cartão de crédito. 3 dias grátis, com acesso liberado pela nossa equipe.
             </p>
           </Reveal>
         </Reveal>

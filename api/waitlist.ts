@@ -60,6 +60,13 @@ export default async function handler(req: any, res: any) {
       return res.status(400).json({ error: "Email is required" });
     }
 
+    // O acesso ao teste é liberado manualmente pela equipe via WhatsApp,
+    // então o número é obrigatório (mín. 10 dígitos = DDD + telefone).
+    const whatsappDigits = String(whatsapp || '').replace(/\D/g, '');
+    if (whatsappDigits.length < 10 || whatsappDigits.length > 13) {
+      return res.status(400).json({ error: "O WhatsApp é obrigatório. Informe o número com DDD." });
+    }
+
     // 1. Save to Supabase
     const { data, error } = await supabase
       .from("waitlist")
@@ -99,21 +106,20 @@ export default async function handler(req: any, res: any) {
         await resend.emails.send({
           from: 'HOMOLOGA Plus <contato@homologaplus.com.br>',
           to: [email],
-          subject: 'Você está na lista! 🎉',
+          subject: 'Recebemos sua solicitação — falamos com você pelo WhatsApp',
           html: `
             <!DOCTYPE html>
             <html>
               <head>
                 <meta charset="utf-8">
                 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-                <title>Lista de Espera HOMOLOGA Plus</title>
+                <title>Solicitação de acesso · HOMOLOGA Plus</title>
                 <style>
                   @media screen and (max-width: 600px) {
                     .email-container { width: 100% !important; border-radius: 0 !important; }
                     .email-header { padding: 30px 20px !important; }
                     .email-body { padding: 30px 20px !important; }
                     .email-title { font-size: 24px !important; }
-                    .position-number { font-size: 48px !important; }
                     .detail-cell { display: block !important; width: 100% !important; text-align: left !important; padding: 5px 0 !important; border: none !important; }
                     .detail-value { font-size: 14px !important; padding-bottom: 15px !important; border-bottom: 1px solid #F8FAFC !important; }
                   }
@@ -126,71 +132,64 @@ export default async function handler(req: any, res: any) {
                       <table class="email-container" border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 600px; background-color: #ffffff; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.05);">
                         <!-- Header -->
                         <tr>
-                          <td class="email-header" style="background-color: #0E1A35; padding: 40px 30px; text-align: center; color: white;">
+                          <td class="email-header" style="background-color: #1B2A4A; padding: 40px 30px; text-align: center; color: white;">
                             <div align="center" style="font-size: 20px; font-weight: bold; margin-bottom: 30px; text-align: center;">HOMOLOGA <span style="color: #60A5FA;">Plus</span></div>
-                            <div align="center" style="width: 48px; height: 48px; border-radius: 50%; border: 1px solid #334155; margin: 0 auto 20px auto; text-align: center; line-height: 48px; font-size: 24px;">🎉</div>
-                            <h1 class="email-title" align="center" style="margin: 0 0 10px 0; font-size: 28px; font-weight: 800; color: #ffffff; text-align: center;">Você está na lista! 🎉</h1>
-                            <p style="margin: 0; color: #94A3B8; font-size: 16px;">Sua vaga foi confirmada com sucesso</p>
+                            <div align="center" style="width: 48px; height: 48px; border-radius: 50%; border: 1px solid #334155; margin: 0 auto 20px auto; text-align: center; line-height: 48px; font-size: 24px;">✅</div>
+                            <h1 class="email-title" align="center" style="margin: 0 0 10px 0; font-size: 28px; font-weight: 800; color: #ffffff; text-align: center;">Solicitação recebida!</h1>
+                            <p style="margin: 0; color: #94A3B8; font-size: 16px;">Em breve entraremos em contato pelo WhatsApp</p>
                           </td>
                         </tr>
-                        
+
                         <!-- Body -->
                         <tr>
                           <td class="email-body" style="padding: 40px 30px;">
                             <p style="margin: 0 0 20px 0; font-size: 15px; color: #334155;">Olá, <strong style="color: #0F172A;">${name || 'Projetista'}</strong> 👋</p>
                             <p style="margin: 0 0 30px 0; font-size: 15px; color: #475569; line-height: 1.6;">
-                              Obrigado por se inscrever na lista de espera do <strong>HOMOLOGA Plus</strong>! Estamos animados em ter você conosco. Em breve você terá acesso à plataforma.
+                              Recebemos sua solicitação de acesso ao <strong>HOMOLOGA Plus</strong>. O cadastro não é automático:
+                              nossa equipe libera os acessos um a um, para acompanhar de perto cada teste.
+                              <strong style="color: #0F172A;">Em breve falamos com você pelo WhatsApp</strong> para configurar
+                              seu teste de <strong style="color: #0F172A;">3 dias</strong> — com o Homologa Full completo,
+                              incluindo a Automação ilimitada, e sem cartão de crédito.
                             </p>
-                            
-                            <!-- Position Card -->
-                            <table border="0" cellpadding="0" cellspacing="0" width="100%" style="background-color: #172445; border-radius: 12px; margin-bottom: 30px;">
-                              <tr>
-                                <td align="center" style="padding: 30px;">
-                                  <p style="margin: 0 0 10px 0; color: #94A3B8; font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase;">SUA POSIÇÃO NA FILA</p>
-                                  <p class="position-number" style="margin: 0 0 10px 0; font-size: 64px; font-weight: 900; color: #60A5FA; line-height: 1;">#${position}</p>
-                                  <p style="margin: 0; color: #94A3B8; font-size: 13px;">Você será notificado assim que for sua vez</p>
-                                </td>
-                              </tr>
-                            </table>
-                            
+
                             <!-- Detail List -->
-                            <h3 style="margin: 0 0 15px 0; font-size: 13px; font-weight: 800; color: #0F172A; text-transform: uppercase; letter-spacing: 0.5px;">Detalhes da inscrição</h3>
+                            <h3 style="margin: 0 0 15px 0; font-size: 13px; font-weight: 800; color: #0F172A; text-transform: uppercase; letter-spacing: 0.5px;">Dados da sua solicitação</h3>
                             <table border="0" cellpadding="0" cellspacing="0" width="100%" style="border: 1px solid #E2E8F0; border-radius: 8px; margin-bottom: 35px;">
                               <tr>
                                 <td style="padding: 15px 20px;">
                                   <table border="0" cellpadding="0" cellspacing="0" width="100%">
                                     <tr>
                                       <td width="30" class="detail-cell" style="color: #64748B; font-size: 14px;">✉️</td>
-                                      <td class="detail-cell" style="color: #64748B; font-size: 14px; padding: 10px 0; border-bottom: 1px solid #F8FAFC;">Email</td>
+                                      <td class="detail-cell" style="color: #64748B; font-size: 14px; padding: 10px 0; border-bottom: 1px solid #F8FAFC;">E-mail</td>
                                       <td align="right" class="detail-cell detail-value" style="color: #0F172A; font-size: 14px; font-weight: 600; padding: 10px 0; border-bottom: 1px solid #F8FAFC;">${email}</td>
                                     </tr>
                                     <tr>
-                                      <td width="30" class="detail-cell" style="color: #64748B; font-size: 14px;">📦</td>
-                                      <td class="detail-cell" style="color: #64748B; font-size: 14px; padding: 10px 0; border-bottom: 1px solid #F8FAFC;">Produto</td>
-                                      <td align="right" class="detail-cell detail-value" style="color: #0F172A; font-size: 14px; font-weight: 600; padding: 10px 0; border-bottom: 1px solid #F8FAFC;">HOMOLOGA Plus</td>
+                                      <td width="30" class="detail-cell" style="color: #64748B; font-size: 14px;">📱</td>
+                                      <td class="detail-cell" style="color: #64748B; font-size: 14px; padding: 10px 0; border-bottom: 1px solid #F8FAFC;">WhatsApp</td>
+                                      <td align="right" class="detail-cell detail-value" style="color: #0F172A; font-size: 14px; font-weight: 600; padding: 10px 0; border-bottom: 1px solid #F8FAFC;">${whatsapp}</td>
                                     </tr>
                                     <tr>
                                       <td width="30" class="detail-cell" style="color: #64748B; font-size: 14px;">📅</td>
-                                      <td class="detail-cell" style="color: #64748B; font-size: 14px; padding: 10px 0;">Data de inscrição</td>
+                                      <td class="detail-cell" style="color: #64748B; font-size: 14px; padding: 10px 0;">Data da solicitação</td>
                                       <td align="right" class="detail-cell detail-value" style="color: #0F172A; font-size: 14px; font-weight: 600; padding: 10px 0;">${new Date().toLocaleDateString('pt-BR')}</td>
                                     </tr>
                                   </table>
                                 </td>
                               </tr>
                             </table>
-                            
+
                             <!-- Next Steps List -->
                             <h3 style="margin: 0 0 15px 0; font-size: 13px; font-weight: 800; color: #0F172A; text-transform: uppercase; letter-spacing: 0.5px;">O que acontece agora?</h3>
-                            
+
                             <table border="0" cellpadding="0" cellspacing="0" width="100%" style="border: 1px solid #E2E8F0; border-radius: 8px; margin-bottom: 12px;">
                               <tr>
                                 <td style="padding: 15px;">
                                   <table border="0" cellpadding="0" cellspacing="0" width="100%">
                                     <tr>
                                       <td width="46" valign="middle">
-                                        <div style="width: 32px; height: 32px; background-color: #EFF6FF; border-radius: 6px; text-align: center; line-height: 32px; font-size: 16px;">🔔</div>
+                                        <div style="width: 32px; height: 32px; background-color: #EFF6FF; border-radius: 6px; text-align: center; line-height: 32px; font-size: 16px;">💬</div>
                                       </td>
-                                      <td valign="middle" style="color: #475569; font-size: 14px; line-height: 1.5;">Você receberá atualizações regulares sobre nosso progresso e novidades.</td>
+                                      <td valign="middle" style="color: #475569; font-size: 14px; line-height: 1.5;">Nossa equipe chama você no WhatsApp que você cadastrou para entender sua operação.</td>
                                     </tr>
                                   </table>
                                 </td>
@@ -203,9 +202,9 @@ export default async function handler(req: any, res: any) {
                                   <table border="0" cellpadding="0" cellspacing="0" width="100%">
                                     <tr>
                                       <td width="46" valign="middle">
-                                        <div style="width: 32px; height: 32px; background-color: #EFF6FF; border-radius: 6px; text-align: center; line-height: 32px; font-size: 16px;">✉️</div>
+                                        <div style="width: 32px; height: 32px; background-color: #EFF6FF; border-radius: 6px; text-align: center; line-height: 32px; font-size: 16px;">🔑</div>
                                       </td>
-                                      <td valign="middle" style="color: #475569; font-size: 14px; line-height: 1.5;">Quando chegar sua vez, enviaremos um convite de acesso exclusivo.</td>
+                                      <td valign="middle" style="color: #475569; font-size: 14px; line-height: 1.5;">Criamos seu acesso e enviamos os dados de login — você não precisa se cadastrar sozinho.</td>
                                     </tr>
                                   </table>
                                 </td>
@@ -218,53 +217,44 @@ export default async function handler(req: any, res: any) {
                                   <table border="0" cellpadding="0" cellspacing="0" width="100%">
                                     <tr>
                                       <td width="46" valign="middle">
-                                        <div style="width: 32px; height: 32px; background-color: #EFF6FF; border-radius: 6px; text-align: center; line-height: 32px; font-size: 16px;">🔗</div>
+                                        <div style="width: 32px; height: 32px; background-color: #EFF6FF; border-radius: 6px; text-align: center; line-height: 32px; font-size: 16px;">⏱️</div>
                                       </td>
-                                      <td valign="middle" style="color: #475569; font-size: 14px; line-height: 1.5;">Compartilhe com amigos para avançar na fila mais rapidamente!</td>
+                                      <td valign="middle" style="color: #475569; font-size: 14px; line-height: 1.5;">Você usa o sistema completo por 3 dias, sem cartão de crédito e sem cobrança automática.</td>
                                     </tr>
                                   </table>
                                 </td>
                               </tr>
                             </table>
-                            
+
                             <!-- Button -->
                             <table border="0" cellpadding="0" cellspacing="0" width="100%" style="margin-bottom: 35px;">
                               <tr>
                                 <td align="center">
                                   <table border="0" cellpadding="0" cellspacing="0">
                                     <tr>
-                                      <td align="center" bgcolor="#2563EB" style="border-radius: 8px;">
-                                        <a href="https://homologaplus.com.br" target="_blank" style="display: inline-block; padding: 16px 36px; font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-size: 15px; color: #ffffff; text-decoration: none; font-weight: 600; border-radius: 8px;">🔗 Compartilhar com Amigos</a>
+                                      <td align="center" bgcolor="#22C55E" style="border-radius: 8px;">
+                                        <a href="https://wa.me/5514991273245?text=${encodeURIComponent('Olá! Acabei de solicitar acesso ao teste do Homologa Plus.')}" target="_blank" style="display: inline-block; padding: 16px 36px; font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-size: 15px; color: #ffffff; text-decoration: none; font-weight: 600; border-radius: 8px;">💬 Falar agora no WhatsApp</a>
                                       </td>
                                     </tr>
                                   </table>
-                                  <p style="margin: 12px 0 0 0; color: #94A3B8; font-size: 12px;">Cada indicação move você para cima na fila</p>
+                                  <p style="margin: 12px 0 0 0; color: #94A3B8; font-size: 12px;">Quer adiantar? É só chamar a gente.</p>
                                 </td>
                               </tr>
                             </table>
-                            
-                            <!-- Help Card -->
-                            <table border="0" cellpadding="0" cellspacing="0" width="100%" style="background-color: #EFF6FF; border-radius: 8px; border: 1px solid #DBEAFE;">
-                              <tr>
-                                <td align="center" style="padding: 16px;">
-                                  <p style="margin: 0; color: #3B82F6; font-size: 13px; font-weight: 500;">💬 Tem dúvidas? Acesse nosso suporte.</p>
-                                </td>
-                              </tr>
-                            </table>
-                            
+
                           </td>
                         </tr>
-                        
+
                         <!-- Footer -->
                         <tr>
                           <td style="background-color: #0F172A; padding: 30px; text-align: center;">
                             <div style="font-size: 16px; font-weight: bold; color: white; margin-bottom: 12px;">HOMOLOGA <span style="color: #3B82F6;">Plus</span></div>
                             <p style="margin: 0 0 8px 0; color: #94A3B8; font-size: 12px;">© ${new Date().getFullYear()} HOMOLOGA Plus. Todos os direitos reservados.</p>
-                            <p style="margin: 0; color: #64748B; font-size: 11px;">Você está recebendo este email porque se inscreveu na lista de espera.</p>
+                            <p style="margin: 0; color: #64748B; font-size: 11px;">Você está recebendo este e-mail porque solicitou acesso ao teste pelo nosso site.</p>
                           </td>
                         </tr>
                       </table>
-                      
+
                       <!-- Automation Note -->
                       <table border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 600px;">
                         <tr>
@@ -273,7 +263,7 @@ export default async function handler(req: any, res: any) {
                           </td>
                         </tr>
                       </table>
-                      
+
                     </td>
                   </tr>
                 </table>

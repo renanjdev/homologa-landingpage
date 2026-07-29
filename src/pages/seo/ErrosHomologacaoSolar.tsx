@@ -1,6 +1,7 @@
 import React, { lazy, Suspense } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Reveal } from '../../lib/anim';
+import { REQUEST_ACCESS_URL } from '../../utils/cta';
 import { Link } from 'react-router-dom';
 import {
   AlertTriangle,
@@ -291,14 +292,14 @@ const ErrosHomologacaoSolar = () => {
             Pare de perder tempo com reprovações
           </h2>
           <p className="text-lg text-slate-600 mb-8 max-w-xl mx-auto">
-            Experimente o Homologa Plus gratuitamente e descubra como aprovar seus projetos
+            Solicite seu teste de 3 dias e descubra como aprovar seus projetos
             de primeira, com menos esforço e mais controle.
           </p>
           <a
-            href="https://app.homologaplus.com.br/cadastro"
+            href={REQUEST_ACCESS_URL}
             className="inline-flex items-center gap-2 bg-primary hover:bg-primary-dark text-white text-lg font-bold py-4 px-10 rounded-2xl transition-all shadow-xl shadow-primary/20 hover:shadow-primary/30 active:scale-[0.98]"
           >
-            Começar teste grátis
+            Solicitar acesso ao teste
             <ChevronRight className="w-5 h-5" />
           </a>
         </Reveal>

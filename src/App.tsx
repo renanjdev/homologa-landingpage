@@ -20,10 +20,26 @@ const DocumentosHomologacao = lazy(() => import('./pages/seo/DocumentosHomologac
 const ErrosHomologacaoSolar = lazy(() => import('./pages/seo/ErrosHomologacaoSolar'));
 
 const ScrollToTop = () => {
-  const { pathname } = useLocation();
+  const { pathname, hash } = useLocation();
   React.useEffect(() => {
-    window.scrollTo(0, 0);
-  }, [pathname]);
+    if (!hash) {
+      window.scrollTo(0, 0);
+      return;
+    }
+    // Âncoras vindas de outra rota (ex.: /#solicitar-acesso): as seções abaixo
+    // da dobra são lazy, então tenta até o componente montar (~3s).
+    const id = hash.slice(1);
+    let frames = 0;
+    let raf = requestAnimationFrame(function tryScroll() {
+      const el = document.getElementById(id);
+      if (el) {
+        el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        return;
+      }
+      if (frames++ < 180) raf = requestAnimationFrame(tryScroll);
+    });
+    return () => cancelAnimationFrame(raf);
+  }, [pathname, hash]);
   return null;
 };
 

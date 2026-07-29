@@ -1,6 +1,7 @@
 import React, { lazy, Suspense } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Reveal } from '../../lib/anim';
+import { REQUEST_ACCESS_URL } from '../../utils/cta';
 import { Link } from 'react-router-dom';
 import {
   ChevronLeft,
@@ -395,14 +396,14 @@ const HomologacaoCpfl = () => {
                 tentativa.
               </p>
               <a
-                href="https://app.homologaplus.com.br/cadastro"
+                href={REQUEST_ACCESS_URL}
                 className="inline-flex items-center gap-2 bg-primary hover:bg-primary-dark text-white font-bold py-4 px-8 rounded-2xl transition-all shadow-lg shadow-primary/20 hover:shadow-primary/30 text-lg"
               >
-                Testar grátis por 30 dias
+                Solicitar teste de 3 dias
                 <ArrowRight className="w-5 h-5" />
               </a>
               <p className="text-sm text-slate-400 mt-4">
-                Sem cartão de crédito. Configuração em menos de 5 minutos.
+                Sem cartão de crédito. Nossa equipe libera seu acesso pelo WhatsApp.
               </p>
             </section>
           </div>

@@ -4,6 +4,7 @@ import { Reveal } from '../lib/anim';
 import { ShieldCheck, ChevronRight, MessageCircle, CheckCircle2 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { buildWhatsAppLink } from '../utils/whatsapp';
+import { REQUEST_ACCESS_URL, TRIAL_DIAS, scrollToRequestAccess } from '../utils/cta';
 import { SpeedInsights } from "@vercel/speed-insights/react";
 import HeroMedia from '../components/HeroMedia';
 
@@ -61,11 +62,11 @@ const Hero = () => {
           </p>
           <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row sm:gap-4">
             <a
-              href="https://app.homologaplus.com.br/cadastro"
-              onClick={() => window.fbq && window.fbq('track', 'Lead')}
+              href={REQUEST_ACCESS_URL}
+              onClick={scrollToRequestAccess}
               className="flex w-full items-center justify-center gap-2 rounded-xl bg-primary px-8 py-4 text-lg font-bold text-white shadow-lg shadow-primary/30 transition-all duration-200 ease-out hover:-translate-y-0.5 hover:bg-primary-dark active:translate-y-0 sm:w-auto"
             >
-              Testar gratuitamente
+              Solicitar acesso ao teste
             </a>
             <a
               href={buildWhatsAppLink()}
@@ -79,7 +80,7 @@ const Hero = () => {
             </a>
           </div>
           <p className="mt-4 text-sm font-medium text-slate-500">
-            <span className="font-semibold text-success">7 dias grátis</span> · Sem cartão · Automação inclusa no teste
+            <span className="font-semibold text-success">{TRIAL_DIAS} dias grátis</span> · Sem cartão · Acesso liberado pela nossa equipe
           </p>
           <div className="mt-7 flex items-center justify-center text-sm">
             <span className="font-medium text-slate-500">Mais de 200 empresas de engenharia já usam o Homologa Plus</span>
@@ -184,22 +185,14 @@ const LandingPage = () => {
             "offers": {
               "@type": "AggregateOffer",
               "priceCurrency": "BRL",
-              "lowPrice": "197.00",
-              "highPrice": "397.00",
-              "offerCount": "3",
+              "lowPrice": "297.00",
+              "highPrice": "597.00",
+              "offerCount": "2",
               "availability": "https://schema.org/InStock",
               "offers": [
                 {
                   "@type": "Offer",
-                  "name": "Plano Essencial",
-                  "price": "197.00",
-                  "priceCurrency": "BRL",
-                  "priceValidUntil": "2027-12-31",
-                  "url": "https://homologaplus.com.br/#planos"
-                },
-                {
-                  "@type": "Offer",
-                  "name": "Plano Profissional",
+                  "name": "Homologa Starter",
                   "price": "297.00",
                   "priceCurrency": "BRL",
                   "priceValidUntil": "2027-12-31",
@@ -207,8 +200,8 @@ const LandingPage = () => {
                 },
                 {
                   "@type": "Offer",
-                  "name": "Plano Empresarial",
-                  "price": "397.00",
+                  "name": "Homologa Full",
+                  "price": "597.00",
                   "priceCurrency": "BRL",
                   "priceValidUntil": "2027-12-31",
                   "url": "https://homologaplus.com.br/#planos"
@@ -258,12 +251,12 @@ const LandingPage = () => {
         style={{ paddingBottom: 'calc(0.75rem + env(safe-area-inset-bottom))', transform: scrolled ? 'translateY(0)' : 'translateY(120px)' }}
       >
         <a
-          href="https://app.homologaplus.com.br/cadastro"
-          onClick={() => window.fbq && window.fbq('track', 'Lead')}
+          href={REQUEST_ACCESS_URL}
+          onClick={scrollToRequestAccess}
           tabIndex={scrolled ? 0 : -1}
           className="flex flex-1 items-center justify-center gap-2 rounded-xl bg-primary px-5 py-3.5 text-base font-bold text-white shadow-lg shadow-primary/30 active:scale-[0.98]"
         >
-          Testar grátis
+          Solicitar acesso
         </a>
         <a
           href={buildWhatsAppLink()}

@@ -231,6 +231,13 @@ async function startServer() {
       return res.status(400).json({ error: "Email is required" });
     }
 
+    // Paridade com api/waitlist.ts: o acesso ao teste é liberado manualmente
+    // pela equipe via WhatsApp, então o número é obrigatório.
+    const whatsappDigits = String(whatsapp || '').replace(/\D/g, '');
+    if (whatsappDigits.length < 10 || whatsappDigits.length > 13) {
+      return res.status(400).json({ error: "O WhatsApp é obrigatório. Informe o número com DDD." });
+    }
+
     if (!supabase) {
       // Demo mode fallback
       console.warn("Supabase not configured. Using demo mode for email:", email);

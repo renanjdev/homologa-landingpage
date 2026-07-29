@@ -20,16 +20,24 @@ const FAQ = () => {
       answer: "Antes de protocolar, o sistema valida o projeto contra as referências normativas (NBR 5410, NBR 16690, PRODIST e Lei 14.300) e aponta os itens impeditivos, de atenção e conformes — para você corrigir o que reprova antes de enviar à concessionária."
     },
     {
+      question: "Como faço para começar a testar?",
+      answer: "O cadastro não é automático. Você preenche o formulário aqui do site com nome, e-mail e WhatsApp e nossa equipe entra em contato pelo WhatsApp para entender sua operação e liberar o acesso. Fazemos a liberação um a um justamente para acompanhar de perto cada teste."
+    },
+    {
+      question: "Por que o WhatsApp é obrigatório no formulário?",
+      answer: "Porque é por ele que a gente fala com você: confirmamos alguns dados, combinamos o melhor momento para começar e enviamos o acesso. Sem o WhatsApp não conseguimos liberar o teste."
+    },
+    {
       question: "Em qual plano está a Automação? Consigo testar no período grátis?",
-      answer: "A Automação está no plano Empresarial e fica liberada nos 7 dias de teste grátis, sem cartão de crédito — assim você gera e valida documentos de verdade antes de decidir."
+      answer: "A Automação vem nos dois planos e fica liberada nos 3 dias de teste, sem cartão de crédito — assim você gera e valida documentos de verdade antes de decidir. O que muda entre os planos é o volume: o Homologa Starter (R$ 297/mês) automatiza 7 projetos por mês e o Homologa Full (R$ 597/mês) não tem teto."
     },
     {
       question: "Preciso cadastrar cartão de crédito para testar?",
-      answer: "Não. Você ativa o teste e usa o sistema completo por 7 dias sem informar nenhum cartão de crédito."
+      answer: "Não. Depois que nossa equipe liberar seu acesso, você usa o sistema completo por 3 dias sem informar nenhum cartão de crédito."
     },
     {
-      question: "O que acontece quando o teste de 7 dias acaba?",
-      answer: "Como não pedimos cartão, não existe cobrança automática. Ao fim dos 7 dias você decide com calma se quer assinar um dos planos — sem surpresa na fatura."
+      question: "O que acontece quando o teste de 3 dias acaba?",
+      answer: "Como não pedimos cartão, não existe cobrança automática. Ao fim dos 3 dias você decide com calma se quer assinar um dos planos — sem surpresa na fatura."
     },
     {
       question: "Funciona com a minha concessionária?",

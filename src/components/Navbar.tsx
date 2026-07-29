@@ -2,6 +2,7 @@ import React from 'react';
 import { useScrollProgress } from '../lib/anim';
 import { Link } from 'react-router-dom';
 import { ChevronRight, Menu, X } from 'lucide-react';
+import { REQUEST_ACCESS_URL, TRIAL_DIAS, scrollToRequestAccess } from '../utils/cta';
 
 const Navbar = ({ scrolled }: { scrolled: boolean }) => {
   const [isOpen, setIsOpen] = React.useState(false);
@@ -60,21 +61,21 @@ const Navbar = ({ scrolled }: { scrolled: boolean }) => {
               Acessar
             </a>
             <a
-              href="https://app.homologaplus.com.br/cadastro"
-              onClick={() => window.fbq && window.fbq('track', 'Lead')}
+              href={REQUEST_ACCESS_URL}
+              onClick={scrollToRequestAccess}
               className="inline-flex items-center justify-center bg-primary hover:bg-primary-dark text-white px-6 py-2.5 rounded-xl text-sm font-bold transition-all shadow-lg shadow-primary/20 hover:shadow-primary/30 active:scale-95"
             >
-              Testar grátis
+              Solicitar acesso
             </a>
           </div>
 
           <div className="md:hidden flex items-center gap-2">
             <a
-              href="https://app.homologaplus.com.br/cadastro"
-              onClick={() => window.fbq && window.fbq('track', 'Lead')}
+              href={REQUEST_ACCESS_URL}
+              onClick={scrollToRequestAccess}
               className="inline-flex items-center justify-center text-xs font-bold text-white px-4 py-2 bg-primary rounded-xl whitespace-nowrap shadow-lg shadow-primary/20 active:scale-95 transition-transform"
             >
-              Testar grátis
+              Solicitar acesso
             </a>
             <button
               onClick={() => setIsOpen(!isOpen)}
@@ -114,13 +115,15 @@ const Navbar = ({ scrolled }: { scrolled: boolean }) => {
               
               <div className="pt-8 px-2">
                 <a
-                  href="https://app.homologaplus.com.br/cadastro"
-                  onClick={() => { window.fbq && window.fbq('track', 'Lead'); setIsOpen(false); }}
+                  href={REQUEST_ACCESS_URL}
+                  onClick={(e) => { setIsOpen(false); scrollToRequestAccess(e); }}
                   className="w-full bg-primary text-white px-5 py-4 rounded-2xl text-base font-bold shadow-xl shadow-primary/20 block text-center active:scale-[0.98] transition-transform"
                 >
-                  Testar gratuitamente
+                  Solicitar acesso ao teste
                 </a>
-                <p className="mt-3 text-center text-xs font-medium text-slate-400">7 dias grátis · Sem cartão de crédito</p>
+                <p className="mt-3 text-center text-xs font-medium text-slate-400">
+                  Teste de {TRIAL_DIAS} dias · Sem cartão · Liberado pela nossa equipe
+                </p>
                 <a
                   href="https://app.homologaplus.com.br/login"
                   onClick={() => setIsOpen(false)}

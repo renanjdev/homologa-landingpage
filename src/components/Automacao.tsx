@@ -10,6 +10,7 @@ import {
   AlertTriangle,
   CheckCircle2,
   Check,
+  ClipboardList,
   ArrowRight,
 } from 'lucide-react';
 import { REQUEST_ACCESS_URL, TRIAL_DIAS, scrollToRequestAccess } from '../utils/cta';
@@ -44,6 +45,12 @@ const documentos: Documento[] = [
     Icon: MapPin,
     nome: 'Planta de Localização',
     desc: 'Vista de satélite com as coordenadas da UC.',
+    formatos: ['PDF'],
+  },
+  {
+    Icon: ClipboardList,
+    nome: 'Formulários e Anexos',
+    desc: 'Os formulários e anexos que cada distribuidora exige, já preenchidos com os dados do projeto.',
     formatos: ['PDF'],
   },
 ];
@@ -124,10 +131,10 @@ const Automacao = () => {
             A documentação da homologação solar, <span className="text-laminado">gerada e validada</span> automaticamente
           </h2>
           <p className="mt-5 max-w-2xl text-base md:text-lg leading-relaxed text-slate-600 text-pretty">
-            A partir do projeto já cadastrado, o sistema faz o dimensionamento elétrico, gera memorial, diagramas e
-            planta no padrão da sua distribuidora e <strong className="font-semibold text-slate-900">checa a
-            conformidade antes de você protocolar</strong> — apontando o que reprova e a referência normativa. Fonte
-            única: nada diverge entre os documentos.
+            A partir do projeto já cadastrado, o sistema faz o dimensionamento elétrico e monta o pacote inteiro —
+            memorial, diagramas, planta e <strong className="font-semibold text-slate-900">os formulários e anexos que
+            cada distribuidora exige</strong> — e ainda checa a conformidade antes de você protocolar, apontando o que
+            reprova e a referência normativa. Fonte única: nada diverge entre os documentos.
           </p>
         </Reveal>
 
@@ -141,7 +148,7 @@ const Automacao = () => {
             margin="-80px"
           >
             <h3 className="mb-2 font-display text-xl font-bold text-slate-900">Os documentos que ela gera</h3>
-            <p className="mb-6 text-slate-600">Prontos para protocolar — e editáveis quando você precisa ajustar.</p>
+            <p className="mb-6 text-slate-600">O pacote completo do protocolo — e editável quando você precisa ajustar.</p>
             <ul>
               {documentos.map((d) => (
                 <li

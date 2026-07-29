@@ -9,7 +9,7 @@ const FAQ = () => {
   const faqs = [
     {
       question: "O sistema gera o memorial descritivo e o diagrama unifilar automaticamente?",
-      answer: "Sim. A partir dos dados do projeto, o Homologa Plus gera o memorial descritivo e de cálculo, o diagrama unifilar dimensionado, o diagrama de blocos e a planta de localização no padrão exigido pela sua distribuidora."
+      answer: "Sim — e não para por aí. A partir dos dados do projeto, o Homologa Plus gera o memorial descritivo e de cálculo, o diagrama unifilar dimensionado, o diagrama de blocos, a planta de localização e também os formulários e anexos que cada distribuidora exige, já preenchidos. É o pacote inteiro do protocolo, no padrão da sua distribuidora."
     },
     {
       question: "A automação faz o dimensionamento elétrico (condutores, disjuntores, DPS)?",

@@ -58,7 +58,7 @@ const Hero = () => {
             Pare de montar memorial e unifilar à mão. O Homologa Plus <span className="text-laminado">gera e valida</span> sozinho.
           </h1>
           <p className="mx-auto mt-5 max-w-[44em] text-base md:text-xl leading-relaxed text-slate-600 text-pretty">
-            A partir do projeto cadastrado, o sistema dimensiona, gera memorial, diagramas e planta no padrão da sua distribuidora e checa a conformidade antes de você protocolar. E mais: toda a gestão de projetos, prazos e financeiro num só painel.
+            A partir do projeto cadastrado, o sistema dimensiona e monta o pacote inteiro — memorial, diagramas, planta e os formulários e anexos exigidos pela sua distribuidora — e checa a conformidade antes de você protocolar. E mais: toda a gestão de projetos, prazos e financeiro num só painel.
           </p>
           <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row sm:gap-4">
             <a
@@ -160,10 +160,10 @@ const LandingPage = () => {
       {/* ... Helmet below ... */}
       <Helmet>
         <title>Sistema de Gestão de Homologação Solar | Homologa Plus</title>
-        <meta name="description" content="Gere memorial descritivo e diagrama unifilar no padrão da sua distribuidora e valide a conformidade antes de protocolar. Homologação solar sem retrabalho." />
-        <meta name="keywords" content="homologação solar, sistema de gestão de homologação solar, automação homologação solar, memorial descritivo fotovoltaico, diagrama unifilar automático, dimensionamento elétrico fotovoltaico" />
+        <meta name="description" content="Gere memorial, unifilar, planta e os formulários e anexos exigidos pela sua distribuidora — e valide a conformidade antes de protocolar. Homologação solar sem retrabalho." />
+        <meta name="keywords" content="homologação solar, sistema de gestão de homologação solar, automação homologação solar, memorial descritivo fotovoltaico, diagrama unifilar automático, formulários da distribuidora, anexos homologação fotovoltaica, dimensionamento elétrico fotovoltaico" />
         <meta property="og:title" content="Sistema de Gestão de Homologação Solar | Homologa Plus" />
-        <meta property="og:description" content="Gere memorial descritivo e diagrama unifilar no padrão da sua distribuidora e valide a conformidade antes de protocolar. Homologação solar sem retrabalho." />
+        <meta property="og:description" content="Gere memorial, unifilar, planta e os formulários e anexos exigidos pela sua distribuidora — e valide a conformidade antes de protocolar. Homologação solar sem retrabalho." />
         <link rel="canonical" href="https://homologaplus.com.br/" />
         <script type="application/ld+json">{`
           {
@@ -173,11 +173,12 @@ const LandingPage = () => {
             "url": "https://homologaplus.com.br",
             "applicationCategory": "BusinessApplication",
             "operatingSystem": "Web",
-            "description": "Sistema de gestão de homologação de energia solar que gera automaticamente a documentação técnica (memorial descritivo, diagrama unifilar, diagrama de blocos e planta) no padrão de cada distribuidora e valida a conformidade do projeto antes do protocolo. Inclui dimensionamento elétrico, gestão de projetos, prazos e financeiro.",
+            "description": "Sistema de gestão de homologação de energia solar que gera automaticamente a documentação técnica (memorial descritivo, diagrama unifilar, diagrama de blocos, planta de localização e os formulários e anexos exigidos por cada distribuidora) e valida a conformidade do projeto antes do protocolo. Inclui dimensionamento elétrico, gestão de projetos, prazos e financeiro.",
             "featureList": [
               "Geração automática de memorial descritivo e de cálculo no padrão da distribuidora",
               "Diagrama unifilar dimensionado (condutores, disjuntores, DPS, proteções)",
               "Diagrama de blocos e planta de localização",
+              "Formulários e anexos exigidos por cada distribuidora, já preenchidos",
               "Dimensionamento elétrico para inversor string e microinversor",
               "Validação de conformidade (NBR 5410, NBR 16690, PRODIST, Lei 14.300) antes de protocolar",
               "Gestão de homologação do projeto ao parecer da concessionária"

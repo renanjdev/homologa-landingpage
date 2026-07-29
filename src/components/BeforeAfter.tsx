@@ -24,7 +24,7 @@ const BeforeAfter = () => {
             </h3>
             <ul className="space-y-3 md:space-y-4">
               {[
-                "Memorial e unifilar montados à mão, projeto a projeto",
+                "Memorial, unifilar e formulários montados à mão, projeto a projeto",
                 "Retrabalho quando a concessionária reprova",
                 "Documentos espalhados em planilha e WhatsApp",
                 "Projetos difíceis de acompanhar"

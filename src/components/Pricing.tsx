@@ -56,8 +56,6 @@ const Pricing = () => {
       ],
       ctaText: `Solicitar teste de ${TRIAL_DIAS} dias`,
       highlight: false,
-      badge: "Mais escolhido",
-      badgeClass: "bg-slate-900 text-white",
     },
     {
       name: "Homologa Full",
@@ -77,7 +75,7 @@ const Pricing = () => {
       ctaText: `Solicitar teste de ${TRIAL_DIAS} dias`,
       secondaryCta: "Falar com especialista",
       highlight: true,
-      badge: "Recomendado",
+      badge: "Mais escolhido",
       badgeClass: "bg-primary text-white",
     },
   ];

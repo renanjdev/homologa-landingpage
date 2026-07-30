@@ -97,6 +97,29 @@ const ganchos = [
   'Carimbo com logo da empresa e RT (CREA/CFT)',
 ];
 
+// Formulários das concessionárias — a prova de que não é só o pacote técnico
+// genérico: sai o anexo exato que cada distribuidora exige, já preenchido.
+const anexos = [
+  {
+    f: 'doc-anexo-equatorial',
+    distribuidora: 'Equatorial',
+    doc: 'Anexo I · Solicitação de Orçamento',
+    alt: 'Anexo I da Equatorial preenchido automaticamente pelo Homologa Plus',
+  },
+  {
+    f: 'doc-anexo-cpfl',
+    distribuidora: 'CPFL',
+    doc: 'Anexo F · Registro de Micro e Minigeração',
+    alt: 'Anexo F da CPFL preenchido automaticamente pelo Homologa Plus',
+  },
+  {
+    f: 'doc-anexo-energisa',
+    distribuidora: 'Energisa',
+    doc: 'Formulário de Orçamento de Conexão',
+    alt: 'Formulário de orçamento de conexão da Energisa preenchido automaticamente pelo Homologa Plus',
+  },
+];
+
 const Automacao = () => {
   // Exemplos reais gerados. O diagrama unifilar é o foco (frente/centro do leque).
   const exemplos = [
@@ -245,7 +268,7 @@ const Automacao = () => {
           <div className="mb-6 flex flex-wrap items-end justify-between gap-3">
             <div>
               <h3 className="font-display text-xl font-bold text-slate-900">Exemplos do que ela gera</h3>
-              <p className="mt-1 text-slate-600">Memorial descritivo, diagrama unifilar, diagrama de blocos e planta de localização — dimensionados e no padrão da distribuidora. Os formulários e anexos de cada concessionária saem no mesmo pacote, já preenchidos.</p>
+              <p className="mt-1 text-slate-600">Memorial descritivo, diagrama unifilar, diagrama de blocos e planta de localização — dimensionados e no padrão da distribuidora.</p>
             </div>
             <span className="font-mono text-[11px] uppercase tracking-[0.14em] text-slate-500">gerado automaticamente</span>
           </div>
@@ -270,6 +293,59 @@ const Automacao = () => {
               </div>
             ))}
           </div>
+        </Reveal>
+
+        {/* O unifilar por inteiro: é onde dá pra ler a memória de cálculo.
+            Só no desktop — num A3 denso reduzido a ~340px o desenho vira borrão. */}
+        <Reveal as="figure" y={16} delay={0.05} margin="-80px" className="mt-10 hidden sm:block lg:mt-12">
+          <div className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
+            <img
+              src="/doc-unifilar-completo.webp"
+              alt="Diagrama unifilar completo gerado pela Automação, com memória de cálculo, legenda e carimbo do responsável técnico"
+              width={1400}
+              height={1009}
+              className="block h-auto w-full"
+              loading="lazy"
+            />
+          </div>
+          <figcaption className="mt-3 text-sm text-slate-600">
+            O unifilar sai com <strong className="font-semibold text-slate-900">memória de cálculo</strong>, legenda e
+            carimbo do RT — condutores, disjuntores, DPS e queda de tensão já dimensionados a partir dos dados do projeto.
+          </figcaption>
+        </Reveal>
+
+        {/* Formulários da distribuidora */}
+        <Reveal as="div" y={16} delay={0.05} margin="-80px" className="mt-12 lg:mt-16">
+          <div className="mb-6">
+            <h3 className="font-display text-xl font-bold text-slate-900">E o formulário da sua distribuidora, preenchido</h3>
+            <p className="mt-1 text-slate-600">
+              Cada concessionária tem o seu anexo, com os seus campos. A Automação preenche o que a sua exige, com os dados
+              do projeto — sem redigitar nada.
+            </p>
+          </div>
+
+          <ul className="grid grid-cols-1 gap-4 sm:grid-cols-3">
+            {anexos.map(({ f, distribuidora, doc, alt }) => (
+              <li
+                key={f}
+                className="overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm transition-transform duration-300 ease-out hover:-translate-y-1"
+              >
+                {/* object-top: a área útil do formulário fica no topo da página */}
+                <img
+                  src={`/${f}.webp`}
+                  alt={alt}
+                  width={620}
+                  height={876}
+                  className="block h-52 w-full object-cover object-top sm:h-60"
+                  loading="lazy"
+                />
+                <div className="border-t border-slate-100 px-4 py-3">
+                  <p className="font-display text-sm font-bold text-slate-900">{distribuidora}</p>
+                  <p className="mt-0.5 text-xs leading-snug text-slate-500">{doc}</p>
+                </div>
+              </li>
+            ))}
+          </ul>
         </Reveal>
 
         {/* Ganchos + plano */}

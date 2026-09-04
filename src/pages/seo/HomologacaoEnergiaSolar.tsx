@@ -1,7 +1,7 @@
 import React, { lazy, Suspense } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Reveal } from '../../lib/anim';
-import { REQUEST_ACCESS_URL } from '../../utils/cta';
+import { buildWhatsAppLink } from '../../utils/whatsapp';
 import { Link } from 'react-router-dom';
 import {
   Sun,
@@ -358,13 +358,16 @@ const HomologacaoEnergiaSolar = () => {
               Simplifique suas homologações agora mesmo
             </h2>
             <p className="text-white/90 text-lg leading-relaxed max-w-2xl mx-auto mb-8">
-              Pare de perder tempo com planilhas e mensagens desorganizadas. Solicite seu teste de 3 dias e veja como a gestão profissional de homologações transforma o seu negócio.
+              Pare de perder tempo com planilhas e mensagens desorganizadas. Agende uma demonstração e veja como a gestão profissional de homologações transforma o seu negócio.
             </p>
             <a
-              href={REQUEST_ACCESS_URL}
+              href={buildWhatsAppLink('Olá! Quero agendar uma demonstração do Homologa Plus.')}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => window.fbq && window.fbq('track', 'Contact')}
               className="inline-flex items-center gap-2 bg-white text-primary font-bold text-lg px-8 py-4 rounded-2xl hover:bg-slate-50 transition-all shadow-xl shadow-black/10 active:scale-[0.98]"
             >
-              Solicitar teste de 3 dias
+              Agendar demonstração
               <ArrowRight className="w-5 h-5" />
             </a>
           </div>

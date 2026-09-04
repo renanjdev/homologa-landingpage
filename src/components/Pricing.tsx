@@ -2,7 +2,6 @@ import React from 'react';
 import { Reveal } from '../lib/anim';
 import { CheckCircle2, Zap, ShieldCheck, TrendingUp, Sparkles } from 'lucide-react';
 import { buildWhatsAppLink } from '../utils/whatsapp';
-import { REQUEST_ACCESS_URL, TRIAL_DIAS, scrollToRequestAccess } from '../utils/cta';
 
 type Plan = {
   name: string;
@@ -54,7 +53,7 @@ const Pricing = () => {
         "3 usuários técnicos",
         "Até 50 integradoras",
       ],
-      ctaText: `Solicitar teste de ${TRIAL_DIAS} dias`,
+      ctaText: "Agendar demonstração",
       highlight: false,
     },
     {
@@ -72,7 +71,7 @@ const Pricing = () => {
         "Integradoras ilimitadas",
         "Suporte dedicado",
       ],
-      ctaText: `Solicitar teste de ${TRIAL_DIAS} dias`,
+      ctaText: "Agendar demonstração",
       secondaryCta: "Falar com especialista",
       highlight: true,
       badge: "Mais escolhido",
@@ -93,7 +92,7 @@ const Pricing = () => {
           <h2 className="text-clamp-h2 font-display font-bold text-slate-900 mb-3 md:mb-5">
             Escolha o plano ideal para sua operação
           </h2>
-          <p className="text-sm sm:text-base md:text-lg text-slate-500 max-w-2xl mx-auto">
+          <p className="text-sm sm:text-base md:text-lg text-slate-600 max-w-2xl mx-auto">
             Mais de 200 empresas já organizam suas homologações com o Homologa Plus.
           </p>
         </div>
@@ -125,7 +124,7 @@ const Pricing = () => {
                   </div>
                   <h3 className={`text-lg sm:text-xl font-bold ${plan.highlight ? 'text-primary' : 'text-slate-900'}`}>{plan.name}</h3>
                 </div>
-                <p className="text-slate-500 text-sm">{plan.description}</p>
+                <p className="text-slate-600 text-sm">{plan.description}</p>
               </div>
 
               <div className="mb-6 md:mb-8">
@@ -142,18 +141,18 @@ const Pricing = () => {
               </div>
 
               {/* Cota de automação: o diferencial real entre os planos */}
-              <div className={`mb-6 rounded-2xl p-4 ${plan.highlight ? 'border border-primary/20 bg-primary/5' : 'border border-slate-100 bg-slate-50'}`}>
+              <div className="mb-6 border-y border-slate-200 py-4">
                 <div className="flex items-center gap-2.5">
                   <Sparkles className={`h-4 w-4 shrink-0 ${plan.highlight ? 'text-primary' : 'text-slate-500'}`} />
                   <p className={`font-display text-base font-bold ${plan.highlight ? 'text-primary' : 'text-slate-900'}`}>{plan.quota}</p>
                 </div>
-                <p className="mt-1 text-xs text-slate-500">{plan.quotaSubtitle}</p>
+                <p className="mt-1 text-xs text-slate-600">{plan.quotaSubtitle}</p>
               </div>
 
               <ul className="space-y-3.5 md:space-y-4 mb-8 flex-grow">
                 {plan.features.map((feature, idx) => (
                   <li key={idx} className="flex items-start gap-3 text-xs sm:text-sm text-slate-700">
-                    <CheckCircle2 className="w-4 h-4 md:w-5 md:h-5 text-success shrink-0 mt-[2px]" />
+                    <CheckCircle2 className="w-4 h-4 md:w-5 md:h-5 text-emerald-700 shrink-0 mt-[2px]" />
                     <span className="leading-tight">{feature}</span>
                   </li>
                 ))}
@@ -161,12 +160,16 @@ const Pricing = () => {
 
               <div className="mt-auto flex flex-col items-center">
                 <a
-                  href={REQUEST_ACCESS_URL}
-                  onClick={(e) => {
-                    window.fbq && window.fbq('track', 'InitiateCheckout', { content_name: plan.name });
-                    scrollToRequestAccess(e);
+                  href={buildWhatsAppLink(`Olá! Quero agendar uma demonstração do ${plan.name}.`)}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={() => {
+                    if (window.fbq) {
+                      window.fbq('track', 'InitiateCheckout', { content_name: plan.name });
+                      window.fbq('track', 'Contact');
+                    }
                   }}
-                  className={`w-full py-3 md:py-3.5 rounded-xl font-semibold transition-all text-center text-sm md:text-base block ${plan.highlight ? 'bg-primary hover:bg-primary-dark text-white shadow-lg shadow-primary/30 hover:-translate-y-0.5' : 'bg-white hover:bg-surface text-primary border-2 border-slate-200 hover:border-primary'}`}
+                  className={`w-full py-3 md:py-3.5 rounded-xl font-semibold transition-all text-center text-sm md:text-base block ${plan.highlight ? 'bg-action hover:bg-action-dark text-white shadow-lg shadow-action/30 hover:-translate-y-0.5' : 'bg-white hover:bg-surface text-action border-2 border-slate-200 hover:border-action'}`}
                 >
                   {plan.ctaText}
                 </a>
@@ -176,7 +179,7 @@ const Pricing = () => {
                     target="_blank"
                     rel="noopener noreferrer"
                     onClick={() => window.fbq && window.fbq('track', 'Contact')}
-                    className="mt-3 text-sm font-semibold text-primary hover:text-primary-dark transition-colors"
+                    className="mt-3 inline-flex min-h-[44px] items-center px-3 text-sm font-semibold text-action hover:text-action-dark transition-colors"
                   >
                     {plan.secondaryCta}
                   </a>
@@ -194,7 +197,7 @@ const Pricing = () => {
           <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-4">
             {SHARED_FEATURES.map((feature) => (
               <li key={feature} className="flex items-start gap-3 text-xs sm:text-sm text-slate-700">
-                <CheckCircle2 className="w-4 h-4 md:w-5 md:h-5 text-success shrink-0 mt-[2px]" />
+                <CheckCircle2 className="w-4 h-4 md:w-5 md:h-5 text-emerald-700 shrink-0 mt-[2px]" />
                 <span className="leading-snug">{feature}</span>
               </li>
             ))}
@@ -202,11 +205,11 @@ const Pricing = () => {
         </div>
 
         <div className="mt-12 md:mt-16 text-center flex flex-col items-center gap-2">
-          <p className="text-slate-500 text-sm md:text-base flex items-center justify-center gap-2">
+          <p className="text-slate-600 text-sm md:text-base flex items-center justify-center gap-2">
             <ShieldCheck className="w-4 h-4 md:w-5 md:h-5 text-slate-500" />
-            {TRIAL_DIAS} dias grátis, sem cartão de crédito. Sem fidelidade, cancele quando quiser.
+            Demonstração sem compromisso. Sem fidelidade, cancele quando quiser.
           </p>
-          <p className="text-slate-500 text-xs md:text-sm">
+          <p className="text-slate-600 text-xs md:text-sm">
             Pagamento seguro via Stripe com criptografia de ponta a ponta.
           </p>
         </div>

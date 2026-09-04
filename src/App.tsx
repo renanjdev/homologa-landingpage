@@ -1,10 +1,10 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import { Suspense, lazy } from 'react';
+import CookieConsent from './components/CookieConsent';
 
 // Lazy load pages
 const LandingPage = lazy(() => import('./pages/LandingPage'));
-const Waitlist = lazy(() => import('./pages/Waitlist'));
 const TermsOfUse = lazy(() => import('./pages/TermsOfUse'));
 const PrivacyPolicy = lazy(() => import('./pages/PrivacyPolicy'));
 const ThankYou = lazy(() => import('./pages/ThankYou'));
@@ -45,11 +45,11 @@ export default function App() {
   return (
     <BrowserRouter>
       <ScrollToTop />
+      <CookieConsent />
       <Suspense fallback={<div className="min-h-screen bg-slate-50 flex items-center justify-center"><img src="/logo-h.png" alt="Homologa Plus" width={48} height={48} className="w-12 h-12 animate-pulse" /></div>}>
         <Routes>
           <Route path="/" element={<LandingPage />} />
           <Route path="/start" element={<Start />} />
-          <Route path="/waitlist" element={<Waitlist />} />
           <Route path="/termos" element={<TermsOfUse />} />
           <Route path="/privacidade" element={<PrivacyPolicy />} />
           <Route path="/obrigado" element={<ThankYou />} />

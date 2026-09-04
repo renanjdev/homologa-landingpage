@@ -1,7 +1,7 @@
 import React, { lazy, Suspense } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Reveal } from '../../lib/anim';
-import { REQUEST_ACCESS_URL } from '../../utils/cta';
+import { buildWhatsAppLink } from '../../utils/whatsapp';
 import { Link } from 'react-router-dom';
 import {
   ChevronLeft,
@@ -396,14 +396,17 @@ const HomologacaoCpfl = () => {
                 tentativa.
               </p>
               <a
-                href={REQUEST_ACCESS_URL}
-                className="inline-flex items-center gap-2 bg-primary hover:bg-primary-dark text-white font-bold py-4 px-8 rounded-2xl transition-all shadow-lg shadow-primary/20 hover:shadow-primary/30 text-lg"
+                href={buildWhatsAppLink('Olá! Quero agendar uma demonstração do Homologa Plus.')}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => window.fbq && window.fbq('track', 'Contact')}
+                className="inline-flex items-center gap-2 bg-action hover:bg-action-dark text-white font-bold py-4 px-8 rounded-2xl transition-all shadow-lg shadow-action/20 hover:shadow-action/30 text-lg"
               >
-                Solicitar teste de 3 dias
+                Agendar demonstração
                 <ArrowRight className="w-5 h-5" />
               </a>
-              <p className="text-sm text-slate-400 mt-4">
-                Sem cartão de crédito. Nossa equipe libera seu acesso pelo WhatsApp.
+              <p className="text-sm text-slate-600 mt-4">
+                Nossa equipe libera seu acesso pelo WhatsApp.
               </p>
             </section>
           </div>

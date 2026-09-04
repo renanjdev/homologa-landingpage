@@ -1,20 +1,21 @@
-import React, { lazy, Suspense } from 'react';
+import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Reveal } from '../lib/anim';
 import { CheckCircle2, MessageCircle, PlayCircle, FileText, Users, DollarSign, Clock, ShieldCheck, BarChart3 } from 'lucide-react';
-import { REQUEST_ACCESS_HASH, TRIAL_DIAS, scrollToRequestAccess } from '../utils/cta';
+import { buildWhatsAppLink } from '../utils/whatsapp';
 
-// Mesmo formulário da landing: o cadastro livre está fechado, então esta página
-// também converte na solicitação de acesso, sem mandar o visitante pra fora.
-const LeadCapture = lazy(() => import('../components/LeadCapture'));
+// Conversão direta no WhatsApp: o formulário on-page foi removido, todo CTA
+// primário abre a conversa com a equipe para agendar a demonstração.
+const startWhatsAppLink = buildWhatsAppLink('Olá! Quero agendar uma demonstração do Homologa Plus.');
+const trackContact = () => { if (window.fbq) window.fbq('track', 'Contact'); };
 
 const Start = () => {
   return (
     <div className="min-h-screen bg-white font-sans overflow-x-hidden selection:bg-primary/20">
       <Helmet>
         <title>Teste Grátis por 3 Dias | Homologa Plus - Gestão de Homologação Solar</title>
-        <meta name="description" content="Pare de gerenciar homologações solares por planilha e WhatsApp. Controle projetos, clientes e documentos em um só lugar. Solicite seu teste de 3 dias, sem cartão de crédito." />
-        <meta name="keywords" content="teste grátis homologa plus, software homologação solar, gestão projetos solares" />
+        <meta name="description" content="Pare de gerenciar homologações solares por planilha e WhatsApp. Controle projetos, clientes e documentos em um só lugar. Agende uma demonstração e veja como funciona." />
+        <meta name="keywords" content="demonstração homologa plus, software homologação solar, gestão projetos solares" />
         <link rel="canonical" href="https://homologaplus.com.br/start" />
         <meta property="og:title" content="Teste Grátis por 3 Dias | Homologa Plus" />
         <meta property="og:description" content="Pare de gerenciar homologações solares por planilha e WhatsApp. Controle projetos, clientes e documentos em um só lugar." />
@@ -73,12 +74,14 @@ const Start = () => {
             y={20}
             delay={0.3}
             trigger="mount"
-            href={REQUEST_ACCESS_HASH}
-            onClick={scrollToRequestAccess}
-            className="w-full flex items-center justify-center gap-3 bg-primary hover:bg-primary-dark text-white text-lg font-extrabold py-5 px-8 rounded-2xl transition-all shadow-xl shadow-primary/20 hover:shadow-primary/30 active:scale-[0.98] min-h-[56px]"
+            href={startWhatsAppLink}
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={trackContact}
+            className="w-full flex items-center justify-center gap-3 bg-action hover:bg-action-dark text-white text-lg font-extrabold py-5 px-8 rounded-2xl transition-all shadow-xl shadow-action/20 hover:shadow-action/30 active:scale-[0.98] min-h-[56px]"
           >
             <PlayCircle className="w-5 h-5" />
-            Solicitar teste de {TRIAL_DIAS} dias
+            Agendar demonstração
           </Reveal>
 
           <Reveal
@@ -86,10 +89,13 @@ const Start = () => {
             y={20}
             delay={0.4}
             trigger="mount"
-            href="https://wa.me/5514991273245?text=Quero%20testar%20o%20Homologa%20Plus"
+            href={buildWhatsAppLink('Olá! Quero saber mais sobre o Homologa Plus.')}
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={trackContact}
             className="w-full flex items-center justify-center gap-3 bg-white hover:bg-slate-50 text-slate-900 text-lg font-bold py-5 px-8 rounded-2xl transition-all border border-slate-200 shadow-sm active:scale-[0.98] min-h-[56px]"
           >
-            <MessageCircle className="w-5 h-5 text-success" />
+            <MessageCircle className="w-5 h-5 text-emerald-700" />
             Falar no WhatsApp
           </Reveal>
         </div>
@@ -142,7 +148,7 @@ const Start = () => {
                 </div>
                 <div>
                   <p className="font-semibold text-slate-900 text-sm">{title}</p>
-                  <p className="text-slate-500 text-xs leading-relaxed">{desc}</p>
+                  <p className="text-slate-600 text-xs leading-relaxed">{desc}</p>
                 </div>
               </div>
             ))}
@@ -158,29 +164,37 @@ const Start = () => {
           className="w-full max-w-sm space-y-4 px-4 mb-12"
         >
           {[
-            "Sem cartão de crédito para começar",
+            "Demonstração sem compromisso",
             "Acesso liberado pela nossa equipe, um a um",
             "Suporte humano por WhatsApp",
             "Utilizado por mais de 200 empresas"
           ].map((bullet, idx) => (
             <div key={idx} className="flex items-center gap-3 text-slate-600 font-medium text-sm sm:text-base">
               <div className="flex-shrink-0">
-                <CheckCircle2 className="w-5 h-5 text-success" />
+                <CheckCircle2 className="w-5 h-5 text-emerald-700" />
               </div>
               <span>{bullet}</span>
             </div>
           ))}
         </Reveal>
 
-        {/* Conversão: formulário de solicitação de acesso (mesmo da landing) */}
-        <div className="w-full">
-          <Suspense fallback={<div className="h-64" />}>
-            <LeadCapture />
-          </Suspense>
-        </div>
+        {/* Fecho: CTA final de WhatsApp, o canal único de conversão. */}
+        <Reveal
+          as="a"
+          y={20}
+          delay={0.8}
+          href={startWhatsAppLink}
+          target="_blank"
+          rel="noopener noreferrer"
+          onClick={trackContact}
+          className="w-full max-w-sm flex items-center justify-center gap-3 bg-action hover:bg-action-dark text-white text-lg font-extrabold py-5 px-8 rounded-2xl transition-all shadow-xl shadow-action/20 hover:shadow-action/30 active:scale-[0.98] min-h-[56px]"
+        >
+          <MessageCircle className="w-5 h-5" />
+          Agendar demonstração
+        </Reveal>
 
         {/* Footer */}
-        <div className="mt-auto pt-8 pb-8 text-slate-400 text-xs font-medium tracking-wide">
+        <div className="mt-auto pt-8 pb-8 text-slate-500 text-xs font-medium tracking-wide">
           Homologa Plus © {new Date().getFullYear()}
         </div>
       </main>

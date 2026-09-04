@@ -1,7 +1,7 @@
 import React, { lazy, Suspense } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Reveal } from '../../lib/anim';
-import { REQUEST_ACCESS_URL } from '../../utils/cta';
+import { buildWhatsAppLink } from '../../utils/whatsapp';
 import {
   FileText,
   CheckCircle2,
@@ -53,7 +53,7 @@ const DocumentosHomologacao = () => {
           {/* Breadcrumb */}
           <Link
             to="/"
-            className="inline-flex items-center gap-2 text-sm text-slate-500 hover:text-primary transition-colors mb-8"
+            className="inline-flex items-center gap-2 text-sm text-slate-600 hover:text-primary transition-colors mb-8"
           >
             <ChevronLeft className="w-4 h-4" />
             Voltar para Home
@@ -72,7 +72,7 @@ const DocumentosHomologacao = () => {
 
             <p className="text-lg text-slate-600 leading-relaxed">
               A homologação de um sistema fotovoltaico junto à concessionária de energia é uma das etapas mais
-              importantes — e também uma das que mais geram retrabalho — em um projeto de energia solar. A falta
+              importantes (e também uma das que mais geram retrabalho) em um projeto de energia solar. A falta
               de um único documento pode significar semanas de atraso, reprovação do pedido e frustração tanto
               para o integrador quanto para o cliente final. Neste guia, reunimos todos os documentos necessários,
               organizados por categoria, para que você nunca mais perca tempo com pendências documentais.
@@ -101,7 +101,7 @@ const DocumentosHomologacao = () => {
                 seu sistema solar ainda não está gerando créditos de energia.
               </p>
               <p>
-                A documentação correta desde o início do processo não é apenas uma questão burocrática — é
+                A documentação correta desde o início do processo não é apenas uma questão burocrática: é
                 uma questão de eficiência operacional e credibilidade profissional. Um integrador que domina
                 a parte documental transmite confiança e entrega resultados mais rápidos. Cada concessionária
                 possui suas particularidades, mas existe um conjunto base de documentos que é exigido em
@@ -136,14 +136,14 @@ const DocumentosHomologacao = () => {
                 <li className="flex items-start gap-3">
                   <CheckCircle2 className="w-5 h-5 text-emerald-500 mt-0.5 flex-shrink-0" />
                   <span>
-                    <strong>RG e CPF do titular</strong> — Cópias legíveis do documento de identidade e CPF.
+                    <strong>RG e CPF do titular</strong>: cópias legíveis do documento de identidade e CPF.
                     Para pessoa jurídica, utiliza-se o CNPJ, contrato social e documento do representante legal.
                   </span>
                 </li>
                 <li className="flex items-start gap-3">
                   <CheckCircle2 className="w-5 h-5 text-emerald-500 mt-0.5 flex-shrink-0" />
                   <span>
-                    <strong>Conta de energia recente</strong> — A fatura mais recente da unidade consumidora,
+                    <strong>Conta de energia recente</strong>: a fatura mais recente da unidade consumidora,
                     com no máximo 90 dias, que comprova o vínculo entre o titular e o ponto de conexão. Algumas
                     concessionárias exigem as três últimas faturas.
                   </span>
@@ -151,7 +151,7 @@ const DocumentosHomologacao = () => {
                 <li className="flex items-start gap-3">
                   <CheckCircle2 className="w-5 h-5 text-emerald-500 mt-0.5 flex-shrink-0" />
                   <span>
-                    <strong>Procuração</strong> — Quando o integrador atua como representante do titular, é
+                    <strong>Procuração</strong>: quando o integrador atua como representante do titular, é
                     necessária uma procuração assinada autorizando a empresa a protocolar o pedido junto à
                     concessionária. Algumas distribuidoras exigem firma reconhecida em cartório.
                   </span>
@@ -159,7 +159,7 @@ const DocumentosHomologacao = () => {
                 <li className="flex items-start gap-3">
                   <CheckCircle2 className="w-5 h-5 text-emerald-500 mt-0.5 flex-shrink-0" />
                   <span>
-                    <strong>Comprovante de propriedade ou autorização</strong> — Em caso de imóvel alugado,
+                    <strong>Comprovante de propriedade ou autorização</strong>: em caso de imóvel alugado,
                     autorização do proprietário para instalação do sistema fotovoltaico.
                   </span>
                 </li>
@@ -188,7 +188,7 @@ const DocumentosHomologacao = () => {
                 <li className="flex items-start gap-3">
                   <CheckCircle2 className="w-5 h-5 text-emerald-500 mt-0.5 flex-shrink-0" />
                   <span>
-                    <strong>Memorial descritivo</strong> — Documento que detalha as características do sistema:
+                    <strong>Memorial descritivo</strong>: documento que detalha as características do sistema:
                     potência total, quantidade e modelo dos módulos, tipo e modelo do inversor, tipo de conexão
                     (monofásica, bifásica ou trifásica), coordenadas geográficas e orientação dos painéis.
                   </span>
@@ -196,7 +196,7 @@ const DocumentosHomologacao = () => {
                 <li className="flex items-start gap-3">
                   <CheckCircle2 className="w-5 h-5 text-emerald-500 mt-0.5 flex-shrink-0" />
                   <span>
-                    <strong>Diagrama unifilar</strong> — Representação gráfica simplificada do circuito elétrico
+                    <strong>Diagrama unifilar</strong>: representação gráfica simplificada do circuito elétrico
                     do sistema, mostrando a conexão entre os módulos, inversor(es), proteções (disjuntores,
                     DPS, fusíveis), medidor bidirecional e o quadro de distribuição. Deve seguir as normas
                     ABNT NBR 5410 e NBR 16690.
@@ -205,7 +205,7 @@ const DocumentosHomologacao = () => {
                 <li className="flex items-start gap-3">
                   <CheckCircle2 className="w-5 h-5 text-emerald-500 mt-0.5 flex-shrink-0" />
                   <span>
-                    <strong>ART ou RRT</strong> — A Anotação de Responsabilidade Técnica (para engenheiros) ou
+                    <strong>ART ou RRT</strong>: a Anotação de Responsabilidade Técnica (para engenheiros) ou
                     Registro de Responsabilidade Técnica (para técnicos) é obrigatória. Deve ser emitida por
                     profissional habilitado e registrada no CREA ou CAU. Este documento atesta que o projeto
                     foi elaborado por profissional competente e se responsabiliza pela segurança da instalação.
@@ -214,7 +214,7 @@ const DocumentosHomologacao = () => {
                 <li className="flex items-start gap-3">
                   <CheckCircle2 className="w-5 h-5 text-emerald-500 mt-0.5 flex-shrink-0" />
                   <span>
-                    <strong>Projeto elétrico completo</strong> — Algumas concessionárias exigem o projeto
+                    <strong>Projeto elétrico completo</strong>: algumas concessionárias exigem o projeto
                     elétrico detalhado, incluindo layout dos módulos no telhado, dimensionamento de cabos,
                     cálculos de proteção e memorial de cálculo.
                   </span>
@@ -244,7 +244,7 @@ const DocumentosHomologacao = () => {
                 <li className="flex items-start gap-3">
                   <CheckCircle2 className="w-5 h-5 text-emerald-500 mt-0.5 flex-shrink-0" />
                   <span>
-                    <strong>Datasheet dos módulos fotovoltaicos</strong> — Ficha técnica do fabricante
+                    <strong>Datasheet dos módulos fotovoltaicos</strong>: ficha técnica do fabricante
                     contendo potência nominal, tensão de circuito aberto (Voc), corrente de curto-circuito
                     (Isc), eficiência, dimensões e peso do módulo. O modelo deve coincidir exatamente com
                     o informado no memorial descritivo.
@@ -253,7 +253,7 @@ const DocumentosHomologacao = () => {
                 <li className="flex items-start gap-3">
                   <CheckCircle2 className="w-5 h-5 text-emerald-500 mt-0.5 flex-shrink-0" />
                   <span>
-                    <strong>Datasheet do inversor</strong> — Ficha técnica contendo potência nominal, faixa
+                    <strong>Datasheet do inversor</strong>: ficha técnica contendo potência nominal, faixa
                     de tensão MPPT, corrente máxima de entrada, tensão e corrente de saída, frequência de
                     operação e funcionalidades de proteção anti-ilhamento.
                   </span>
@@ -261,7 +261,7 @@ const DocumentosHomologacao = () => {
                 <li className="flex items-start gap-3">
                   <CheckCircle2 className="w-5 h-5 text-emerald-500 mt-0.5 flex-shrink-0" />
                   <span>
-                    <strong>Certificados INMETRO</strong> — Tanto os módulos quanto os inversores devem possuir
+                    <strong>Certificados INMETRO</strong>: tanto os módulos quanto os inversores devem possuir
                     certificação INMETRO válida e vigente. Verifique a validade no site oficial do INMETRO,
                     pois certificados vencidos invalidam o pedido de homologação.
                   </span>
@@ -269,7 +269,7 @@ const DocumentosHomologacao = () => {
                 <li className="flex items-start gap-3">
                   <CheckCircle2 className="w-5 h-5 text-emerald-500 mt-0.5 flex-shrink-0" />
                   <span>
-                    <strong>Nota fiscal dos equipamentos</strong> — Algumas concessionárias solicitam a nota
+                    <strong>Nota fiscal dos equipamentos</strong>: algumas concessionárias solicitam a nota
                     fiscal de compra dos módulos e inversores para verificar procedência e modelo.
                   </span>
                 </li>
@@ -298,7 +298,7 @@ const DocumentosHomologacao = () => {
                 <li className="flex items-start gap-3">
                   <CheckCircle2 className="w-5 h-5 text-emerald-500 mt-0.5 flex-shrink-0" />
                   <span>
-                    <strong>Formulário de Solicitação de Acesso</strong> — Documento principal que formaliza
+                    <strong>Formulário de Solicitação de Acesso</strong>: documento principal que formaliza
                     o pedido de conexão da microgeração ou minigeração distribuída à rede. Contém dados do
                     titular, endereço da instalação, características do sistema e dados do responsável técnico.
                   </span>
@@ -306,14 +306,14 @@ const DocumentosHomologacao = () => {
                 <li className="flex items-start gap-3">
                   <CheckCircle2 className="w-5 h-5 text-emerald-500 mt-0.5 flex-shrink-0" />
                   <span>
-                    <strong>Formulário de vistoria</strong> — Após a instalação, algumas concessionárias
+                    <strong>Formulário de vistoria</strong>: após a instalação, algumas concessionárias
                     exigem o preenchimento de um formulário específico para agendar a vistoria técnica.
                   </span>
                 </li>
                 <li className="flex items-start gap-3">
                   <CheckCircle2 className="w-5 h-5 text-emerald-500 mt-0.5 flex-shrink-0" />
                   <span>
-                    <strong>Relatório fotográfico</strong> — Registro fotográfico da instalação finalizada,
+                    <strong>Relatório fotográfico</strong>: registro fotográfico da instalação finalizada,
                     incluindo fotos dos módulos instalados, inversor, quadro de proteção, aterramento,
                     etiquetas de identificação e medidor.
                   </span>
@@ -407,7 +407,7 @@ const DocumentosHomologacao = () => {
                 <li className="flex items-start gap-3">
                   <span className="text-amber-500 font-bold mt-0.5">1.</span>
                   <span>
-                    <strong>Dados divergentes entre documentos</strong> — O nome do titular na procuração
+                    <strong>Dados divergentes entre documentos</strong>: o nome do titular na procuração
                     deve ser idêntico ao da conta de energia e do formulário de solicitação. Divergências
                     simples como abreviações ou acentos diferentes já podem causar devolução.
                   </span>
@@ -415,14 +415,14 @@ const DocumentosHomologacao = () => {
                 <li className="flex items-start gap-3">
                   <span className="text-amber-500 font-bold mt-0.5">2.</span>
                   <span>
-                    <strong>ART/RRT não registrada ou vencida</strong> — A ART ou RRT deve estar devidamente
+                    <strong>ART/RRT não registrada ou vencida</strong>: a ART ou RRT deve estar devidamente
                     registrada no conselho profissional. Uma ART sem pagamento da guia não é considerada válida.
                   </span>
                 </li>
                 <li className="flex items-start gap-3">
                   <span className="text-amber-500 font-bold mt-0.5">3.</span>
                   <span>
-                    <strong>Modelo do equipamento diferente do datasheet</strong> — Se o memorial descritivo
+                    <strong>Modelo do equipamento diferente do datasheet</strong>: se o memorial descritivo
                     menciona um modelo de módulo ou inversor e o datasheet anexado é de outro modelo, o pedido
                     será reprovado. Confira modelo e versão com atenção.
                   </span>
@@ -430,7 +430,7 @@ const DocumentosHomologacao = () => {
                 <li className="flex items-start gap-3">
                   <span className="text-amber-500 font-bold mt-0.5">4.</span>
                   <span>
-                    <strong>Certificado INMETRO vencido</strong> — Certificações têm prazo de validade.
+                    <strong>Certificado INMETRO vencido</strong>: certificações têm prazo de validade.
                     Antes de protocolar, verifique se a certificação dos equipamentos ainda está vigente
                     consultando o portal do INMETRO.
                   </span>
@@ -438,7 +438,7 @@ const DocumentosHomologacao = () => {
                 <li className="flex items-start gap-3">
                   <span className="text-amber-500 font-bold mt-0.5">5.</span>
                   <span>
-                    <strong>Diagrama unifilar incompleto</strong> — Omitir proteções, não especificar
+                    <strong>Diagrama unifilar incompleto</strong>: omitir proteções, não especificar
                     valores de disjuntores ou não incluir o aterramento no diagrama são erros que
                     resultam em solicitação de correção.
                   </span>
@@ -446,7 +446,7 @@ const DocumentosHomologacao = () => {
                 <li className="flex items-start gap-3">
                   <span className="text-amber-500 font-bold mt-0.5">6.</span>
                   <span>
-                    <strong>Conta de energia vencida</strong> — Enviar uma fatura com mais de 90 dias
+                    <strong>Conta de energia vencida</strong>: enviar uma fatura com mais de 90 dias
                     é motivo de devolução imediata em diversas concessionárias.
                   </span>
                 </li>
@@ -477,7 +477,7 @@ const DocumentosHomologacao = () => {
                 <li className="flex items-start gap-3">
                   <CheckCircle2 className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
                   <span>
-                    <strong>Crie pastas padronizadas</strong> — Estabeleça uma estrutura de pastas fixa
+                    <strong>Crie pastas padronizadas</strong>: estabeleça uma estrutura de pastas fixa
                     para cada projeto: Pessoais, Técnicos, Equipamentos e Formulários. Assim, qualquer
                     membro da equipe sabe exatamente onde encontrar cada documento.
                   </span>
@@ -485,7 +485,7 @@ const DocumentosHomologacao = () => {
                 <li className="flex items-start gap-3">
                   <CheckCircle2 className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
                   <span>
-                    <strong>Digitalize com qualidade</strong> — Documentos ilegíveis são devolvidos.
+                    <strong>Digitalize com qualidade</strong>: documentos ilegíveis são devolvidos.
                     Utilize aplicativos de scanner que corrigem perspectiva e melhoram contraste. Salve
                     sempre em PDF com resolução adequada.
                   </span>
@@ -493,7 +493,7 @@ const DocumentosHomologacao = () => {
                 <li className="flex items-start gap-3">
                   <CheckCircle2 className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
                   <span>
-                    <strong>Revise antes de enviar</strong> — Faça uma conferência cruzada: verifique se
+                    <strong>Revise antes de enviar</strong>: faça uma conferência cruzada, verifique se
                     nomes, números de documentos e modelos de equipamentos estão consistentes em todos os
                     formulários e documentos técnicos.
                   </span>
@@ -501,7 +501,7 @@ const DocumentosHomologacao = () => {
                 <li className="flex items-start gap-3">
                   <CheckCircle2 className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
                   <span>
-                    <strong>Mantenha versões atualizadas</strong> — Se houve alteração de projeto, atualize
+                    <strong>Mantenha versões atualizadas</strong>: se houve alteração de projeto, atualize
                     todos os documentos afetados. Enviar um diagrama unifilar desatualizado enquanto o
                     memorial descritivo reflete o novo projeto é garantia de reprovação.
                   </span>
@@ -509,7 +509,7 @@ const DocumentosHomologacao = () => {
                 <li className="flex items-start gap-3">
                   <CheckCircle2 className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
                   <span>
-                    <strong>Use nomenclatura clara nos arquivos</strong> — Nomeie os arquivos de forma
+                    <strong>Use nomenclatura clara nos arquivos</strong>: nomeie os arquivos de forma
                     descritiva, como "ART_Projeto_12345_JoaoSilva.pdf" em vez de "documento_final_v2.pdf".
                     Isso facilita a localização e evita confusões.
                   </span>
@@ -566,18 +566,21 @@ const DocumentosHomologacao = () => {
               Organize Seus Documentos de Homologação Agora
             </h2>
             <p className="text-lg text-slate-600 mb-8 max-w-xl mx-auto">
-              Pare de perder tempo com documentação desorganizada e reprovações evitáveis. Solicite seu
-              teste de 3 dias e veja como a gestão documental pode ser simples.
+              Pare de perder tempo com documentação desorganizada e reprovações evitáveis. Agende uma
+              demonstração e veja como a gestão documental pode ser simples.
             </p>
             <a
-              href={REQUEST_ACCESS_URL}
-              className="inline-flex items-center gap-3 bg-primary hover:bg-primary-dark text-white text-lg font-extrabold py-4 px-10 rounded-2xl transition-all shadow-xl shadow-primary/20 hover:shadow-primary/30 active:scale-[0.98]"
+              href={buildWhatsAppLink('Olá! Quero agendar uma demonstração do Homologa Plus.')}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => window.fbq && window.fbq('track', 'Contact')}
+              className="inline-flex items-center gap-3 bg-action hover:bg-action-dark text-white text-lg font-extrabold py-4 px-10 rounded-2xl transition-all shadow-xl shadow-action/20 hover:shadow-action/30 active:scale-[0.98]"
             >
-              Solicitar acesso ao teste
+              Agendar demonstração
               <ArrowRight className="w-5 h-5" />
             </a>
-            <p className="text-sm text-slate-400 mt-4">
-              Sem cartão de crédito. 3 dias grátis, com acesso liberado pela nossa equipe.
+            <p className="text-sm text-slate-500 mt-4">
+              Acesso liberado pela nossa equipe.
             </p>
           </Reveal>
         </Reveal>

@@ -24,48 +24,35 @@ const Navbar = lazy(() => import('../components/Navbar'));
 
 const Hero = () => {
   return (
-    <section className="relative overflow-hidden pt-[clamp(5rem,7vw,7rem)] pb-16 md:pb-24">
-      {/* Atmosfera: brilho azul + grade sutil */}
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute left-1/2 top-[-200px] -z-10 h-[600px] w-[1060px] -translate-x-1/2 rounded-full"
-        style={{ background: 'radial-gradient(circle, rgba(27,42,74,0.10), rgba(27,42,74,0.03) 46%, transparent 70%)' }}
-      />
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute inset-0 -z-10"
-        style={{
-          backgroundImage:
-            'linear-gradient(rgba(15,23,42,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(15,23,42,0.03) 1px, transparent 1px)',
-          backgroundSize: '46px 46px',
-          WebkitMaskImage: 'radial-gradient(ellipse 90% 64% at 50% 0, #000 28%, transparent 70%)',
-          maskImage: 'radial-gradient(ellipse 90% 64% at 50% 0, #000 28%, transparent 70%)',
-        }}
-      />
+    <section className="hero-dark">
+      {/* Atmosfera: geometria gradiente coral/azul dramática sobre o canvas Void */}
+      <div className="hero-atmos" aria-hidden="true">
+        <div className="hero-blue" />
+        <div className="hero-sky" />
+        <div className="hero-coral-bar" />
+        <div className="hero-coral-bar two" />
+        <div className="hero-vignette" />
+      </div>
 
-      <div className="px-4 sm:px-6 lg:px-8">
-        <Reveal
-          as="div"
-          y={20}
-          trigger="mount"
-          className="mx-auto max-w-3xl text-center"
-        >
-          <span className="inline-flex items-center gap-2 rounded-full bg-primary/10 px-3.5 py-1.5 font-mono text-[11px] md:text-xs font-semibold uppercase tracking-[0.14em] text-primary">
-            Sistema de gestão para homologação solar · Automação
+      <div className="hero-inner">
+        <Reveal as="div" y={20} trigger="mount" className="hero-copy">
+          <span className="hero-eyebrow">
+            <span className="hero-ia-badge">IA</span>
+            Sistema de gestão para homologação solar
           </span>
-          <h1 className="mx-auto mt-5 max-w-[24ch] text-[clamp(2rem,4vw+0.5rem,3.6rem)] font-display font-extrabold leading-[1.06] tracking-[-0.025em] text-slate-900 text-balance">
-            Pare de montar memorial e unifilar à mão. O Homologa Plus <span className="heading-accent">gera e valida</span> sozinho.
+          <h1 className="hero-h1">
+            Pare de montar memorial e unifilar à mão. O Homologa Plus <span className="hero-grif">gera e valida</span> sozinho.
           </h1>
-          <p className="mx-auto mt-5 max-w-[34em] text-base md:text-lg leading-relaxed text-slate-600 text-pretty">
+          <p className="hero-sub">
             A partir do projeto cadastrado, o sistema dimensiona e monta o pacote inteiro (memorial, diagramas, planta e os formulários e anexos exigidos pela sua distribuidora) e checa a conformidade antes de você protocolar. E mais: toda a gestão de projetos, prazos e financeiro num só painel.
           </p>
-          <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row sm:gap-4">
+          <div className="hero-cta-row">
             <a
               href={buildWhatsAppLink('Olá! Quero agendar uma demonstração do Homologa Plus.')}
               target="_blank"
               rel="noopener noreferrer"
               onClick={() => window.fbq && window.fbq('track', 'Contact')}
-              className="flex w-full items-center justify-center gap-2 rounded-xl bg-action px-8 py-4 text-lg font-bold text-white shadow-lg shadow-action/30 transition-all duration-200 ease-out hover:-translate-y-0.5 hover:bg-action-dark active:translate-y-0 sm:w-auto"
+              className="hero-btn hero-btn-mist"
             >
               Agendar demonstração
             </a>
@@ -74,75 +61,63 @@ const Hero = () => {
               target="_blank"
               rel="noopener noreferrer"
               onClick={() => window.fbq && window.fbq('track', 'Contact')}
-              className="flex w-full items-center justify-center gap-2 rounded-xl bg-surface px-8 py-4 text-lg font-bold text-primary transition-all duration-200 ease-out hover:bg-slate-200 sm:w-auto"
+              className="hero-btn hero-btn-ghost"
             >
               <MessageCircle className="h-5 w-5" />
               Falar no WhatsApp
             </a>
           </div>
-          <p className="mt-4 text-sm font-medium text-slate-500">
-            <span className="font-semibold text-emerald-700">Demonstração sem compromisso</span> · Acesso liberado pela nossa equipe
+          <p className="hero-note">
+            <b>Demonstração sem compromisso</b> · Acesso liberado pela nossa equipe
           </p>
 
-          {/* Prova de resultado visível no mobile (no desktop ela vira card flutuante sobre o painel) */}
-          <div className="mt-6 flex justify-center gap-2.5 md:hidden">
-            <span className="inline-flex items-center gap-2 rounded-xl border border-slate-200 bg-white px-3 py-2 shadow-sm">
-              <CheckCircle2 className="h-4 w-4 shrink-0 text-emerald-700" />
-              <span className="text-left">
-                <span className="block text-sm font-bold leading-tight text-slate-900">98% de aprovação</span>
-                <span className="block font-mono text-[11px] text-slate-500">taxa de homologação</span>
+          {/* Prova de resultado visível no mobile (no desktop vira card flutuante sobre o painel) */}
+          <div className="hero-mproof">
+            <span className="hero-mchip">
+              <span className="hero-chip-ico coral"><CheckCircle2 className="h-4 w-4" aria-hidden="true" /></span>
+              <span className="hero-chip-txt">
+                <span className="hero-chip-t">98% de aprovação</span>
+                <span className="hero-chip-s">taxa de homologação</span>
               </span>
             </span>
-            <span className="inline-flex items-center gap-2 rounded-xl border border-slate-200 bg-white px-3 py-2 shadow-sm">
-              <ShieldCheck className="h-4 w-4 shrink-0 text-primary" />
-              <span className="text-left">
-                <span className="block text-sm font-bold leading-tight text-slate-900">Conformidade</span>
-                <span className="block font-mono text-[11px] text-slate-500">validada</span>
+            <span className="hero-mchip">
+              <span className="hero-chip-ico mist"><ShieldCheck className="h-4 w-4" aria-hidden="true" /></span>
+              <span className="hero-chip-txt">
+                <span className="hero-chip-t">Conformidade</span>
+                <span className="hero-chip-s">validada</span>
               </span>
             </span>
           </div>
         </Reveal>
 
-        {/* Painel real do produto: recortado, gradiente de continuidade e chips de destaque */}
+        {/* Palco do produto: a janela tátil "tecla de teclado" com chips de prova flutuando */}
         <Reveal
           as="div"
           y={30}
           duration={0.7}
           delay={0.2}
           trigger="mount"
-          className="relative mx-auto mt-12 max-w-[1120px]"
+          className="hero-stage"
         >
-          <div
-            className="animate-floaty absolute -top-5 -left-3 z-20 hidden items-center gap-3 rounded-2xl border border-white/60 bg-white/75 backdrop-blur-md px-3.5 py-3 shadow-[0_20px_44px_-16px_rgba(15,23,42,0.32)] md:flex lg:-left-6"
-            style={{ animationDelay: '1.4s' }}
-          >
-            <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-success/15 text-success">
-              <CheckCircle2 className="h-5 w-5" />
-            </span>
-            <span className="text-left">
-              <span className="block text-sm font-bold leading-tight text-slate-900">98% de aprovação</span>
-              <span className="block font-mono text-[11px] text-slate-500">taxa de homologação</span>
+          <div className="hero-float hero-float-tl animate-floaty" style={{ animationDelay: '1.4s' }}>
+            <span className="hero-chip-ico coral"><CheckCircle2 className="h-5 w-5" aria-hidden="true" /></span>
+            <span className="hero-chip-txt">
+              <span className="hero-chip-t">98% de aprovação</span>
+              <span className="hero-chip-s">taxa de homologação</span>
             </span>
           </div>
-          <div
-            className="animate-floaty absolute -bottom-5 -right-3 z-20 hidden items-center gap-3 rounded-2xl border border-white/60 bg-white/75 backdrop-blur-md px-3.5 py-3 shadow-[0_20px_44px_-16px_rgba(15,23,42,0.32)] md:flex lg:-right-6"
-            style={{ animationDelay: '1.9s' }}
-          >
-            <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary/10 text-primary">
-              <ShieldCheck className="h-5 w-5" />
-            </span>
-            <span className="text-left">
-              <span className="block text-sm font-bold leading-tight text-slate-900">Conformidade validada</span>
-              <span className="block font-mono text-[11px] text-slate-500">antes de protocolar</span>
+          <div className="hero-float hero-float-br animate-floaty" style={{ animationDelay: '1.9s' }}>
+            <span className="hero-chip-ico mist"><ShieldCheck className="h-5 w-5" aria-hidden="true" /></span>
+            <span className="hero-chip-txt">
+              <span className="hero-chip-t">Conformidade validada</span>
+              <span className="hero-chip-s">antes de protocolar</span>
             </span>
           </div>
 
           <HeroMedia />
         </Reveal>
 
-        <div className="mt-8 flex items-center justify-center text-sm">
-          <span className="font-medium text-slate-500">Mais de 200 empresas de engenharia já usam o Homologa Plus</span>
-        </div>
+        <div className="hero-trust">Mais de 200 empresas de engenharia já usam o Homologa Plus</div>
       </div>
     </section>
   );
@@ -150,12 +125,17 @@ const Hero = () => {
 
 const LandingPage = () => {
   const [scrolled, setScrolled] = React.useState(false);
+  // FASE 1: o site inteiro é escuro (Void). A navbar é sempre cockpit-dark —
+  // não há mais troca dark→claro ao rolar. `scrolled` só governa os CTAs fixos.
   // Telemetria de desempenho só com consentimento de cookies analíticos (LGPD).
   const consent = useConsent();
 
   React.useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 600);
-    window.addEventListener('scroll', handleScroll);
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 600);
+    };
+    handleScroll();
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
@@ -253,7 +233,7 @@ const LandingPage = () => {
       {/* CTA fixo no mobile: recaptura a intenção durante a rolagem (aparece após sair do hero) */}
       <div
         aria-hidden={!scrolled}
-        className="fixed inset-x-0 bottom-0 z-40 flex items-center gap-2.5 border-t border-slate-200 bg-white/80 px-4 py-3 shadow-[0_-8px_24px_-12px_rgba(15,23,42,0.18)] backdrop-blur-xl md:hidden transition-transform duration-[250ms] ease-out"
+        className="fixed inset-x-0 bottom-0 z-40 flex items-center gap-2.5 border-t border-white/10 bg-ink/90 px-4 py-3 shadow-[var(--key-soft)] backdrop-blur-xl md:hidden transition-transform duration-[250ms] ease-out"
         style={{ paddingBottom: 'calc(0.75rem + env(safe-area-inset-bottom))', transform: scrolled ? 'translateY(0)' : 'translateY(120px)' }}
       >
         <a
@@ -262,7 +242,7 @@ const LandingPage = () => {
           rel="noopener noreferrer"
           onClick={() => window.fbq && window.fbq('track', 'Contact')}
           tabIndex={scrolled ? 0 : -1}
-          className="flex flex-1 items-center justify-center gap-2 rounded-xl bg-action px-5 py-3.5 text-base font-bold text-white shadow-lg shadow-action/30 active:scale-[0.98]"
+          className="flex flex-1 items-center justify-center gap-2 rounded-xl bg-mist px-5 py-3.5 text-base font-bold text-ink shadow-[var(--btn-lift)] hover:brightness-105 active:scale-[0.98] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
         >
           Agendar demo
         </a>
@@ -273,7 +253,7 @@ const LandingPage = () => {
           onClick={() => window.fbq && window.fbq('track', 'Contact')}
           aria-label="Falar no WhatsApp"
           tabIndex={scrolled ? 0 : -1}
-          className="flex items-center justify-center rounded-xl border border-slate-200 bg-white px-4 py-3.5 text-success active:scale-[0.98]"
+          className="flex items-center justify-center rounded-xl border border-white/10 bg-white/5 px-4 py-3.5 text-[#25D366] hover:bg-white/10 active:scale-[0.98] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
         >
           <MessageCircle className="h-6 w-6" />
         </a>
@@ -286,7 +266,7 @@ const LandingPage = () => {
         rel="noopener noreferrer"
         onClick={() => window.fbq && window.fbq('track', 'Contact')}
         aria-label="Falar no WhatsApp"
-        className="fixed bottom-8 right-8 z-40 hidden h-14 w-14 items-center justify-center rounded-full bg-emerald-600 text-white shadow-xl shadow-emerald-600/30 transition-transform hover:-translate-y-0.5 md:flex"
+        className="fixed bottom-8 right-8 z-40 hidden h-14 w-14 items-center justify-center rounded-full border border-white/10 bg-obsidian text-[#25D366] shadow-[var(--key-soft)] transition-transform hover:-translate-y-0.5 hover:bg-graphite md:flex focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
       >
         <MessageCircle className="h-7 w-7" />
       </a>
@@ -297,7 +277,7 @@ const LandingPage = () => {
         aria-label="Voltar ao topo"
         aria-hidden={!scrolled}
         tabIndex={scrolled ? 0 : -1}
-        className={`fixed bottom-28 right-8 z-40 hidden bg-white text-primary p-4 rounded-2xl shadow-2xl border border-slate-100 hover:bg-primary hover:text-white transition-all group md:block ${scrolled ? '' : 'pointer-events-none'}`}
+        className={`fixed bottom-28 right-8 z-40 hidden bg-obsidian text-mist p-4 rounded-2xl shadow-[var(--key-soft)] border border-white/10 hover:bg-graphite transition-all group md:block focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white ${scrolled ? '' : 'pointer-events-none'}`}
         style={{ opacity: scrolled ? 1 : 0, transform: scrolled ? 'scale(1)' : 'scale(0.5)' }}
       >
         <ChevronRight className="w-6 h-6 -rotate-90 group-hover:-translate-y-1 transition-transform" aria-hidden="true" />

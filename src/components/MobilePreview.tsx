@@ -4,16 +4,19 @@ import { CheckCircle2 } from 'lucide-react';
 
 const MobilePreview = () => {
   return (
-    <section className="py-12 md:py-16 overflow-hidden bg-white">
+    <section className="py-12 md:py-16 overflow-hidden bg-ink">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           {/* Text Content */}
           <Reveal as="div" x={-20}>
-            <h2 className="text-clamp-h2 font-display font-bold text-slate-900 mb-3">
-              Seu sistema de homologação, <span className="heading-accent">em qualquer lugar.</span>
+            <span className="font-mono text-[11px] uppercase tracking-[0.08em] text-smoke">
+              No celular
+            </span>
+            <h2 className="text-clamp-h2 font-bold text-white mb-3 mt-3">
+              Seu sistema de homologação, <span className="hero-grif">em qualquer lugar.</span>
             </h2>
 
-            <p className="text-lg text-slate-600 mb-5 leading-relaxed">
+            <p className="text-lg text-ash mb-5 leading-relaxed">
               Dê autonomia total aos seus integradores. Com o Homologa Plus, seus parceiros cadastram projetos, enviam documentos e acompanham o status pelo celular, direto do canteiro de obra.
             </p>
 
@@ -25,10 +28,10 @@ const MobilePreview = () => {
                 "Dashboard móvel com métricas rápidas"
               ].map((item, i) => (
                 <div key={i} className="flex items-center gap-3">
-                  <div className="w-6 h-6 rounded-full bg-success/10 flex items-center justify-center">
-                    <CheckCircle2 className="w-4 h-4 text-emerald-700" />
+                  <div className="w-6 h-6 rounded-full bg-obsidian flex items-center justify-center text-coral shadow-[inset_0_0_0_1px_rgba(255,255,255,0.06)]">
+                    <CheckCircle2 className="w-4 h-4" />
                   </div>
-                  <span className="text-slate-700 font-medium">{item}</span>
+                  <span className="text-ash font-medium">{item}</span>
                 </div>
               ))}
             </div>

@@ -17,14 +17,17 @@ const personas = [
 
 const WhoIsItFor = () => {
   return (
-    <section className="py-16 md:py-24 bg-white">
+    <section className="py-16 md:py-24 bg-void">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid items-start gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:gap-20">
           <Reveal y={20} margin="-100px">
-            <h2 className="text-clamp-h2 font-display font-bold text-slate-900 mb-4">
+            <span className="font-mono text-[11px] uppercase tracking-[0.08em] text-smoke">
+              Público
+            </span>
+            <h2 className="text-clamp-h2 font-bold text-white mb-4 mt-3">
               Para quem é o Homologa Plus
             </h2>
-            <p className="text-lg text-slate-600 leading-relaxed max-w-md">
+            <p className="text-lg text-ash leading-relaxed max-w-md">
               Feito para quem vive a homologação de usinas solares no dia a dia, do projeto ao parecer da concessionária.
             </p>
           </Reveal>
@@ -38,14 +41,14 @@ const WhoIsItFor = () => {
                 duration={0.5}
                 delay={idx * 0.08}
                 margin="-80px"
-                className="flex items-start gap-5 border-t border-slate-100 py-6 first:border-t-0 first:pt-0 md:gap-6 md:py-7"
+                className="flex items-start gap-5 border-t border-white/10 py-6 first:border-t-0 first:pt-0 md:gap-6 md:py-7"
               >
-                <span className="flex h-12 w-12 flex-none items-center justify-center rounded-2xl bg-primary/10 text-primary md:h-14 md:w-14">
+                <span className="flex h-12 w-12 flex-none items-center justify-center rounded-2xl bg-obsidian text-coral shadow-[inset_0_0_0_1px_rgba(255,255,255,0.06)] md:h-14 md:w-14">
                   <p.Icon className="h-6 w-6" />
                 </span>
                 <div>
-                  <h3 className="font-display text-lg md:text-xl font-bold text-slate-900 mb-1">{p.label}</h3>
-                  <p className="text-slate-600 leading-relaxed">{p.desc}</p>
+                  <h3 className="text-lg md:text-xl font-bold text-white mb-1">{p.label}</h3>
+                  <p className="text-ash leading-relaxed">{p.desc}</p>
                 </div>
               </Reveal>
             ))}

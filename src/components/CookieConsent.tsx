@@ -37,8 +37,8 @@ const Switch = ({
     aria-label={label}
     disabled={disabled}
     onClick={() => onChange?.(!checked)}
-    className={`relative inline-flex h-6 w-11 flex-none items-center rounded-full transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-action ${
-      checked ? 'bg-action' : 'bg-slate-300'
+    className={`relative inline-flex h-6 w-11 flex-none items-center rounded-full border border-white/10 transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white ${
+      checked ? 'bg-coral border-coral/60' : 'bg-graphite'
     } ${disabled ? 'cursor-not-allowed opacity-70' : 'cursor-pointer'}`}
   >
     <span
@@ -131,12 +131,17 @@ const CookieConsent = () => {
 
   if (!open) return null;
 
+  // Botão base do cockpit. Aceitar e Recusar têm o MESMO peso visual (ANPD):
+  // dois botões sólidos de mesmo tamanho — "primário" (Mist tátil) e "neutro"
+  // (Graphite tátil), ambos proeminentes. Sem dark pattern.
   const primaryBtn =
-    'inline-flex min-h-[44px] items-center justify-center rounded-xl px-5 py-3 text-sm font-bold transition-all focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-action';
+    'inline-flex min-h-[44px] items-center justify-center rounded-xl px-5 py-3 text-sm font-bold transition-all focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white';
+  const btnMist = 'bg-mist text-ink shadow-[var(--btn-lift)] hover:-translate-y-0.5 hover:brightness-105';
+  const btnNeutral = 'bg-graphite text-mist border border-white/10 shadow-[var(--key-soft)] hover:-translate-y-0.5 hover:bg-obsidian';
 
   return (
     <div
-      className="fixed inset-0 z-[80] flex items-end justify-center bg-slate-950/40 p-4 backdrop-blur-[2px] sm:items-center"
+      className="fixed inset-0 z-[80] flex items-end justify-center bg-void/70 p-4 backdrop-blur-[2px] sm:items-center"
       onClick={(e) => {
         if (e.target === e.currentTarget && dismissible) close();
       }}
@@ -148,25 +153,25 @@ const CookieConsent = () => {
         aria-labelledby="cc-title"
         aria-describedby="cc-desc"
         onKeyDown={onKeyDown}
-        className="w-full max-w-xl overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-[0_30px_80px_-24px_rgba(15,23,42,0.5)]"
+        className="w-full max-w-xl overflow-hidden rounded-2xl border border-white/10 bg-ink shadow-[var(--key),0_40px_90px_-30px_rgba(0,0,0,0.9)]"
       >
         <div className="p-6 sm:p-7">
           <div className="mb-4 flex items-center gap-3">
-            <span className="flex h-10 w-10 flex-none items-center justify-center rounded-xl bg-primary/10 text-primary">
+            <span className="flex h-10 w-10 flex-none items-center justify-center rounded-xl bg-coral-ember text-coral ring-1 ring-coral/25">
               <Cookie className="h-5 w-5" aria-hidden="true" />
             </span>
-            <h2 id="cc-title" className="font-display text-lg font-bold text-slate-900">
+            <h2 id="cc-title" className="font-display text-lg font-bold text-white">
               Sua privacidade
             </h2>
           </div>
 
-          <p id="cc-desc" className="text-sm leading-relaxed text-slate-600">
+          <p id="cc-desc" className="text-sm leading-relaxed text-ash">
             Usamos cookies necessários para o site funcionar e, com o seu consentimento, cookies
             analíticos (desempenho) e de marketing (Meta Pixel). Você pode aceitar, recusar ou
             escolher por categoria. Recusar é tão simples quanto aceitar. Saiba mais na{' '}
             <Link
               to="/privacidade"
-              className="font-semibold text-action underline underline-offset-2 hover:text-action-dark"
+              className="font-semibold text-coral underline underline-offset-2 hover:text-white"
             >
               Política de Privacidade
             </Link>
@@ -181,14 +186,14 @@ const CookieConsent = () => {
                   ref={firstFocusRef}
                   type="button"
                   onClick={acceptAll}
-                  className={`${primaryBtn} bg-action text-white shadow-lg shadow-action/30 hover:-translate-y-0.5 hover:bg-action-dark`}
+                  className={`${primaryBtn} ${btnMist}`}
                 >
                   Aceitar todos
                 </button>
                 <button
                   type="button"
                   onClick={rejectAll}
-                  className={`${primaryBtn} border-2 border-slate-300 bg-white text-slate-900 hover:border-slate-400 hover:bg-slate-50`}
+                  className={`${primaryBtn} ${btnNeutral}`}
                 >
                   Recusar
                 </button>
@@ -203,21 +208,21 @@ const CookieConsent = () => {
                   });
                   setShowPrefs(true);
                 }}
-                className="mt-3 inline-flex min-h-[44px] w-full items-center justify-center rounded-xl px-5 py-2.5 text-sm font-semibold text-slate-600 underline underline-offset-2 transition-colors hover:text-primary focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-action"
+                className="mt-3 inline-flex min-h-[44px] w-full items-center justify-center rounded-xl px-5 py-2.5 text-sm font-semibold text-ash underline underline-offset-2 transition-colors hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
               >
                 Preferências
               </button>
             </div>
           ) : (
             <div className="mt-6">
-              <ul className="divide-y divide-slate-100 rounded-xl border border-slate-200">
+              <ul className="divide-y divide-white/10 rounded-xl border border-white/10 bg-obsidian">
                 <li className="flex items-start justify-between gap-4 p-4">
                   <div className="min-w-0">
                     <div className="flex items-center gap-2">
-                      <ShieldCheck className="h-4 w-4 flex-none text-emerald-700" aria-hidden="true" />
-                      <p className="text-sm font-bold text-slate-900">Necessários</p>
+                      <ShieldCheck className="h-4 w-4 flex-none text-emerald-400" aria-hidden="true" />
+                      <p className="text-sm font-bold text-white">Necessários</p>
                     </div>
-                    <p className="mt-1 text-[13px] leading-snug text-slate-600">
+                    <p className="mt-1 text-[13px] leading-snug text-ash">
                       Essenciais para o site funcionar. Sempre ativos.
                     </p>
                   </div>
@@ -225,8 +230,8 @@ const CookieConsent = () => {
                 </li>
                 <li className="flex items-start justify-between gap-4 p-4">
                   <div className="min-w-0">
-                    <p className="text-sm font-bold text-slate-900">Analíticos</p>
-                    <p className="mt-1 text-[13px] leading-snug text-slate-600">
+                    <p className="text-sm font-bold text-white">Analíticos</p>
+                    <p className="mt-1 text-[13px] leading-snug text-ash">
                       Medem o desempenho do site (Vercel Speed Insights).
                     </p>
                   </div>
@@ -239,8 +244,8 @@ const CookieConsent = () => {
                 </li>
                 <li className="flex items-start justify-between gap-4 p-4">
                   <div className="min-w-0">
-                    <p className="text-sm font-bold text-slate-900">Marketing</p>
-                    <p className="mt-1 text-[13px] leading-snug text-slate-600">
+                    <p className="text-sm font-bold text-white">Marketing</p>
+                    <p className="mt-1 text-[13px] leading-snug text-ash">
                       Medem campanhas e anúncios (Meta Pixel).
                     </p>
                   </div>
@@ -258,14 +263,14 @@ const CookieConsent = () => {
                   ref={firstFocusRef}
                   type="button"
                   onClick={savePrefs}
-                  className={`${primaryBtn} bg-action text-white shadow-lg shadow-action/30 hover:-translate-y-0.5 hover:bg-action-dark`}
+                  className={`${primaryBtn} ${btnMist}`}
                 >
                   Salvar preferências
                 </button>
                 <button
                   type="button"
                   onClick={() => setShowPrefs(false)}
-                  className={`${primaryBtn} border-2 border-slate-300 bg-white text-slate-900 hover:border-slate-400 hover:bg-slate-50`}
+                  className={`${primaryBtn} ${btnNeutral}`}
                 >
                   Voltar
                 </button>

@@ -81,7 +81,7 @@ const features: Feature[] = [
 
 const Features = () => {
   return (
-    <section id="solucao" className="py-16 md:py-28 bg-surface overflow-hidden">
+    <section id="solucao" className="py-16 md:py-28 bg-void overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <Reveal
           as="div"
@@ -89,10 +89,13 @@ const Features = () => {
           margin="-100px"
           className="text-center max-w-2xl mx-auto mb-16 md:mb-24"
         >
-          <h2 className="text-clamp-h2 font-display font-extrabold text-slate-900 mb-4 text-balance">
-            A plataforma por trás da automação
+          <span className="font-mono text-[11px] uppercase tracking-[0.08em] text-smoke">
+            A plataforma
+          </span>
+          <h2 className="text-clamp-h2 font-bold text-white mb-4 mt-3 text-balance">
+            A plataforma por trás da <span className="hero-grif">automação</span>
           </h2>
-          <p className="text-base md:text-lg text-slate-600 leading-relaxed">
+          <p className="text-base md:text-lg text-ash leading-relaxed">
             Além de gerar e validar os documentos, o Homologa Plus controla projetos, prazos, financeiro e território; cada parte da operação em um só lugar.
           </p>
         </Reveal>
@@ -108,22 +111,22 @@ const Features = () => {
             >
               {/* Copy */}
               <div className={f.flip ? 'lg:order-2' : ''}>
-                <span className="inline-flex items-center gap-2.5 mb-5 font-mono text-[11px] md:text-xs font-semibold uppercase tracking-[0.14em] text-primary">
-                  <span className="flex h-7 w-7 items-center justify-center rounded-lg bg-primary/10 text-primary">
+                <span className="inline-flex items-center gap-2.5 mb-5 font-mono text-[11px] md:text-xs font-semibold uppercase tracking-[0.08em] text-smoke">
+                  <span className="flex h-7 w-7 items-center justify-center rounded-lg bg-obsidian text-coral shadow-[inset_0_0_0_1px_rgba(255,255,255,0.06)]">
                     <f.Icon className="w-4 h-4" />
                   </span>
                   {f.label}
                 </span>
-                <h3 className="text-2xl md:text-3xl font-display font-extrabold text-slate-900 leading-[1.12] tracking-tight mb-4 text-balance">
+                <h3 className="text-2xl md:text-3xl font-bold text-white leading-[1.12] tracking-tight mb-4 text-balance">
                   {f.title}
                 </h3>
-                <p className="text-base md:text-lg text-slate-600 leading-relaxed mb-7 max-w-xl">
+                <p className="text-base md:text-lg text-ash leading-relaxed mb-7 max-w-xl">
                   {f.desc}
                 </p>
                 <ul className="space-y-3.5">
                   {f.bullets.map((b) => (
-                    <li key={b} className="flex items-start gap-3 text-slate-700 font-medium">
-                      <span className="mt-0.5 flex h-5 w-5 flex-none items-center justify-center rounded-md bg-primary/10 text-primary">
+                    <li key={b} className="flex items-start gap-3 text-ash font-medium">
+                      <span className="mt-0.5 flex h-5 w-5 flex-none items-center justify-center rounded-md bg-obsidian text-coral shadow-[inset_0_0_0_1px_rgba(255,255,255,0.06)]">
                         <Check className="w-3 h-3" strokeWidth={3.5} />
                       </span>
                       {b}
@@ -135,23 +138,23 @@ const Features = () => {
               {/* Print */}
               <div className={`relative ${f.flip ? 'lg:order-1' : ''}`}>
                 {f.badge && (
-                  <div className="animate-floaty absolute -top-4 left-4 z-10 hidden md:flex items-center gap-2.5 rounded-xl border border-slate-200 bg-white px-3.5 py-2.5 shadow-[0_18px_40px_-16px_rgba(15,23,42,0.3)]">
-                    <span className="flex h-7 w-7 items-center justify-center rounded-lg bg-success/15 text-emerald-700">
+                  <div className="animate-floaty absolute -top-4 left-4 z-10 hidden md:flex items-center gap-2.5 rounded-xl border border-white/10 bg-obsidian px-3.5 py-2.5 shadow-[var(--key-soft)]">
+                    <span className="flex h-7 w-7 items-center justify-center rounded-lg bg-graphite text-coral shadow-[inset_0_0_0_1px_rgba(255,255,255,0.06)]">
                       <CheckCircle2 className="w-4 h-4" />
                     </span>
                     <span>
-                      <span className="block text-sm font-bold leading-tight text-slate-900">{f.badge.title}</span>
-                      <span className="block font-mono text-[11px] text-slate-500">{f.badge.sub}</span>
+                      <span className="block text-sm font-bold leading-tight text-white">{f.badge.title}</span>
+                      <span className="block font-mono text-[11px] text-smoke">{f.badge.sub}</span>
                     </span>
                   </div>
                 )}
-                <div className={f.frameless ? '' : 'rounded-2xl overflow-hidden border border-slate-200 bg-white shadow-[0_30px_60px_-30px_rgba(15,23,42,0.35)]'}>
+                <div className={f.frameless ? '' : 'rounded-2xl overflow-hidden border border-white/10 bg-ink shadow-[var(--key-soft)]'}>
                   <img
                     src={(f.webp || f.img).replace(/\.(png|jpe?g)$/, '.webp')}
                     alt={f.alt}
                     width={f.w ?? 1919}
                     height={f.h ?? 964}
-                    className={`block h-auto w-full ${f.frameless ? 'drop-shadow-2xl' : ''}`}
+                    className="block h-auto w-full"
                     loading="lazy"
                   />
                 </div>

@@ -22,7 +22,7 @@ const Footer = lazy(() => import('../../components/Footer'));
 
 const HomologacaoCpfl = () => {
   return (
-    <div className="min-h-screen bg-white font-sans text-slate-900">
+    <div className="min-h-screen bg-void font-sans text-mist">
       <Helmet>
         <title>Homologação CPFL: Como Aprovar Projetos Solares na CPFL | Homologa Plus</title>
         <meta
@@ -51,7 +51,7 @@ const HomologacaoCpfl = () => {
         <div className="max-w-4xl mx-auto mb-8">
           <Link
             to="/"
-            className="inline-flex items-center gap-2 text-sm text-slate-500 hover:text-primary transition-colors"
+            className="inline-flex items-center gap-2 text-sm text-smoke hover:text-white transition-colors"
           >
             <ChevronLeft className="w-4 h-4" />
             Voltar para Home
@@ -65,14 +65,14 @@ const HomologacaoCpfl = () => {
           trigger="mount"
           className="max-w-4xl mx-auto mb-16"
         >
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-bold uppercase tracking-wider mb-6">
-            <Zap className="w-3.5 h-3.5" />
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-coral-ember border border-coral/25 text-ash text-[11px] font-mono uppercase tracking-[0.08em] mb-6">
+            <Zap className="w-3.5 h-3.5 text-coral" />
             Guia completo
           </div>
-          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight mb-6">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight mb-6 text-white">
             Homologação CPFL: Guia Completo para Aprovação de Projetos Solares
           </h1>
-          <p className="text-lg text-slate-600 leading-relaxed max-w-3xl">
+          <p className="text-lg text-ash leading-relaxed max-w-3xl">
             Tudo o que integradores e engenheiros precisam saber para protocolar, acompanhar e
             aprovar projetos de geração distribuída na CPFL sem retrabalho e dentro dos prazos
             regulatórios.
@@ -87,25 +87,25 @@ const HomologacaoCpfl = () => {
           trigger="mount"
           className="max-w-4xl mx-auto"
         >
-          <div className="bg-white rounded-3xl p-6 md:p-10 lg:p-14 shadow-xl shadow-slate-200/50 border border-slate-100 space-y-12">
+          <div className="bg-obsidian rounded-3xl p-6 md:p-10 lg:p-14 shadow-[var(--key-soft)] border border-white/10 space-y-12">
             {/* 1. Introdução */}
             <section>
               <div className="flex items-center gap-3 mb-4">
-                <div className="w-10 h-10 rounded-xl bg-amber-100 flex items-center justify-center">
-                  <AlertTriangle className="w-5 h-5 text-amber-600" />
+                <div className="w-10 h-10 rounded-xl bg-graphite flex items-center justify-center shadow-[inset_0_0_0_1px_rgba(255,255,255,0.06)]">
+                  <AlertTriangle className="w-5 h-5 text-coral" />
                 </div>
-                <h2 className="text-2xl font-bold text-slate-900">
+                <h2 className="text-2xl font-bold text-white">
                   1. Os desafios de homologar na CPFL
                 </h2>
               </div>
-              <p className="text-slate-600 leading-relaxed mb-4">
+              <p className="text-ash leading-relaxed mb-4">
                 Se você é integrador de energia solar e atua nas regiões atendidas pelo grupo CPFL,
                 já sabe que o processo de homologação pode ser um verdadeiro gargalo operacional.
                 Documentação incompleta, formulários preenchidos incorretamente, projetos reprovados
                 por detalhes técnicos e prazos que se arrastam por semanas: essa realidade consome
                 tempo, dinheiro e a paciência da equipe.
               </p>
-              <p className="text-slate-600 leading-relaxed">
+              <p className="text-ash leading-relaxed">
                 A CPFL é uma das maiores distribuidoras de energia elétrica do Brasil e possui
                 regras próprias que complementam as normas da ANEEL. Conhecer essas particularidades
                 é essencial para quem deseja escalar operações sem acumular retrabalho. Neste guia,
@@ -117,21 +117,21 @@ const HomologacaoCpfl = () => {
             {/* 2. Área de concessão */}
             <section>
               <div className="flex items-center gap-3 mb-4">
-                <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center">
-                  <MapPin className="w-5 h-5 text-primary" />
+                <div className="w-10 h-10 rounded-xl bg-graphite flex items-center justify-center shadow-[inset_0_0_0_1px_rgba(255,255,255,0.06)]">
+                  <MapPin className="w-5 h-5 text-coral" />
                 </div>
-                <h2 className="text-2xl font-bold text-slate-900">
+                <h2 className="text-2xl font-bold text-white">
                   2. Área de concessão da CPFL
                 </h2>
               </div>
-              <p className="text-slate-600 leading-relaxed mb-4">
+              <p className="text-ash leading-relaxed mb-4">
                 O grupo CPFL engloba diversas distribuidoras que atendem milhões de consumidores em
                 diferentes estados. As principais são a CPFL Paulista, CPFL Piratininga, CPFL Santa
                 Cruz e RGE (Rio Grande Energia), que operam no interior e litoral de São Paulo, bem
                 como em extensas regiões do Rio Grande do Sul. Juntas, essas concessionárias cobrem
                 mais de 680 municípios e atendem cerca de 10 milhões de unidades consumidoras.
               </p>
-              <p className="text-slate-600 leading-relaxed">
+              <p className="text-ash leading-relaxed">
                 Cada distribuidora do grupo pode apresentar variações pontuais no fluxo de
                 atendimento, formulários e canais de contato. Por isso, é fundamental identificar
                 exatamente em qual concessionária a unidade consumidora está registrada antes de
@@ -143,21 +143,21 @@ const HomologacaoCpfl = () => {
             {/* 3. Portal GD */}
             <section>
               <div className="flex items-center gap-3 mb-4">
-                <div className="w-10 h-10 rounded-xl bg-purple-100 flex items-center justify-center">
-                  <Monitor className="w-5 h-5 text-purple-600" />
+                <div className="w-10 h-10 rounded-xl bg-graphite flex items-center justify-center shadow-[inset_0_0_0_1px_rgba(255,255,255,0.06)]">
+                  <Monitor className="w-5 h-5 text-coral" />
                 </div>
-                <h2 className="text-2xl font-bold text-slate-900">
+                <h2 className="text-2xl font-bold text-white">
                   3. Portal GD da CPFL: como funciona
                 </h2>
               </div>
-              <p className="text-slate-600 leading-relaxed mb-4">
+              <p className="text-ash leading-relaxed mb-4">
                 A CPFL disponibiliza o Portal de Geração Distribuída (Portal GD) como canal oficial
                 para solicitações de acesso de micro e minigeração. É por esse portal que
                 integradores enviam documentos, acompanham pareceres e recebem notificações sobre o
                 andamento do processo. O acesso exige cadastro prévio com CNPJ e dados do
                 responsável técnico.
               </p>
-              <p className="text-slate-600 leading-relaxed">
+              <p className="text-ash leading-relaxed">
                 Dentro do portal, o integrador pode criar solicitações de acesso para novas
                 instalações fotovoltaicas, submeter projetos elétricos, anexar documentos
                 complementares e consultar o status de cada etapa. A interface, embora funcional,
@@ -169,14 +169,14 @@ const HomologacaoCpfl = () => {
             {/* 4. Documentos exigidos */}
             <section>
               <div className="flex items-center gap-3 mb-4">
-                <div className="w-10 h-10 rounded-xl bg-green-100 flex items-center justify-center">
-                  <FileCheck2 className="w-5 h-5 text-green-600" />
+                <div className="w-10 h-10 rounded-xl bg-graphite flex items-center justify-center shadow-[inset_0_0_0_1px_rgba(255,255,255,0.06)]">
+                  <FileCheck2 className="w-5 h-5 text-coral" />
                 </div>
-                <h2 className="text-2xl font-bold text-slate-900">
+                <h2 className="text-2xl font-bold text-white">
                   4. Documentos exigidos pela CPFL
                 </h2>
               </div>
-              <p className="text-slate-600 leading-relaxed mb-4">
+              <p className="text-ash leading-relaxed mb-4">
                 A lista de documentos pode variar conforme o porte da instalação e a modalidade de
                 compensação, mas a base documental padrão para micro e minigeração inclui:
               </p>
@@ -192,13 +192,13 @@ const HomologacaoCpfl = () => {
                   'Comprovante de propriedade ou contrato de locação do imóvel',
                   'Foto do medidor e do padrão de entrada existente',
                 ].map((doc, idx) => (
-                  <li key={idx} className="flex items-start gap-3 text-slate-600">
-                    <CheckCircle2 className="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" />
+                  <li key={idx} className="flex items-start gap-3 text-ash">
+                    <CheckCircle2 className="w-5 h-5 text-mist mt-0.5 flex-shrink-0" />
                     <span>{doc}</span>
                   </li>
                 ))}
               </ul>
-              <p className="text-slate-600 leading-relaxed">
+              <p className="text-ash leading-relaxed">
                 Para projetos acima de 75 kW, a CPFL pode solicitar estudos adicionais de impacto
                 na rede, além de laudo elétrico complementar. Manter todos os documentos organizados
                 e em formato PDF legível reduz significativamente o risco de pendências.
@@ -208,14 +208,14 @@ const HomologacaoCpfl = () => {
             {/* 5. Etapas do processo */}
             <section>
               <div className="flex items-center gap-3 mb-4">
-                <div className="w-10 h-10 rounded-xl bg-indigo-100 flex items-center justify-center">
-                  <ListChecks className="w-5 h-5 text-indigo-600" />
+                <div className="w-10 h-10 rounded-xl bg-graphite flex items-center justify-center shadow-[inset_0_0_0_1px_rgba(255,255,255,0.06)]">
+                  <ListChecks className="w-5 h-5 text-coral" />
                 </div>
-                <h2 className="text-2xl font-bold text-slate-900">
+                <h2 className="text-2xl font-bold text-white">
                   5. Etapas do processo de homologação na CPFL
                 </h2>
               </div>
-              <p className="text-slate-600 leading-relaxed mb-4">
+              <p className="text-ash leading-relaxed mb-4">
                 O fluxo de homologação na CPFL segue as diretrizes da Resolução Normativa ANEEL
                 n.º 1.059/2023, mas com particularidades operacionais. As etapas principais são:
               </p>
@@ -247,12 +247,12 @@ const HomologacaoCpfl = () => {
                   },
                 ].map((item, idx) => (
                   <div key={idx} className="flex gap-4">
-                    <div className="flex-shrink-0 w-8 h-8 rounded-full bg-primary/10 text-primary font-bold text-sm flex items-center justify-center mt-0.5">
+                    <div className="flex-shrink-0 w-8 h-8 rounded-full bg-graphite text-coral font-bold text-sm flex items-center justify-center mt-0.5 shadow-[inset_0_0_0_1px_rgba(255,255,255,0.06)]">
                       {idx + 1}
                     </div>
                     <div>
-                      <h3 className="font-semibold text-slate-800 mb-1">{item.step}</h3>
-                      <p className="text-slate-600 text-sm leading-relaxed">{item.desc}</p>
+                      <h3 className="font-semibold text-white mb-1">{item.step}</h3>
+                      <p className="text-ash text-sm leading-relaxed">{item.desc}</p>
                     </div>
                   </div>
                 ))}
@@ -262,27 +262,27 @@ const HomologacaoCpfl = () => {
             {/* 6. Prazos */}
             <section>
               <div className="flex items-center gap-3 mb-4">
-                <div className="w-10 h-10 rounded-xl bg-orange-100 flex items-center justify-center">
-                  <Clock className="w-5 h-5 text-orange-600" />
+                <div className="w-10 h-10 rounded-xl bg-graphite flex items-center justify-center shadow-[inset_0_0_0_1px_rgba(255,255,255,0.06)]">
+                  <Clock className="w-5 h-5 text-coral" />
                 </div>
-                <h2 className="text-2xl font-bold text-slate-900">
+                <h2 className="text-2xl font-bold text-white">
                   6. Prazos regulatórios e prazos práticos
                 </h2>
               </div>
-              <p className="text-slate-600 leading-relaxed mb-4">
+              <p className="text-ash leading-relaxed mb-4">
                 A ANEEL estabelece prazos máximos que as distribuidoras devem cumprir. Para
                 microgeração (até 75 kW), o prazo para emissão do parecer de acesso é de 15 dias
                 úteis. Para minigeração (de 75 kW a 5 MW), esse prazo sobe para 30 dias úteis. A
                 vistoria deve ser realizada em até 7 dias úteis após a solicitação, e a troca do
                 medidor em até 5 dias úteis após a aprovação.
               </p>
-              <p className="text-slate-600 leading-relaxed mb-4">
+              <p className="text-ash leading-relaxed mb-4">
                 Na prática, porém, esses prazos nem sempre são cumpridos. A CPFL costuma atender
                 dentro dos prazos regulatórios na maioria das regionais, mas projetos com pendências
                 documentais reiniciam a contagem. Regiões com alta demanda de solicitações, como o
                 interior de São Paulo, podem apresentar atrasos pontuais na etapa de vistoria.
               </p>
-              <p className="text-slate-600 leading-relaxed">
+              <p className="text-ash leading-relaxed">
                 A dica principal é garantir que a documentação esteja 100% completa na primeira
                 submissão. Cada pendência identificada pela distribuidora pode acrescentar de 5 a 15
                 dias úteis ao prazo total, dependendo do tempo de correção e reenvio pelo integrador.
@@ -292,14 +292,14 @@ const HomologacaoCpfl = () => {
             {/* 7. Motivos comuns de reprovação */}
             <section>
               <div className="flex items-center gap-3 mb-4">
-                <div className="w-10 h-10 rounded-xl bg-red-100 flex items-center justify-center">
-                  <AlertTriangle className="w-5 h-5 text-red-600" />
+                <div className="w-10 h-10 rounded-xl bg-graphite flex items-center justify-center shadow-[inset_0_0_0_1px_rgba(255,255,255,0.06)]">
+                  <AlertTriangle className="w-5 h-5 text-coral" />
                 </div>
-                <h2 className="text-2xl font-bold text-slate-900">
+                <h2 className="text-2xl font-bold text-white">
                   7. Motivos comuns de reprovação na CPFL
                 </h2>
               </div>
-              <p className="text-slate-600 leading-relaxed mb-4">
+              <p className="text-ash leading-relaxed mb-4">
                 A maior parte das reprovações na CPFL está relacionada a erros evitáveis. Os
                 motivos mais recorrentes incluem:
               </p>
@@ -313,13 +313,13 @@ const HomologacaoCpfl = () => {
                   'Falta de procuração quando o solicitante não é o titular da conta de energia',
                   'Memorial descritivo sem informações sobre o dimensionamento dos condutores e proteções',
                 ].map((motivo, idx) => (
-                  <li key={idx} className="flex items-start gap-3 text-slate-600 text-sm">
-                    <span className="w-2 h-2 rounded-full bg-red-400 mt-1.5 flex-shrink-0" />
+                  <li key={idx} className="flex items-start gap-3 text-ash text-sm">
+                    <span className="w-2 h-2 rounded-full bg-coral mt-1.5 flex-shrink-0" />
                     <span>{motivo}</span>
                   </li>
                 ))}
               </ul>
-              <p className="text-slate-600 leading-relaxed">
+              <p className="text-ash leading-relaxed">
                 Muitos desses problemas poderiam ser resolvidos com uma checklist de conferência
                 antes do envio. Integradores que adotam um processo padronizado de revisão reduzem
                 reprovações em até 80%.
@@ -329,10 +329,10 @@ const HomologacaoCpfl = () => {
             {/* 8. Dicas para evitar retrabalho */}
             <section>
               <div className="flex items-center gap-3 mb-4">
-                <div className="w-10 h-10 rounded-xl bg-emerald-100 flex items-center justify-center">
-                  <ShieldCheck className="w-5 h-5 text-emerald-600" />
+                <div className="w-10 h-10 rounded-xl bg-graphite flex items-center justify-center shadow-[inset_0_0_0_1px_rgba(255,255,255,0.06)]">
+                  <ShieldCheck className="w-5 h-5 text-coral" />
                 </div>
-                <h2 className="text-2xl font-bold text-slate-900">
+                <h2 className="text-2xl font-bold text-white">
                   8. Dicas para evitar retrabalho
                 </h2>
               </div>
@@ -346,8 +346,8 @@ const HomologacaoCpfl = () => {
                   'Acompanhe o status diariamente no Portal GD para responder a eventuais complementações o mais rápido possível.',
                   'Utilize uma plataforma de gestão de homologações para centralizar documentos, acompanhar prazos e evitar perda de informações.',
                 ].map((dica, idx) => (
-                  <div key={idx} className="flex items-start gap-3 text-slate-600">
-                    <CheckCircle2 className="w-5 h-5 text-emerald-500 mt-0.5 flex-shrink-0" />
+                  <div key={idx} className="flex items-start gap-3 text-ash">
+                    <CheckCircle2 className="w-5 h-5 text-mist mt-0.5 flex-shrink-0" />
                     <span className="text-sm leading-relaxed">{dica}</span>
                   </div>
                 ))}
@@ -357,27 +357,27 @@ const HomologacaoCpfl = () => {
             {/* 9. Homologa Plus */}
             <section>
               <div className="flex items-center gap-3 mb-4">
-                <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center">
-                  <Zap className="w-5 h-5 text-primary" />
+                <div className="w-10 h-10 rounded-xl bg-graphite flex items-center justify-center shadow-[inset_0_0_0_1px_rgba(255,255,255,0.06)]">
+                  <Zap className="w-5 h-5 text-coral" />
                 </div>
-                <h2 className="text-2xl font-bold text-slate-900">
+                <h2 className="text-2xl font-bold text-white">
                   9. Como o Homologa Plus ajuda na homologação CPFL
                 </h2>
               </div>
-              <p className="text-slate-600 leading-relaxed mb-4">
+              <p className="text-ash leading-relaxed mb-4">
                 O Homologa Plus foi criado para resolver exatamente os problemas que integradores
                 enfrentam no dia a dia. A plataforma centraliza todo o fluxo de homologação em um
                 único ambiente, eliminando planilhas dispersas, trocas de mensagens no WhatsApp e
                 acompanhamentos manuais no portal da concessionária.
               </p>
-              <p className="text-slate-600 leading-relaxed mb-4">
+              <p className="text-ash leading-relaxed mb-4">
                 Com o Homologa Plus, você organiza cada projeto desde a solicitação de acesso até a
                 troca do medidor. A plataforma permite cadastrar as informações do cliente e da
                 instalação, anexar documentos, acompanhar o status de cada etapa e compartilhar
                 atualizações em tempo real com o cliente final. Isso significa menos ligações
                 perguntando "como está meu projeto?" e mais tempo para focar em vendas e instalações.
               </p>
-              <p className="text-slate-600 leading-relaxed">
+              <p className="text-ash leading-relaxed">
                 Integradores que utilizam o Homologa Plus reportam redução significativa no tempo
                 gasto com gestão administrativa de homologações, além de uma taxa de aprovação na
                 primeira submissão muito superior à média do mercado. A plataforma funciona como um
@@ -386,11 +386,11 @@ const HomologacaoCpfl = () => {
             </section>
 
             {/* 10. CTA Final */}
-            <section className="bg-gradient-to-br from-primary/5 to-slate-50 rounded-2xl p-8 md:p-10 text-center">
-              <h2 className="text-2xl md:text-3xl font-bold text-slate-900 mb-4">
+            <section className="bg-ink border border-white/10 rounded-2xl p-8 md:p-10 text-center shadow-[var(--key-soft)]">
+              <h2 className="text-2xl md:text-3xl font-bold text-white mb-4">
                 Simplifique suas homologações na CPFL
               </h2>
-              <p className="text-slate-600 leading-relaxed mb-8 max-w-2xl mx-auto">
+              <p className="text-ash leading-relaxed mb-8 max-w-2xl mx-auto">
                 Chega de retrabalho, prazos estourados e clientes cobrando atualização. Organize
                 seus projetos de geração distribuída com o Homologa Plus e aprove na primeira
                 tentativa.
@@ -400,12 +400,12 @@ const HomologacaoCpfl = () => {
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => window.fbq && window.fbq('track', 'Contact')}
-                className="inline-flex items-center gap-2 bg-action hover:bg-action-dark text-white font-bold py-4 px-8 rounded-2xl transition-all shadow-lg shadow-action/20 hover:shadow-action/30 text-lg"
+                className="inline-flex items-center gap-2 bg-mist hover:brightness-105 hover:-translate-y-px text-ink font-bold py-4 px-8 rounded-2xl transition-all shadow-[var(--btn-lift)] text-lg focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
               >
                 Agendar demonstração
                 <ArrowRight className="w-5 h-5" />
               </a>
-              <p className="text-sm text-slate-600 mt-4">
+              <p className="text-sm text-ash mt-4">
                 Nossa equipe libera seu acesso pelo WhatsApp.
               </p>
             </section>

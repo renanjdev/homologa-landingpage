@@ -46,7 +46,7 @@ export default function App() {
     <BrowserRouter>
       <ScrollToTop />
       <CookieConsent />
-      <Suspense fallback={<div className="min-h-screen bg-slate-50 flex items-center justify-center"><img src="/logo-h.png" alt="Homologa Plus" width={48} height={48} className="w-12 h-12 animate-pulse" /></div>}>
+      <Suspense fallback={<div className="min-h-screen bg-void flex items-center justify-center"><img src="/logo-h-white.png" alt="Homologa Plus" width={48} height={48} className="w-12 h-12 animate-pulse" /></div>}>
         <Routes>
           <Route path="/" element={<LandingPage />} />
           <Route path="/start" element={<Start />} />

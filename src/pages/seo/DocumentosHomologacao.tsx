@@ -523,7 +523,7 @@ const DocumentosHomologacao = () => {
             as="section"
             y={20}
             duration={0.5}
-            className="bg-gradient-to-br from-primary/5 to-blue-50 rounded-3xl p-8 md:p-12 shadow-xl shadow-slate-200/50 border border-primary/10 mb-8"
+            className="bg-gradient-to-br from-primary/5 to-slate-50 rounded-3xl p-8 md:p-12 shadow-xl shadow-slate-200/50 border border-primary/10 mb-8"
           >
             <h2 className="text-2xl font-bold text-slate-900 mb-4">
               Como o Homologa Plus Centraliza Toda a Documentação

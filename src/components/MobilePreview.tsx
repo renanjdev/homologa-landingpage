@@ -10,7 +10,7 @@ const MobilePreview = () => {
           {/* Text Content */}
           <Reveal as="div" x={-20}>
             <h2 className="text-clamp-h2 font-display font-bold text-slate-900 mb-3">
-              Seu sistema de homologação, <span className="text-heading-accent">em qualquer lugar.</span>
+              Seu sistema de homologação, <span className="heading-accent">em qualquer lugar.</span>
             </h2>
 
             <p className="text-lg text-slate-600 mb-5 leading-relaxed">

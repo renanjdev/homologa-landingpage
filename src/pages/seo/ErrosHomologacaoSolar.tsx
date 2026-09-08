@@ -103,7 +103,7 @@ const ErrosHomologacaoSolar = () => {
       <header className="relative pt-32 pb-16 md:pt-40 md:pb-24 overflow-hidden">
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full -z-10 opacity-10">
           <div className="absolute top-0 left-1/4 w-64 h-64 md:w-96 md:h-96 bg-primary rounded-full blur-[120px]" />
-          <div className="absolute bottom-0 right-1/4 w-64 h-64 md:w-96 md:h-96 bg-blue-400 rounded-full blur-[120px]" />
+          <div className="absolute bottom-0 right-1/4 w-64 h-64 md:w-96 md:h-96 bg-slate-400 rounded-full blur-[120px]" />
         </div>
 
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
@@ -249,7 +249,7 @@ const ErrosHomologacaoSolar = () => {
           y={30}
           duration={0.5}
           margin="-50px"
-          className="bg-gradient-to-br from-primary/5 to-blue-50 rounded-3xl p-8 md:p-12 shadow-xl shadow-slate-200/50 border border-primary/10 mb-10"
+          className="bg-gradient-to-br from-primary/5 to-slate-50 rounded-3xl p-8 md:p-12 shadow-xl shadow-slate-200/50 border border-primary/10 mb-10"
         >
           <div className="flex items-center gap-3 mb-6">
             <div className="w-10 h-10 bg-primary rounded-xl flex items-center justify-center shadow-lg shadow-primary/20">

@@ -117,8 +117,8 @@ const HomologacaoCpfl = () => {
             {/* 2. Área de concessão */}
             <section>
               <div className="flex items-center gap-3 mb-4">
-                <div className="w-10 h-10 rounded-xl bg-blue-100 flex items-center justify-center">
-                  <MapPin className="w-5 h-5 text-blue-600" />
+                <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center">
+                  <MapPin className="w-5 h-5 text-primary" />
                 </div>
                 <h2 className="text-2xl font-bold text-slate-900">
                   2. Área de concessão da CPFL
@@ -386,7 +386,7 @@ const HomologacaoCpfl = () => {
             </section>
 
             {/* 10. CTA Final */}
-            <section className="bg-gradient-to-br from-primary/5 to-blue-50 rounded-2xl p-8 md:p-10 text-center">
+            <section className="bg-gradient-to-br from-primary/5 to-slate-50 rounded-2xl p-8 md:p-10 text-center">
               <h2 className="text-2xl md:text-3xl font-bold text-slate-900 mb-4">
                 Simplifique suas homologações na CPFL
               </h2>

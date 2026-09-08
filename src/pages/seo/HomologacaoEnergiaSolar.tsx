@@ -54,7 +54,7 @@ const HomologacaoEnergiaSolar = () => {
       <section className="relative pt-28 pb-16 md:pt-36 md:pb-24 overflow-hidden">
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full -z-10 opacity-10">
           <div className="absolute top-0 left-1/4 w-64 h-64 md:w-96 md:h-96 bg-primary rounded-full blur-[80px] md:blur-[120px]" />
-          <div className="absolute bottom-0 right-1/4 w-64 h-64 md:w-96 md:h-96 bg-blue-400 rounded-full blur-[80px] md:blur-[120px]" />
+          <div className="absolute bottom-0 right-1/4 w-64 h-64 md:w-96 md:h-96 bg-slate-400 rounded-full blur-[80px] md:blur-[120px]" />
         </div>
 
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -353,7 +353,7 @@ const HomologacaoEnergiaSolar = () => {
           duration={0.5}
           className="mb-16"
         >
-          <div className="bg-gradient-to-br from-primary to-blue-600 rounded-3xl p-8 md:p-12 text-center text-white">
+          <div className="bg-gradient-to-br from-primary to-primary-dark rounded-3xl p-8 md:p-12 text-center text-white">
             <h2 className="text-2xl md:text-3xl font-bold mb-4">
               Simplifique suas homologações agora mesmo
             </h2>

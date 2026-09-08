@@ -9,9 +9,9 @@
   /* Brand identity v1.0 — Homologa Plus */
   --color-primary: #1B2A4A;        /* Navy — cor de marca (instrumento) */
   --color-primary-dark: #131F39;   /* Navy profundo — hover / seções escuras */
-  --color-bright-sky: #3B82F6;     /* Bright Sky — accent / Plus wordmark */
-  --color-action: #2563EB;         /* Plus Blue — cor de AÇÃO: CTA, estado ativo, halo */
-  --color-action-dark: #1D4ED8;    /* hover/active do CTA */
+  --color-bright-sky: #475569;     /* Slate 600 — accent NEUTRO (era Bright Sky azul; sem azul vivo) */
+  --color-action: #0F172A;         /* Grafite (slate-900) — cor de AÇÃO: CTA, foco, estado ativo */
+  --color-action-dark: #1E293B;    /* Slate 800 — hover/active do CTA */
   --color-heading-accent: #13253C; /* Navy chapado — destaque de palavra dentro de títulos (NÃO em CTA) */
   --color-success: #10B981;
   --color-warning: #F97316;
@@ -50,7 +50,7 @@
   input:focus-visible,
   textarea:focus-visible,
   select:focus-visible {
-    outline: 2px solid var(--color-bright-sky);
+    outline: 2px solid var(--color-action);
     outline-offset: 2px;
     border-radius: 4px;
   }
@@ -68,6 +68,25 @@
 
 .nav-link {
   @apply min-h-0 inline-flex; /* Reset for desktop nav links */
+}
+
+/* Grifo de destaque da palavra-âncora dos títulos.
+   O dono mantém o TEXTO em navy (--color-heading-accent); como um navy tão
+   escuro não destaca contra slate-900, o "pop" vem de uma faixa GRAFITE/slate
+   em baixa opacidade ATRÁS da palavra — não da cor do texto (sem azul).
+   - box-decoration-break: clone → cantos arredondados em cada fragmento quando
+     a palavra quebra no wrap do H1 (larguras clamp mobile→desktop).
+   - padding vertical em inline NÃO altera a altura da linha → sem CLS.
+   - margem negativa compensa parte do padding pra faixa "abraçar" a palavra
+     sem empurrar o texto vizinho. */
+.heading-accent {
+  color: var(--color-heading-accent);
+  background-color: color-mix(in srgb, var(--color-action) 12%, transparent);
+  border-radius: 0.3em;
+  padding: 0.04em 0.22em;
+  margin-inline: -0.08em;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
 }
 
 /* Chips flutuantes do hero (degrada para estático em prefers-reduced-motion) */

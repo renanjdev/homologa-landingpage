@@ -294,7 +294,7 @@ const ComoHomologarEnergiaSolar = () => {
               className="bg-white rounded-3xl p-8 md:p-12 shadow-xl shadow-slate-200/50 border border-slate-100"
             >
               <div className="flex items-center gap-3 mb-4">
-                <Gauge className="w-6 h-6 text-blue-500" />
+                <Gauge className="w-6 h-6 text-primary" />
                 <h2 className="text-2xl font-bold text-slate-900">Dicas para Acelerar o Processo</h2>
               </div>
               <div className="space-y-4 text-slate-600 leading-relaxed">
@@ -394,7 +394,7 @@ const ComoHomologarEnergiaSolar = () => {
               as="section"
               y={20}
               duration={0.5}
-              className="bg-gradient-to-br from-primary to-blue-600 rounded-3xl p-8 md:p-12 shadow-xl shadow-primary/20 text-white text-center"
+              className="bg-gradient-to-br from-primary to-primary-dark rounded-3xl p-8 md:p-12 shadow-xl shadow-primary/20 text-white text-center"
             >
               <Clock className="w-10 h-10 mx-auto mb-4 text-white/80" />
               <h2 className="text-2xl md:text-3xl font-bold mb-4">

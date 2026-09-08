@@ -24,7 +24,7 @@ const FinalCTA = () => {
           />
 
           <div className="relative z-10 max-w-2xl mx-auto">
-            <p className="font-mono text-xs font-semibold uppercase tracking-[0.2em] text-bright-sky mb-5">
+            <p className="font-mono text-xs font-semibold uppercase tracking-[0.2em] text-slate-300 mb-5">
               Comece hoje
             </p>
             <h2 className="text-clamp-h2 font-display font-extrabold text-white mb-5 text-balance">

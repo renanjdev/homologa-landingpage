@@ -22,7 +22,7 @@ const Footer = lazy(() => import('../../components/Footer'));
 
 const DocumentosHomologacao = () => {
   return (
-    <div className="min-h-screen bg-slate-50 font-sans text-slate-900">
+    <div className="min-h-screen bg-void font-sans text-mist">
       <Helmet>
         <title>Documentos para Homologação Fotovoltaica: Lista Completa | Homologa Plus</title>
         <meta
@@ -53,24 +53,24 @@ const DocumentosHomologacao = () => {
           {/* Breadcrumb */}
           <Link
             to="/"
-            className="inline-flex items-center gap-2 text-sm text-slate-600 hover:text-primary transition-colors mb-8"
+            className="inline-flex items-center gap-2 text-sm text-ash hover:text-white transition-colors mb-8"
           >
             <ChevronLeft className="w-4 h-4" />
             Voltar para Home
           </Link>
 
           {/* Hero */}
-          <div className="bg-white rounded-3xl p-8 md:p-12 shadow-xl shadow-slate-200/50 border border-slate-100 mb-8">
-            <div className="flex items-center gap-3 text-primary mb-6">
-              <FileText className="w-8 h-8" />
-              <span className="text-sm font-semibold uppercase tracking-wider">Guia Completo</span>
+          <div className="bg-obsidian rounded-3xl p-8 md:p-12 shadow-[var(--key-soft)] border border-white/10 mb-8">
+            <div className="flex items-center gap-3 mb-6">
+              <FileText className="w-8 h-8 text-coral" />
+              <span className="font-mono text-[11px] uppercase tracking-[0.08em] text-smoke">Guia Completo</span>
             </div>
 
-            <h1 className="text-3xl md:text-4xl font-bold mb-6 text-slate-900 leading-tight">
+            <h1 className="text-3xl md:text-4xl font-bold mb-6 text-white leading-tight">
               Documentos para Homologação Fotovoltaica: Lista Completa e Atualizada
             </h1>
 
-            <p className="text-lg text-slate-600 leading-relaxed">
+            <p className="text-lg text-ash leading-relaxed">
               A homologação de um sistema fotovoltaico junto à concessionária de energia é uma das etapas mais
               importantes (e também uma das que mais geram retrabalho) em um projeto de energia solar. A falta
               de um único documento pode significar semanas de atraso, reprovação do pedido e frustração tanto
@@ -84,15 +84,15 @@ const DocumentosHomologacao = () => {
             as="section"
             y={20}
             duration={0.5}
-            className="bg-white rounded-3xl p-8 md:p-12 shadow-xl shadow-slate-200/50 border border-slate-100 mb-8"
+            className="bg-obsidian rounded-3xl p-8 md:p-12 shadow-[var(--key-soft)] border border-white/10 mb-8"
           >
             <div className="flex items-center gap-3 mb-4">
-              <AlertTriangle className="w-6 h-6 text-amber-500" />
-              <h2 className="text-2xl font-bold text-slate-900">
+              <AlertTriangle className="w-6 h-6 text-coral" />
+              <h2 className="text-2xl font-bold text-white">
                 Por Que a Documentação Correta é Crucial?
               </h2>
             </div>
-            <div className="space-y-4 text-slate-600 leading-relaxed">
+            <div className="space-y-4 text-ash leading-relaxed">
               <p>
                 Segundo dados do setor, aproximadamente 30% dos pedidos de homologação são reprovados na
                 primeira tentativa por problemas documentais. Isso representa um custo oculto enorme para
@@ -118,15 +118,15 @@ const DocumentosHomologacao = () => {
             as="section"
             y={20}
             duration={0.5}
-            className="bg-white rounded-3xl p-8 md:p-12 shadow-xl shadow-slate-200/50 border border-slate-100 mb-8"
+            className="bg-obsidian rounded-3xl p-8 md:p-12 shadow-[var(--key-soft)] border border-white/10 mb-8"
           >
             <div className="flex items-center gap-3 mb-4">
-              <User className="w-6 h-6 text-primary" />
-              <h2 className="text-2xl font-bold text-slate-900">
+              <User className="w-6 h-6 text-coral" />
+              <h2 className="text-2xl font-bold text-white">
                 Documentos do Titular / Proprietário
               </h2>
             </div>
-            <div className="space-y-4 text-slate-600 leading-relaxed">
+            <div className="space-y-4 text-ash leading-relaxed">
               <p>
                 Os documentos pessoais do titular da unidade consumidora são a base de qualquer solicitação
                 de acesso. Eles comprovam a identidade e a titularidade sobre a conta de energia onde o
@@ -134,14 +134,14 @@ const DocumentosHomologacao = () => {
               </p>
               <ul className="space-y-3">
                 <li className="flex items-start gap-3">
-                  <CheckCircle2 className="w-5 h-5 text-emerald-500 mt-0.5 flex-shrink-0" />
+                  <CheckCircle2 className="w-5 h-5 text-mist mt-0.5 flex-shrink-0" />
                   <span>
                     <strong>RG e CPF do titular</strong>: cópias legíveis do documento de identidade e CPF.
                     Para pessoa jurídica, utiliza-se o CNPJ, contrato social e documento do representante legal.
                   </span>
                 </li>
                 <li className="flex items-start gap-3">
-                  <CheckCircle2 className="w-5 h-5 text-emerald-500 mt-0.5 flex-shrink-0" />
+                  <CheckCircle2 className="w-5 h-5 text-mist mt-0.5 flex-shrink-0" />
                   <span>
                     <strong>Conta de energia recente</strong>: a fatura mais recente da unidade consumidora,
                     com no máximo 90 dias, que comprova o vínculo entre o titular e o ponto de conexão. Algumas
@@ -149,7 +149,7 @@ const DocumentosHomologacao = () => {
                   </span>
                 </li>
                 <li className="flex items-start gap-3">
-                  <CheckCircle2 className="w-5 h-5 text-emerald-500 mt-0.5 flex-shrink-0" />
+                  <CheckCircle2 className="w-5 h-5 text-mist mt-0.5 flex-shrink-0" />
                   <span>
                     <strong>Procuração</strong>: quando o integrador atua como representante do titular, é
                     necessária uma procuração assinada autorizando a empresa a protocolar o pedido junto à
@@ -157,7 +157,7 @@ const DocumentosHomologacao = () => {
                   </span>
                 </li>
                 <li className="flex items-start gap-3">
-                  <CheckCircle2 className="w-5 h-5 text-emerald-500 mt-0.5 flex-shrink-0" />
+                  <CheckCircle2 className="w-5 h-5 text-mist mt-0.5 flex-shrink-0" />
                   <span>
                     <strong>Comprovante de propriedade ou autorização</strong>: em caso de imóvel alugado,
                     autorização do proprietário para instalação do sistema fotovoltaico.
@@ -172,13 +172,13 @@ const DocumentosHomologacao = () => {
             as="section"
             y={20}
             duration={0.5}
-            className="bg-white rounded-3xl p-8 md:p-12 shadow-xl shadow-slate-200/50 border border-slate-100 mb-8"
+            className="bg-obsidian rounded-3xl p-8 md:p-12 shadow-[var(--key-soft)] border border-white/10 mb-8"
           >
             <div className="flex items-center gap-3 mb-4">
-              <ClipboardList className="w-6 h-6 text-primary" />
-              <h2 className="text-2xl font-bold text-slate-900">Documentos Técnicos do Projeto</h2>
+              <ClipboardList className="w-6 h-6 text-coral" />
+              <h2 className="text-2xl font-bold text-white">Documentos Técnicos do Projeto</h2>
             </div>
-            <div className="space-y-4 text-slate-600 leading-relaxed">
+            <div className="space-y-4 text-ash leading-relaxed">
               <p>
                 A parte técnica do projeto é avaliada com rigor pela concessionária. Qualquer inconsistência
                 entre os documentos ou entre o projeto e a instalação real pode resultar em reprovação na
@@ -186,7 +186,7 @@ const DocumentosHomologacao = () => {
               </p>
               <ul className="space-y-3">
                 <li className="flex items-start gap-3">
-                  <CheckCircle2 className="w-5 h-5 text-emerald-500 mt-0.5 flex-shrink-0" />
+                  <CheckCircle2 className="w-5 h-5 text-mist mt-0.5 flex-shrink-0" />
                   <span>
                     <strong>Memorial descritivo</strong>: documento que detalha as características do sistema:
                     potência total, quantidade e modelo dos módulos, tipo e modelo do inversor, tipo de conexão
@@ -194,7 +194,7 @@ const DocumentosHomologacao = () => {
                   </span>
                 </li>
                 <li className="flex items-start gap-3">
-                  <CheckCircle2 className="w-5 h-5 text-emerald-500 mt-0.5 flex-shrink-0" />
+                  <CheckCircle2 className="w-5 h-5 text-mist mt-0.5 flex-shrink-0" />
                   <span>
                     <strong>Diagrama unifilar</strong>: representação gráfica simplificada do circuito elétrico
                     do sistema, mostrando a conexão entre os módulos, inversor(es), proteções (disjuntores,
@@ -203,7 +203,7 @@ const DocumentosHomologacao = () => {
                   </span>
                 </li>
                 <li className="flex items-start gap-3">
-                  <CheckCircle2 className="w-5 h-5 text-emerald-500 mt-0.5 flex-shrink-0" />
+                  <CheckCircle2 className="w-5 h-5 text-mist mt-0.5 flex-shrink-0" />
                   <span>
                     <strong>ART ou RRT</strong>: a Anotação de Responsabilidade Técnica (para engenheiros) ou
                     Registro de Responsabilidade Técnica (para técnicos) é obrigatória. Deve ser emitida por
@@ -212,7 +212,7 @@ const DocumentosHomologacao = () => {
                   </span>
                 </li>
                 <li className="flex items-start gap-3">
-                  <CheckCircle2 className="w-5 h-5 text-emerald-500 mt-0.5 flex-shrink-0" />
+                  <CheckCircle2 className="w-5 h-5 text-mist mt-0.5 flex-shrink-0" />
                   <span>
                     <strong>Projeto elétrico completo</strong>: algumas concessionárias exigem o projeto
                     elétrico detalhado, incluindo layout dos módulos no telhado, dimensionamento de cabos,
@@ -228,13 +228,13 @@ const DocumentosHomologacao = () => {
             as="section"
             y={20}
             duration={0.5}
-            className="bg-white rounded-3xl p-8 md:p-12 shadow-xl shadow-slate-200/50 border border-slate-100 mb-8"
+            className="bg-obsidian rounded-3xl p-8 md:p-12 shadow-[var(--key-soft)] border border-white/10 mb-8"
           >
             <div className="flex items-center gap-3 mb-4">
-              <Cpu className="w-6 h-6 text-primary" />
-              <h2 className="text-2xl font-bold text-slate-900">Documentos dos Equipamentos</h2>
+              <Cpu className="w-6 h-6 text-coral" />
+              <h2 className="text-2xl font-bold text-white">Documentos dos Equipamentos</h2>
             </div>
-            <div className="space-y-4 text-slate-600 leading-relaxed">
+            <div className="space-y-4 text-ash leading-relaxed">
               <p>
                 A concessionária precisa verificar se os equipamentos utilizados atendem às normas técnicas
                 brasileiras e possuem certificação válida. Equipamentos sem certificação INMETRO válida são
@@ -242,7 +242,7 @@ const DocumentosHomologacao = () => {
               </p>
               <ul className="space-y-3">
                 <li className="flex items-start gap-3">
-                  <CheckCircle2 className="w-5 h-5 text-emerald-500 mt-0.5 flex-shrink-0" />
+                  <CheckCircle2 className="w-5 h-5 text-mist mt-0.5 flex-shrink-0" />
                   <span>
                     <strong>Datasheet dos módulos fotovoltaicos</strong>: ficha técnica do fabricante
                     contendo potência nominal, tensão de circuito aberto (Voc), corrente de curto-circuito
@@ -251,7 +251,7 @@ const DocumentosHomologacao = () => {
                   </span>
                 </li>
                 <li className="flex items-start gap-3">
-                  <CheckCircle2 className="w-5 h-5 text-emerald-500 mt-0.5 flex-shrink-0" />
+                  <CheckCircle2 className="w-5 h-5 text-mist mt-0.5 flex-shrink-0" />
                   <span>
                     <strong>Datasheet do inversor</strong>: ficha técnica contendo potência nominal, faixa
                     de tensão MPPT, corrente máxima de entrada, tensão e corrente de saída, frequência de
@@ -259,7 +259,7 @@ const DocumentosHomologacao = () => {
                   </span>
                 </li>
                 <li className="flex items-start gap-3">
-                  <CheckCircle2 className="w-5 h-5 text-emerald-500 mt-0.5 flex-shrink-0" />
+                  <CheckCircle2 className="w-5 h-5 text-mist mt-0.5 flex-shrink-0" />
                   <span>
                     <strong>Certificados INMETRO</strong>: tanto os módulos quanto os inversores devem possuir
                     certificação INMETRO válida e vigente. Verifique a validade no site oficial do INMETRO,
@@ -267,7 +267,7 @@ const DocumentosHomologacao = () => {
                   </span>
                 </li>
                 <li className="flex items-start gap-3">
-                  <CheckCircle2 className="w-5 h-5 text-emerald-500 mt-0.5 flex-shrink-0" />
+                  <CheckCircle2 className="w-5 h-5 text-mist mt-0.5 flex-shrink-0" />
                   <span>
                     <strong>Nota fiscal dos equipamentos</strong>: algumas concessionárias solicitam a nota
                     fiscal de compra dos módulos e inversores para verificar procedência e modelo.
@@ -282,13 +282,13 @@ const DocumentosHomologacao = () => {
             as="section"
             y={20}
             duration={0.5}
-            className="bg-white rounded-3xl p-8 md:p-12 shadow-xl shadow-slate-200/50 border border-slate-100 mb-8"
+            className="bg-obsidian rounded-3xl p-8 md:p-12 shadow-[var(--key-soft)] border border-white/10 mb-8"
           >
             <div className="flex items-center gap-3 mb-4">
-              <Building2 className="w-6 h-6 text-primary" />
-              <h2 className="text-2xl font-bold text-slate-900">Formulários da Concessionária</h2>
+              <Building2 className="w-6 h-6 text-coral" />
+              <h2 className="text-2xl font-bold text-white">Formulários da Concessionária</h2>
             </div>
-            <div className="space-y-4 text-slate-600 leading-relaxed">
+            <div className="space-y-4 text-ash leading-relaxed">
               <p>
                 Cada concessionária possui seus próprios formulários padronizados. Embora o formato varie,
                 as informações solicitadas são semelhantes. É fundamental preencher cada campo com atenção,
@@ -296,7 +296,7 @@ const DocumentosHomologacao = () => {
               </p>
               <ul className="space-y-3">
                 <li className="flex items-start gap-3">
-                  <CheckCircle2 className="w-5 h-5 text-emerald-500 mt-0.5 flex-shrink-0" />
+                  <CheckCircle2 className="w-5 h-5 text-mist mt-0.5 flex-shrink-0" />
                   <span>
                     <strong>Formulário de Solicitação de Acesso</strong>: documento principal que formaliza
                     o pedido de conexão da microgeração ou minigeração distribuída à rede. Contém dados do
@@ -304,14 +304,14 @@ const DocumentosHomologacao = () => {
                   </span>
                 </li>
                 <li className="flex items-start gap-3">
-                  <CheckCircle2 className="w-5 h-5 text-emerald-500 mt-0.5 flex-shrink-0" />
+                  <CheckCircle2 className="w-5 h-5 text-mist mt-0.5 flex-shrink-0" />
                   <span>
                     <strong>Formulário de vistoria</strong>: após a instalação, algumas concessionárias
                     exigem o preenchimento de um formulário específico para agendar a vistoria técnica.
                   </span>
                 </li>
                 <li className="flex items-start gap-3">
-                  <CheckCircle2 className="w-5 h-5 text-emerald-500 mt-0.5 flex-shrink-0" />
+                  <CheckCircle2 className="w-5 h-5 text-mist mt-0.5 flex-shrink-0" />
                   <span>
                     <strong>Relatório fotográfico</strong>: registro fotográfico da instalação finalizada,
                     incluindo fotos dos módulos instalados, inversor, quadro de proteção, aterramento,
@@ -327,11 +327,11 @@ const DocumentosHomologacao = () => {
             as="section"
             y={20}
             duration={0.5}
-            className="bg-white rounded-3xl p-8 md:p-12 shadow-xl shadow-slate-200/50 border border-slate-100 mb-8"
+            className="bg-obsidian rounded-3xl p-8 md:p-12 shadow-[var(--key-soft)] border border-white/10 mb-8"
           >
             <div className="flex items-center gap-3 mb-6">
-              <FolderOpen className="w-6 h-6 text-primary" />
-              <h2 className="text-2xl font-bold text-slate-900">Checklist Completo por Categoria</h2>
+              <FolderOpen className="w-6 h-6 text-coral" />
+              <h2 className="text-2xl font-bold text-white">Checklist Completo por Categoria</h2>
             </div>
 
             <div className="space-y-6">
@@ -373,11 +373,11 @@ const DocumentosHomologacao = () => {
                 },
               ].map((category, idx) => (
                 <div key={idx}>
-                  <h3 className="font-semibold text-slate-800 mb-3">{category.title}</h3>
+                  <h3 className="font-semibold text-white mb-3">{category.title}</h3>
                   <ul className="space-y-2">
                     {category.items.map((item, itemIdx) => (
-                      <li key={itemIdx} className="flex items-start gap-3 text-slate-600">
-                        <CheckCircle2 className="w-4 h-4 text-emerald-500 mt-1 flex-shrink-0" />
+                      <li key={itemIdx} className="flex items-start gap-3 text-ash">
+                        <CheckCircle2 className="w-4 h-4 text-mist mt-1 flex-shrink-0" />
                         <span>{item}</span>
                       </li>
                     ))}
@@ -392,20 +392,20 @@ const DocumentosHomologacao = () => {
             as="section"
             y={20}
             duration={0.5}
-            className="bg-white rounded-3xl p-8 md:p-12 shadow-xl shadow-slate-200/50 border border-slate-100 mb-8"
+            className="bg-obsidian rounded-3xl p-8 md:p-12 shadow-[var(--key-soft)] border border-white/10 mb-8"
           >
             <div className="flex items-center gap-3 mb-4">
-              <AlertTriangle className="w-6 h-6 text-amber-500" />
-              <h2 className="text-2xl font-bold text-slate-900">Erros Comuns na Documentação</h2>
+              <AlertTriangle className="w-6 h-6 text-coral" />
+              <h2 className="text-2xl font-bold text-white">Erros Comuns na Documentação</h2>
             </div>
-            <div className="space-y-4 text-slate-600 leading-relaxed">
+            <div className="space-y-4 text-ash leading-relaxed">
               <p>
                 Conhecer os erros mais frequentes permite evitá-los antes mesmo de protocolar o pedido.
                 Veja os problemas que mais causam reprovação:
               </p>
               <ul className="space-y-3">
                 <li className="flex items-start gap-3">
-                  <span className="text-amber-500 font-bold mt-0.5">1.</span>
+                  <span className="text-coral font-bold mt-0.5">1.</span>
                   <span>
                     <strong>Dados divergentes entre documentos</strong>: o nome do titular na procuração
                     deve ser idêntico ao da conta de energia e do formulário de solicitação. Divergências
@@ -413,14 +413,14 @@ const DocumentosHomologacao = () => {
                   </span>
                 </li>
                 <li className="flex items-start gap-3">
-                  <span className="text-amber-500 font-bold mt-0.5">2.</span>
+                  <span className="text-coral font-bold mt-0.5">2.</span>
                   <span>
                     <strong>ART/RRT não registrada ou vencida</strong>: a ART ou RRT deve estar devidamente
                     registrada no conselho profissional. Uma ART sem pagamento da guia não é considerada válida.
                   </span>
                 </li>
                 <li className="flex items-start gap-3">
-                  <span className="text-amber-500 font-bold mt-0.5">3.</span>
+                  <span className="text-coral font-bold mt-0.5">3.</span>
                   <span>
                     <strong>Modelo do equipamento diferente do datasheet</strong>: se o memorial descritivo
                     menciona um modelo de módulo ou inversor e o datasheet anexado é de outro modelo, o pedido
@@ -428,7 +428,7 @@ const DocumentosHomologacao = () => {
                   </span>
                 </li>
                 <li className="flex items-start gap-3">
-                  <span className="text-amber-500 font-bold mt-0.5">4.</span>
+                  <span className="text-coral font-bold mt-0.5">4.</span>
                   <span>
                     <strong>Certificado INMETRO vencido</strong>: certificações têm prazo de validade.
                     Antes de protocolar, verifique se a certificação dos equipamentos ainda está vigente
@@ -436,7 +436,7 @@ const DocumentosHomologacao = () => {
                   </span>
                 </li>
                 <li className="flex items-start gap-3">
-                  <span className="text-amber-500 font-bold mt-0.5">5.</span>
+                  <span className="text-coral font-bold mt-0.5">5.</span>
                   <span>
                     <strong>Diagrama unifilar incompleto</strong>: omitir proteções, não especificar
                     valores de disjuntores ou não incluir o aterramento no diagrama são erros que
@@ -444,7 +444,7 @@ const DocumentosHomologacao = () => {
                   </span>
                 </li>
                 <li className="flex items-start gap-3">
-                  <span className="text-amber-500 font-bold mt-0.5">6.</span>
+                  <span className="text-coral font-bold mt-0.5">6.</span>
                   <span>
                     <strong>Conta de energia vencida</strong>: enviar uma fatura com mais de 90 dias
                     é motivo de devolução imediata em diversas concessionárias.
@@ -459,15 +459,15 @@ const DocumentosHomologacao = () => {
             as="section"
             y={20}
             duration={0.5}
-            className="bg-white rounded-3xl p-8 md:p-12 shadow-xl shadow-slate-200/50 border border-slate-100 mb-8"
+            className="bg-obsidian rounded-3xl p-8 md:p-12 shadow-[var(--key-soft)] border border-white/10 mb-8"
           >
             <div className="flex items-center gap-3 mb-4">
-              <Lightbulb className="w-6 h-6 text-primary" />
-              <h2 className="text-2xl font-bold text-slate-900">
+              <Lightbulb className="w-6 h-6 text-coral" />
+              <h2 className="text-2xl font-bold text-white">
                 Dicas para Organizar Seus Documentos
               </h2>
             </div>
-            <div className="space-y-4 text-slate-600 leading-relaxed">
+            <div className="space-y-4 text-ash leading-relaxed">
               <p>
                 Manter a documentação organizada desde o início do projeto economiza tempo e reduz
                 drasticamente a chance de reprovação. Aqui estão práticas recomendadas que os melhores
@@ -475,7 +475,7 @@ const DocumentosHomologacao = () => {
               </p>
               <ul className="space-y-3">
                 <li className="flex items-start gap-3">
-                  <CheckCircle2 className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
+                  <CheckCircle2 className="w-5 h-5 text-mist mt-0.5 flex-shrink-0" />
                   <span>
                     <strong>Crie pastas padronizadas</strong>: estabeleça uma estrutura de pastas fixa
                     para cada projeto: Pessoais, Técnicos, Equipamentos e Formulários. Assim, qualquer
@@ -483,7 +483,7 @@ const DocumentosHomologacao = () => {
                   </span>
                 </li>
                 <li className="flex items-start gap-3">
-                  <CheckCircle2 className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
+                  <CheckCircle2 className="w-5 h-5 text-mist mt-0.5 flex-shrink-0" />
                   <span>
                     <strong>Digitalize com qualidade</strong>: documentos ilegíveis são devolvidos.
                     Utilize aplicativos de scanner que corrigem perspectiva e melhoram contraste. Salve
@@ -491,7 +491,7 @@ const DocumentosHomologacao = () => {
                   </span>
                 </li>
                 <li className="flex items-start gap-3">
-                  <CheckCircle2 className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
+                  <CheckCircle2 className="w-5 h-5 text-mist mt-0.5 flex-shrink-0" />
                   <span>
                     <strong>Revise antes de enviar</strong>: faça uma conferência cruzada, verifique se
                     nomes, números de documentos e modelos de equipamentos estão consistentes em todos os
@@ -499,7 +499,7 @@ const DocumentosHomologacao = () => {
                   </span>
                 </li>
                 <li className="flex items-start gap-3">
-                  <CheckCircle2 className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
+                  <CheckCircle2 className="w-5 h-5 text-mist mt-0.5 flex-shrink-0" />
                   <span>
                     <strong>Mantenha versões atualizadas</strong>: se houve alteração de projeto, atualize
                     todos os documentos afetados. Enviar um diagrama unifilar desatualizado enquanto o
@@ -507,7 +507,7 @@ const DocumentosHomologacao = () => {
                   </span>
                 </li>
                 <li className="flex items-start gap-3">
-                  <CheckCircle2 className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
+                  <CheckCircle2 className="w-5 h-5 text-mist mt-0.5 flex-shrink-0" />
                   <span>
                     <strong>Use nomenclatura clara nos arquivos</strong>: nomeie os arquivos de forma
                     descritiva, como "ART_Projeto_12345_JoaoSilva.pdf" em vez de "documento_final_v2.pdf".
@@ -523,12 +523,12 @@ const DocumentosHomologacao = () => {
             as="section"
             y={20}
             duration={0.5}
-            className="bg-gradient-to-br from-primary/5 to-slate-50 rounded-3xl p-8 md:p-12 shadow-xl shadow-slate-200/50 border border-primary/10 mb-8"
+            className="bg-ink rounded-3xl p-8 md:p-12 shadow-[var(--key-soft)] border border-white/10 mb-8"
           >
-            <h2 className="text-2xl font-bold text-slate-900 mb-4">
+            <h2 className="text-2xl font-bold text-white mb-4">
               Como o Homologa Plus Centraliza Toda a Documentação
             </h2>
-            <div className="space-y-4 text-slate-600 leading-relaxed">
+            <div className="space-y-4 text-ash leading-relaxed">
               <p>
                 Gerenciar documentação de homologação em pastas no computador, e-mails e grupos de
                 WhatsApp é uma receita para o caos. O Homologa Plus foi criado justamente para resolver
@@ -560,12 +560,12 @@ const DocumentosHomologacao = () => {
             as="section"
             y={20}
             duration={0.5}
-            className="bg-white rounded-3xl p-8 md:p-12 shadow-xl shadow-slate-200/50 border border-slate-100 text-center"
+            className="bg-obsidian rounded-3xl p-8 md:p-12 shadow-[var(--key-soft)] border border-white/10 text-center"
           >
-            <h2 className="text-2xl md:text-3xl font-bold text-slate-900 mb-4">
+            <h2 className="text-2xl md:text-3xl font-bold text-white mb-4">
               Organize Seus Documentos de Homologação Agora
             </h2>
-            <p className="text-lg text-slate-600 mb-8 max-w-xl mx-auto">
+            <p className="text-lg text-ash mb-8 max-w-xl mx-auto">
               Pare de perder tempo com documentação desorganizada e reprovações evitáveis. Agende uma
               demonstração e veja como a gestão documental pode ser simples.
             </p>
@@ -574,12 +574,12 @@ const DocumentosHomologacao = () => {
               target="_blank"
               rel="noopener noreferrer"
               onClick={() => window.fbq && window.fbq('track', 'Contact')}
-              className="inline-flex items-center gap-3 bg-action hover:bg-action-dark text-white text-lg font-extrabold py-4 px-10 rounded-2xl transition-all shadow-xl shadow-action/20 hover:shadow-action/30 active:scale-[0.98]"
+              className="inline-flex items-center gap-3 bg-mist hover:brightness-105 hover:-translate-y-px text-ink text-lg font-extrabold py-4 px-10 rounded-2xl transition-all shadow-[var(--btn-lift)] active:scale-[0.98] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
             >
               Agendar demonstração
               <ArrowRight className="w-5 h-5" />
             </a>
-            <p className="text-sm text-slate-500 mt-4">
+            <p className="text-sm text-smoke mt-4">
               Acesso liberado pela nossa equipe.
             </p>
           </Reveal>

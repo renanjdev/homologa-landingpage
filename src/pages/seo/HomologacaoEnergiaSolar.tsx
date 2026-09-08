@@ -29,7 +29,7 @@ const HomologacaoEnergiaSolar = () => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-white font-sans text-slate-900">
+    <div className="min-h-screen bg-void font-sans text-mist">
       <Helmet>
         <title>Homologação de Energia Solar: Guia Completo para Engenheiros | Homologa Plus</title>
         <meta
@@ -52,9 +52,9 @@ const HomologacaoEnergiaSolar = () => {
 
       {/* Hero */}
       <section className="relative pt-28 pb-16 md:pt-36 md:pb-24 overflow-hidden">
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full -z-10 opacity-10">
-          <div className="absolute top-0 left-1/4 w-64 h-64 md:w-96 md:h-96 bg-primary rounded-full blur-[80px] md:blur-[120px]" />
-          <div className="absolute bottom-0 right-1/4 w-64 h-64 md:w-96 md:h-96 bg-slate-400 rounded-full blur-[80px] md:blur-[120px]" />
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full -z-10 opacity-40">
+          <div className="absolute top-0 left-1/4 w-64 h-64 md:w-96 md:h-96 bg-cobalt rounded-full blur-[80px] md:blur-[120px]" />
+          <div className="absolute bottom-0 right-1/4 w-64 h-64 md:w-96 md:h-96 bg-coral rounded-full blur-[80px] md:blur-[120px]" />
         </div>
 
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -64,14 +64,14 @@ const HomologacaoEnergiaSolar = () => {
             trigger="mount"
             className="text-center"
           >
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-bold uppercase tracking-wider mb-6">
-              <Sun className="w-3.5 h-3.5" />
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-coral-ember border border-coral/25 text-ash text-[11px] font-mono uppercase tracking-[0.08em] mb-6">
+              <Sun className="w-3.5 h-3.5 text-coral" />
               Guia Completo
             </div>
-            <h1 className="text-3xl sm:text-4xl md:text-5xl font-display font-extrabold text-slate-900 leading-[1.15] mb-6">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white leading-[1.15] mb-6">
               Homologação de Energia Solar: Guia Completo para Engenheiros e Integradores
             </h1>
-            <p className="text-lg md:text-xl text-slate-600 leading-relaxed max-w-2xl mx-auto">
+            <p className="text-lg md:text-xl text-ash leading-relaxed max-w-2xl mx-auto">
               Tudo o que você precisa saber para conduzir o processo de homologação de sistemas fotovoltaicos junto às concessionárias de energia, de forma eficiente e sem retrabalho.
             </p>
           </Reveal>
@@ -88,14 +88,14 @@ const HomologacaoEnergiaSolar = () => {
           className="mb-16"
         >
           <div className="flex items-center gap-3 mb-4">
-            <div className="w-10 h-10 bg-primary/10 rounded-xl flex items-center justify-center">
-              <Sun className="w-5 h-5 text-primary" />
+            <div className="w-10 h-10 bg-graphite rounded-xl flex items-center justify-center shadow-[inset_0_0_0_1px_rgba(255,255,255,0.06)]">
+              <Sun className="w-5 h-5 text-coral" />
             </div>
-            <h2 className="text-2xl md:text-3xl font-bold text-slate-900">
+            <h2 className="text-2xl md:text-3xl font-bold text-white">
               O que é homologação de energia solar?
             </h2>
           </div>
-          <div className="space-y-4 text-slate-600 leading-relaxed text-base md:text-lg">
+          <div className="space-y-4 text-ash leading-relaxed text-base md:text-lg">
             <p>
               A homologação de energia solar é o processo formal pelo qual um sistema de geração distribuída fotovoltaica é aprovado e autorizado a operar conectado à rede elétrica da concessionária local. Em termos práticos, é a etapa que transforma uma instalação física de painéis solares em uma unidade geradora reconhecida oficialmente, permitindo ao consumidor compensar a energia gerada na sua fatura de eletricidade.
             </p>
@@ -113,14 +113,14 @@ const HomologacaoEnergiaSolar = () => {
           className="mb-16"
         >
           <div className="flex items-center gap-3 mb-4">
-            <div className="w-10 h-10 bg-primary/10 rounded-xl flex items-center justify-center">
-              <Shield className="w-5 h-5 text-primary" />
+            <div className="w-10 h-10 bg-graphite rounded-xl flex items-center justify-center shadow-[inset_0_0_0_1px_rgba(255,255,255,0.06)]">
+              <Shield className="w-5 h-5 text-coral" />
             </div>
-            <h2 className="text-2xl md:text-3xl font-bold text-slate-900">
+            <h2 className="text-2xl md:text-3xl font-bold text-white">
               Por que a homologação é obrigatória?
             </h2>
           </div>
-          <div className="space-y-4 text-slate-600 leading-relaxed text-base md:text-lg">
+          <div className="space-y-4 text-ash leading-relaxed text-base md:text-lg">
             <p>
               A obrigatoriedade da homologação está prevista nas resoluções normativas da ANEEL (Agência Nacional de Energia Elétrica), com destaque para a Resolução Normativa n.º 482/2012 e suas atualizações, incluindo a REN 687/2015 e o Marco Legal da Geração Distribuída (Lei 14.300/2022). Essas regulamentações estabelecem que qualquer sistema de micro ou minigeração distribuída deve passar por um processo de aprovação junto à distribuidora de energia antes de entrar em operação.
             </p>
@@ -141,14 +141,14 @@ const HomologacaoEnergiaSolar = () => {
           className="mb-16"
         >
           <div className="flex items-center gap-3 mb-6">
-            <div className="w-10 h-10 bg-primary/10 rounded-xl flex items-center justify-center">
-              <ClipboardList className="w-5 h-5 text-primary" />
+            <div className="w-10 h-10 bg-graphite rounded-xl flex items-center justify-center shadow-[inset_0_0_0_1px_rgba(255,255,255,0.06)]">
+              <ClipboardList className="w-5 h-5 text-coral" />
             </div>
-            <h2 className="text-2xl md:text-3xl font-bold text-slate-900">
+            <h2 className="text-2xl md:text-3xl font-bold text-white">
               Etapas do processo de homologação (passo a passo)
             </h2>
           </div>
-          <p className="text-slate-600 leading-relaxed text-base md:text-lg mb-8">
+          <p className="text-ash leading-relaxed text-base md:text-lg mb-8">
             O processo de homologação de energia solar pode variar ligeiramente entre as distribuidoras, mas de forma geral segue um fluxo padrão que todo integrador deve conhecer em detalhes. Acompanhar cada etapa com precisão evita atrasos e devoluções de documentos. Veja as etapas principais:
           </p>
           <div className="space-y-6">
@@ -183,14 +183,14 @@ const HomologacaoEnergiaSolar = () => {
                 as="div"
                 key={item.step}
                 x={-10}
-                className="flex gap-4 bg-slate-50 rounded-2xl p-6 border border-slate-100"
+                className="flex gap-4 bg-white/5 rounded-2xl p-6 border border-white/10 shadow-[var(--key-soft)]"
               >
-                <div className="flex-shrink-0 w-10 h-10 bg-primary rounded-xl flex items-center justify-center text-white font-bold text-sm">
+                <div className="flex-shrink-0 w-10 h-10 bg-graphite rounded-xl flex items-center justify-center text-coral font-bold text-sm shadow-[inset_0_0_0_1px_rgba(255,255,255,0.06)]">
                   {item.step}
                 </div>
                 <div>
-                  <h3 className="text-lg font-semibold text-slate-900 mb-2">{item.title}</h3>
-                  <p className="text-slate-600 leading-relaxed">{item.desc}</p>
+                  <h3 className="text-lg font-semibold text-white mb-2">{item.title}</h3>
+                  <p className="text-ash leading-relaxed">{item.desc}</p>
                 </div>
               </Reveal>
             ))}
@@ -205,14 +205,14 @@ const HomologacaoEnergiaSolar = () => {
           className="mb-16"
         >
           <div className="flex items-center gap-3 mb-6">
-            <div className="w-10 h-10 bg-primary/10 rounded-xl flex items-center justify-center">
-              <FileCheck className="w-5 h-5 text-primary" />
+            <div className="w-10 h-10 bg-graphite rounded-xl flex items-center justify-center shadow-[inset_0_0_0_1px_rgba(255,255,255,0.06)]">
+              <FileCheck className="w-5 h-5 text-coral" />
             </div>
-            <h2 className="text-2xl md:text-3xl font-bold text-slate-900">
+            <h2 className="text-2xl md:text-3xl font-bold text-white">
               Documentos necessários para a homologação
             </h2>
           </div>
-          <p className="text-slate-600 leading-relaxed text-base md:text-lg mb-6">
+          <p className="text-ash leading-relaxed text-base md:text-lg mb-6">
             Reunir a documentação completa desde o início do processo é essencial para evitar devoluções e atrasos. A lista exata pode variar conforme a distribuidora, mas os documentos mais comuns incluem:
           </p>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -228,9 +228,9 @@ const HomologacaoEnergiaSolar = () => {
               'Documento de identidade e CPF/CNPJ do titular',
               'Comprovante de propriedade ou contrato de locação',
             ].map((doc, idx) => (
-              <div key={idx} className="flex items-start gap-3 bg-white border border-slate-100 rounded-xl p-4">
-                <CheckCircle2 className="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" />
-                <span className="text-slate-700 text-sm md:text-base">{doc}</span>
+              <div key={idx} className="flex items-start gap-3 bg-white/5 border border-white/10 rounded-xl p-4 shadow-[var(--key-soft)]">
+                <CheckCircle2 className="w-5 h-5 text-mist flex-shrink-0 mt-0.5" />
+                <span className="text-ash text-sm md:text-base">{doc}</span>
               </div>
             ))}
           </div>
@@ -244,14 +244,14 @@ const HomologacaoEnergiaSolar = () => {
           className="mb-16"
         >
           <div className="flex items-center gap-3 mb-4">
-            <div className="w-10 h-10 bg-primary/10 rounded-xl flex items-center justify-center">
-              <Clock className="w-5 h-5 text-primary" />
+            <div className="w-10 h-10 bg-graphite rounded-xl flex items-center justify-center shadow-[inset_0_0_0_1px_rgba(255,255,255,0.06)]">
+              <Clock className="w-5 h-5 text-coral" />
             </div>
-            <h2 className="text-2xl md:text-3xl font-bold text-slate-900">
+            <h2 className="text-2xl md:text-3xl font-bold text-white">
               Prazos e regulamentação
             </h2>
           </div>
-          <div className="space-y-4 text-slate-600 leading-relaxed text-base md:text-lg">
+          <div className="space-y-4 text-ash leading-relaxed text-base md:text-lg">
             <p>
               A ANEEL estabelece prazos máximos que as distribuidoras devem cumprir em cada etapa do processo de homologação. Para sistemas de microgeração (até 75 kW), a concessionária tem até 15 dias úteis para emitir o parecer de acesso, 30 dias para a vistoria após a solicitação e 7 dias úteis para a troca do medidor e conexão após a aprovação na vistoria.
             </p>
@@ -272,14 +272,14 @@ const HomologacaoEnergiaSolar = () => {
           className="mb-16"
         >
           <div className="flex items-center gap-3 mb-6">
-            <div className="w-10 h-10 bg-amber-100 rounded-xl flex items-center justify-center">
-              <AlertTriangle className="w-5 h-5 text-amber-600" />
+            <div className="w-10 h-10 bg-graphite rounded-xl flex items-center justify-center shadow-[inset_0_0_0_1px_rgba(255,255,255,0.06)]">
+              <AlertTriangle className="w-5 h-5 text-coral" />
             </div>
-            <h2 className="text-2xl md:text-3xl font-bold text-slate-900">
+            <h2 className="text-2xl md:text-3xl font-bold text-white">
               Erros comuns na homologação e como evitá-los
             </h2>
           </div>
-          <p className="text-slate-600 leading-relaxed text-base md:text-lg mb-6">
+          <p className="text-ash leading-relaxed text-base md:text-lg mb-6">
             Mesmo profissionais experientes podem cometer erros que atrasam significativamente o processo de homologação. Conhecer as falhas mais recorrentes é o primeiro passo para evitá-las e garantir agilidade na aprovação dos projetos.
           </p>
           <div className="space-y-4">
@@ -310,9 +310,9 @@ const HomologacaoEnergiaSolar = () => {
                   'Mantenha o cliente final informado sobre cada etapa do processo. A falta de transparência gera frustração e pode comprometer o relacionamento comercial, especialmente quando há atrasos inesperados.',
               },
             ].map((item, idx) => (
-              <div key={idx} className="bg-amber-50/50 border border-amber-100 rounded-2xl p-6">
-                <h3 className="text-lg font-semibold text-slate-900 mb-2">{item.error}</h3>
-                <p className="text-slate-600 leading-relaxed">{item.solution}</p>
+              <div key={idx} className="bg-white/5 border border-white/10 rounded-2xl p-6 shadow-[var(--key-soft)]">
+                <h3 className="text-lg font-semibold text-white mb-2">{item.error}</h3>
+                <p className="text-ash leading-relaxed">{item.solution}</p>
               </div>
             ))}
           </div>
@@ -326,14 +326,14 @@ const HomologacaoEnergiaSolar = () => {
           className="mb-16"
         >
           <div className="flex items-center gap-3 mb-4">
-            <div className="w-10 h-10 bg-primary/10 rounded-xl flex items-center justify-center">
-              <Zap className="w-5 h-5 text-primary" />
+            <div className="w-10 h-10 bg-graphite rounded-xl flex items-center justify-center shadow-[inset_0_0_0_1px_rgba(255,255,255,0.06)]">
+              <Zap className="w-5 h-5 text-coral" />
             </div>
-            <h2 className="text-2xl md:text-3xl font-bold text-slate-900">
+            <h2 className="text-2xl md:text-3xl font-bold text-white">
               Como o Homologa Plus simplifica o processo
             </h2>
           </div>
-          <div className="space-y-4 text-slate-600 leading-relaxed text-base md:text-lg">
+          <div className="space-y-4 text-ash leading-relaxed text-base md:text-lg">
             <p>
               O Homologa Plus foi desenvolvido por profissionais do setor de energia solar para resolver exatamente os desafios que engenheiros e integradores enfrentam diariamente no processo de homologação. A plataforma centraliza toda a gestão dos projetos em um único ambiente, eliminando planilhas dispersas, mensagens perdidas no WhatsApp e a falta de visibilidade sobre o andamento de cada etapa.
             </p>
@@ -353,11 +353,11 @@ const HomologacaoEnergiaSolar = () => {
           duration={0.5}
           className="mb-16"
         >
-          <div className="bg-gradient-to-br from-primary to-primary-dark rounded-3xl p-8 md:p-12 text-center text-white">
-            <h2 className="text-2xl md:text-3xl font-bold mb-4">
+          <div className="bg-ink rounded-3xl p-8 md:p-12 text-center text-white border border-white/10 shadow-[var(--key-soft)]">
+            <h2 className="text-2xl md:text-3xl font-bold mb-4 text-white">
               Simplifique suas homologações agora mesmo
             </h2>
-            <p className="text-white/90 text-lg leading-relaxed max-w-2xl mx-auto mb-8">
+            <p className="text-ash text-lg leading-relaxed max-w-2xl mx-auto mb-8">
               Pare de perder tempo com planilhas e mensagens desorganizadas. Agende uma demonstração e veja como a gestão profissional de homologações transforma o seu negócio.
             </p>
             <a
@@ -365,7 +365,7 @@ const HomologacaoEnergiaSolar = () => {
               target="_blank"
               rel="noopener noreferrer"
               onClick={() => window.fbq && window.fbq('track', 'Contact')}
-              className="inline-flex items-center gap-2 bg-white text-primary font-bold text-lg px-8 py-4 rounded-2xl hover:bg-slate-50 transition-all shadow-xl shadow-black/10 active:scale-[0.98]"
+              className="inline-flex items-center gap-2 bg-mist text-ink font-bold text-lg px-8 py-4 rounded-2xl hover:brightness-105 hover:-translate-y-px transition-all shadow-[var(--btn-lift)] active:scale-[0.98] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
             >
               Agendar demonstração
               <ArrowRight className="w-5 h-5" />
@@ -377,7 +377,7 @@ const HomologacaoEnergiaSolar = () => {
         <div className="text-center">
           <Link
             to="/"
-            className="inline-flex items-center gap-2 text-slate-500 hover:text-primary transition-colors font-medium"
+            className="inline-flex items-center gap-2 text-smoke hover:text-white transition-colors font-medium"
           >
             <ChevronRight className="w-4 h-4 rotate-180" />
             Voltar para a página inicial

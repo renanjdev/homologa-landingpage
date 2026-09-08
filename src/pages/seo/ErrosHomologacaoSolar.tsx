@@ -75,7 +75,7 @@ const erros = [
 
 const ErrosHomologacaoSolar = () => {
   return (
-    <div className="min-h-screen bg-slate-50 font-sans text-slate-900">
+    <div className="min-h-screen bg-void font-sans text-mist">
       <Helmet>
         <title>Erros na Homologação Solar: Como Evitar Reprovações | Homologa Plus</title>
         <meta
@@ -101,16 +101,16 @@ const ErrosHomologacaoSolar = () => {
 
       {/* Hero */}
       <header className="relative pt-32 pb-16 md:pt-40 md:pb-24 overflow-hidden">
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full -z-10 opacity-10">
-          <div className="absolute top-0 left-1/4 w-64 h-64 md:w-96 md:h-96 bg-primary rounded-full blur-[120px]" />
-          <div className="absolute bottom-0 right-1/4 w-64 h-64 md:w-96 md:h-96 bg-slate-400 rounded-full blur-[120px]" />
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full -z-10 opacity-40">
+          <div className="absolute top-0 left-1/4 w-64 h-64 md:w-96 md:h-96 bg-cobalt rounded-full blur-[120px]" />
+          <div className="absolute bottom-0 right-1/4 w-64 h-64 md:w-96 md:h-96 bg-coral rounded-full blur-[120px]" />
         </div>
 
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <Reveal as="div" y={20} duration={0.5} trigger="mount" className="mb-6">
             <Link
               to="/"
-              className="inline-flex items-center gap-2 text-sm text-slate-600 hover:text-primary transition-colors"
+              className="inline-flex items-center gap-2 text-sm text-ash hover:text-white transition-colors"
             >
               <ArrowLeft className="w-4 h-4" />
               Voltar para Home
@@ -122,10 +122,10 @@ const ErrosHomologacaoSolar = () => {
             y={20}
             delay={0.1}
             trigger="mount"
-            className="text-3xl sm:text-4xl md:text-5xl font-display font-extrabold leading-tight mb-6"
+            className="text-3xl sm:text-4xl md:text-5xl font-extrabold leading-tight mb-6 text-white"
           >
             Erros na Homologação Solar:{' '}
-            <span className="text-primary">Como Evitar Reprovações e Retrabalho</span>
+            <span className="hero-grif">Como Evitar Reprovações e Retrabalho</span>
           </Reveal>
 
           <Reveal
@@ -133,7 +133,7 @@ const ErrosHomologacaoSolar = () => {
             y={20}
             delay={0.2}
             trigger="mount"
-            className="text-lg sm:text-xl text-slate-600 leading-relaxed max-w-2xl mx-auto"
+            className="text-lg sm:text-xl text-ash leading-relaxed max-w-2xl mx-auto"
           >
             Guia completo com os 8 erros mais frequentes que causam reprovações na homologação
             de energia solar, e como eliminá-los de vez do seu fluxo de trabalho.
@@ -148,15 +148,15 @@ const ErrosHomologacaoSolar = () => {
           y={30}
           duration={0.5}
           margin="-50px"
-          className="bg-white rounded-3xl p-8 md:p-12 shadow-xl shadow-slate-200/50 border border-slate-100 mb-10"
+          className="bg-obsidian rounded-3xl p-8 md:p-12 shadow-[var(--key-soft)] border border-white/10 mb-10"
         >
           <div className="flex items-center gap-3 mb-6">
-            <div className="w-10 h-10 bg-red-100 rounded-xl flex items-center justify-center">
-              <AlertTriangle className="w-5 h-5 text-red-500" />
+            <div className="w-10 h-10 bg-graphite rounded-xl flex items-center justify-center shadow-[inset_0_0_0_1px_rgba(255,255,255,0.06)]">
+              <AlertTriangle className="w-5 h-5 text-coral" />
             </div>
-            <h2 className="text-2xl font-bold text-slate-900">O impacto dos erros na homologação</h2>
+            <h2 className="text-2xl font-bold text-white">O impacto dos erros na homologação</h2>
           </div>
-          <div className="space-y-4 text-slate-600 leading-relaxed">
+          <div className="space-y-4 text-ash leading-relaxed">
             <p>
               A homologação de sistemas fotovoltaicos junto às distribuidoras de energia é uma das etapas mais
               críticas (e mais burocráticas) do processo de instalação de energia solar no Brasil. Para
@@ -191,15 +191,15 @@ const ErrosHomologacaoSolar = () => {
                 duration={0.5}
                 delay={index * 0.05}
                 margin="-50px"
-                className="bg-white rounded-3xl p-8 md:p-10 shadow-lg shadow-slate-200/40 border border-slate-100"
+                className="bg-obsidian rounded-3xl p-8 md:p-10 shadow-[var(--key-soft)] border border-white/10"
               >
                 <div className="flex items-start gap-4 mb-4">
-                  <div className="w-10 h-10 bg-primary/10 rounded-xl flex items-center justify-center flex-shrink-0 mt-1">
-                    <Icon className="w-5 h-5 text-primary" />
+                  <div className="w-10 h-10 bg-graphite rounded-xl flex items-center justify-center flex-shrink-0 mt-1 shadow-[inset_0_0_0_1px_rgba(255,255,255,0.06)]">
+                    <Icon className="w-5 h-5 text-coral" />
                   </div>
-                  <h2 className="text-xl md:text-2xl font-bold text-slate-900">{erro.titulo}</h2>
+                  <h2 className="text-xl md:text-2xl font-bold text-white">{erro.titulo}</h2>
                 </div>
-                <p className="text-slate-600 leading-relaxed pl-14">{erro.conteudo}</p>
+                <p className="text-ash leading-relaxed pl-14">{erro.conteudo}</p>
               </Reveal>
             );
           })}
@@ -211,17 +211,17 @@ const ErrosHomologacaoSolar = () => {
           y={30}
           duration={0.5}
           margin="-50px"
-          className="bg-white rounded-3xl p-8 md:p-12 shadow-xl shadow-slate-200/50 border border-slate-100 mb-10"
+          className="bg-obsidian rounded-3xl p-8 md:p-12 shadow-[var(--key-soft)] border border-white/10 mb-10"
         >
           <div className="flex items-center gap-3 mb-6">
-            <div className="w-10 h-10 bg-green-100 rounded-xl flex items-center justify-center">
-              <ShieldCheck className="w-5 h-5 text-green-600" />
+            <div className="w-10 h-10 bg-graphite rounded-xl flex items-center justify-center shadow-[inset_0_0_0_1px_rgba(255,255,255,0.06)]">
+              <ShieldCheck className="w-5 h-5 text-coral" />
             </div>
-            <h2 className="text-2xl font-bold text-slate-900">
+            <h2 className="text-2xl font-bold text-white">
               Como prevenir todos esses erros com um sistema profissional
             </h2>
           </div>
-          <div className="space-y-4 text-slate-600 leading-relaxed">
+          <div className="space-y-4 text-ash leading-relaxed">
             <p>
               Analisando os 8 erros listados acima, fica evidente que a maioria deles tem uma causa raiz em
               comum: a falta de um processo estruturado e de uma ferramenta centralizada para gerenciar o
@@ -249,17 +249,17 @@ const ErrosHomologacaoSolar = () => {
           y={30}
           duration={0.5}
           margin="-50px"
-          className="bg-gradient-to-br from-primary/5 to-slate-50 rounded-3xl p-8 md:p-12 shadow-xl shadow-slate-200/50 border border-primary/10 mb-10"
+          className="bg-ink rounded-3xl p-8 md:p-12 shadow-[var(--key-soft)] border border-white/10 mb-10"
         >
           <div className="flex items-center gap-3 mb-6">
-            <div className="w-10 h-10 bg-primary rounded-xl flex items-center justify-center shadow-lg shadow-primary/20">
-              <Zap className="w-5 h-5 text-white" />
+            <div className="w-10 h-10 bg-graphite rounded-xl flex items-center justify-center shadow-[inset_0_0_0_1px_rgba(255,255,255,0.06)]">
+              <Zap className="w-5 h-5 text-coral" />
             </div>
-            <h2 className="text-2xl font-bold text-slate-900">
+            <h2 className="text-2xl font-bold text-white">
               Como o Homologa Plus elimina esses problemas
             </h2>
           </div>
-          <div className="space-y-4 text-slate-600 leading-relaxed">
+          <div className="space-y-4 text-ash leading-relaxed">
             <p>
               O Homologa Plus foi criado por profissionais do setor solar que viveram na prática cada um desses
               problemas. A plataforma oferece um fluxo completo de gestão de homologações, do parecer de
@@ -288,10 +288,10 @@ const ErrosHomologacaoSolar = () => {
           margin="-50px"
           className="text-center py-12"
         >
-          <h2 className="text-2xl md:text-3xl font-bold text-slate-900 mb-4">
+          <h2 className="text-2xl md:text-3xl font-bold text-white mb-4">
             Pare de perder tempo com reprovações
           </h2>
-          <p className="text-lg text-slate-600 mb-8 max-w-xl mx-auto">
+          <p className="text-lg text-ash mb-8 max-w-xl mx-auto">
             Agende uma demonstração e descubra como aprovar seus projetos
             de primeira, com menos esforço e mais controle.
           </p>
@@ -300,7 +300,7 @@ const ErrosHomologacaoSolar = () => {
             target="_blank"
             rel="noopener noreferrer"
             onClick={() => window.fbq && window.fbq('track', 'Contact')}
-            className="inline-flex items-center gap-2 bg-action hover:bg-action-dark text-white text-lg font-bold py-4 px-10 rounded-2xl transition-all shadow-xl shadow-action/20 hover:shadow-action/30 active:scale-[0.98]"
+            className="inline-flex items-center gap-2 bg-mist hover:brightness-105 hover:-translate-y-px text-ink text-lg font-bold py-4 px-10 rounded-2xl transition-all shadow-[var(--btn-lift)] active:scale-[0.98] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
           >
             Agendar demonstração
             <ChevronRight className="w-5 h-5" />

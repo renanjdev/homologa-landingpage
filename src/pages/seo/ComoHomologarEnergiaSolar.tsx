@@ -32,7 +32,7 @@ const ComoHomologarEnergiaSolar = () => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-slate-50 font-sans text-slate-900">
+    <div className="min-h-screen bg-void font-sans text-mist">
       <Helmet>
         <title>Como Homologar Energia Solar Passo a Passo | Homologa Plus</title>
         <meta
@@ -59,7 +59,7 @@ const ComoHomologarEnergiaSolar = () => {
           <Reveal as="div" duration={0.4} trigger="mount" className="mb-8">
             <Link
               to="/"
-              className="inline-flex items-center gap-2 text-sm text-slate-600 hover:text-primary transition-colors"
+              className="inline-flex items-center gap-2 text-sm text-ash hover:text-white transition-colors"
             >
               <ChevronLeft className="w-4 h-4" />
               Voltar para Home
@@ -71,16 +71,16 @@ const ComoHomologarEnergiaSolar = () => {
             as="div"
             y={20}
             trigger="mount"
-            className="bg-white rounded-3xl p-8 md:p-12 shadow-xl shadow-slate-200/50 border border-slate-100 mb-10"
+            className="bg-obsidian rounded-3xl p-8 md:p-12 shadow-[var(--key-soft)] border border-white/10 mb-10"
           >
-            <div className="flex items-center gap-3 text-primary mb-6">
-              <Sun className="w-6 h-6" />
-              <span className="text-sm font-semibold uppercase tracking-wide">Guia Completo</span>
+            <div className="flex items-center gap-3 mb-6">
+              <Sun className="w-6 h-6 text-coral" />
+              <span className="font-mono text-[11px] uppercase tracking-[0.08em] text-smoke">Guia Completo</span>
             </div>
-            <h1 className="text-3xl md:text-4xl font-bold mb-6 text-slate-900 leading-tight">
+            <h1 className="text-3xl md:text-4xl font-bold mb-6 text-white leading-tight">
               Como Homologar Energia Solar: Passo a Passo Completo
             </h1>
-            <p className="text-lg text-slate-600 leading-relaxed">
+            <p className="text-lg text-ash leading-relaxed">
               A homologação de um sistema fotovoltaico junto à concessionária de energia é uma das etapas mais
               importantes e, ao mesmo tempo, mais burocráticas de qualquer projeto solar. Sem ela, o sistema
               instalado no telhado do cliente simplesmente não pode injetar energia na rede e gerar os créditos
@@ -96,13 +96,13 @@ const ComoHomologarEnergiaSolar = () => {
               as="section"
               y={20}
               duration={0.5}
-              className="bg-white rounded-3xl p-8 md:p-12 shadow-xl shadow-slate-200/50 border border-slate-100"
+              className="bg-obsidian rounded-3xl p-8 md:p-12 shadow-[var(--key-soft)] border border-white/10"
             >
               <div className="flex items-center gap-3 mb-4">
-                <Lightbulb className="w-6 h-6 text-amber-500" />
-                <h2 className="text-2xl font-bold text-slate-900">Por Que Homologar Corretamente?</h2>
+                <Lightbulb className="w-6 h-6 text-coral" />
+                <h2 className="text-2xl font-bold text-white">Por Que Homologar Corretamente?</h2>
               </div>
-              <div className="space-y-4 text-slate-600 leading-relaxed">
+              <div className="space-y-4 text-ash leading-relaxed">
                 <p>
                   Muitos integradores e instaladores de energia solar focam toda a atenção na parte técnica da
                   instalação e acabam subestimando a complexidade do processo de homologação. O resultado são
@@ -124,13 +124,13 @@ const ComoHomologarEnergiaSolar = () => {
               as="section"
               y={20}
               duration={0.5}
-              className="bg-white rounded-3xl p-8 md:p-12 shadow-xl shadow-slate-200/50 border border-slate-100"
+              className="bg-obsidian rounded-3xl p-8 md:p-12 shadow-[var(--key-soft)] border border-white/10"
             >
               <div className="flex items-center gap-3 mb-4">
-                <ClipboardCheck className="w-6 h-6 text-primary" />
-                <h2 className="text-2xl font-bold text-slate-900">Pré-Requisitos para Homologação</h2>
+                <ClipboardCheck className="w-6 h-6 text-coral" />
+                <h2 className="text-2xl font-bold text-white">Pré-Requisitos para Homologação</h2>
               </div>
-              <div className="space-y-4 text-slate-600 leading-relaxed">
+              <div className="space-y-4 text-ash leading-relaxed">
                 <p>
                   Antes de iniciar o processo junto à concessionária, é fundamental ter toda a documentação
                   preparada. A falta de qualquer item pode resultar em indeferimento do pedido e atraso
@@ -146,7 +146,7 @@ const ComoHomologarEnergiaSolar = () => {
                     'Documento de identidade e CPF/CNPJ do titular da instalação',
                   ].map((item, idx) => (
                     <li key={idx} className="flex items-start gap-3">
-                      <CheckCircle2 className="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" />
+                      <CheckCircle2 className="w-5 h-5 text-mist mt-0.5 flex-shrink-0" />
                       <span>{item}</span>
                     </li>
                   ))}
@@ -159,13 +159,13 @@ const ComoHomologarEnergiaSolar = () => {
               as="section"
               y={20}
               duration={0.5}
-              className="bg-white rounded-3xl p-8 md:p-12 shadow-xl shadow-slate-200/50 border border-slate-100"
+              className="bg-obsidian rounded-3xl p-8 md:p-12 shadow-[var(--key-soft)] border border-white/10"
             >
               <div className="flex items-center gap-3 mb-4">
-                <div className="w-8 h-8 bg-primary rounded-full flex items-center justify-center text-white font-bold text-sm">1</div>
-                <h2 className="text-2xl font-bold text-slate-900">Solicitação de Acesso à Concessionária</h2>
+                <div className="w-8 h-8 bg-graphite rounded-full flex items-center justify-center text-coral font-bold text-sm shadow-[inset_0_0_0_1px_rgba(255,255,255,0.06)]">1</div>
+                <h2 className="text-2xl font-bold text-white">Solicitação de Acesso à Concessionária</h2>
               </div>
-              <div className="space-y-4 text-slate-600 leading-relaxed">
+              <div className="space-y-4 text-ash leading-relaxed">
                 <p>
                   O primeiro passo formal é protocolar a solicitação de acesso junto à distribuidora de energia
                   que atende a unidade consumidora. Cada concessionária possui um portal online ou canal específico
@@ -186,13 +186,13 @@ const ComoHomologarEnergiaSolar = () => {
               as="section"
               y={20}
               duration={0.5}
-              className="bg-white rounded-3xl p-8 md:p-12 shadow-xl shadow-slate-200/50 border border-slate-100"
+              className="bg-obsidian rounded-3xl p-8 md:p-12 shadow-[var(--key-soft)] border border-white/10"
             >
               <div className="flex items-center gap-3 mb-4">
-                <div className="w-8 h-8 bg-primary rounded-full flex items-center justify-center text-white font-bold text-sm">2</div>
-                <h2 className="text-2xl font-bold text-slate-900">Envio da Documentação Técnica</h2>
+                <div className="w-8 h-8 bg-graphite rounded-full flex items-center justify-center text-coral font-bold text-sm shadow-[inset_0_0_0_1px_rgba(255,255,255,0.06)]">2</div>
+                <h2 className="text-2xl font-bold text-white">Envio da Documentação Técnica</h2>
               </div>
-              <div className="space-y-4 text-slate-600 leading-relaxed">
+              <div className="space-y-4 text-ash leading-relaxed">
                 <p>
                   Após receber o parecer de acesso favorável, é hora de enviar toda a documentação técnica do
                   projeto. Isso inclui o projeto elétrico completo, a ART registrada no CREA, os datasheets
@@ -212,13 +212,13 @@ const ComoHomologarEnergiaSolar = () => {
               as="section"
               y={20}
               duration={0.5}
-              className="bg-white rounded-3xl p-8 md:p-12 shadow-xl shadow-slate-200/50 border border-slate-100"
+              className="bg-obsidian rounded-3xl p-8 md:p-12 shadow-[var(--key-soft)] border border-white/10"
             >
               <div className="flex items-center gap-3 mb-4">
-                <div className="w-8 h-8 bg-primary rounded-full flex items-center justify-center text-white font-bold text-sm">3</div>
-                <h2 className="text-2xl font-bold text-slate-900">Vistoria Técnica</h2>
+                <div className="w-8 h-8 bg-graphite rounded-full flex items-center justify-center text-coral font-bold text-sm shadow-[inset_0_0_0_1px_rgba(255,255,255,0.06)]">3</div>
+                <h2 className="text-2xl font-bold text-white">Vistoria Técnica</h2>
               </div>
-              <div className="space-y-4 text-slate-600 leading-relaxed">
+              <div className="space-y-4 text-ash leading-relaxed">
                 <p>
                   Com a documentação aprovada, a concessionária agenda uma vistoria técnica presencial na
                   unidade consumidora. O técnico da distribuidora vai conferir se a instalação corresponde ao
@@ -239,13 +239,13 @@ const ComoHomologarEnergiaSolar = () => {
               as="section"
               y={20}
               duration={0.5}
-              className="bg-white rounded-3xl p-8 md:p-12 shadow-xl shadow-slate-200/50 border border-slate-100"
+              className="bg-obsidian rounded-3xl p-8 md:p-12 shadow-[var(--key-soft)] border border-white/10"
             >
               <div className="flex items-center gap-3 mb-4">
-                <div className="w-8 h-8 bg-primary rounded-full flex items-center justify-center text-white font-bold text-sm">4</div>
-                <h2 className="text-2xl font-bold text-slate-900">Aprovação e Conexão</h2>
+                <div className="w-8 h-8 bg-graphite rounded-full flex items-center justify-center text-coral font-bold text-sm shadow-[inset_0_0_0_1px_rgba(255,255,255,0.06)]">4</div>
+                <h2 className="text-2xl font-bold text-white">Aprovação e Conexão</h2>
               </div>
-              <div className="space-y-4 text-slate-600 leading-relaxed">
+              <div className="space-y-4 text-ash leading-relaxed">
                 <p>
                   Após a aprovação da vistoria, a concessionária emite o parecer final autorizando a conexão
                   do sistema fotovoltaico à rede elétrica. Nesse momento, o inversor pode ser configurado para
@@ -264,13 +264,13 @@ const ComoHomologarEnergiaSolar = () => {
               as="section"
               y={20}
               duration={0.5}
-              className="bg-white rounded-3xl p-8 md:p-12 shadow-xl shadow-slate-200/50 border border-slate-100"
+              className="bg-obsidian rounded-3xl p-8 md:p-12 shadow-[var(--key-soft)] border border-white/10"
             >
               <div className="flex items-center gap-3 mb-4">
-                <div className="w-8 h-8 bg-primary rounded-full flex items-center justify-center text-white font-bold text-sm">5</div>
-                <h2 className="text-2xl font-bold text-slate-900">Troca do Medidor</h2>
+                <div className="w-8 h-8 bg-graphite rounded-full flex items-center justify-center text-coral font-bold text-sm shadow-[inset_0_0_0_1px_rgba(255,255,255,0.06)]">5</div>
+                <h2 className="text-2xl font-bold text-white">Troca do Medidor</h2>
               </div>
-              <div className="space-y-4 text-slate-600 leading-relaxed">
+              <div className="space-y-4 text-ash leading-relaxed">
                 <p>
                   A última etapa do processo de homologação é a substituição do medidor convencional por um
                   medidor bidirecional. Esse equipamento é capaz de registrar tanto a energia consumida da rede
@@ -291,13 +291,13 @@ const ComoHomologarEnergiaSolar = () => {
               as="section"
               y={20}
               duration={0.5}
-              className="bg-white rounded-3xl p-8 md:p-12 shadow-xl shadow-slate-200/50 border border-slate-100"
+              className="bg-obsidian rounded-3xl p-8 md:p-12 shadow-[var(--key-soft)] border border-white/10"
             >
               <div className="flex items-center gap-3 mb-4">
-                <Gauge className="w-6 h-6 text-primary" />
-                <h2 className="text-2xl font-bold text-slate-900">Dicas para Acelerar o Processo</h2>
+                <Gauge className="w-6 h-6 text-coral" />
+                <h2 className="text-2xl font-bold text-white">Dicas para Acelerar o Processo</h2>
               </div>
-              <div className="space-y-4 text-slate-600 leading-relaxed">
+              <div className="space-y-4 text-ash leading-relaxed">
                 <p>
                   A experiência mostra que integradores organizados conseguem reduzir o prazo de homologação
                   em até 40%. Aqui estão as práticas que mais impactam a velocidade do processo:
@@ -312,7 +312,7 @@ const ComoHomologarEnergiaSolar = () => {
                     'Fotografe cada etapa da instalação com detalhes, pois muitas concessionárias exigem registro fotográfico.',
                   ].map((tip, idx) => (
                     <li key={idx} className="flex items-start gap-3">
-                      <Zap className="w-5 h-5 text-amber-500 mt-0.5 flex-shrink-0" />
+                      <Zap className="w-5 h-5 text-mist mt-0.5 flex-shrink-0" />
                       <span>{tip}</span>
                     </li>
                   ))}
@@ -325,13 +325,13 @@ const ComoHomologarEnergiaSolar = () => {
               as="section"
               y={20}
               duration={0.5}
-              className="bg-white rounded-3xl p-8 md:p-12 shadow-xl shadow-slate-200/50 border border-slate-100"
+              className="bg-obsidian rounded-3xl p-8 md:p-12 shadow-[var(--key-soft)] border border-white/10"
             >
               <div className="flex items-center gap-3 mb-4">
-                <AlertTriangle className="w-6 h-6 text-red-500" />
-                <h2 className="text-2xl font-bold text-slate-900">Erros Que Atrasam a Homologação</h2>
+                <AlertTriangle className="w-6 h-6 text-coral" />
+                <h2 className="text-2xl font-bold text-white">Erros Que Atrasam a Homologação</h2>
               </div>
-              <div className="space-y-4 text-slate-600 leading-relaxed">
+              <div className="space-y-4 text-ash leading-relaxed">
                 <p>
                   Evitar os erros mais frequentes pode poupar semanas de retrabalho e preservar o relacionamento
                   com o cliente. Confira os equívocos mais comuns que observamos no mercado:
@@ -346,7 +346,7 @@ const ComoHomologarEnergiaSolar = () => {
                     'Não acompanhar os prazos regulatórios, perdendo janelas de resposta da concessionária.',
                   ].map((error, idx) => (
                     <li key={idx} className="flex items-start gap-3">
-                      <AlertTriangle className="w-5 h-5 text-red-400 mt-0.5 flex-shrink-0" />
+                      <AlertTriangle className="w-5 h-5 text-mist mt-0.5 flex-shrink-0" />
                       <span>{error}</span>
                     </li>
                   ))}
@@ -359,15 +359,15 @@ const ComoHomologarEnergiaSolar = () => {
               as="section"
               y={20}
               duration={0.5}
-              className="bg-white rounded-3xl p-8 md:p-12 shadow-xl shadow-slate-200/50 border border-slate-100"
+              className="bg-obsidian rounded-3xl p-8 md:p-12 shadow-[var(--key-soft)] border border-white/10"
             >
               <div className="flex items-center gap-3 mb-4">
-                <ShieldCheck className="w-6 h-6 text-primary" />
-                <h2 className="text-2xl font-bold text-slate-900">
+                <ShieldCheck className="w-6 h-6 text-coral" />
+                <h2 className="text-2xl font-bold text-white">
                   Como o Homologa Plus Automatiza Cada Etapa
                 </h2>
               </div>
-              <div className="space-y-4 text-slate-600 leading-relaxed">
+              <div className="space-y-4 text-ash leading-relaxed">
                 <p>
                   O Homologa Plus foi desenvolvido por profissionais do setor de energia solar que viviam
                   diariamente os desafios da homologação. A plataforma centraliza todo o fluxo de trabalho
@@ -394,13 +394,13 @@ const ComoHomologarEnergiaSolar = () => {
               as="section"
               y={20}
               duration={0.5}
-              className="bg-gradient-to-br from-primary to-primary-dark rounded-3xl p-8 md:p-12 shadow-xl shadow-primary/20 text-white text-center"
+              className="bg-ink border border-white/10 rounded-3xl p-8 md:p-12 shadow-[var(--key-soft)] text-white text-center"
             >
-              <Clock className="w-10 h-10 mx-auto mb-4 text-white/80" />
+              <Clock className="w-10 h-10 mx-auto mb-4 text-coral" />
               <h2 className="text-2xl md:text-3xl font-bold mb-4">
                 Pare de Perder Tempo com Homologações Manuais
               </h2>
-              <p className="text-lg text-white/90 leading-relaxed max-w-xl mx-auto mb-8">
+              <p className="text-lg text-ash leading-relaxed max-w-xl mx-auto mb-8">
                 Organize seus projetos, acompanhe prazos e dê visibilidade aos seus clientes com o Homologa
                 Plus. Agende uma demonstração: nossa equipe fala com você pelo WhatsApp.
               </p>
@@ -409,7 +409,7 @@ const ComoHomologarEnergiaSolar = () => {
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => window.fbq && window.fbq('track', 'Contact')}
-                className="inline-flex items-center gap-3 bg-white text-primary font-bold text-lg py-4 px-10 rounded-2xl hover:bg-slate-50 transition-all shadow-lg hover:shadow-xl active:scale-[0.98]"
+                className="inline-flex items-center gap-3 bg-mist text-ink font-bold text-lg py-4 px-10 rounded-2xl hover:brightness-105 hover:-translate-y-px transition-all shadow-[var(--btn-lift)] active:scale-[0.98] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
               >
                 Agendar demonstração
                 <ArrowRight className="w-5 h-5" />

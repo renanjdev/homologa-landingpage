@@ -68,36 +68,39 @@ const FAQ = () => {
       as="section"
       y={20}
       margin="-100px"
-      className="py-16 md:py-24 bg-white"
+      className="py-24 md:py-32 bg-ink"
     >
       <Helmet>
         <script type="application/ld+json">{JSON.stringify(faqSchema)}</script>
       </Helmet>
       <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-8 md:mb-12">
-          <h2 className="text-clamp-h2 font-display font-bold text-slate-900 mb-3 md:mb-4">
+          <p className="font-mono text-[11px] uppercase tracking-[0.08em] text-smoke mb-4">
+            Dúvidas
+          </p>
+          <h2 className="text-clamp-h2 font-bold text-white mb-3 md:mb-4 text-balance">
             Perguntas Frequentes
           </h2>
-          <p className="text-slate-600 text-sm md:text-base">
+          <p className="text-ash text-sm md:text-base">
             Tire suas dúvidas sobre como o Homologa Plus pode ajudar sua empresa.
           </p>
         </div>
 
         <div className="space-y-4">
           {faqs.map((faq, idx) => (
-            <div 
-              key={idx} 
-              className="border border-slate-100 rounded-2xl overflow-hidden bg-surface transition-all"
+            <div
+              key={idx}
+              className={`border rounded-2xl overflow-hidden bg-obsidian shadow-[var(--key-soft)] transition-all ${openIndex === idx ? 'border-steel' : 'border-white/10'}`}
             >
               <button
                 onClick={() => setOpenIndex(openIndex === idx ? null : idx)}
                 aria-expanded={openIndex === idx}
                 aria-controls={`faq-panel-${idx}`}
-                className="w-full flex items-center justify-between p-5 md:p-6 text-left hover:bg-slate-50 transition-colors"
+                className="w-full flex items-center justify-between p-5 md:p-6 text-left hover:bg-graphite transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
               >
-                <span className="font-bold text-slate-900 text-sm md:text-base pr-4 md:pr-8">{faq.question}</span>
+                <span className="font-bold text-white text-sm md:text-base pr-4 md:pr-8">{faq.question}</span>
                 <ChevronDown
-                  className={`w-4 h-4 md:w-5 md:h-5 text-slate-500 transition-transform duration-300 shrink-0 ${openIndex === idx ? 'rotate-180' : ''}`}
+                  className={`w-4 h-4 md:w-5 md:h-5 transition-transform duration-300 shrink-0 ${openIndex === idx ? 'rotate-180 text-coral' : 'text-smoke'}`}
                   aria-hidden="true"
                 />
               </button>
@@ -109,7 +112,7 @@ const FAQ = () => {
                 }`}
               >
                 <div className="overflow-hidden">
-                  <div className="p-5 md:p-6 pt-0 text-slate-600 text-sm md:text-base leading-relaxed border-t border-slate-50">
+                  <div className="p-5 md:p-6 pt-0 text-ash text-sm md:text-base leading-relaxed border-t border-white/10">
                     {faq.answer}
                   </div>
                 </div>

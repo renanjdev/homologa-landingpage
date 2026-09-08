@@ -3,6 +3,7 @@ import { Play } from 'lucide-react';
 
 const POSTER = '/automacao-demo-poster.jpg';
 const VIDEO = '/automacao-demo.mp4';
+const VIDEO_WEBM = '/automacao-demo.webm';
 
 // Performance: o vídeo (~558KB) NÃO baixa no carregamento.
 // O poster (~83KB) é o LCP. O vídeo só carrega/autoplaya em desktop com boa
@@ -64,9 +65,10 @@ const HeroMedia = () => {
             preload="auto"
             poster={POSTER}
             width={1280}
-            height={694}
+            height={598}
             aria-label="Demonstração: o Homologa Plus gerando a documentação técnica e validando a conformidade da homologação"
           >
+            <source src={VIDEO_WEBM} type="video/webm" />
             <source src={VIDEO} type="video/mp4" />
           </video>
         ) : (
@@ -80,7 +82,7 @@ const HeroMedia = () => {
               src={POSTER}
               alt="Tela da Automação do Homologa Plus gerando documentos e validando a conformidade"
               width={1280}
-              height={694}
+              height={598}
               className="block w-full"
               fetchPriority="high"
             />

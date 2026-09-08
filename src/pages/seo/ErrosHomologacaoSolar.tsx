@@ -1,6 +1,7 @@
 import React, { lazy, Suspense } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Reveal } from '../../lib/anim';
+import { buildWhatsAppLink } from '../../utils/whatsapp';
 import { Link } from 'react-router-dom';
 import {
   AlertTriangle,
@@ -50,7 +51,7 @@ const erros = [
     icon: FileCheck,
     titulo: 'Erro 5: Falta de ART/RRT ou ART com escopo incorreto',
     conteudo:
-      'A Anotação de Responsabilidade Técnica (ART) ou o Registro de Responsabilidade Técnica (RRT) é documento obrigatório para a homologação. Muitos profissionais esquecem de emitir a ART antes do envio ou emitem com escopo que não cobre todas as atividades realizadas — por exemplo, emitindo ART apenas de projeto quando também há execução da obra. Além disso, a ART precisa estar vinculada ao profissional habilitado e com o CREA ou CAU em dia. Uma ART com escopo incompleto ou vencida é motivo de reprovação automática em praticamente todas as distribuidoras do país.',
+      'A Anotação de Responsabilidade Técnica (ART) ou o Registro de Responsabilidade Técnica (RRT) é documento obrigatório para a homologação. Muitos profissionais esquecem de emitir a ART antes do envio ou emitem com escopo que não cobre todas as atividades realizadas, por exemplo, emitindo ART apenas de projeto quando também há execução da obra. Além disso, a ART precisa estar vinculada ao profissional habilitado e com o CREA ou CAU em dia. Uma ART com escopo incompleto ou vencida é motivo de reprovação automática em praticamente todas as distribuidoras do país.',
   },
   {
     icon: Clock,
@@ -109,7 +110,7 @@ const ErrosHomologacaoSolar = () => {
           <Reveal as="div" y={20} duration={0.5} trigger="mount" className="mb-6">
             <Link
               to="/"
-              className="inline-flex items-center gap-2 text-sm text-slate-500 hover:text-primary transition-colors"
+              className="inline-flex items-center gap-2 text-sm text-slate-600 hover:text-primary transition-colors"
             >
               <ArrowLeft className="w-4 h-4" />
               Voltar para Home
@@ -135,7 +136,7 @@ const ErrosHomologacaoSolar = () => {
             className="text-lg sm:text-xl text-slate-600 leading-relaxed max-w-2xl mx-auto"
           >
             Guia completo com os 8 erros mais frequentes que causam reprovações na homologação
-            de energia solar — e como eliminá-los de vez do seu fluxo de trabalho.
+            de energia solar, e como eliminá-los de vez do seu fluxo de trabalho.
           </Reveal>
         </div>
       </header>
@@ -158,7 +159,7 @@ const ErrosHomologacaoSolar = () => {
           <div className="space-y-4 text-slate-600 leading-relaxed">
             <p>
               A homologação de sistemas fotovoltaicos junto às distribuidoras de energia é uma das etapas mais
-              críticas — e mais burocráticas — do processo de instalação de energia solar no Brasil. Para
+              críticas (e mais burocráticas) do processo de instalação de energia solar no Brasil. Para
               engenheiros e integradores, cada erro nessa fase significa projeto devolvido, prazo estourado,
               custo operacional adicional e, acima de tudo, um cliente insatisfeito que pode nunca mais voltar
               a fazer negócio.
@@ -267,7 +268,7 @@ const ErrosHomologacaoSolar = () => {
             <p>
               Com o Homologa Plus, cada projeto segue um pipeline visual e organizado, com etapas claras,
               documentos armazenados de forma centralizada, alertas automáticos de prazos e um portal do
-              cliente onde ele acompanha o andamento do seu projeto em tempo real — sem precisar ligar ou
+              cliente onde ele acompanha o andamento do seu projeto em tempo real, sem precisar ligar ou
               mandar mensagem pedindo atualização.
             </p>
             <p>
@@ -291,14 +292,17 @@ const ErrosHomologacaoSolar = () => {
             Pare de perder tempo com reprovações
           </h2>
           <p className="text-lg text-slate-600 mb-8 max-w-xl mx-auto">
-            Experimente o Homologa Plus gratuitamente e descubra como aprovar seus projetos
+            Agende uma demonstração e descubra como aprovar seus projetos
             de primeira, com menos esforço e mais controle.
           </p>
           <a
-            href="https://app.homologaplus.com.br/cadastro"
-            className="inline-flex items-center gap-2 bg-primary hover:bg-primary-dark text-white text-lg font-bold py-4 px-10 rounded-2xl transition-all shadow-xl shadow-primary/20 hover:shadow-primary/30 active:scale-[0.98]"
+            href={buildWhatsAppLink('Olá! Quero agendar uma demonstração do Homologa Plus.')}
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={() => window.fbq && window.fbq('track', 'Contact')}
+            className="inline-flex items-center gap-2 bg-action hover:bg-action-dark text-white text-lg font-bold py-4 px-10 rounded-2xl transition-all shadow-xl shadow-action/20 hover:shadow-action/30 active:scale-[0.98]"
           >
-            Começar teste grátis
+            Agendar demonstração
             <ChevronRight className="w-5 h-5" />
           </a>
         </Reveal>

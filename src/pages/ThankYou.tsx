@@ -4,6 +4,7 @@ import { CheckCircle2, ArrowRight, MessageCircle } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
+import { buildWhatsAppLink } from '../utils/whatsapp';
 
 const ThankYou = () => {
   return (
@@ -63,7 +64,7 @@ const ThankYou = () => {
             {/* Ações */}
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
               <a 
-                href="https://wa.me/5514991273245?text=Olá! Acabei de assinar o Homologa Plus e gostaria de falar com o time de suporte."
+                href={buildWhatsAppLink('Olá! Acabei de assinar o Homologa Plus e gostaria de falar com o time de suporte.')}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-full sm:w-auto px-6 py-3.5 bg-green-500 hover:bg-green-600 text-white rounded-xl font-bold transition-all flex items-center justify-center gap-2 shadow-lg shadow-green-500/20"

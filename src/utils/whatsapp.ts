@@ -1,5 +1,5 @@
-// Canal de contato oficial do Homologa Plus (Bauru/SP).
-export const WHATSAPP_NUMBER = '5514991273245';
+// Canal de contato oficial do Homologa Plus (número confirmado pelo dono).
+export const WHATSAPP_NUMBER = '5511512345222';
 
 /**
  * Monta o link wa.me com mensagem pré-preenchida para os CTAs de contato

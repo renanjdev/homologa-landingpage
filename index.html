@@ -3,8 +3,8 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Gere memorial descritivo e diagrama unifilar no padrão da sua distribuidora e valide a conformidade antes de protocolar. Homologação solar sem retrabalho." />
-    <meta name="keywords" content="homologação solar, sistema de gestão de homologação solar, automação homologação solar, memorial descritivo fotovoltaico, diagrama unifilar automático, dimensionamento elétrico fotovoltaico" />
+    <meta name="description" content="Gere memorial, unifilar, planta e os formulários e anexos exigidos pela sua distribuidora, e valide a conformidade antes de protocolar. Homologação solar sem retrabalho." />
+    <meta name="keywords" content="homologação solar, sistema de gestão de homologação solar, automação homologação solar, memorial descritivo fotovoltaico, diagrama unifilar automático, formulários da distribuidora, anexos homologação fotovoltaica, dimensionamento elétrico fotovoltaico" />
     <meta name="author" content="Homologa Plus" />
     <meta name="robots" content="index, follow" />
     <meta name="theme-color" content="#1B2A4A" />
@@ -19,14 +19,14 @@
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://homologaplus.com.br/" />
     <meta property="og:title" content="Sistema de Gestão de Homologação Solar | Homologa Plus" />
-    <meta property="og:description" content="Gere memorial descritivo e diagrama unifilar no padrão da sua distribuidora e valide a conformidade antes de protocolar. Homologação solar sem retrabalho." />
+    <meta property="og:description" content="Gere memorial, unifilar, planta e os formulários e anexos exigidos pela sua distribuidora, e valide a conformidade antes de protocolar. Homologação solar sem retrabalho." />
     <meta property="og:image" content="https://homologaplus.com.br/og-image.png" />
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image" />
     <meta property="twitter:url" content="https://homologaplus.com.br/" />
     <meta property="twitter:title" content="Sistema de Gestão de Homologação Solar | Homologa Plus" />
-    <meta property="twitter:description" content="Gere memorial descritivo e diagrama unifilar no padrão da sua distribuidora e valide a conformidade antes de protocolar. Homologação solar sem retrabalho." />
+    <meta property="twitter:description" content="Gere memorial, unifilar, planta e os formulários e anexos exigidos pela sua distribuidora, e valide a conformidade antes de protocolar. Homologação solar sem retrabalho." />
     <meta property="twitter:image" content="https://homologaplus.com.br/og-image.png" />
 
     <link rel="icon" type="image/x-icon" href="/favicon.ico" />
@@ -52,17 +52,16 @@
         fbq('init', '751098757088063');
         fbq('track', 'PageView');
       }
-      // Carrega o pixel em idle p/ não competir com a renderização inicial (PageView dispara em ~1s).
-      if ('requestIdleCallback' in window) { requestIdleCallback(initMetaPixel, { timeout: 3500 }); }
-      else { window.addEventListener('load', function(){ setTimeout(initMetaPixel, 1200); }); }
+      // SEM autoload: o Pixel só sobe via initMetaPixel(), chamado por
+      // src/lib/consent.ts quando o titular consente marketing (LGPD/ANPD).
+      // Expõe no escopo global para o gate de consentimento chamar.
+      window.initMetaPixel = initMetaPixel;
     </script>
     <!-- End Meta Pixel Code -->
   </head>
   <body>
-    <noscript>
-      <img height="1" width="1" style="display:none"
-        src="https://www.facebook.com/tr?id=751098757088063&ev=PageView&noscript=1"/>
-    </noscript>
+    <!-- Beacon <noscript> do Meta Pixel removido: disparava PageView sem JS,
+         furando o gate de consentimento (LGPD/ANPD). -->
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>

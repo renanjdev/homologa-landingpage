@@ -10,7 +10,7 @@ const TermsOfUse = () => {
       <Helmet>
         <title>Termos de Uso | Homologa Plus</title>
         <meta name="description" content="Leia os termos de uso da plataforma Homologa Plus. Entenda suas responsabilidades e nossos compromissos com a gestão de homologação solar." />
-        <link rel="canonical" href="https://ais-pre-mugp3ltyrxmavzsrbd7ya7-203218294417.us-east1.run.app/termos" />
+        <link rel="canonical" href="https://homologaplus.com.br/termos" />
       </Helmet>
       <nav className="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-md border-b border-slate-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
@@ -32,8 +32,14 @@ const TermsOfUse = () => {
           trigger="mount"
           className="max-w-3xl mx-auto bg-white rounded-3xl p-8 md:p-12 shadow-xl shadow-slate-200/50 border border-slate-100"
         >
-          <h1 className="text-4xl font-bold mb-8 text-slate-900">Termos de Uso</h1>
-          
+          <h1 className="text-4xl font-bold mb-6 text-slate-900">Termos de Uso</h1>
+
+          <p className="mb-8 rounded-2xl border border-slate-200 bg-slate-50 p-5 text-slate-600 leading-relaxed">
+            Estes Termos regem o uso do site e da plataforma Homologa Plus, operados por Homologa Plus,
+            CNPJ nº 68.835.775/0001-10, com sede em Bauru/SP. Contato:{' '}
+            <a href="mailto:contato@homologaplus.com.br" className="font-semibold text-action hover:text-action-dark">contato@homologaplus.com.br</a>.
+          </p>
+
           <div className="space-y-6 text-slate-600 leading-relaxed">
             <section>
               <h2 className="text-xl font-semibold text-slate-800 mb-3">1. Aceitação dos Termos</h2>
@@ -63,6 +69,20 @@ const TermsOfUse = () => {
             <section>
               <h2 className="text-xl font-semibold text-slate-800 mb-3">6. Alterações nos Termos</h2>
               <p>Reservamo-nos o direito de modificar estes termos a qualquer momento. O uso continuado da plataforma após tais alterações constitui sua aceitação dos novos termos.</p>
+            </section>
+
+            <section>
+              <h2 className="text-xl font-semibold text-slate-800 mb-3">7. Proteção de Dados Pessoais</h2>
+              <p>
+                O tratamento de dados pessoais relacionado ao uso do site e da plataforma segue a nossa{' '}
+                <Link to="/privacidade" className="font-semibold text-action hover:text-action-dark">Política de Privacidade</Link>,
+                parte integrante destes Termos.
+              </p>
+            </section>
+
+            <section>
+              <h2 className="text-xl font-semibold text-slate-800 mb-3">8. Legislação Aplicável e Foro</h2>
+              <p>Estes Termos são regidos pela legislação brasileira. Fica eleito o foro da comarca de Bauru/SP para dirimir quaisquer controvérsias, salvo disposição legal em contrário aplicável ao consumidor.</p>
             </section>
           </div>
         </Reveal>

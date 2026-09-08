@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 import { buildWhatsAppLink } from '../utils/whatsapp';
 import { SpeedInsights } from "@vercel/speed-insights/react";
 import HeroMedia from '../components/HeroMedia';
+import { useConsent } from '../lib/consent';
 
 // Lazy load components below the fold
 const BeforeAfter = lazy(() => import('../components/BeforeAfter'));
@@ -15,7 +16,6 @@ const Features = lazy(() => import('../components/Features'));
 const Automacao = lazy(() => import('../components/Automacao'));
 const WhoIsItFor = lazy(() => import('../components/WhoIsItFor'));
 const FAQ = lazy(() => import('../components/FAQ'));
-const LeadCapture = lazy(() => import('../components/LeadCapture'));
 const FinalCTA = lazy(() => import('../components/FinalCTA'));
 const Pricing = lazy(() => import('../components/Pricing'));
 const Footer = lazy(() => import('../components/Footer'));
@@ -24,7 +24,7 @@ const Navbar = lazy(() => import('../components/Navbar'));
 
 const Hero = () => {
   return (
-    <section className="relative overflow-hidden pt-[clamp(7rem,12vw,11rem)] pb-16 md:pb-24">
+    <section className="relative overflow-hidden pt-[clamp(5rem,7vw,7rem)] pb-16 md:pb-24">
       {/* Atmosfera: brilho azul + grade sutil */}
       <div
         aria-hidden="true"
@@ -54,18 +54,20 @@ const Hero = () => {
             Sistema de gestão para homologação solar · Automação
           </span>
           <h1 className="mx-auto mt-5 max-w-[24ch] text-[clamp(2rem,4vw+0.5rem,3.6rem)] font-display font-extrabold leading-[1.06] tracking-[-0.025em] text-slate-900 text-balance">
-            Pare de montar memorial e unifilar à mão. O Homologa Plus <span className="text-laminado">gera e valida</span> sozinho.
+            Pare de montar memorial e unifilar à mão. O Homologa Plus <span className="text-heading-accent">gera e valida</span> sozinho.
           </h1>
-          <p className="mx-auto mt-5 max-w-[44em] text-base md:text-xl leading-relaxed text-slate-600 text-pretty">
-            A partir do projeto cadastrado, o sistema dimensiona, gera memorial, diagramas e planta no padrão da sua distribuidora e checa a conformidade antes de você protocolar. E mais: toda a gestão de projetos, prazos e financeiro num só painel.
+          <p className="mx-auto mt-5 max-w-[34em] text-base md:text-lg leading-relaxed text-slate-600 text-pretty">
+            A partir do projeto cadastrado, o sistema dimensiona e monta o pacote inteiro (memorial, diagramas, planta e os formulários e anexos exigidos pela sua distribuidora) e checa a conformidade antes de você protocolar. E mais: toda a gestão de projetos, prazos e financeiro num só painel.
           </p>
           <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row sm:gap-4">
             <a
-              href="https://app.homologaplus.com.br/cadastro"
-              onClick={() => window.fbq && window.fbq('track', 'Lead')}
-              className="flex w-full items-center justify-center gap-2 rounded-xl bg-primary px-8 py-4 text-lg font-bold text-white shadow-lg shadow-primary/30 transition-all duration-200 ease-out hover:-translate-y-0.5 hover:bg-primary-dark active:translate-y-0 sm:w-auto"
+              href={buildWhatsAppLink('Olá! Quero agendar uma demonstração do Homologa Plus.')}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => window.fbq && window.fbq('track', 'Contact')}
+              className="flex w-full items-center justify-center gap-2 rounded-xl bg-action px-8 py-4 text-lg font-bold text-white shadow-lg shadow-action/30 transition-all duration-200 ease-out hover:-translate-y-0.5 hover:bg-action-dark active:translate-y-0 sm:w-auto"
             >
-              Testar gratuitamente
+              Agendar demonstração
             </a>
             <a
               href={buildWhatsAppLink()}
@@ -79,26 +81,23 @@ const Hero = () => {
             </a>
           </div>
           <p className="mt-4 text-sm font-medium text-slate-500">
-            <span className="font-semibold text-success">7 dias grátis</span> · Sem cartão · Automação inclusa no teste
+            <span className="font-semibold text-emerald-700">Demonstração sem compromisso</span> · Acesso liberado pela nossa equipe
           </p>
-          <div className="mt-7 flex items-center justify-center text-sm">
-            <span className="font-medium text-slate-500">Mais de 200 empresas de engenharia já usam o Homologa Plus</span>
-          </div>
 
           {/* Prova de resultado visível no mobile (no desktop ela vira card flutuante sobre o painel) */}
           <div className="mt-6 flex justify-center gap-2.5 md:hidden">
             <span className="inline-flex items-center gap-2 rounded-xl border border-slate-200 bg-white px-3 py-2 shadow-sm">
-              <CheckCircle2 className="h-4 w-4 shrink-0 text-success" />
+              <CheckCircle2 className="h-4 w-4 shrink-0 text-emerald-700" />
               <span className="text-left">
                 <span className="block text-sm font-bold leading-tight text-slate-900">98% de aprovação</span>
-                <span className="block font-mono text-[10px] text-slate-500">taxa de homologação</span>
+                <span className="block font-mono text-[11px] text-slate-500">taxa de homologação</span>
               </span>
             </span>
             <span className="inline-flex items-center gap-2 rounded-xl border border-slate-200 bg-white px-3 py-2 shadow-sm">
               <ShieldCheck className="h-4 w-4 shrink-0 text-primary" />
               <span className="text-left">
                 <span className="block text-sm font-bold leading-tight text-slate-900">Conformidade</span>
-                <span className="block font-mono text-[10px] text-slate-500">validada</span>
+                <span className="block font-mono text-[11px] text-slate-500">validada</span>
               </span>
             </span>
           </div>
@@ -140,6 +139,10 @@ const Hero = () => {
 
           <HeroMedia />
         </Reveal>
+
+        <div className="mt-8 flex items-center justify-center text-sm">
+          <span className="font-medium text-slate-500">Mais de 200 empresas de engenharia já usam o Homologa Plus</span>
+        </div>
       </div>
     </section>
   );
@@ -147,9 +150,11 @@ const Hero = () => {
 
 const LandingPage = () => {
   const [scrolled, setScrolled] = React.useState(false);
+  // Telemetria de desempenho só com consentimento de cookies analíticos (LGPD).
+  const consent = useConsent();
 
   React.useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 100);
+    const handleScroll = () => setScrolled(window.scrollY > 600);
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
@@ -159,10 +164,10 @@ const LandingPage = () => {
       {/* ... Helmet below ... */}
       <Helmet>
         <title>Sistema de Gestão de Homologação Solar | Homologa Plus</title>
-        <meta name="description" content="Gere memorial descritivo e diagrama unifilar no padrão da sua distribuidora e valide a conformidade antes de protocolar. Homologação solar sem retrabalho." />
-        <meta name="keywords" content="homologação solar, sistema de gestão de homologação solar, automação homologação solar, memorial descritivo fotovoltaico, diagrama unifilar automático, dimensionamento elétrico fotovoltaico" />
+        <meta name="description" content="Gere memorial, unifilar, planta e os formulários e anexos exigidos pela sua distribuidora, e valide a conformidade antes de protocolar. Homologação solar sem retrabalho." />
+        <meta name="keywords" content="homologação solar, sistema de gestão de homologação solar, automação homologação solar, memorial descritivo fotovoltaico, diagrama unifilar automático, formulários da distribuidora, anexos homologação fotovoltaica, dimensionamento elétrico fotovoltaico" />
         <meta property="og:title" content="Sistema de Gestão de Homologação Solar | Homologa Plus" />
-        <meta property="og:description" content="Gere memorial descritivo e diagrama unifilar no padrão da sua distribuidora e valide a conformidade antes de protocolar. Homologação solar sem retrabalho." />
+        <meta property="og:description" content="Gere memorial, unifilar, planta e os formulários e anexos exigidos pela sua distribuidora, e valide a conformidade antes de protocolar. Homologação solar sem retrabalho." />
         <link rel="canonical" href="https://homologaplus.com.br/" />
         <script type="application/ld+json">{`
           {
@@ -172,11 +177,12 @@ const LandingPage = () => {
             "url": "https://homologaplus.com.br",
             "applicationCategory": "BusinessApplication",
             "operatingSystem": "Web",
-            "description": "Sistema de gestão de homologação de energia solar que gera automaticamente a documentação técnica (memorial descritivo, diagrama unifilar, diagrama de blocos e planta) no padrão de cada distribuidora e valida a conformidade do projeto antes do protocolo. Inclui dimensionamento elétrico, gestão de projetos, prazos e financeiro.",
+            "description": "Sistema de gestão de homologação de energia solar que gera automaticamente a documentação técnica (memorial descritivo, diagrama unifilar, diagrama de blocos, planta de localização e os formulários e anexos exigidos por cada distribuidora) e valida a conformidade do projeto antes do protocolo. Inclui dimensionamento elétrico, gestão de projetos, prazos e financeiro.",
             "featureList": [
               "Geração automática de memorial descritivo e de cálculo no padrão da distribuidora",
               "Diagrama unifilar dimensionado (condutores, disjuntores, DPS, proteções)",
               "Diagrama de blocos e planta de localização",
+              "Formulários e anexos exigidos por cada distribuidora, já preenchidos com os dados do projeto",
               "Dimensionamento elétrico para inversor string e microinversor",
               "Validação de conformidade (NBR 5410, NBR 16690, PRODIST, Lei 14.300) antes de protocolar",
               "Gestão de homologação do projeto ao parecer da concessionária"
@@ -184,22 +190,14 @@ const LandingPage = () => {
             "offers": {
               "@type": "AggregateOffer",
               "priceCurrency": "BRL",
-              "lowPrice": "197.00",
-              "highPrice": "397.00",
-              "offerCount": "3",
+              "lowPrice": "297.00",
+              "highPrice": "597.00",
+              "offerCount": "2",
               "availability": "https://schema.org/InStock",
               "offers": [
                 {
                   "@type": "Offer",
-                  "name": "Plano Essencial",
-                  "price": "197.00",
-                  "priceCurrency": "BRL",
-                  "priceValidUntil": "2027-12-31",
-                  "url": "https://homologaplus.com.br/#planos"
-                },
-                {
-                  "@type": "Offer",
-                  "name": "Plano Profissional",
+                  "name": "Homologa Starter",
                   "price": "297.00",
                   "priceCurrency": "BRL",
                   "priceValidUntil": "2027-12-31",
@@ -207,8 +205,8 @@ const LandingPage = () => {
                 },
                 {
                   "@type": "Offer",
-                  "name": "Plano Empresarial",
-                  "price": "397.00",
+                  "name": "Homologa Full",
+                  "price": "597.00",
                   "priceCurrency": "BRL",
                   "priceValidUntil": "2027-12-31",
                   "url": "https://homologaplus.com.br/#planos"
@@ -244,12 +242,13 @@ const LandingPage = () => {
           <WhoIsItFor />
           <Pricing />
           <FAQ />
-          <LeadCapture />
+          {/* Fecho da landing: quem rola até o fim termina no CTA de WhatsApp,
+              o único canal de conversão agora que o formulário foi removido. */}
           <FinalCTA />
         </main>
         <Footer />
       </Suspense>
-      <SpeedInsights />
+      {consent?.analytics && <SpeedInsights />}
 
       {/* CTA fixo no mobile: recaptura a intenção durante a rolagem (aparece após sair do hero) */}
       <div
@@ -258,12 +257,14 @@ const LandingPage = () => {
         style={{ paddingBottom: 'calc(0.75rem + env(safe-area-inset-bottom))', transform: scrolled ? 'translateY(0)' : 'translateY(120px)' }}
       >
         <a
-          href="https://app.homologaplus.com.br/cadastro"
-          onClick={() => window.fbq && window.fbq('track', 'Lead')}
+          href={buildWhatsAppLink('Olá! Quero agendar uma demonstração do Homologa Plus.')}
+          target="_blank"
+          rel="noopener noreferrer"
+          onClick={() => window.fbq && window.fbq('track', 'Contact')}
           tabIndex={scrolled ? 0 : -1}
-          className="flex flex-1 items-center justify-center gap-2 rounded-xl bg-primary px-5 py-3.5 text-base font-bold text-white shadow-lg shadow-primary/30 active:scale-[0.98]"
+          className="flex flex-1 items-center justify-center gap-2 rounded-xl bg-action px-5 py-3.5 text-base font-bold text-white shadow-lg shadow-action/30 active:scale-[0.98]"
         >
-          Testar grátis
+          Agendar demo
         </a>
         <a
           href={buildWhatsAppLink()}
@@ -285,7 +286,7 @@ const LandingPage = () => {
         rel="noopener noreferrer"
         onClick={() => window.fbq && window.fbq('track', 'Contact')}
         aria-label="Falar no WhatsApp"
-        className="fixed bottom-8 right-8 z-40 hidden h-14 w-14 items-center justify-center rounded-full bg-success text-white shadow-xl shadow-success/30 transition-transform hover:-translate-y-0.5 md:flex"
+        className="fixed bottom-8 right-8 z-40 hidden h-14 w-14 items-center justify-center rounded-full bg-emerald-600 text-white shadow-xl shadow-emerald-600/30 transition-transform hover:-translate-y-0.5 md:flex"
       >
         <MessageCircle className="h-7 w-7" />
       </a>

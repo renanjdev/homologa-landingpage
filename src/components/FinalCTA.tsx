@@ -31,16 +31,18 @@ const FinalCTA = () => {
               Gere e valide sua documentação a partir de hoje
             </h2>
             <p className="text-base md:text-lg text-slate-300 mb-10 leading-relaxed max-w-xl mx-auto text-pretty">
-              Gere os documentos no padrão da distribuidora, valide a conformidade antes de protocolar e gerencie tudo num só painel. Comece em minutos, sem instalar nada.
+              Gere os documentos no padrão da distribuidora, valide a conformidade antes de protocolar e gerencie tudo num só painel. Fale com a nossa equipe no WhatsApp e a gente libera o seu acesso.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">
               <a
-                href="https://app.homologaplus.com.br/cadastro"
-                onClick={() => window.fbq && window.fbq('track', 'Lead')}
+                href={buildWhatsAppLink('Olá! Quero agendar uma demonstração do Homologa Plus.')}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => window.fbq && window.fbq('track', 'Contact')}
                 className="group bg-white hover:bg-slate-100 text-primary-dark px-8 py-4 rounded-xl text-lg font-bold transition-all duration-200 ease-out shadow-lg shadow-black/20 hover:-translate-y-0.5 active:translate-y-0 flex items-center justify-center gap-2 w-full sm:w-auto"
               >
-                Testar gratuitamente
+                Agendar demonstração
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </a>
               <a
@@ -57,7 +59,7 @@ const FinalCTA = () => {
 
             <div className="mt-8 flex items-center justify-center gap-2 text-sm text-slate-300">
               <ShieldCheck className="w-4 h-4 shrink-0" />
-              <span>7 dias grátis · Sem cartão de crédito · Cancele quando quiser.</span>
+              <span>Demonstração sem compromisso · Acesso liberado pela nossa equipe.</span>
             </div>
           </div>
         </Reveal>

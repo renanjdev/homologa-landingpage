@@ -9,7 +9,7 @@ const FAQ = () => {
   const faqs = [
     {
       question: "O sistema gera o memorial descritivo e o diagrama unifilar automaticamente?",
-      answer: "Sim. A partir dos dados do projeto, o Homologa Plus gera o memorial descritivo e de cálculo, o diagrama unifilar dimensionado, o diagrama de blocos e a planta de localização no padrão exigido pela sua distribuidora."
+      answer: "Sim, e não para por aí. A partir dos dados do projeto, o Homologa Plus gera o memorial descritivo e de cálculo, o diagrama unifilar dimensionado, o diagrama de blocos, a planta de localização e também os formulários e anexos que cada distribuidora exige, já preenchidos. É o pacote inteiro do protocolo, no padrão da sua distribuidora."
     },
     {
       question: "A automação faz o dimensionamento elétrico (condutores, disjuntores, DPS)?",
@@ -17,23 +17,27 @@ const FAQ = () => {
     },
     {
       question: "Como funciona a validação de conformidade antes de protocolar?",
-      answer: "Antes de protocolar, o sistema valida o projeto contra as referências normativas (NBR 5410, NBR 16690, PRODIST e Lei 14.300) e aponta os itens impeditivos, de atenção e conformes — para você corrigir o que reprova antes de enviar à concessionária."
+      answer: "Antes de protocolar, o sistema valida o projeto contra as referências normativas (NBR 5410, NBR 16690, PRODIST e Lei 14.300) e aponta os itens impeditivos, de atenção e conformes, para você corrigir o que reprova antes de enviar à concessionária."
     },
     {
-      question: "Em qual plano está a Automação? Consigo testar no período grátis?",
-      answer: "A Automação está no plano Empresarial e fica liberada nos 7 dias de teste grátis, sem cartão de crédito — assim você gera e valida documentos de verdade antes de decidir."
+      question: "Como faço para agendar uma demonstração?",
+      answer: "É só clicar em qualquer botão de acesso e falar com a gente no WhatsApp: nossa equipe agenda uma demonstração guiada, entende sua operação e libera o acesso. Fazemos o atendimento um a um justamente para acompanhar de perto cada caso."
     },
     {
-      question: "Preciso cadastrar cartão de crédito para testar?",
-      answer: "Não. Você ativa o teste e usa o sistema completo por 7 dias sem informar nenhum cartão de crédito."
+      question: "Por que o contato é pelo WhatsApp?",
+      answer: "Porque é por ele que a gente fala com você: confirmamos alguns dados, combinamos o melhor momento e conduzimos a demonstração. Sem o WhatsApp não conseguimos agendar."
     },
     {
-      question: "O que acontece quando o teste de 7 dias acaba?",
-      answer: "Como não pedimos cartão, não existe cobrança automática. Ao fim dos 7 dias você decide com calma se quer assinar um dos planos — sem surpresa na fatura."
+      question: "Em qual plano está a Automação?",
+      answer: "A Automação vem nos dois planos. O que muda entre eles é o volume: o Homologa Starter (R$ 297/mês) automatiza 7 projetos por mês e o Homologa Full (R$ 597/mês) não tem teto. Na demonstração, mostramos a Automação gerando e validando documentos de verdade."
+    },
+    {
+      question: "Como funciona a demonstração?",
+      answer: "Você agenda pelo WhatsApp e nossa equipe faz uma demonstração guiada do sistema — do cadastro do projeto à documentação gerada e validada — e esclarece dúvidas sobre planos e implantação. Sem compromisso."
     },
     {
       question: "Funciona com a minha concessionária?",
-      answer: "Sim. O Homologa Plus organiza todo o processo de homologação — documentos, etapas e prazos — independente da distribuidora (CPFL, Enel, Energisa, Neoenergia, Light e outras)."
+      answer: "Sim. O Homologa Plus organiza todo o processo de homologação (documentos, etapas e prazos), independente da distribuidora (CPFL, Enel, Energisa, Neoenergia, Light e outras)."
     },
     {
       question: "Dá muito trabalho para começar a usar?",
@@ -41,7 +45,7 @@ const FAQ = () => {
     },
     {
       question: "E a área do integrador, como funciona?",
-      answer: "Seus integradores parceiros têm um acesso restrito onde cadastram projetos, enviam documentos e acompanham o status de cada homologação em tempo real — sem ficar te cobrando atualização."
+      answer: "Seus integradores parceiros têm um acesso restrito onde cadastram projetos, enviam documentos e acompanham o status de cada homologação em tempo real, sem ficar te cobrando atualização."
     },
     {
       question: "Posso cancelar quando quiser?",

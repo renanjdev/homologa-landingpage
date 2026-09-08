@@ -36,7 +36,7 @@ const features: Feature[] = [
   {
     label: 'Fluxo de homologação',
     Icon: Workflow,
-    title: 'Veja na hora qual projeto travou — e onde agir',
+    title: 'Veja na hora qual projeto travou, e onde agir',
     desc: 'Cada projeto avança por um fluxo claro: análise documental, envio à concessionária, vistoria e homologação. Você vê na hora o que travou e onde agir.',
     bullets: [
       'Status em tempo real por etapa',
@@ -63,7 +63,7 @@ const features: Feature[] = [
   {
     label: 'Visão de território',
     Icon: Map,
-    title: 'Veja onde estão suas obras — e onde vale vender mais',
+    title: 'Veja onde estão suas obras, e onde vale vender mais',
     desc: 'Acompanhe todos os projetos no mapa e enxergue a concentração de negócios por região, num relance.',
     bullets: [
       'Todos os projetos em um único mapa',
@@ -93,7 +93,7 @@ const Features = () => {
             A plataforma por trás da automação
           </h2>
           <p className="text-base md:text-lg text-slate-600 leading-relaxed">
-            Além de gerar e validar os documentos, o Homologa Plus controla projetos, prazos, financeiro e território — cada parte da operação em um só lugar.
+            Além de gerar e validar os documentos, o Homologa Plus controla projetos, prazos, financeiro e território; cada parte da operação em um só lugar.
           </p>
         </Reveal>
 
@@ -114,7 +114,7 @@ const Features = () => {
                   </span>
                   {f.label}
                 </span>
-                <h3 className="text-2xl md:text-3xl lg:text-[2.05rem] font-display font-extrabold text-slate-900 leading-[1.12] tracking-tight mb-4 text-balance">
+                <h3 className="text-2xl md:text-3xl font-display font-extrabold text-slate-900 leading-[1.12] tracking-tight mb-4 text-balance">
                   {f.title}
                 </h3>
                 <p className="text-base md:text-lg text-slate-600 leading-relaxed mb-7 max-w-xl">
@@ -136,7 +136,7 @@ const Features = () => {
               <div className={`relative ${f.flip ? 'lg:order-1' : ''}`}>
                 {f.badge && (
                   <div className="animate-floaty absolute -top-4 left-4 z-10 hidden md:flex items-center gap-2.5 rounded-xl border border-slate-200 bg-white px-3.5 py-2.5 shadow-[0_18px_40px_-16px_rgba(15,23,42,0.3)]">
-                    <span className="flex h-7 w-7 items-center justify-center rounded-lg bg-success/15 text-success">
+                    <span className="flex h-7 w-7 items-center justify-center rounded-lg bg-success/15 text-emerald-700">
                       <CheckCircle2 className="w-4 h-4" />
                     </span>
                     <span>

@@ -10,6 +10,9 @@
   --color-primary: #1B2A4A;        /* Navy — cor de marca (instrumento) */
   --color-primary-dark: #131F39;   /* Navy profundo — hover / seções escuras */
   --color-bright-sky: #3B82F6;     /* Bright Sky — accent / Plus wordmark */
+  --color-action: #2563EB;         /* Plus Blue — cor de AÇÃO: CTA, estado ativo, halo */
+  --color-action-dark: #1D4ED8;    /* hover/active do CTA */
+  --color-heading-accent: #13253C; /* Navy chapado — destaque de palavra dentro de títulos (NÃO em CTA) */
   --color-success: #10B981;
   --color-warning: #F97316;
   --color-surface: #F3F4F6;
@@ -53,9 +56,12 @@
   }
 }
 
-/* Optimization for touch targets on mobile */
+/* Optimization for touch targets on mobile.
+   "a" foi removido: min-height não se aplica a caixa inline não substituída,
+   então não tinha efeito nenhum em links de prosa. Alvos de link são
+   tratados nos próprios componentes de nav/rodapé (ver T5). */
 @media (max-width: 768px) {
-  button, a {
+  button {
     @apply min-h-[44px];
   }
 }
@@ -71,22 +77,6 @@
 }
 .animate-floaty { animation: floaty 6s ease-in-out infinite; }
 
-/* Laminação: brilho suave que varre o destaque do título (efeito de verniz/foil).
-   O texto fica navy; só uma faixa de luz passa. Degrada p/ navy sólido em reduced-motion. */
-@keyframes laminado {
-  0% { background-position: 180% 0; }
-  60%, 100% { background-position: -60% 0; }
-}
-.text-laminado {
-  background: linear-gradient(110deg, var(--color-primary) 0%, var(--color-primary) 42%, #a9c2ee 50%, var(--color-primary) 58%, var(--color-primary) 100%);
-  background-size: 220% 100%;
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-  color: transparent;
-  animation: laminado 4s ease-in-out infinite;
-}
-
 /* Respect reduced-motion: collapse entrance animations, the scroll progress
    bar, pulses, and transitions to near-instant so the page reads static. */
 @media (prefers-reduced-motion: reduce) {
@@ -97,10 +87,5 @@
     animation-iteration-count: 1 !important;
     transition-duration: 0.001ms !important;
     scroll-behavior: auto !important;
-  }
-  .text-laminado {
-    background: none;
-    -webkit-text-fill-color: var(--color-primary);
-    color: var(--color-primary);
   }
 }

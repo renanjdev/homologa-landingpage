@@ -6,3 +6,11 @@ coverage/
 *.log
 .env*
 !.env.example
+
+# Orchestration / agent artifacts (nao versionar)
+.overclock-app/
+.codex/
+.impeccable/
+lgpd-flow/
+review-cinema-lp/
+homologa-plus-cinema-*/

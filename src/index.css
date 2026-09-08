@@ -250,6 +250,22 @@
   content: ""; position: absolute; left: 0; right: 0; bottom: -0.1em; height: 2px; border-radius: 2px;
   background: linear-gradient(90deg, rgba(255,99,99,0) 0%, var(--coral) 28%, var(--coral) 72%, rgba(255,99,99,0) 100%);
 }
+/* Variante para frases LONGAS do grifo (ex.: âncora do H1 que ocupa >1 linha).
+   O ::after absoluto do .hero-grif não acompanha múltiplas linhas e o nowrap
+   estouraria a coluna no mobile; aqui liberamos a quebra e pintamos o mesmo
+   sublinhado coral por fragmento de linha (background clonado). Texto segue
+   branco (#fff) → contraste AA sobre o Void. */
+.hero-grif--wrap {
+  white-space: normal;
+  background-image: linear-gradient(90deg, rgba(255,99,99,0) 0%, var(--coral) 28%, var(--coral) 72%, rgba(255,99,99,0) 100%);
+  background-repeat: no-repeat;
+  background-position: 0 100%;
+  background-size: 100% 2px;
+  padding-bottom: 0.12em;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+}
+.hero-grif--wrap::after { display: none; }
 
 .hero-sub {
   margin-top: 22px; max-width: 52ch; color: #c9cacb; font-weight: 400;

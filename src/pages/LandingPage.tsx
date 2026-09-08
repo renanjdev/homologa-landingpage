@@ -29,7 +29,7 @@ const Hero = () => {
       <div
         aria-hidden="true"
         className="pointer-events-none absolute left-1/2 top-[-200px] -z-10 h-[600px] w-[1060px] -translate-x-1/2 rounded-full"
-        style={{ background: 'radial-gradient(circle, rgba(59,130,246,0.17), rgba(37,99,235,0.05) 46%, transparent 70%)' }}
+        style={{ background: 'radial-gradient(circle, rgba(27,42,74,0.10), rgba(27,42,74,0.03) 46%, transparent 70%)' }}
       />
       <div
         aria-hidden="true"
@@ -54,7 +54,7 @@ const Hero = () => {
             Sistema de gestão para homologação solar · Automação
           </span>
           <h1 className="mx-auto mt-5 max-w-[24ch] text-[clamp(2rem,4vw+0.5rem,3.6rem)] font-display font-extrabold leading-[1.06] tracking-[-0.025em] text-slate-900 text-balance">
-            Pare de montar memorial e unifilar à mão. O Homologa Plus <span className="text-heading-accent">gera e valida</span> sozinho.
+            Pare de montar memorial e unifilar à mão. O Homologa Plus <span className="heading-accent">gera e valida</span> sozinho.
           </h1>
           <p className="mx-auto mt-5 max-w-[34em] text-base md:text-lg leading-relaxed text-slate-600 text-pretty">
             A partir do projeto cadastrado, o sistema dimensiona e monta o pacote inteiro (memorial, diagramas, planta e os formulários e anexos exigidos pela sua distribuidora) e checa a conformidade antes de você protocolar. E mais: toda a gestão de projetos, prazos e financeiro num só painel.

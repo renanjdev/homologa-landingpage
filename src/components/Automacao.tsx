@@ -153,7 +153,7 @@ const Automacao = () => {
       <div
         aria-hidden="true"
         className="pointer-events-none absolute left-1/2 top-[-180px] -z-10 h-[520px] w-[900px] -translate-x-1/2 rounded-full"
-        style={{ background: 'radial-gradient(circle, rgba(59,130,246,0.14), rgba(37,99,235,0.04) 48%, transparent 72%)' }}
+        style={{ background: 'radial-gradient(circle, rgba(27,42,74,0.09), rgba(27,42,74,0.03) 48%, transparent 72%)' }}
       />
 
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -169,7 +169,7 @@ const Automacao = () => {
             A Automação por dentro
           </span>
           <h2 className="mt-5 text-clamp-h2 font-display font-extrabold text-slate-900 text-balance">
-            A documentação da homologação solar, <span className="text-heading-accent">gerada e validada</span> automaticamente
+            A documentação da homologação solar, <span className="heading-accent">gerada e validada</span> automaticamente
           </h2>
           <p className="mt-5 max-w-2xl text-base md:text-lg leading-relaxed text-slate-600 text-pretty">
             A partir do projeto já cadastrado, o sistema faz o dimensionamento elétrico e monta o pacote inteiro:

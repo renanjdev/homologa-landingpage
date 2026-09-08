@@ -26,7 +26,7 @@ const Start = () => {
       {/* Decorative background elements */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-[600px] -z-10 overflow-hidden pointer-events-none opacity-20">
         <div className="absolute -top-20 left-1/4 w-64 h-64 md:w-96 md:h-96 bg-primary rounded-full blur-[80px] md:blur-[120px]" />
-        <div className="absolute top-40 right-1/4 w-64 h-64 md:w-80 md:h-80 bg-blue-400 rounded-full blur-[80px] md:blur-[100px]" />
+        <div className="absolute top-40 right-1/4 w-64 h-64 md:w-80 md:h-80 bg-slate-400 rounded-full blur-[80px] md:blur-[100px]" />
       </div>
 
       <main className="max-w-2xl mx-auto px-4 py-16 sm:py-24 flex flex-col items-center">

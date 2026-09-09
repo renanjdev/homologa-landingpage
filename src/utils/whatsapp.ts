@@ -1,5 +1,5 @@
 // Canal de contato oficial do Homologa Plus (número confirmado pelo dono).
-export const WHATSAPP_NUMBER = '5511512345222';
+export const WHATSAPP_NUMBER = '551151234522';
 
 /**
  * Monta o link wa.me com mensagem pré-preenchida para os CTAs de contato

@@ -100,7 +100,11 @@ const Navbar = ({ scrolled }: { scrolled: boolean }) => {
                 aria-expanded={isOpen}
                 className="inline-flex items-center justify-center min-w-[44px] p-1.5 xs:p-2 rounded-lg text-white hover:bg-white/10 transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
               >
-                {isOpen ? <X className="w-5 h-5 xs:w-6 h-6" aria-hidden="true" /> : <Menu className="w-5 h-5 xs:w-6 h-6" aria-hidden="true" />}
+                {isOpen ? (
+                  <X className="w-5 h-5 xs:w-6 xs:h-6 text-ash" aria-hidden="true" />
+                ) : (
+                  <Menu className="w-5 h-5 xs:w-6 xs:h-6 text-ash" aria-hidden="true" />
+                )}
               </button>
             </div>
           </div>

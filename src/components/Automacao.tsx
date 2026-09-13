@@ -160,7 +160,7 @@ const Automacao = () => {
       <div
         aria-hidden="true"
         className="pointer-events-none absolute left-1/2 top-[-180px] -z-10 h-[520px] w-[900px] -translate-x-1/2 rounded-full"
-        style={{ background: 'radial-gradient(circle, rgba(255,99,99,0.08), rgba(20,60,163,0.05) 48%, transparent 72%)' }}
+        style={{ background: 'radial-gradient(circle, rgba(140,194,254,0.08), rgba(20,60,163,0.05) 48%, transparent 72%)' }}
       />
 
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">

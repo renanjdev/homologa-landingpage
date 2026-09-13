@@ -27,7 +27,7 @@ const ThankYou = () => {
               duration={0.5}
               delay={0.2}
               trigger="mount"
-              className="w-24 h-24 bg-coral-ember rounded-full flex items-center justify-center mx-auto mb-8 shadow-[inset_0_0_0_1px_rgba(255,99,99,0.25)]"
+              className="w-24 h-24 bg-coral-ember rounded-full flex items-center justify-center mx-auto mb-8 shadow-[inset_0_0_0_1px_rgba(140,194,254,0.25)]"
             >
               <CheckCircle2 className="w-12 h-12 text-coral" />
             </Reveal>

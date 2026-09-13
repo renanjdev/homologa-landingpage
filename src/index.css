@@ -34,8 +34,8 @@
   --color-smoke: #9a9b9c;         /* texto terciário / metadados (AA em ≥12px) */
   --color-ash: #c4c4c5;           /* texto secundário (AA sobre Void) */
   --color-mist: #e6e6e6;          /* texto forte / botão neutro tátil */
-  --color-coral: #ff6363;         /* acento RACIONADO: ícone/badge/arte/traço */
-  --color-coral-ember: #452324;   /* fundo de eyebrow/badge coral */
+  --color-coral: #8cc2fe;         /* azul do painel (acento): ícone/traço/texto — era coral #ff6363 */
+  --color-coral-ember: #172b50;   /* navy do painel: fundo de eyebrow/badge — era #452324 */
   --color-electric-sky: #63a1ff;  /* acento frio: dado/gráfico (não texto) */
   --color-cobalt: #143ca3;        /* atmosfera azul */
   --color-abyss: #02193b;         /* atmosfera azul profunda */
@@ -154,7 +154,7 @@
   /* elevação tátil do botão neutro Mist */
   --btn-lift: rgba(0,0,0,0.03) 0 7px 3px 0, rgba(0,0,0,0.25) 0 4px 4px 0;
 }
-::selection { background: rgba(255,99,99,0.28); color: #ffffff; }
+::selection { background: rgba(140,194,254,0.28); color: #ffffff; }
 ::-webkit-scrollbar { width: 10px; height: 10px; }
 ::-webkit-scrollbar-track { background: var(--color-void); }
 ::-webkit-scrollbar-thumb { background: #151618; border-radius: 9999px; border: 2px solid var(--color-void); }
@@ -172,8 +172,8 @@
   --void: #040506;
   --ink: #07080a;
   --obsidian: #111214;
-  --coral: #ff6363;
-  --ember: #452324;
+  --coral: #8cc2fe;
+  --ember: #172b50;
   --mist: #e6e6e6;
   --ash: #c4c4c5;   /* clareado do conceito (#9c9c9d) p/ garantir AA sobre Void */
   --smoke: #9a9b9c; /* clareado p/ AA em metadados 12px */
@@ -215,12 +215,12 @@
 .hero-coral-bar {
   position: absolute; left: 50%; top: 19%; width: min(1500px, 190vw); height: 260px;
   transform: translate(-50%, -50%) rotate(-18deg);
-  background: linear-gradient(90deg, rgba(255,99,99,0) 0%, rgba(255,99,99,0.5) 42%, rgba(255,120,90,0.6) 55%, rgba(255,99,99,0) 100%);
+  background: linear-gradient(90deg, rgba(140,194,254,0) 0%, rgba(140,194,254,0.5) 42%, rgba(96,150,230,0.6) 55%, rgba(140,194,254,0) 100%);
   filter: blur(46px); mix-blend-mode: screen;
 }
 .hero-coral-bar.two {
   top: 29%; width: min(1300px, 170vw); height: 130px; transform: translate(-50%, -50%) rotate(-8deg);
-  background: linear-gradient(90deg, rgba(255,99,99,0) 0%, rgba(255,99,99,0.38) 50%, rgba(255,99,99,0) 100%); filter: blur(52px);
+  background: linear-gradient(90deg, rgba(140,194,254,0) 0%, rgba(140,194,254,0.38) 50%, rgba(140,194,254,0) 100%); filter: blur(52px);
 }
 .hero-vignette {
   position: absolute; inset: 0;
@@ -234,11 +234,11 @@
   display: inline-flex; align-items: center; gap: 8px; margin-bottom: 24px;
   font-family: var(--font-mono); font-size: 11px; font-weight: 500; letter-spacing: .08em; text-transform: uppercase;
   color: var(--ash); padding: 6px 12px 6px 8px; border-radius: 9999px;
-  background: var(--ember); border: 1px solid rgba(255,99,99,0.24);
+  background: var(--ember); border: 1px solid rgba(140,194,254,0.24);
 }
 .hero-ia-badge {
   display: inline-flex; align-items: center; padding: 2px 7px; border-radius: 6px;
-  background: var(--coral); color: #2a0d0d; font-family: var(--font-sans); font-weight: 700; font-size: 10px; letter-spacing: .04em;
+  background: #172b50; color: #ffffff; font-family: var(--font-sans); font-weight: 700; font-size: 10px; letter-spacing: .04em;
 }
 
 .hero-h1 {
@@ -248,7 +248,7 @@
 .hero-grif { color: #ffffff; white-space: nowrap; position: relative; }
 .hero-grif::after {
   content: ""; position: absolute; left: 0; right: 0; bottom: -0.1em; height: 2px; border-radius: 2px;
-  background: linear-gradient(90deg, rgba(255,99,99,0) 0%, var(--coral) 28%, var(--coral) 72%, rgba(255,99,99,0) 100%);
+  background: linear-gradient(90deg, rgba(140,194,254,0) 0%, var(--coral) 28%, var(--coral) 72%, rgba(140,194,254,0) 100%);
 }
 /* Variante para frases LONGAS do grifo (ex.: âncora do H1 que ocupa >1 linha).
    O ::after absoluto do .hero-grif não acompanha múltiplas linhas e o nowrap
@@ -257,7 +257,7 @@
    branco (#fff) → contraste AA sobre o Void. */
 .hero-grif--wrap {
   white-space: normal;
-  background-image: linear-gradient(90deg, rgba(255,99,99,0) 0%, var(--coral) 28%, var(--coral) 72%, rgba(255,99,99,0) 100%);
+  background-image: linear-gradient(90deg, rgba(140,194,254,0) 0%, var(--coral) 28%, var(--coral) 72%, rgba(140,194,254,0) 100%);
   background-repeat: no-repeat;
   background-position: 0 100%;
   background-size: 100% 2px;

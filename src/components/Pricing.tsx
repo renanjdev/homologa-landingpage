@@ -75,7 +75,7 @@ const Pricing = () => {
       secondaryCta: "Falar com especialista",
       highlight: true,
       badge: "Mais escolhido",
-      badgeClass: "bg-coral text-[#2a0d0d]",
+      badgeClass: "bg-[#172b50] text-white",
     },
   ];
 

@@ -40,7 +40,7 @@ const FinalCTA = () => {
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => window.fbq && window.fbq('track', 'Contact')}
-                className="group bg-coral text-[#2a0d0d] px-8 py-4 rounded-xl text-lg font-bold transition-all duration-200 ease-out shadow-[var(--btn-lift)] hover:-translate-y-0.5 hover:brightness-105 active:translate-y-0 flex items-center justify-center gap-2 w-full sm:w-auto focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+                className="group bg-[#172b50] text-white px-8 py-4 rounded-xl text-lg font-bold transition-all duration-200 ease-out shadow-[var(--btn-lift)] hover:-translate-y-0.5 hover:brightness-105 active:translate-y-0 flex items-center justify-center gap-2 w-full sm:w-auto focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
               >
                 Agendar demonstração
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />

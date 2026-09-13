@@ -49,7 +49,7 @@ const HeroMedia = () => {
             <circle cx="11" cy="11" r="7" stroke="#6a6b6c" strokeWidth="2" />
             <path d="m20 20-3.5-3.5" stroke="#6a6b6c" strokeWidth="2" strokeLinecap="round" />
           </svg>
-          <span>Gerar dossiê de homologação — UC 3009…</span>
+          <span>Gerar dossiê de homologação · UC 3009…</span>
         </div>
         <span className="hero-wintag">homologa · engine</span>
       </div>

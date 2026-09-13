@@ -33,7 +33,7 @@ const FAQ = () => {
     },
     {
       question: "Como funciona a demonstração?",
-      answer: "Você agenda pelo WhatsApp e nossa equipe faz uma demonstração guiada do sistema — do cadastro do projeto à documentação gerada e validada — e esclarece dúvidas sobre planos e implantação. Sem compromisso."
+      answer: "Você agenda pelo WhatsApp e nossa equipe faz uma demonstração guiada do sistema, do cadastro do projeto à documentação gerada e validada, e esclarece dúvidas sobre planos e implantação. Sem compromisso."
     },
     {
       question: "Funciona com a minha concessionária?",

@@ -463,7 +463,7 @@ const Automacao = () => {
               <ArrowRight className="h-4 w-4" />
             </a>
             <p className="text-sm text-ash">
-              Incluída nos <strong className="font-semibold text-white">dois planos</strong> — peça uma
+              Incluída nos <strong className="font-semibold text-white">dois planos</strong>. Peça uma
               <strong className="font-semibold text-white"> demonstração</strong> e veja funcionando.
             </p>
           </div>

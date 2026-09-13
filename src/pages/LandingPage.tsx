@@ -41,10 +41,10 @@ const Hero = () => {
             Sistema de gestão para homologação solar
           </span>
           <h1 className="hero-h1">
-            Não para no memorial e no unifilar: o Homologa Plus gera <span className="hero-grif hero-grif--wrap">os formulários e anexos de cada distribuidora</span> — e valida antes do protocolo.
+            Não para no memorial e no unifilar: o Homologa Plus gera <span className="hero-grif hero-grif--wrap">os formulários e anexos de cada distribuidora</span> e valida antes do protocolo.
           </h1>
           <p className="hero-sub">
-            A partir do projeto cadastrado, com o dimensionamento elétrico embutido — e não para na papelada: <span style={{ color: '#e8e9ea', fontWeight: 600 }}>gestão de projetos, prazos e financeiro num só painel</span>.
+            A partir do projeto cadastrado, com o dimensionamento elétrico embutido, e não para na papelada: <span style={{ color: '#e8e9ea', fontWeight: 600 }}>gestão de projetos, prazos e financeiro num só painel</span>.
           </p>
           <div className="hero-cta-row">
             <a

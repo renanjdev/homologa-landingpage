@@ -27,7 +27,7 @@ const FinalCTA = () => {
             <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.2em] text-smoke mb-5">
               Comece hoje
             </p>
-            <h2 className="text-clamp-h2 font-extrabold text-white mb-5 text-balance">
+            <h2 className="text-clamp-h2 font-bold text-white mb-5 text-balance">
               Gere e valide sua documentação a partir de hoje
             </h2>
             <p className="text-base md:text-lg text-ash mb-10 leading-relaxed max-w-xl mx-auto text-pretty">

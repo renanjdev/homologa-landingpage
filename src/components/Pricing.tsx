@@ -103,7 +103,7 @@ const Pricing = () => {
         {/* Guia de escolha — a diferença entre os planos é o volume, não o recurso */}
         <p className="mx-auto mb-10 md:mb-14 max-w-2xl text-center text-sm md:text-base text-ash">
           Os dois planos vêm com a plataforma completa e com a{' '}
-          <strong className="font-semibold text-coral">Automação de documentos</strong>. A diferença é o volume:
+          <strong className="font-semibold text-white">Automação de documentos</strong>. A diferença é o volume:
           o <strong className="font-semibold text-white">Starter</strong> automatiza 7 projetos por mês; o{' '}
           <strong className="font-semibold text-white">Full</strong> não tem teto.
         </p>
@@ -132,7 +132,7 @@ const Pricing = () => {
 
               <div className="mb-6 md:mb-8">
                 <div className="flex items-baseline gap-1">
-                  <span className={`text-2xl md:text-3xl font-bold ${plan.highlight ? 'text-coral' : 'text-ash'}`}>R$</span>
+                  <span className={`text-2xl md:text-3xl font-bold text-ash`}>R$</span>
                   <span className="text-4xl sm:text-5xl md:text-[56px] font-extrabold tracking-tight text-white">{plan.price}</span>
                   <span className="text-smoke text-sm md:text-base font-medium ml-1">/mês</span>
                 </div>
@@ -154,7 +154,7 @@ const Pricing = () => {
 
               <ul className="space-y-3.5 md:space-y-4 mb-8 flex-grow">
                 {plan.features.map((feature, idx) => (
-                  <li key={idx} className="flex items-start gap-3 text-xs sm:text-sm text-ash">
+                  <li key={idx} className="flex items-start gap-3 text-sm text-ash">
                     <CheckCircle2 className="w-4 h-4 md:w-5 md:h-5 text-mist shrink-0 mt-[2px]" />
                     <span className="leading-tight">{feature}</span>
                   </li>
@@ -199,7 +199,7 @@ const Pricing = () => {
           </h3>
           <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-4">
             {SHARED_FEATURES.map((feature) => (
-              <li key={feature} className="flex items-start gap-3 text-xs sm:text-sm text-ash">
+              <li key={feature} className="flex items-start gap-3 text-sm text-ash">
                 <CheckCircle2 className="w-4 h-4 md:w-5 md:h-5 text-mist shrink-0 mt-[2px]" />
                 <span className="leading-snug">{feature}</span>
               </li>

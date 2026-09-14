@@ -9,7 +9,7 @@ const Footer = () => {
     'max-md:inline-flex max-md:items-center max-md:min-h-[44px] text-ash hover:text-white transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white rounded';
 
   return (
-    <footer className="bg-void border-t border-white/10 pt-16 pb-10">
+    <footer className="bg-void border-t border-white/10 pt-16 pb-[calc(6rem+env(safe-area-inset-bottom))] md:pb-10">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-10 md:gap-12 mb-12 md:mb-16">
           <div className="sm:col-span-2">

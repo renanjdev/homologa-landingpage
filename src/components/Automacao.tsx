@@ -175,7 +175,7 @@ const Automacao = () => {
             <Cpu className="h-3.5 w-3.5 text-coral" />
             A Automação por dentro
           </span>
-          <h2 className="mt-5 text-clamp-h2 font-display font-extrabold text-white text-balance">
+          <h2 className="mt-5 text-clamp-h2 font-display font-bold text-white text-balance">
             A documentação da homologação solar,{' '}
             <span className="relative whitespace-nowrap text-white">
               gerada e validada
@@ -445,7 +445,7 @@ const Automacao = () => {
           <ul className="flex flex-wrap gap-x-6 gap-y-3">
             {ganchos.map((g) => (
               <li key={g} className="flex items-center gap-2 text-sm font-medium text-ash">
-                <Check className="h-4 w-4 flex-none text-coral" strokeWidth={3} />
+                <Check className="h-4 w-4 flex-none text-mist" strokeWidth={3} />
                 {g}
               </li>
             ))}

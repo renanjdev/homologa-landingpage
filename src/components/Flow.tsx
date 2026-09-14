@@ -29,10 +29,6 @@ const Flow = () => {
             Fluxo organizado da{' '}
             <span className="relative whitespace-nowrap text-white">
               homologação
-              <span
-                aria-hidden="true"
-                className="absolute inset-x-0 -bottom-1 h-0.5 rounded-full bg-gradient-to-r from-coral/0 via-coral to-coral/0"
-              />
             </span>
           </h2>
           <p className="text-ash max-w-2xl mx-auto text-base md:text-lg leading-relaxed">

@@ -171,7 +171,7 @@ const CookieConsent = () => {
             escolher por categoria. Recusar é tão simples quanto aceitar. Saiba mais na{' '}
             <Link
               to="/privacidade"
-              className="font-semibold text-coral underline underline-offset-2 hover:text-white"
+              className="font-semibold text-coral underline underline-offset-2 hover:text-white py-3"
             >
               Política de Privacidade
             </Link>

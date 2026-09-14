@@ -14,11 +14,11 @@ const Start = () => {
   return (
     <div className="min-h-screen bg-void text-mist font-sans overflow-x-hidden selection:bg-coral/25">
       <Helmet>
-        <title>Teste Grátis por 3 Dias | Homologa Plus - Automação e Gestão de Homologação Solar</title>
+        <title>Agende uma Demonstração | Homologa Plus - Automação e Gestão de Homologação Solar</title>
         <meta name="description" content="Pare de gerenciar homologações solares por planilha e WhatsApp. Controle projetos, clientes e documentos em um só lugar. Agende uma demonstração e veja como funciona." />
         <meta name="keywords" content="demonstração homologa plus, software homologação solar, gestão projetos solares" />
         <link rel="canonical" href="https://homologaplus.com.br/start" />
-        <meta property="og:title" content="Teste Grátis por 3 Dias | Homologa Plus" />
+        <meta property="og:title" content="Agende uma Demonstração | Homologa Plus" />
         <meta property="og:description" content="Pare de gerenciar homologações solares por planilha e WhatsApp. Controle projetos, clientes e documentos em um só lugar." />
         <meta property="og:url" content="https://homologaplus.com.br/start" />
         <meta property="og:type" content="website" />

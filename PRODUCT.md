@@ -49,7 +49,7 @@ Um concorrente que só faz gestão de processo não consegue copiar isso sem con
 
 ## Capabilities and Constraints
 
-**Modelo de acesso (verificado no código em 2026-09-13):** cadastro livre está fechado e não há captação de lead no site. Nenhum formulário, nenhum teste autoatendido. Todo CTA ("Agendar demonstração", "Falar no WhatsApp", "Falar com especialista") abre o WhatsApp direto com mensagem pré-preenchida (`src/utils/whatsapp.ts`, `buildWhatsAppLink`). A equipe faz a demonstração guiada e libera o acesso. A copy promete "Demonstração sem compromisso · Acesso liberado pela nossa equipe"; não escrever "teste grátis" nem prazo de teste.
+**Modelo de acesso (verificado no código em 2026-09-13):** cadastro livre está fechado e não há captação de lead no site. Nenhum formulário, nenhum teste autoatendido. Todo CTA ("Agendar demonstração" e "Falar no WhatsApp") abre o WhatsApp direto com mensagem pré-preenchida (`src/utils/whatsapp.ts`, `buildWhatsAppLink`). A equipe faz a demonstração guiada e libera o acesso. A copy promete "Demonstração sem compromisso · Acesso liberado pela nossa equipe"; não escrever "teste grátis" nem prazo de teste.
 
 **Planos (dois, ambos com a plataforma inteira e a Automação):**
 

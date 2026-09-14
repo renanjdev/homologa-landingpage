@@ -1,249 +1,235 @@
 ---
 name: Homologa Plus
-description: Sistema de gestão para homologação de usinas solares fotovoltaicas
+description: Sistema de gestão e automação da homologação de usinas solares fotovoltaicas
 colors:
-  primary: "#1B2A4A"
-  primary-dark: "#131F39"
-  action: "#2563EB"
-  action-dark: "#1D4ED8"
-  bright-sky: "#3B82F6"
-  success: "#10B981"
-  success-text: "#047857"
-  warning: "#F97316"
-  warning-border: "#EA580C"
-  warning-text: "#C2410C"
-  surface: "#F3F4F6"
-  ink: "#0F172A"
-  muted: "#475569"
-  border: "#E2E8F0"
-  canvas: "#FFFFFF"
+  void: "#040506"
+  ink: "#07080a"
+  obsidian: "#111214"
+  graphite: "#1b1c1e"
+  steel: "#2f3031"
+  hairline: "#363739"
+  iron: "#454647"
+  smoke: "#9a9b9c"
+  ash: "#c4c4c5"
+  mist: "#e6e6e6"
+  panel-sky: "#8cc2fe"
+  panel-navy: "#172b50"
+  electric-sky: "#63a1ff"
+  cobalt: "#143ca3"
+  abyss: "#02193b"
+  success: "#10b981"
+  warning: "#f97316"
 typography:
   display:
-    fontFamily: "Archivo, Inter, ui-sans-serif, system-ui, sans-serif"
-    fontSize: "clamp(2.25rem, 5vw + 1rem, 4.5rem)"
-    fontWeight: 800
-    lineHeight: 1.1
-    letterSpacing: "-0.02em"
-  headline:
-    fontFamily: "Archivo, Inter, ui-sans-serif, system-ui, sans-serif"
-    fontSize: "clamp(1.5rem, 2.5vw + 0.5rem, 2.25rem)"
-    fontWeight: 700
-    lineHeight: 1.2
-    letterSpacing: "-0.01em"
-  title:
     fontFamily: "Inter, ui-sans-serif, system-ui, sans-serif"
-    fontSize: "1.25rem"
-    fontWeight: 600
-    lineHeight: 1.3
-    letterSpacing: "normal"
-  body:
-    fontFamily: "Inter, ui-sans-serif, system-ui, sans-serif"
-    fontSize: "1rem"
+    fontSize: "clamp(2rem, 4.2vw + 0.6rem, 3.5rem)"
     fontWeight: 400
-    lineHeight: 1.6
-    letterSpacing: "normal"
-  label:
-    fontFamily: "JetBrains Mono, ui-monospace, monospace"
-    fontSize: "0.8125rem"
-    fontWeight: 500
-    lineHeight: 1.4
-    letterSpacing: "0.04em"
-  overline:
-    fontFamily: "JetBrains Mono, ui-monospace, monospace"
-    fontSize: "0.6875rem"
-    fontWeight: 600
-    lineHeight: 1.4
-    letterSpacing: "0.14em"
-  price:
-    fontFamily: "Archivo, Inter, ui-sans-serif, system-ui, sans-serif"
-    fontSize: "3.5rem"
-    fontWeight: 800
-    lineHeight: 1
-    letterSpacing: "-0.02em"
-  section-heading:
+    lineHeight: 1.14
+    letterSpacing: "-0.005em"
+  headline:
     fontFamily: "Archivo, Inter, ui-sans-serif, system-ui, sans-serif"
     fontSize: "clamp(1.875rem, 3vw + 1rem, 3rem)"
     fontWeight: 700
     lineHeight: 1.15
     letterSpacing: "-0.02em"
+  title:
+    fontFamily: "Inter, ui-sans-serif, system-ui, sans-serif"
+    fontSize: "1.125rem"
+    fontWeight: 700
+    lineHeight: 1.3
+  body:
+    fontFamily: "Inter, ui-sans-serif, system-ui, sans-serif"
+    fontSize: "clamp(1rem, 0.5vw + 0.9rem, 1.125rem)"
+    fontWeight: 400
+    lineHeight: 1.55
+  meta:
+    fontFamily: "Inter, ui-sans-serif, system-ui, sans-serif"
+    fontSize: "13px"
+    fontWeight: 400
+    lineHeight: 1.4
+  label:
+    fontFamily: "JetBrains Mono, ui-monospace, monospace"
+    fontSize: "11px"
+    fontWeight: 500
+    letterSpacing: "0.08em"
 rounded:
-  sm: "4px"
-  md: "12px"
-  lg: "16px"
-  xl: "24px"
+  sm: "6px"
+  md: "8px"
+  lg: "10px"
+  xl: "12px"
+  2xl: "16px"
+  window: "14px"
   full: "9999px"
 spacing:
-  xs: "8px"
-  sm: "16px"
-  md: "24px"
-  lg: "64px"
-  xl: "96px"
+  gutter: "16px"
+  stack: "24px"
+  section: "96px"
+  container: "1280px"
 components:
   button-primary:
-    backgroundColor: "{colors.action}"
-    textColor: "{colors.canvas}"
+    backgroundColor: "{colors.mist}"
+    textColor: "{colors.ink}"
     rounded: "{rounded.lg}"
-    padding: "16px 32px"
-  button-primary-hover:
-    backgroundColor: "{colors.action-dark}"
-    textColor: "{colors.canvas}"
+    padding: "13px 22px"
+    height: "44px"
+  button-ghost:
+    backgroundColor: "{colors.ink}"
+    textColor: "{colors.mist}"
     rounded: "{rounded.lg}"
-    padding: "16px 32px"
-  button-secondary:
-    backgroundColor: "{colors.surface}"
-    textColor: "{colors.action}"
-    rounded: "{rounded.lg}"
+    padding: "13px 22px"
+    height: "44px"
+  button-accent:
+    backgroundColor: "{colors.panel-navy}"
+    textColor: "#ffffff"
+    rounded: "{rounded.xl}"
     padding: "16px 32px"
   card:
-    backgroundColor: "{colors.canvas}"
-    textColor: "{colors.ink}"
-    rounded: "{rounded.xl}"
+    backgroundColor: "{colors.obsidian}"
+    textColor: "{colors.ash}"
+    rounded: "{rounded.2xl}"
     padding: "24px"
+  icon-tile:
+    backgroundColor: "{colors.obsidian}"
+    textColor: "{colors.panel-sky}"
+    rounded: "{rounded.xl}"
+    size: "44px"
+  eyebrow:
+    backgroundColor: "{colors.panel-navy}"
+    textColor: "{colors.ash}"
+    typography: "{typography.label}"
+    rounded: "{rounded.full}"
+    padding: "6px 12px"
+  product-window:
+    backgroundColor: "{colors.ink}"
+    rounded: "{rounded.window}"
 ---
 
 # Design System: Homologa Plus
 
-## 1. Overview
+## Overview
 
-**Creative North Star: "A Sala de Controle"**
+**Creative North Star: "O Cockpit do Engenheiro"**
 
-Homologa Plus tira o engenheiro do caos de planilhas e WhatsApp e o coloca diante de um painel de comando. A interface deve sentir como uma sala de controle bem projetada: cada informação no lugar certo, status legível de relance, a sensação de domínio total sobre um processo que antes era confuso. O azul não é decoração, é instrumento. Aparece onde marca estado, guia ação ou sinaliza o caminho até a conversão, nunca como gradiente bonito que enche o fundo.
+A landing é um painel de instrumentos escuro. O canvas quase preto recua para que o produto real, mostrado dentro de uma janela de aplicativo, seja a coisa mais iluminada da página. A sensação é de engenharia séria trabalhando: superfícies como teclas de um teclado físico, texto claro com contraste folgado, e um único azul frio, tirado do próprio painel do Homologa Plus, marcando o que é instrumento.
 
-Apesar da precisão, o sistema não é rígido nem frio. Os componentes são leves e responsivos: cantos suaves, sombras sutis que reagem ao toque, transições ágeis que espelham a promessa do produto, o trabalho flui ao invés de travar. A tensão produtiva é essa: comando de engenharia séria, executado com a leveza de um produto moderno. Pense na clareza instrumental da Stripe, não no peso de um portal governamental.
+A densidade é média. Cada seção abre com um título forte e segue com cards táteis, prints do produto e listas objetivas. Não há ilustração decorativa nem fotografia de banco; a prova visual é sempre a interface ou o documento gerado. O movimento é contido: entradas suaves ao rolar, um leve levantar no hover dos botões e cards, e tudo colapsa para estático com `prefers-reduced-motion`.
 
-Este sistema rejeita explicitamente: o SaaS genérico de template (gradiente roxo, grids de cards idênticos, glassmorphism por toda parte, o clichê do hero-metric); o visual burocrático denso e datado; o hype neon de cripto/IA; e qualquer cara de improviso amador. Distinção dentro da categoria solar significa fugir do reflexo "mais um azul de SaaS" através de hierarquia, ritmo e cor deliberados.
+A identidade vem do Raycast (conceito 16 escolhido pelo dono) e o acento foi trocado em 2026-09 do coral para o azul do painel. Redesigns estruturais foram testados e rejeitados; este sistema é para ser refinado, não substituído.
 
 **Key Characteristics:**
-- Azul como instrumento de estado e ação, não como preenchimento decorativo
-- Componentes leves e responsivos: cantos suaves, sombra que reage, motion preciso
-- Hierarquia que conduz o olho até o CTA em cada seção
-- Clareza instrumental tipo Stripe, jamais peso burocrático
-- Evidência do produto funcionando acima de adjetivos
+- Canvas Void escuro com superfícies em degraus (Void → Ink → Obsidian → Graphite).
+- Profundidade por sombra "tecla" (inset claro em cima, anel de 1px, inset escuro embaixo), não por drop-shadow.
+- Um acento frio racionado, o azul do painel, em ícone, traço e badge.
+- Produto real como herói, dentro de uma janela com barra de título.
+- Botão primário claro e tátil (Mist) em vez de botão colorido.
 
-## 2. Colors
+## Colors
 
-Paleta de azul-engenharia sobre neutros frios, com verde e laranja reservados estritamente para sinalização de estado.
+Monocromático escuro com um acento frio e uma atmosfera azul só no hero.
 
-A paleta tem **duas famílias azuis com papéis distintos**, e confundi-las foi o defeito que a auditoria de agosto de 2026 encontrou: a marca sozinha não consegue apontar a ação.
-
-### Brand
-- **Navy** (#1B2A4A): A voz da marca. Títulos de alto contraste, chips de label, badges, superfícies escuras, wordmark. É a tinta institucional do painel, não o botão.
-- **Navy Profundo** (#131F39): Hover e active de superfícies escuras, âncoras de seção.
-
-### Action
-- **Plus Blue** (#2563EB): O instrumento. **Exclusivo** de CTA primário e secundário, estado ativo, halo do CTA e qualquer elemento que o usuário deve seguir. Branco sobre ele mede 5,12:1 e passa em AA para texto normal, então serve como preenchimento de botão em qualquer tamanho.
-- **Plus Blue Escuro** (#1D4ED8): Hover e active do CTA. Branco sobre ele mede 6,64:1.
-
-Por que não usar Bright Sky como ação: #3B82F6 com texto branco mede apenas 3,67:1, então só passaria em texto grande, e o CTA do hero é 18px bold, logo abaixo do limiar. Promovê-lo criaria uma falha de contraste no botão mais importante da página.
+### Primary
+- **Azul do Painel** (panel-sky): cor de instrumento. Ícones, traços de destaque, sublinhado da palavra-âncora do título, pontos de status e brilho da atmosfera. Nunca em texto corrido longo.
+- **Navy do Painel** (panel-navy): fundo de etiqueta (eyebrow), badge e do botão de destaque do CTA final, sempre com texto branco ou Ash.
 
 ### Secondary
-- **Bright Sky** (#3B82F6): O acento de destaque. Wordmark "Plus", anel de foco de teclado, realces pontuais. Usar com parcimônia, é o brilho, não a base.
-
-### Tertiary
-- **Sinal Verde** (#10B981): Exclusivo para sucesso, aprovação concedida, etapa concluída. Nunca decorativo. **Em texto ou ícone pequeno use #047857**, porque #10B981 mede 2,54:1 sobre branco e reprova; reserve #10B981 para preenchimento grande.
-- **Sinal Laranja** (#F97316): Exclusivo para atenção, pendência, prazo. Nunca decorativo. **Em borda use #EA580C (3,58:1) e em texto use #C2410C (5,21:1)**, porque #F97316 mede 2,80:1 sobre branco e reprova até no limiar de 3:1 para elemento não textual.
+- **Céu Elétrico** (electric-sky): dado e gráfico dentro de prints ou ilustrações do produto. Não é cor de texto de interface.
+- **Cobalto** e **Abismo** (cobalt, abyss): só na atmosfera radial atrás do hero.
 
 ### Neutral
-- **Tinta** (#0F172A): Texto principal (slate-900). O preto da sala de controle, nunca #000 puro.
-- **Tinta Suave** (#475569): Texto secundário, legendas, descrições (slate-600).
-- **Borda** (#E2E8F0): Contornos de cards, divisórias, traços de input (slate-200).
-- **Superfície** (#F3F4F6): Fundo de seções alternadas, chips, estados de repouso de botão secundário.
-- **Canvas** (#FFFFFF): Fundo base. Branco quente da página, nunca aplicado como bloco chapado sem hierarquia.
+- **Void** (void): canvas do site inteiro.
+- **Ink** (ink): superfície de janela de produto e botão fantasma.
+- **Obsidian** (obsidian): superfície de card e de tile de ícone.
+- **Graphite** (graphite): superfície elevada e hover de card.
+- **Steel / Hairline / Iron** (steel, hairline, iron): bordas ativas, divisores e traços sobre botão claro.
+- **Mist** (mist): texto forte e fundo do botão primário.
+- **Ash** (ash): texto secundário, com contraste AA sobre Void.
+- **Smoke** (smoke): metadados e legendas a partir de 12px.
 
 ### Named Rules
-**A Regra do Instrumento.** O azul marca estado, ação ou caminho. Se um azul não está dizendo "siga aqui", "isto está ativo" ou "isto é a marca", ele não deveria estar ali. Azul de enfeite é proibido, incluindo blobs desfocados de fundo e gradientes radiais decorativos.
+**The One Cold Accent Rule.** O azul do painel ocupa menos de 10% de qualquer tela e nunca pinta um bloco de texto; a raridade é o que faz ele parecer instrumento.
 
-**A Regra dos Dois Azuis.** Navy é marca, Plus Blue é ação. Um CTA nunca é Navy e um título nunca é Plus Blue. O teste rápido: se o elemento é clicável e leva à conversão, é Plus Blue; se ele só informa, é Navy.
+**The Status Colors Stay Semantic Rule.** Verde (success) e âmbar/laranja (warning) aparecem só como estado (conforme, atenção, dor do processo antigo), nunca como decoração.
 
-**A Regra do Sinal.** Verde e laranja só existem como sinalização funcional (sucesso/pendência). Aplicá-los como cor decorativa quebra o vocabulário do painel e está proibido.
+## Typography
 
-## 3. Typography
+**Display Font:** Inter (com ui-sans-serif)
+**Headline Font:** Archivo (com Inter)
+**Label/Mono Font:** JetBrains Mono (com ui-monospace)
 
-**Display Font:** Archivo (com Inter e system-ui como fallback) — usada em headlines e aberturas de seção
-**Body Font:** Inter (hierarquia por peso e escala)
-**Label/Mono Font:** JetBrains Mono (com ui-monospace fallback)
-
-**Character:** Archivo carrega os títulos com firmeza técnica, uma grotesca de engenharia que dá personalidade às aberturas sem virar enfeite. Inter carrega o corpo com neutralidade competente, sem chamar atenção pra si. JetBrains Mono entra como a voz "instrumento": labels, números, etiquetas técnicas que merecem o tratamento de leitura de painel.
+**Character:** Inter leve no H1 do hero dá calma e autoridade; Archivo pesado nos títulos de seção dá o peso de engenharia. O mono aparece em etiquetas curtas, metadados e rótulos de janela, sinalizando dado técnico.
 
 ### Hierarchy
-- **Display** (800, clamp(2.25rem→4.5rem), 1.1, -0.02em): Headlines de hero e aberturas de seção. Fluido via clamp para escalar suave do mobile ao desktop.
-- **Headline** (700, clamp(1.5rem→2.25rem), 1.2): Títulos de seção (Features, Pricing, FAQ).
-- **Title** (600, 1.25rem, 1.3): Títulos de card, nomes de plano, perguntas de FAQ.
-- **Body** (400, 1rem, 1.6): Texto corrido. Largura máxima 65–75ch para legibilidade.
-- **Label** (500, 0.8125rem, 0.04em, JetBrains Mono): Badges, etiquetas técnicas, "Mais escolhido". O tratamento de instrumento. **É o piso para conteúdo que carrega credibilidade**, como referência normativa: NBR e PRODIST nunca aparecem menores que isto.
-- **Overline** (600, 0.6875rem = 11px, 0.14em, JetBrains Mono, caixa alta): Chips de seção e rótulos curtos de instrumento. **11px é o piso absoluto de texto funcional na página**; nada de 10px.
-- **Price** (800, 3.5rem, Archivo): O número do plano. Único lugar onde um número recebe tratamento de display.
-- **Section heading** (700, clamp de 1.875rem a 3rem): A escala fluida única das aberturas de seção, aplicada por `.text-clamp-h2`.
+- **Display** (400, clamp 2rem a 3.5rem, 1.14): só o H1 do hero, largura máxima de 20ch, com `text-wrap: balance`.
+- **Headline** (700 a 800, clamp 1.875rem a 3rem, 1.15, -0.02em): títulos de seção (`text-clamp-h2`).
+- **Title** (700, 1.125rem, 1.3): título de card e de item de lista.
+- **Body** (400, 1rem a 1.125rem, 1.55): subtítulos e parágrafos, com 52 a 65ch de largura.
+- **Meta** (400, 13px, 1.4): legendas de linha em cards comparativos, planos e banner de cookies, em Inter ou mono.
+- **Label** (500, 11px, 0.08em, caixa alta): eyebrows, tags de janela e metadados em mono.
 
 ### Named Rules
-**A Regra do Contraste de Peso.** Hierarquia vem de salto de peso e escala (≥1.25 entre passos), nunca de escala chapada. Display 800 contra Body 400 é a tensão que organiza a leitura.
+**The Mono Means Data Rule.** JetBrains Mono só aparece em rótulo, metadado ou valor técnico, nunca em parágrafo.
 
-**A Regra do Mono Intencional.** JetBrains Mono é reservado para conteúdo de instrumento (labels, números, etiquetas). Usá-lo em texto corrido está proibido, dilui o sinal técnico.
+## Layout
 
-## 4. Elevation
+Container de até 1280px (`max-w-7xl`) com gutter lateral de 16px no mobile. Seções com respiro vertical de 64 a 96px. O hero é uma coluna centrada com o palco do produto logo abaixo, a até 1120px. As seções internas alternam grades de 2 e 3 colunas com cards e blocos texto e print, empilhando em uma coluna abaixo de 768px. Abaixo de 768px, os chips de prova que flutuam sobre a janela no desktop voltam para o fluxo, e uma barra fixa de CTA ocupa o rodapé.
 
-Sistema leve e responsivo: superfícies chatas em repouso, sombra como resposta a estado. A profundidade não é ambiente constante, ela aparece quando o elemento ganha foco ou é tocado, reforçando a sensação de painel ágil que reage ao usuário.
+## Elevation & Depth
+
+A profundidade é tátil e interna. Cards e botões fantasmas usam a sombra "tecla", que imita a borda de uma tecla de teclado sobre o fundo escuro. Drop-shadow grande só existe em dois lugares: embaixo da janela do produto no hero e no levantar do botão primário.
 
 ### Shadow Vocabulary
-- **Repouso** (`box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04)`): Cards e superfícies em estado neutro. Quase imperceptível, só desgruda do fundo.
-- **Hover** (`box-shadow: 0 12px 32px -8px rgba(15, 23, 42, 0.12)`): Card ou item interativo sob o cursor. Difusa, suave, sobe o elemento sem drama.
-- **Ação Primária** (`box-shadow: 0 8px 24px -6px rgba(37, 99, 235, 0.30)`): Botão primário. Halo azul tênue que ancora o CTA como o elemento de maior energia da seção.
+- **Tecla** (`rgba(255,255,255,0.05) 0 1px 0 0 inset, rgba(255,255,255,0.25) 0 0 0 1px, rgba(0,0,0,0.2) 0 -1px 0 0 inset`): janela do produto e superfícies de destaque.
+- **Tecla suave** (`rgba(255,255,255,0.04) 0 1px 0 0 inset, rgba(255,255,255,0.12) 0 0 0 1px, rgba(0,0,0,0.35) 0 -1px 0 0 inset`): cards, chips e botão fantasma.
+- **Levantar** (`rgba(0,0,0,0.03) 0 7px 3px 0, rgba(0,0,0,0.25) 0 4px 4px 0`): botão primário Mist.
+- **Palco** (`0 40px 90px -30px rgba(0,0,0,0.9)`): só sob a janela do produto no hero.
 
 ### Named Rules
-**A Regra do Chato em Repouso.** Superfícies são chatas por padrão. Sombra é resposta a estado (hover, foco, ação), não enfeite permanente. Card que já nasce flutuando com sombra pesada está errado.
+**The Key Not Cloud Rule.** Superfícies ganham borda de tecla, não sombra difusa; se algo precisa flutuar, é a janela do produto.
 
-**A Regra do Halo Azul.** Só o CTA primário ganha sombra colorida (azul). É o sinal de "esta é a ação". Espalhar halos coloridos por outros elementos rouba o foco e está proibido.
+## Shapes
 
-## 5. Components
+Cantos suaves e consistentes: 10px nos botões do hero, 12px nos botões de seção e tiles de ícone, 14px na janela do produto, 16px nos cards grandes e 9999px em etiquetas, pontos de status e botões redondos. Bordas de 1px em branco com 10% de opacidade separam superfícies.
+
+## Components
 
 ### Buttons
-- **Shape:** Cantos suaves (16px / rounded-lg). Leves, modernos, nunca pílula completa exceto em chips.
-- **Primary:** Plus Blue (#2563EB) com texto branco, padding 16px 32px, halo azul tênue. O destino de cada seção.
-- **Hover / Focus:** Fundo escurece para Deep Indigo (#1E3A8A), leve translateY(-1px), halo intensifica. Foco visível com anel de 2px Bright Sky para teclado.
-- **Secondary:** Fundo Superfície (#F3F4F6) ou contorno, texto Plus Blue. Ação alternativa, nunca compete com o primário.
+- **Shape:** cantos de 10 a 12px, altura mínima de 44px.
+- **Primary:** fundo Mist com texto Ink, peso 600 a 700, sombra de levantar. É o CTA "Agendar demonstração".
+- **Hover / Focus:** sobe 1px e clareia 4%; foco com contorno branco de 2px e afastamento de 2px.
+- **Ghost:** fundo branco a 4% sobre o escuro, borda Hairline e sombra tecla suave; no hover a borda vai para Steel. Usado em "Falar no WhatsApp".
+- **Accent:** fundo Navy do Painel com texto branco, só no CTA final e no badge de plano.
+
+### Chips
+- **Style:** cápsula Ink translúcida com sombra tecla suave, tile de ícone Obsidian à esquerda, título branco e legenda mono Smoke.
+- **State:** estáticos; no desktop flutuam sobre a janela do produto, no mobile ficam no fluxo.
 
 ### Cards / Containers
-- **Corner Style:** Generosos (24px / rounded-xl) para cards de conteúdo, 16px para itens menores. Nunca aninhar card dentro de card.
-- **Background:** Canvas (#FFFFFF) sobre seções, Superfície (#F3F4F6) quando a seção precisa de contraste de fundo.
-- **Shadow Strategy:** Repouso quase nulo, eleva no hover (ver Elevation). Reage ao toque.
-- **Border:** 1px Borda (#E2E8F0). Contorno completo, nunca faixa lateral colorida.
-- **Internal Padding:** 24px base, generoso. Densidade de painel, não de planilha apertada.
-
-### Inputs / Fields
-- **Style:** Contorno 1px Borda (#E2E8F0), fundo Canvas, cantos 12px.
-- **Focus:** Borda muda para Plus Blue. O anel de foco de teclado vem da regra global `:focus-visible` (2px sólidos em Bright Sky, offset 2px), não de um `ring` por componente: um anel a 10% de opacidade mede 1,21:1 e é invisível, então não conta como indicador.
-- **Error:** Borda em #EA580C e mensagem de apoio em #C2410C, ancorada abaixo do campo que falhou, com `aria-invalid` e `aria-describedby`. O erro nunca é comunicado só por cor: sempre acompanha ícone e texto. Nunca use vermelho em formulário, porque vermelho já está falado como "Impeditivo" no validador de conformidade.
+- **Corner Style:** 12 a 16px.
+- **Background:** Obsidian, hover em Graphite.
+- **Shadow Strategy:** tecla suave.
+- **Border:** 1px branco a 10%.
+- **Internal Padding:** 20 a 32px.
 
 ### Navigation
-- **Style:** Navbar fixa que transiciona de tema escuro (sobre hero) para claro (ao rolar). Links em Inter 500.
-- **States:** Default Tinta Suave, hover Plus Blue, active Deep Indigo. Barra de progresso de scroll no topo.
-- **Mobile:** Alvos de toque ≥44px, menu hambúrguer, links em coluna.
+- Barra fixa escura com vidro que adensa ao rolar, logo branco, links Ash que viram brancos no hover, trilho de progresso de 2px no topo em Azul do Painel, CTA Mist à direita. No mobile, menu recolhível e CTA compacto.
 
-### Signature: Antes/Depois
-O contraste planilha-caótica versus painel-organizado é o componente narrativo central. Lado "antes" em neutros frios desbotados e desalinhados (a dor); lado "depois" no vocabulário limpo da Sala de Controle (a solução). É a prova visual, não decoração.
+### Signature: Janela do Produto
+A janela do hero é o componente que define o site: barra de título com três pontos, campo de comando em Smoke e tag mono, corpo com o vídeo real do painel. Sempre em Ink, com sombra tecla e sombra de palco.
 
-## 6. Do's and Don'ts
+## Do's and Don'ts
 
 ### Do:
-- **Do** usar azul exclusivamente como instrumento de estado, ação ou marca (A Regra do Instrumento).
-- **Do** manter superfícies chatas em repouso e elevar só na interação (A Regra do Chato em Repouso).
-- **Do** reservar o halo azul para o CTA primário, um por seção.
-- **Do** construir hierarquia por salto de peso (Display 800 vs Body 400) e escala ≥1.25.
-- **Do** usar JetBrains Mono apenas em labels e números técnicos.
-- **Do** mostrar o produto funcionando (antes/depois, preview, fluxo) acima de adjetivos.
-- **Do** respeitar `prefers-reduced-motion`: entrance animations e barra de progresso degradam para estático.
-- **Do** garantir contraste WCAG AA (4.5:1 corpo, 3:1 títulos grandes) e foco visível de teclado.
+- **Do** mostrar o produto real ou o documento gerado como imagem principal de cada seção.
+- **Do** manter o azul do painel racionado a ícone, traço, ponto de status e badge.
+- **Do** usar Mist no CTA primário e Navy do Painel só no CTA final e em badges.
+- **Do** manter todo texto em branco, Mist, Ash ou Smoke para passar AA sobre Void.
+- **Do** respeitar `prefers-reduced-motion` em toda animação nova.
+- **Do** manter foco visível com contorno branco de 2px e afastamento de 2px em todo controle.
+- **Do** usar Mist nos ícones de check de listas; o sublinhado azul fica só no H1 do hero e no título da Automação.
 
 ### Don't:
-- **Don't** usar `background-clip: text` com gradiente (gradient text está proibido). A ênfase vem de peso e de cor sólida. O antigo `.text-laminado` foi removido do CSS em agosto de 2026; não o reintroduza sob outro nome.
-- **Don't** usar `text-slate-500` sobre `bg-surface`: mede 4,33:1 e reprova. Sobre branco ele passa (4,76:1). Em seção com fundo `#F3F4F6`, o secundário é `text-slate-600`.
-- **Don't** confiar em `min-height` para alvo de toque em `<a>`: não tem efeito em caixa inline. Links de navegação e rodapé precisam de `inline-flex items-center min-h-[44px]` explícito.
-- **Don't** aplicar glassmorphism decorativo. O `.glass-card` (bg-white/80 + backdrop-blur) só sobrevive se for raro e proposital, jamais como padrão.
-- **Don't** cair no SaaS genérico de template: gradiente roxo, grids de cards idênticos repetidos ao infinito, o clichê hero-metric (número grande + label + acento gradiente).
-- **Don't** parecer portal governamental: denso de texto, datado, pesado.
-- **Don't** usar neon sobre preto nem efeitos exagerados de hype cripto/IA.
-- **Don't** usar `#000` ou `#fff` puros; neutros sempre levemente tintados para o frio do azul.
-- **Don't** usar faixa lateral colorida (`border-left` > 1px) como acento em cards, listas ou alertas.
-- **Don't** aninhar cards dentro de cards.
-- **Don't** usar verde ou laranja como cor decorativa; são sinal funcional (A Regra do Sinal).
-- **Don't** usar em dashes na copy. Vírgulas, dois-pontos, ponto e vírgula ou parênteses.
+- **Don't** voltar ao coral (#ff6363) nem introduzir outra cor de acento.
+- **Don't** usar travessão em texto visível do site.
+- **Don't** pintar parágrafo ou título inteiro de azul.
+- **Don't** trocar a sombra tecla por drop-shadow difusa em cards.
+- **Don't** fazer redesign estrutural (tema claro, vidro fosco, hero editorial); o dono rejeitou essas direções em 2026-09.

@@ -20,7 +20,7 @@ web
 
 Homologa Plus é um SaaS B2B que faz a gestão completa do processo de homologação de usinas solares fotovoltaicas e automatiza a produção do pacote documental do protocolo. Centraliza projetos, documentos, fluxo de aprovação com a distribuidora, área do integrador, financeiro e visão geográfica de território.
 
-A landing existe para converter visitante qualificado em solicitação de acesso ao teste. Sucesso é o visitante entender que a Automação mata a parte mais cara do trabalho dele, confiar que é engenharia séria, e preencher o formulário de solicitação de acesso.
+A landing existe para converter visitante qualificado em conversa comercial. Sucesso é o visitante entender que a Automação mata a parte mais cara do trabalho dele, confiar que é engenharia séria, e abrir o WhatsApp para agendar uma demonstração.
 
 ## Positioning
 
@@ -49,9 +49,7 @@ Um concorrente que só faz gestão de processo não consegue copiar isso sem con
 
 ## Capabilities and Constraints
 
-**Modelo de acesso (durável nesta fase, confirmado com o usuário):** cadastro livre está fechado. Ninguém cria conta sozinho. O único caminho de entrada é o formulário de solicitação de acesso na própria landing (`#solicitar-acesso`, `src/components/LeadCapture.tsx`). A equipe cadastra o acesso manualmente e avisa pelo WhatsApp. Por isso o WhatsApp é campo obrigatório, não opcional. Todo CTA primário do site rola até esse formulário (`src/utils/cta.ts`).
-
-**Teste:** 3 dias, sem cartão de crédito, com o Homologa Full completo e Automação ilimitada. Valor único em `TRIAL_DIAS` (`src/utils/cta.ts`); a copy nunca deve escrever o número solto.
+**Modelo de acesso (verificado no código em 2026-09-13):** cadastro livre está fechado e não há captação de lead no site. Nenhum formulário, nenhum teste autoatendido. Todo CTA ("Agendar demonstração", "Falar no WhatsApp", "Falar com especialista") abre o WhatsApp direto com mensagem pré-preenchida (`src/utils/whatsapp.ts`, `buildWhatsAppLink`). A equipe faz a demonstração guiada e libera o acesso. A copy promete "Demonstração sem compromisso · Acesso liberado pela nossa equipe"; não escrever "teste grátis" nem prazo de teste.
 
 **Planos (dois, ambos com a plataforma inteira e a Automação):**
 
@@ -66,9 +64,11 @@ A diferença entre os planos é **volume de automação**, não recurso. Cadastr
 
 **Capacidades além da Automação:** gestão financeira (DRE e fluxo de caixa), visão territorial no mapa, dashboards e relatórios, catálogo de equipamentos, área do integrador, link público de cadastro de parceiros com a marca do cliente.
 
-**Técnico:** React 19 + Vite + Tailwind v4, React Router, `react-helmet-async` para SEO por rota, servidor Express (`server.ts`) para SSR/entrega e as rotas `api/waitlist.ts` e `api/contact.ts`. Lead é entregue por e-mail (Resend/nodemailer), sem painel administrativo próprio; as rotas `/admin` e `/crm` foram removidas e qualquer rota desconhecida redireciona para a home. Meta Pixel (`fbq`) instrumenta `Lead`, `InitiateCheckout` e `Contact`. Deploy Vercel, produção em www.homologaplus.com.br via merge na `main`.
+**Técnico:** React 19 + Vite + Tailwind v4, React Router, `react-helmet-async` para SEO por rota, servidor Express (`server.ts`) para entrega. Sem backend de lead (não existe pasta `api/`), sem painel administrativo; qualquer rota desconhecida redireciona para a home. Meta Pixel (`fbq`) instrumenta `Contact` nos cliques de WhatsApp e `InitiateCheckout` nos CTAs de plano, carregado só após consentimento de cookies (LGPD). Deploy Vercel, produção em www.homologaplus.com.br via merge na `main`.
 
-**Rotas legadas ainda no bundle:** `/start` e `/waitlist` existem mas não são o caminho de conversão atual. Verificar antes de tratá-las como vivas.
+**Rotas:** `/`, `/start`, `/obrigado`, `/privacidade`, `/termos` e 5 guias SEO (`/homologacao-energia-solar`, `/como-homologar-energia-solar`, `/homologacao-cpfl`, `/documentos-homologacao-fotovoltaica`, `/erros-homologacao-solar`). `/start` e `/obrigado` não são o caminho de conversão principal.
+
+**Identidade atual:** tema escuro "cockpit" (Raycast) com o acento no azul do painel do produto (`#8cc2fe` claro e `#172b50` navy). O dono rejeitou redesigns estruturais em 2026-09; mudanças visuais devem ser refinamento sobre o que está em produção.
 
 ## Brand Commitments
 

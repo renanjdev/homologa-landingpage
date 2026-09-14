@@ -9,7 +9,7 @@ const TermsOfUse = () => {
     <div className="min-h-screen bg-void font-sans text-mist">
       <Helmet>
         <title>Termos de Uso | Homologa Plus</title>
-        <meta name="description" content="Leia os termos de uso da plataforma Homologa Plus. Entenda suas responsabilidades e nossos compromissos com a gestão de homologação solar." />
+        <meta name="description" content="Leia os termos de uso da plataforma Homologa Plus. Entenda suas responsabilidades e nossos compromissos com a automação e gestão da homologação solar." />
         <link rel="canonical" href="https://homologaplus.com.br/termos" />
       </Helmet>
       <nav className="fixed top-0 left-0 right-0 z-50 bg-ink/70 backdrop-blur-md border-b border-white/10">

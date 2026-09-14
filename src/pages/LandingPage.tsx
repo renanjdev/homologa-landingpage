@@ -112,11 +112,11 @@ const LandingPage = () => {
     <div className="min-h-screen">
       {/* ... Helmet below ... */}
       <Helmet>
-        <title>Sistema de Gestão de Homologação Solar | Homologa Plus</title>
-        <meta name="description" content="Gere memorial, unifilar, planta e os formulários e anexos exigidos pela sua distribuidora, e valide a conformidade antes de protocolar. Homologação solar sem retrabalho." />
-        <meta name="keywords" content="homologação solar, sistema de gestão de homologação solar, automação homologação solar, memorial descritivo fotovoltaico, diagrama unifilar automático, formulários da distribuidora, anexos homologação fotovoltaica, dimensionamento elétrico fotovoltaico" />
-        <meta property="og:title" content="Sistema de Gestão de Homologação Solar | Homologa Plus" />
-        <meta property="og:description" content="Gere memorial, unifilar, planta e os formulários e anexos exigidos pela sua distribuidora, e valide a conformidade antes de protocolar. Homologação solar sem retrabalho." />
+        <title>Automação e Gestão de Homologação Solar | Homologa Plus</title>
+        <meta name="description" content="Automação e gestão da homologação solar: gera memorial, unifilar, planta e os anexos da sua distribuidora e valida a conformidade antes do protocolo." />
+        <meta name="keywords" content="automação de homologação solar, homologação solar, software de homologação fotovoltaica, gestão de homologação solar, memorial descritivo automático, diagrama unifilar automático, formulários da distribuidora, anexos homologação fotovoltaica, dimensionamento elétrico fotovoltaico" />
+        <meta property="og:title" content="Automação e Gestão de Homologação Solar | Homologa Plus" />
+        <meta property="og:description" content="Automação e gestão da homologação solar: gera memorial, unifilar, planta e os anexos da sua distribuidora e valida a conformidade antes do protocolo." />
         <link rel="canonical" href="https://homologaplus.com.br/" />
         <script type="application/ld+json">{`
           {
@@ -126,7 +126,7 @@ const LandingPage = () => {
             "url": "https://homologaplus.com.br",
             "applicationCategory": "BusinessApplication",
             "operatingSystem": "Web",
-            "description": "Sistema de gestão de homologação de energia solar que gera automaticamente a documentação técnica (memorial descritivo, diagrama unifilar, diagrama de blocos, planta de localização e os formulários e anexos exigidos por cada distribuidora) e valida a conformidade do projeto antes do protocolo. Inclui dimensionamento elétrico, gestão de projetos, prazos e financeiro.",
+            "description": "Software de automação e gestão da homologação de energia solar que gera automaticamente a documentação técnica (memorial descritivo, diagrama unifilar, diagrama de blocos, planta de localização e os formulários e anexos exigidos por cada distribuidora) e valida a conformidade do projeto antes do protocolo. Inclui dimensionamento elétrico, gestão de projetos, prazos e financeiro.",
             "featureList": [
               "Geração automática de memorial descritivo e de cálculo no padrão da distribuidora",
               "Diagrama unifilar dimensionado (condutores, disjuntores, DPS, proteções)",

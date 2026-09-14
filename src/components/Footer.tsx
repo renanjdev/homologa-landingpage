@@ -20,7 +20,7 @@ const Footer = () => {
               </span>
             </Link>
             <p className="text-ash max-w-sm mb-8">
-              A plataforma definitiva para gestão de homologação de usinas fotovoltaicas. Profissionalize sua empresa e escale seus resultados.
+              Automação e gestão da homologação de usinas fotovoltaicas, do projeto ao parecer da distribuidora.
             </p>
           </div>
 

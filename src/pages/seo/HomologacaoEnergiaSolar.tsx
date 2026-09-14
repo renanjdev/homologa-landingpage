@@ -1,6 +1,6 @@
 import React, { lazy, Suspense } from 'react';
 import { Helmet } from 'react-helmet-async';
-import { Reveal } from '../../lib/anim';
+import { Reveal, useScrolledPast } from '../../lib/anim';
 import { buildWhatsAppLink } from '../../utils/whatsapp';
 import { Link } from 'react-router-dom';
 import {
@@ -20,13 +20,7 @@ const Navbar = lazy(() => import('../../components/Navbar'));
 const Footer = lazy(() => import('../../components/Footer'));
 
 const HomologacaoEnergiaSolar = () => {
-  const [scrolled, setScrolled] = React.useState(false);
-
-  React.useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 100);
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  const scrolled = useScrolledPast(100);
 
   return (
     <div className="min-h-screen bg-void font-sans text-mist">

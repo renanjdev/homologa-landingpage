@@ -54,9 +54,6 @@ const BeforeAfter = () => {
     <Reveal as="section" y={20} margin="-100px" className="bg-ink py-20 md:py-28 border-t border-white/10">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="mx-auto mb-10 max-w-2xl text-center md:mb-14">
-          <p className="mb-3 font-mono text-[11px] uppercase tracking-[0.08em] text-smoke">
-            Antes e depois
-          </p>
           <h2 className="text-clamp-h2 font-display font-bold text-white text-balance">
             O mesmo projeto, nos dois processos
           </h2>

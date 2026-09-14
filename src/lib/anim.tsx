@@ -151,33 +151,27 @@ export function Reveal({
 }
 
 /**
- * Progresso de rolagem da página (0..1). Substitui useScroll + useSpring.
- * Throttle por rAF; suavização fica por conta de uma transição CSS no consumidor.
+ * true depois que a página rolou além de `offset` px.
+ * Usa IntersectionObserver num sentinela de 1px (sem listener de scroll).
  */
-export function useScrollProgress(): number {
-  const [progress, setProgress] = useState(0);
+export function useScrolledPast(offset: number): boolean {
+  const [past, setPast] = useState(false);
   useEffect(() => {
-    if (typeof window === 'undefined') return;
-    let raf = 0;
-    const update = () => {
-      raf = 0;
-      const doc = document.documentElement;
-      const max = doc.scrollHeight - doc.clientHeight;
-      setProgress(max > 0 ? Math.min(1, Math.max(0, doc.scrollTop / max)) : 0);
-    };
-    const onScroll = () => {
-      if (!raf) raf = requestAnimationFrame(update);
-    };
-    update();
-    window.addEventListener('scroll', onScroll, { passive: true });
-    window.addEventListener('resize', onScroll, { passive: true });
+    if (typeof window === 'undefined' || typeof IntersectionObserver === 'undefined') return;
+    const sentinel = document.createElement('div');
+    sentinel.setAttribute('aria-hidden', 'true');
+    sentinel.style.cssText = `position:absolute;top:${offset}px;left:0;width:1px;height:1px;pointer-events:none;`;
+    document.body.appendChild(sentinel);
+    const io = new IntersectionObserver(([entry]) => {
+      setPast(!entry.isIntersecting && entry.boundingClientRect.top < 0);
+    });
+    io.observe(sentinel);
     return () => {
-      window.removeEventListener('scroll', onScroll);
-      window.removeEventListener('resize', onScroll);
-      if (raf) cancelAnimationFrame(raf);
+      io.disconnect();
+      sentinel.remove();
     };
-  }, []);
-  return progress;
+  }, [offset]);
+  return past;
 }
 
 /**

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Reveal } from '../lib/anim';
-import { LayoutDashboard, Workflow, LineChart, Map, Check, CheckCircle2 } from 'lucide-react';
+import { LayoutDashboard, Workflow, LineChart, Map, Check } from 'lucide-react';
 
 type Feature = {
   label: string;
@@ -78,6 +78,42 @@ const features: Feature[] = [
   },
 ];
 
+
+const FeatureLabel = ({ f }: { f: Feature }) => (
+  <span className="inline-flex items-center gap-2.5 mb-5 text-sm font-semibold text-ash">
+    <span className="flex h-7 w-7 items-center justify-center rounded-lg bg-obsidian text-coral shadow-[inset_0_0_0_1px_rgba(255,255,255,0.06)]">
+      <f.Icon className="w-4 h-4" />
+    </span>
+    {f.label}
+  </span>
+);
+
+const FeatureBullets = ({ bullets }: { bullets: string[] }) => (
+  <ul className="space-y-3.5">
+    {bullets.map((b) => (
+      <li key={b} className="flex items-start gap-3 text-ash font-medium">
+        <span className="mt-0.5 flex h-5 w-5 flex-none items-center justify-center rounded-md bg-obsidian text-mist shadow-[inset_0_0_0_1px_rgba(255,255,255,0.06)]">
+          <Check className="w-3 h-3" strokeWidth={3.5} />
+        </span>
+        {b}
+      </li>
+    ))}
+  </ul>
+);
+
+const FeatureShot = ({ f, imgClassName = 'block h-auto w-full' }: { f: Feature; imgClassName?: string }) => (
+  <div className={f.frameless ? '' : 'rounded-2xl overflow-hidden border border-white/10 bg-ink shadow-[var(--key-soft)]'}>
+    <img
+      src={(f.webp || f.img).replace(/\.(png|jpe?g)$/, '.webp')}
+      alt={f.alt}
+      width={f.w ?? 1919}
+      height={f.h ?? 964}
+      className={imgClassName}
+      loading="lazy"
+    />
+  </div>
+);
+
 const Features = () => {
   return (
     <section id="solucao" className="py-16 md:py-28 bg-void overflow-hidden">
@@ -88,10 +124,7 @@ const Features = () => {
           margin="-100px"
           className="text-center max-w-2xl mx-auto mb-16 md:mb-24"
         >
-          <span className="font-mono text-[11px] uppercase tracking-[0.08em] text-smoke">
-            A plataforma
-          </span>
-          <h2 className="text-clamp-h2 font-bold text-white mb-4 mt-3 text-balance">
+          <h2 className="text-clamp-h2 font-bold text-white mb-4 text-balance">
             A plataforma por trás da automação
           </h2>
           <p className="text-base md:text-lg text-ash leading-relaxed">
@@ -100,7 +133,7 @@ const Features = () => {
         </Reveal>
 
         <div className="flex flex-col gap-20 md:gap-28">
-          {features.map((f) => (
+          {features.slice(0, 2).map((f) => (
             <Reveal
               as="div"
               key={f.label}
@@ -108,58 +141,41 @@ const Features = () => {
               margin="-80px"
               className="grid items-center gap-10 lg:gap-12 lg:grid-cols-[0.8fr_1.4fr]"
             >
-              {/* Copy */}
               <div className={f.flip ? 'lg:order-2' : ''}>
-                <span className="inline-flex items-center gap-2.5 mb-5 font-mono text-[11px] md:text-xs font-semibold uppercase tracking-[0.08em] text-smoke">
-                  <span className="flex h-7 w-7 items-center justify-center rounded-lg bg-obsidian text-coral shadow-[inset_0_0_0_1px_rgba(255,255,255,0.06)]">
-                    <f.Icon className="w-4 h-4" />
-                  </span>
-                  {f.label}
-                </span>
+                <FeatureLabel f={f} />
                 <h3 className="text-2xl md:text-3xl font-bold text-white leading-[1.12] tracking-tight mb-4 text-balance">
                   {f.title}
                 </h3>
                 <p className="text-base md:text-lg text-ash leading-relaxed mb-7 max-w-xl">
                   {f.desc}
                 </p>
-                <ul className="space-y-3.5">
-                  {f.bullets.map((b) => (
-                    <li key={b} className="flex items-start gap-3 text-ash font-medium">
-                      <span className="mt-0.5 flex h-5 w-5 flex-none items-center justify-center rounded-md bg-obsidian text-mist shadow-[inset_0_0_0_1px_rgba(255,255,255,0.06)]">
-                        <Check className="w-3 h-3" strokeWidth={3.5} />
-                      </span>
-                      {b}
-                    </li>
-                  ))}
-                </ul>
+                <FeatureBullets bullets={f.bullets} />
               </div>
-
-              {/* Print */}
-              <div className={`relative ${f.flip ? 'lg:order-1' : ''}`}>
-                {f.badge && (
-                  <div className="animate-floaty absolute -top-4 left-4 z-10 hidden md:flex items-center gap-2.5 rounded-xl border border-white/10 bg-obsidian px-3.5 py-2.5 shadow-[var(--key-soft)]">
-                    <span className="flex h-7 w-7 items-center justify-center rounded-lg bg-graphite text-coral shadow-[inset_0_0_0_1px_rgba(255,255,255,0.06)]">
-                      <CheckCircle2 className="w-4 h-4" />
-                    </span>
-                    <span>
-                      <span className="block text-sm font-bold leading-tight text-white">{f.badge.title}</span>
-                      <span className="block font-mono text-[11px] text-smoke">{f.badge.sub}</span>
-                    </span>
-                  </div>
-                )}
-                <div className={f.frameless ? '' : 'rounded-2xl overflow-hidden border border-white/10 bg-ink shadow-[var(--key-soft)]'}>
-                  <img
-                    src={(f.webp || f.img).replace(/\.(png|jpe?g)$/, '.webp')}
-                    alt={f.alt}
-                    width={f.w ?? 1919}
-                    height={f.h ?? 964}
-                    className="block h-auto w-full"
-                    loading="lazy"
-                  />
-                </div>
+              <div className={f.flip ? 'lg:order-1' : ''}>
+                <FeatureShot f={f} />
               </div>
             </Reveal>
           ))}
+
+          {/* Os demais recursos em grade de 2 colunas: quebra o zigue-zague (máx. 2 seguidos) */}
+          <div className="grid gap-14 md:grid-cols-2 md:gap-10">
+            {features.slice(2).map((f, idx) => (
+              <Reveal as="div" key={f.label} y={24} delay={idx * 0.08} margin="-80px" className="flex flex-col">
+                {/* imagens com alturas diferentes: alinha pela base para os títulos ficarem na mesma linha */}
+                <div className="flex items-end justify-center md:h-[400px]">
+                  <FeatureShot f={f} imgClassName="block h-auto w-full md:max-h-[400px] md:w-auto" />
+                </div>
+                <div className="mt-8">
+                  <FeatureLabel f={f} />
+                  <h3 className="text-xl md:text-2xl font-bold text-white leading-[1.15] tracking-tight mb-3 text-balance">
+                    {f.title}
+                  </h3>
+                  <p className="text-base text-ash leading-relaxed mb-6">{f.desc}</p>
+                  <FeatureBullets bullets={f.bullets} />
+                </div>
+              </Reveal>
+            ))}
+          </div>
         </div>
       </div>
     </section>

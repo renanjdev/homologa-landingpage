@@ -25,9 +25,6 @@ const FinalCTA = () => {
           />
 
           <div className="relative z-10 max-w-2xl mx-auto">
-            <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.2em] text-smoke mb-5">
-              Comece hoje
-            </p>
             <h2 className="text-clamp-h2 font-bold text-white mb-5 text-balance">
               Gere e valide sua documentação a partir de hoje
             </h2>

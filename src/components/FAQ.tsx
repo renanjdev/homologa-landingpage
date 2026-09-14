@@ -75,9 +75,6 @@ const FAQ = () => {
       </Helmet>
       <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-8 md:mb-12">
-          <p className="font-mono text-[11px] uppercase tracking-[0.08em] text-smoke mb-4">
-            Dúvidas
-          </p>
           <h2 className="text-clamp-h2-sm font-bold text-white mb-3 md:mb-4 text-balance">
             Perguntas Frequentes
           </h2>

@@ -197,7 +197,7 @@
   overflow: hidden;
   background: var(--void);
   color: #ffffff;
-  padding: clamp(6.5rem, 10vw, 10rem) 1rem clamp(6rem, 9vw, 8.5rem);
+  padding: clamp(6rem, 8vw, 7.5rem) 1rem clamp(5rem, 8vw, 7rem);
 }
 
 /* Foco visível no hero escuro: o outline padrão (grafite) some no preto — força branco. */
@@ -238,16 +238,6 @@
 .hero-inner { position: relative; z-index: 2; width: 100%; max-width: 1120px; margin: 0 auto; display: flex; flex-direction: column; align-items: center; }
 .hero-copy { max-width: 820px; text-align: center; display: flex; flex-direction: column; align-items: center; }
 
-.hero-eyebrow {
-  display: inline-flex; align-items: center; gap: 8px; margin-bottom: 24px;
-  font-family: var(--font-mono); font-size: 11px; font-weight: 500; letter-spacing: .08em; text-transform: uppercase;
-  color: var(--ash); padding: 6px 12px 6px 8px; border-radius: 9999px;
-  background: var(--ember); border: 1px solid rgba(140,194,254,0.24);
-}
-.hero-ia-badge {
-  display: inline-flex; align-items: center; padding: 2px 7px; border-radius: 6px;
-  background: #172b50; color: #ffffff; font-family: var(--font-sans); font-weight: 700; font-size: 11px; letter-spacing: .04em;
-}
 
 .hero-h1 {
   font-family: var(--font-sans); font-weight: 400; font-size: clamp(2rem, 4.2vw + 0.6rem, 3.5rem);
@@ -295,8 +285,6 @@
 .hero-btn-ghost { background: rgba(255,255,255,0.04); color: #ffffff; border: 1px solid var(--border); box-shadow: var(--key-soft); }
 .hero-btn-ghost:hover { border-color: var(--slate); background: rgba(255,255,255,0.09); }
 
-.hero-note { margin-top: 18px; font-size: 0.875rem; font-weight: 500; color: #b9c8c2; }
-.hero-note b { color: #ffffff; font-weight: 600; }
 
 .hero-trust { margin-top: 34px; font-family: var(--font-mono); font-size: 12px; letter-spacing: .02em; color: var(--smoke); text-align: center; }
 
@@ -353,3 +341,11 @@
 @media (max-width: 767px) {
   .hero-stage { margin-top: 40px; }
 }
+
+/* Trilho de progresso da navbar: animação ligada ao scroll em CSS (sem JS).
+   Onde animation-timeline não existe, o trilho fica vazio (é decorativo). */
+.scroll-progress { transform: scaleX(0); }
+@supports (animation-timeline: scroll()) {
+  .scroll-progress { animation: hp-scroll-progress linear both; animation-timeline: scroll(root block); }
+}
+@keyframes hp-scroll-progress { to { transform: scaleX(1); } }

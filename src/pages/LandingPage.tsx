@@ -1,6 +1,6 @@
 import React, { lazy, Suspense } from 'react';
 import { Helmet } from 'react-helmet-async';
-import { Reveal } from '../lib/anim';
+import { Reveal, useScrolledPast } from '../lib/anim';
 import { ShieldCheck, ChevronRight } from 'lucide-react';
 import WhatsAppIcon from '../components/icons/WhatsAppIcon';
 import { Link } from 'react-router-dom';
@@ -36,10 +36,6 @@ const Hero = () => {
 
       <div className="hero-inner">
         <Reveal as="div" y={20} trigger="mount" className="hero-copy">
-          <span className="hero-eyebrow">
-            <span className="hero-ia-badge">IA</span>
-            Sistema de gestão para homologação solar
-          </span>
           <h1 className="hero-h1">
             Não para no memorial e no unifilar: o Homologa Plus gera <span className="hero-grif hero-grif--wrap">os formulários e anexos de cada distribuidora</span> e valida antes do protocolo.
           </h1>
@@ -67,9 +63,6 @@ const Hero = () => {
               Falar no WhatsApp
             </a>
           </div>
-          <p className="hero-note">
-            <b>Demonstração sem compromisso</b> · Acesso liberado pela nossa equipe
-          </p>
 
           {/* Prova de resultado visível no mobile (no desktop vira card flutuante sobre o painel) */}
           <div className="hero-mproof">
@@ -110,20 +103,12 @@ const Hero = () => {
 };
 
 const LandingPage = () => {
-  const [scrolled, setScrolled] = React.useState(false);
+  const scrolled = useScrolledPast(600);
   // FASE 1: o site inteiro é escuro (Void). A navbar é sempre cockpit-dark —
   // não há mais troca dark→claro ao rolar. `scrolled` só governa os CTAs fixos.
   // Telemetria de desempenho só com consentimento de cookies analíticos (LGPD).
   const consent = useConsent();
 
-  React.useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 600);
-    };
-    handleScroll();
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
 
   return (
     <div className="min-h-screen">
@@ -229,7 +214,7 @@ const LandingPage = () => {
           tabIndex={scrolled ? 0 : -1}
           className="flex flex-1 items-center justify-center gap-2 rounded-xl bg-mist px-5 py-3.5 text-base font-bold text-ink shadow-[var(--btn-lift)] hover:brightness-105 active:scale-[0.98] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
         >
-          Agendar demo
+          Agendar demonstração
         </a>
         <a
           href={buildWhatsAppLink()}

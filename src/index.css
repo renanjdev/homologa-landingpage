@@ -245,6 +245,8 @@
   font-family: var(--font-sans); font-weight: 400; font-size: clamp(2rem, 4.2vw + 0.6rem, 3.5rem);
   line-height: 1.14; letter-spacing: -0.005em; color: #ffffff; max-width: 20ch; margin: 0 auto; text-wrap: balance;
 }
+/* Desktop: manchete longa em menos linhas, CTA principal acima da dobra em 1366x768. */
+@media (min-width: 1024px) { .hero-h1 { max-width: 27ch; } }
 .hero-grif { color: #ffffff; white-space: nowrap; position: relative; }
 .hero-grif::after {
   content: ""; position: absolute; left: 0; right: 0; bottom: -0.1em; height: 2px; border-radius: 2px;

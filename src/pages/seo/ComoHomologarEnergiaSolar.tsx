@@ -1,6 +1,6 @@
-import React, { lazy, Suspense, useState, useEffect } from 'react';
+import React, { lazy, Suspense } from 'react';
 import { Helmet } from 'react-helmet-async';
-import { Reveal } from '../../lib/anim';
+import { Reveal, useScrolledPast } from '../../lib/anim';
 import { buildWhatsAppLink } from '../../utils/whatsapp';
 import { Link } from 'react-router-dom';
 import {
@@ -23,13 +23,7 @@ const Navbar = lazy(() => import('../../components/Navbar'));
 const Footer = lazy(() => import('../../components/Footer'));
 
 const ComoHomologarEnergiaSolar = () => {
-  const [scrolled, setScrolled] = useState(false);
-
-  useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 20);
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  const scrolled = useScrolledPast(20);
 
   return (
     <div className="min-h-screen bg-void font-sans text-mist">

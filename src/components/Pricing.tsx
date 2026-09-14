@@ -72,7 +72,7 @@ const Pricing = () => {
         "Suporte dedicado",
       ],
       ctaText: "Agendar demonstração",
-      secondaryCta: "Falar com especialista",
+      secondaryCta: "Falar no WhatsApp",
       highlight: true,
       badge: "Mais escolhido",
       badgeClass: "bg-[#172b50] text-white",

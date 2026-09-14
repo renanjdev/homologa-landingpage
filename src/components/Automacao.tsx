@@ -458,7 +458,7 @@ const Automacao = () => {
               onClick={() => window.fbq && window.fbq('track', 'Contact')}
               className={`inline-flex items-center justify-center gap-2 rounded-xl bg-mist px-7 py-3.5 text-base font-bold text-ink shadow-[var(--btn-lift)] transition-all hover:-translate-y-px hover:brightness-105 ${focusRing}`}
             >
-              Agendar demonstração da Automação
+              Agendar demonstração
               <ArrowRight className="h-4 w-4" />
             </a>
             <p className="text-sm text-ash">

@@ -1,5 +1,4 @@
 import React from 'react';
-import { useScrollProgress } from '../lib/anim';
 import { Link } from 'react-router-dom';
 import { ChevronRight, Menu, X } from 'lucide-react';
 import { buildWhatsAppLink } from '../utils/whatsapp';
@@ -12,7 +11,6 @@ const trackContact = () => { if (window.fbq) window.fbq('track', 'Contact'); };
 const Navbar = ({ scrolled }: { scrolled: boolean }) => {
   const [isOpen, setIsOpen] = React.useState(false);
 
-  const scrollProgress = useScrollProgress();
 
   const navLinks = [
     { name: 'Automação', href: '#automacao' },
@@ -25,8 +23,7 @@ const Navbar = ({ scrolled }: { scrolled: boolean }) => {
       {/* Trilho de progresso — hairline coral sobre o topo */}
       <div className="fixed top-0 left-0 right-0 h-0.5 z-[60] bg-white/10">
         <div
-          className="h-full origin-left bg-coral transition-transform duration-150 ease-out"
-          style={{ transform: `scaleX(${scrollProgress})` }}
+          className="scroll-progress h-full origin-left bg-coral"
         />
       </div>
       <nav
@@ -85,15 +82,6 @@ const Navbar = ({ scrolled }: { scrolled: boolean }) => {
             </div>
 
             <div className="md:hidden flex items-center gap-2">
-              <a
-                href={CTA_WHATSAPP}
-                target="_blank"
-                rel="noopener noreferrer"
-                onClick={trackContact}
-                className="inline-flex items-center justify-center min-h-[44px] text-xs font-bold px-4 py-2 rounded-xl whitespace-nowrap bg-mist text-ink shadow-[var(--btn-lift)] active:scale-95 transition-transform focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
-              >
-                Agendar demo
-              </a>
               <button
                 onClick={() => setIsOpen(!isOpen)}
                 aria-label={isOpen ? 'Fechar menu' : 'Abrir menu'}

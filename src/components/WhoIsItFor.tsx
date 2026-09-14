@@ -21,10 +21,7 @@ const WhoIsItFor = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid items-start gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:gap-20">
           <Reveal y={20} margin="-100px">
-            <span className="font-mono text-[11px] uppercase tracking-[0.08em] text-smoke">
-              Público
-            </span>
-            <h2 className="text-clamp-h2-sm font-bold text-white mb-4 mt-3">
+            <h2 className="text-clamp-h2-sm font-bold text-white mb-4">
               Para quem é o Homologa Plus
             </h2>
             <p className="text-lg text-ash leading-relaxed max-w-md">

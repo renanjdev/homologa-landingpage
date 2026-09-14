@@ -1,7 +1,8 @@
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Reveal } from '../lib/anim';
-import { CheckCircle2, MessageCircle, PlayCircle, FileText, Users, DollarSign, Clock, ShieldCheck, BarChart3 } from 'lucide-react';
+import { CheckCircle2, PlayCircle, FileText, Users, DollarSign, Clock, ShieldCheck, BarChart3 } from 'lucide-react';
+import WhatsAppIcon from '../components/icons/WhatsAppIcon';
 import { buildWhatsAppLink } from '../utils/whatsapp';
 
 // Conversão direta no WhatsApp: o formulário on-page foi removido, todo CTA
@@ -95,7 +96,7 @@ const Start = () => {
             onClick={trackContact}
             className="w-full flex items-center justify-center gap-3 bg-white/5 hover:bg-white/10 hover:border-steel text-white text-lg font-bold py-5 px-8 rounded-2xl transition-all border border-white/10 shadow-[var(--key-soft)] active:scale-[0.98] min-h-[56px] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
           >
-            <MessageCircle className="w-5 h-5 text-mist" />
+            <WhatsAppIcon className="w-5 h-5 text-mist" />
             Falar no WhatsApp
           </Reveal>
         </div>
@@ -189,7 +190,7 @@ const Start = () => {
           onClick={trackContact}
           className="w-full max-w-sm flex items-center justify-center gap-3 bg-mist hover:brightness-105 hover:-translate-y-px text-ink text-lg font-extrabold py-5 px-8 rounded-2xl transition-all shadow-[var(--btn-lift)] active:scale-[0.98] min-h-[56px] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
         >
-          <MessageCircle className="w-5 h-5" />
+          <WhatsAppIcon className="w-5 h-5" />
           Agendar demonstração
         </Reveal>
 

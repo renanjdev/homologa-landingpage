@@ -160,7 +160,8 @@ Monocromático escuro com um acento frio e uma atmosfera azul só no hero.
 
 ### Hierarchy
 - **Display** (400, clamp 2rem a 3.5rem, 1.14): só o H1 do hero, largura máxima de 20ch, com `text-wrap: balance`.
-- **Headline** (700 a 800, clamp 1.875rem a 3rem, 1.15, -0.02em): títulos de seção (`text-clamp-h2`).
+- **Headline** (700, clamp 1.875rem a 3rem, 1.15, -0.02em): títulos das seções principais (Antes/Depois, Automação, Plataforma, Planos, CTA final), com `text-clamp-h2`.
+- **Headline de apoio** (700, clamp 1.625rem a 2.25rem, 1.2, -0.015em): títulos das seções de apoio (celular, público, FAQ), com `text-clamp-h2-sm`.
 - **Title** (700, 1.125rem, 1.3): título de card e de item de lista.
 - **Body** (400, 1rem a 1.125rem, 1.55): subtítulos e parágrafos, com 52 a 65ch de largura.
 - **Meta** (400, 13px, 1.4): legendas de linha em cards comparativos, planos e banner de cookies, em Inter ou mono.

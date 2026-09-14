@@ -73,6 +73,14 @@
     letter-spacing: -0.02em;
   }
 
+  /* Título de seção de apoio (celular, público, FAQ): um degrau abaixo das
+     seções principais (Antes/Depois, Automação, Plataforma, Planos, CTA final). */
+  .text-clamp-h2-sm {
+    font-size: clamp(1.625rem, 1.6vw + 1rem, 2.25rem);
+    line-height: 1.2;
+    letter-spacing: -0.015em;
+  }
+
   /* Visible keyboard focus across all interactive elements (WCAG AA). */
   a:focus-visible,
   button:focus-visible,

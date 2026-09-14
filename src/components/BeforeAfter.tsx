@@ -19,7 +19,7 @@ import { CheckCircle2, Circle, XCircle, Paperclip, ArrowRight } from 'lucide-rea
  * o estado ativo do instrumento resolvido, esmeralda = etapa concluída/validada.
  */
 
-/** Etapas canônicas da homologação, as mesmas nomeadas na seção de fluxo. */
+/** Etapas canônicas da homologação, as mesmas do card "Fluxo de homologação". */
 const etapas = [
   { nome: 'Projeto cadastrado', estado: 'feito' as const },
   { nome: 'Análise documental', estado: 'feito' as const },

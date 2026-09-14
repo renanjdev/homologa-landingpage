@@ -1,6 +1,7 @@
 import React from 'react';
 import { Reveal } from '../lib/anim';
-import { ArrowRight, MessageCircle, ShieldCheck } from 'lucide-react';
+import { ArrowRight, ShieldCheck } from 'lucide-react';
+import WhatsAppIcon from './icons/WhatsAppIcon';
 import { buildWhatsAppLink } from '../utils/whatsapp';
 
 const FinalCTA = () => {
@@ -52,7 +53,7 @@ const FinalCTA = () => {
                 onClick={() => window.fbq && window.fbq('track', 'Contact')}
                 className="bg-white/5 border border-white/10 shadow-[var(--key-soft)] hover:bg-white/10 hover:border-steel text-white px-8 py-4 rounded-xl text-lg font-bold transition-all duration-200 ease-out flex items-center justify-center gap-2 w-full sm:w-auto focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
               >
-                <MessageCircle className="w-5 h-5" />
+                <WhatsAppIcon className="w-5 h-5" />
                 Falar no WhatsApp
               </a>
             </div>

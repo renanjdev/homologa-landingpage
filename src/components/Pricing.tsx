@@ -95,9 +95,6 @@ const Pricing = () => {
           <h2 className="text-clamp-h2 font-bold text-white mb-3 md:mb-5 text-balance">
             Escolha o plano ideal para sua operação
           </h2>
-          <p className="text-sm sm:text-base md:text-lg text-ash max-w-2xl mx-auto">
-            Mais de 200 empresas já organizam suas homologações com o Homologa Plus.
-          </p>
         </div>
 
         {/* Guia de escolha — a diferença entre os planos é o volume, não o recurso */}

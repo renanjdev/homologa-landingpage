@@ -1,7 +1,8 @@
 import React, { lazy, Suspense } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Reveal } from '../lib/anim';
-import { ShieldCheck, ChevronRight, MessageCircle, CheckCircle2 } from 'lucide-react';
+import { ShieldCheck, ChevronRight } from 'lucide-react';
+import WhatsAppIcon from '../components/icons/WhatsAppIcon';
 import { Link } from 'react-router-dom';
 import { buildWhatsAppLink } from '../utils/whatsapp';
 import { SpeedInsights } from "@vercel/speed-insights/react";
@@ -10,7 +11,6 @@ import { useConsent } from '../lib/consent';
 
 // Lazy load components below the fold
 const BeforeAfter = lazy(() => import('../components/BeforeAfter'));
-const Flow = lazy(() => import('../components/Flow'));
 const MobilePreview = lazy(() => import('../components/MobilePreview'));
 const Features = lazy(() => import('../components/Features'));
 const Automacao = lazy(() => import('../components/Automacao'));
@@ -63,7 +63,7 @@ const Hero = () => {
               onClick={() => window.fbq && window.fbq('track', 'Contact')}
               className="hero-btn hero-btn-ghost"
             >
-              <MessageCircle className="h-5 w-5" />
+              <WhatsAppIcon className="h-5 w-5" />
               Falar no WhatsApp
             </a>
           </div>
@@ -73,13 +73,6 @@ const Hero = () => {
 
           {/* Prova de resultado visível no mobile (no desktop vira card flutuante sobre o painel) */}
           <div className="hero-mproof">
-            <span className="hero-mchip">
-              <span className="hero-chip-ico coral"><CheckCircle2 className="h-4 w-4" aria-hidden="true" /></span>
-              <span className="hero-chip-txt">
-                <span className="hero-chip-t">98% de aprovação</span>
-                <span className="hero-chip-s">taxa de homologação</span>
-              </span>
-            </span>
             <span className="hero-mchip">
               <span className="hero-chip-ico mist"><ShieldCheck className="h-4 w-4" aria-hidden="true" /></span>
               <span className="hero-chip-txt">
@@ -99,13 +92,6 @@ const Hero = () => {
           trigger="mount"
           className="hero-stage"
         >
-          <div className="hero-float hero-float-tl animate-floaty" style={{ animationDelay: '1.4s' }}>
-            <span className="hero-chip-ico coral"><CheckCircle2 className="h-5 w-5" aria-hidden="true" /></span>
-            <span className="hero-chip-txt">
-              <span className="hero-chip-t">98% de aprovação</span>
-              <span className="hero-chip-s">taxa de homologação</span>
-            </span>
-          </div>
           <div className="hero-float hero-float-br animate-floaty" style={{ animationDelay: '1.9s' }}>
             <span className="hero-chip-ico mist"><ShieldCheck className="h-5 w-5" aria-hidden="true" /></span>
             <span className="hero-chip-txt">
@@ -216,7 +202,6 @@ const LandingPage = () => {
         <main>
           <BeforeAfter />
           <Automacao />
-          <Flow />
           <Features />
           <MobilePreview />
           <WhoIsItFor />
@@ -255,7 +240,7 @@ const LandingPage = () => {
           tabIndex={scrolled ? 0 : -1}
           className="flex items-center justify-center rounded-xl border border-white/10 bg-white/5 px-4 py-3.5 text-[#25D366] hover:bg-white/10 active:scale-[0.98] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
         >
-          <MessageCircle className="h-6 w-6" />
+          <WhatsAppIcon className="h-6 w-6" />
         </a>
       </div>
 
@@ -268,7 +253,7 @@ const LandingPage = () => {
         aria-label="Falar no WhatsApp"
         className="fixed bottom-8 right-8 z-40 hidden h-14 w-14 items-center justify-center rounded-full border border-white/10 bg-obsidian text-[#25D366] shadow-[var(--key-soft)] transition-transform hover:-translate-y-0.5 hover:bg-graphite md:flex focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
       >
-        <MessageCircle className="h-7 w-7" />
+        <WhatsAppIcon className="h-7 w-7" />
       </a>
 
       {/* Back to Top Button (apenas desktop — no mobile a barra de CTA ocupa o rodapé) */}

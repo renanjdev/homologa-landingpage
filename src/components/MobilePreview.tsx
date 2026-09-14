@@ -12,7 +12,7 @@ const MobilePreview = () => {
             <span className="font-mono text-[11px] uppercase tracking-[0.08em] text-smoke">
               No celular
             </span>
-            <h2 className="text-clamp-h2 font-bold text-white mb-3 mt-3">
+            <h2 className="text-clamp-h2-sm font-bold text-white mb-3 mt-3">
               Seu sistema de homologação, em qualquer lugar.
             </h2>
 

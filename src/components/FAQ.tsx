@@ -78,7 +78,7 @@ const FAQ = () => {
           <p className="font-mono text-[11px] uppercase tracking-[0.08em] text-smoke mb-4">
             Dúvidas
           </p>
-          <h2 className="text-clamp-h2 font-bold text-white mb-3 md:mb-4 text-balance">
+          <h2 className="text-clamp-h2-sm font-bold text-white mb-3 md:mb-4 text-balance">
             Perguntas Frequentes
           </h2>
           <p className="text-ash text-sm md:text-base">

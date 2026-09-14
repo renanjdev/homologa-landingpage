@@ -33,7 +33,7 @@ const FAQ = () => {
     },
     {
       question: "Como funciona a demonstração?",
-      answer: "Você agenda pelo WhatsApp e nossa equipe faz uma demonstração guiada do sistema — do cadastro do projeto à documentação gerada e validada — e esclarece dúvidas sobre planos e implantação. Sem compromisso."
+      answer: "Você agenda pelo WhatsApp e nossa equipe faz uma demonstração guiada do sistema, do cadastro do projeto à documentação gerada e validada, e esclarece dúvidas sobre planos e implantação. Sem compromisso."
     },
     {
       question: "Funciona com a minha concessionária?",
@@ -78,7 +78,7 @@ const FAQ = () => {
           <p className="font-mono text-[11px] uppercase tracking-[0.08em] text-smoke mb-4">
             Dúvidas
           </p>
-          <h2 className="text-clamp-h2 font-bold text-white mb-3 md:mb-4 text-balance">
+          <h2 className="text-clamp-h2-sm font-bold text-white mb-3 md:mb-4 text-balance">
             Perguntas Frequentes
           </h2>
           <p className="text-ash text-sm md:text-base">

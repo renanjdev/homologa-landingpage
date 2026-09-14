@@ -23,7 +23,7 @@ const Navbar = ({ scrolled }: { scrolled: boolean }) => {
   return (
     <>
       {/* Trilho de progresso — hairline coral sobre o topo */}
-      <div className="fixed top-0 left-0 right-0 h-px z-[60] bg-white/10">
+      <div className="fixed top-0 left-0 right-0 h-0.5 z-[60] bg-white/10">
         <div
           className="h-full origin-left bg-coral transition-transform duration-150 ease-out"
           style={{ transform: `scaleX(${scrollProgress})` }}

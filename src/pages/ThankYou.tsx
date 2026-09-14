@@ -1,6 +1,7 @@
 import React from 'react';
 import { Reveal } from '../lib/anim';
-import { CheckCircle2, ArrowRight, MessageCircle } from 'lucide-react';
+import { CheckCircle2, ArrowRight } from 'lucide-react';
+import WhatsAppIcon from '../components/icons/WhatsAppIcon';
 import { Link } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
@@ -27,7 +28,7 @@ const ThankYou = () => {
               duration={0.5}
               delay={0.2}
               trigger="mount"
-              className="w-24 h-24 bg-coral-ember rounded-full flex items-center justify-center mx-auto mb-8 shadow-[inset_0_0_0_1px_rgba(255,99,99,0.25)]"
+              className="w-24 h-24 bg-coral-ember rounded-full flex items-center justify-center mx-auto mb-8 shadow-[inset_0_0_0_1px_rgba(140,194,254,0.25)]"
             >
               <CheckCircle2 className="w-12 h-12 text-coral" />
             </Reveal>
@@ -69,7 +70,7 @@ const ThankYou = () => {
                 rel="noopener noreferrer"
                 className="w-full sm:w-auto px-6 py-3.5 bg-mist hover:brightness-105 hover:-translate-y-px text-ink rounded-xl font-bold transition-all flex items-center justify-center gap-2 shadow-[var(--btn-lift)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
               >
-                <MessageCircle className="w-5 h-5" />
+                <WhatsAppIcon className="w-5 h-5" />
                 Dúvidas? Fale no WhatsApp
               </a>
               <Link 

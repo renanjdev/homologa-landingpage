@@ -132,12 +132,11 @@ const unifilarCompletoAlt =
   'Diagrama unifilar completo gerado pela Automação, com memória de cálculo, legenda e carimbo do responsável técnico';
 
 const Automacao = () => {
-  // Exemplos reais gerados. O diagrama unifilar é o foco (frente/centro do leque).
+  // Exemplos reais gerados. O unifilar não entra aqui: ele aparece inteiro logo abaixo.
   const exemplos = [
-    { f: 'doc-unifilar', alt: 'Diagrama unifilar gerado pela Automação', label: 'Diagrama Unifilar', fan: 'z-40 group-hover:-translate-y-4' },
-    { f: 'doc-blocos', alt: 'Diagrama de blocos gerado pela Automação', label: 'Diagrama de Blocos', fan: 'z-30 translate-x-[68%] rotate-[10deg] group-hover:translate-x-[98%] group-hover:rotate-[15deg]' },
-    { f: 'doc-planta', alt: 'Planta de localização gerada pela Automação', label: 'Planta de Localização', fan: 'z-20 -translate-x-[56%] -rotate-[7deg] group-hover:-translate-x-[78%] group-hover:-rotate-[11deg]' },
-    { f: 'doc-memorial', alt: 'Memorial descritivo gerado pela Automação', label: 'Memorial Descritivo', fan: 'z-10 -translate-x-[106%] -rotate-[14deg] group-hover:-translate-x-[132%] group-hover:-rotate-[19deg]' },
+    { f: 'doc-memorial', alt: 'Memorial descritivo gerado pela Automação', label: 'Memorial Descritivo', fan: 'z-20 -translate-x-[62%] -rotate-[8deg] group-hover:-translate-x-[80%] group-hover:-rotate-[11deg]' },
+    { f: 'doc-blocos', alt: 'Diagrama de blocos gerado pela Automação', label: 'Diagrama de Blocos', fan: 'z-30 group-hover:-translate-y-3' },
+    { f: 'doc-planta', alt: 'Planta de localização gerada pela Automação', label: 'Planta de Localização', fan: 'z-20 translate-x-[62%] rotate-[8deg] group-hover:translate-x-[80%] group-hover:rotate-[11deg]' },
   ];
 
   // Visualizador em tela cheia: <dialog> nativo, sem biblioteca. showModal() cuida
@@ -155,12 +154,12 @@ const Automacao = () => {
   };
 
   return (
-    <section id="automacao" className="relative overflow-hidden bg-void py-20 md:py-28 border-t border-white/10">
+    <section id="automacao" className="relative overflow-hidden bg-void py-20 md:py-28 border-y border-white/10">
       {/* Atmosfera cockpit sutil — coral/cobalto, sinaliza "instrumento" (arte, não texto) */}
       <div
         aria-hidden="true"
         className="pointer-events-none absolute left-1/2 top-[-180px] -z-10 h-[520px] w-[900px] -translate-x-1/2 rounded-full"
-        style={{ background: 'radial-gradient(circle, rgba(255,99,99,0.08), rgba(20,60,163,0.05) 48%, transparent 72%)' }}
+        style={{ background: 'radial-gradient(circle, rgba(140,194,254,0.08), rgba(20,60,163,0.05) 48%, transparent 72%)' }}
       />
 
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -175,7 +174,7 @@ const Automacao = () => {
             <Cpu className="h-3.5 w-3.5 text-coral" />
             A Automação por dentro
           </span>
-          <h2 className="mt-5 text-clamp-h2 font-display font-extrabold text-white text-balance">
+          <h2 className="mt-5 text-clamp-h2 font-display font-bold text-white text-balance">
             A documentação da homologação solar,{' '}
             <span className="relative whitespace-nowrap text-white">
               gerada e validada
@@ -353,7 +352,7 @@ const Automacao = () => {
             </div>
           </div>
 
-          {/* Desktop: leque com o diagrama unifilar em foco (frente/centro) */}
+          {/* Desktop: leque com memorial, blocos e planta (o unifilar vem inteiro abaixo) */}
           <div className="group relative mx-auto hidden h-[560px] w-full max-w-3xl items-center justify-center sm:flex">
             {exemplos.map(({ f, alt, fan }) => (
               <button
@@ -445,7 +444,7 @@ const Automacao = () => {
           <ul className="flex flex-wrap gap-x-6 gap-y-3">
             {ganchos.map((g) => (
               <li key={g} className="flex items-center gap-2 text-sm font-medium text-ash">
-                <Check className="h-4 w-4 flex-none text-coral" strokeWidth={3} />
+                <Check className="h-4 w-4 flex-none text-mist" strokeWidth={3} />
                 {g}
               </li>
             ))}
@@ -463,7 +462,7 @@ const Automacao = () => {
               <ArrowRight className="h-4 w-4" />
             </a>
             <p className="text-sm text-ash">
-              Incluída nos <strong className="font-semibold text-white">dois planos</strong> — peça uma
+              Incluída nos <strong className="font-semibold text-white">dois planos</strong>. Peça uma
               <strong className="font-semibold text-white"> demonstração</strong> e veja funcionando.
             </p>
           </div>

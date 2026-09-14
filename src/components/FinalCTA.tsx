@@ -1,6 +1,7 @@
 import React from 'react';
 import { Reveal } from '../lib/anim';
-import { ArrowRight, MessageCircle, ShieldCheck } from 'lucide-react';
+import { ArrowRight, ShieldCheck } from 'lucide-react';
+import WhatsAppIcon from './icons/WhatsAppIcon';
 import { buildWhatsAppLink } from '../utils/whatsapp';
 
 const FinalCTA = () => {
@@ -27,7 +28,7 @@ const FinalCTA = () => {
             <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.2em] text-smoke mb-5">
               Comece hoje
             </p>
-            <h2 className="text-clamp-h2 font-extrabold text-white mb-5 text-balance">
+            <h2 className="text-clamp-h2 font-bold text-white mb-5 text-balance">
               Gere e valide sua documentação a partir de hoje
             </h2>
             <p className="text-base md:text-lg text-ash mb-10 leading-relaxed max-w-xl mx-auto text-pretty">
@@ -40,7 +41,7 @@ const FinalCTA = () => {
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => window.fbq && window.fbq('track', 'Contact')}
-                className="group bg-coral text-[#2a0d0d] px-8 py-4 rounded-xl text-lg font-bold transition-all duration-200 ease-out shadow-[var(--btn-lift)] hover:-translate-y-0.5 hover:brightness-105 active:translate-y-0 flex items-center justify-center gap-2 w-full sm:w-auto focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+                className="group bg-[#172b50] text-white px-8 py-4 rounded-xl text-lg font-bold transition-all duration-200 ease-out ring-1 ring-coral/40 shadow-[var(--key),var(--btn-lift)] hover:-translate-y-0.5 hover:brightness-125 active:translate-y-0 flex items-center justify-center gap-2 w-full sm:w-auto focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
               >
                 Agendar demonstração
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
@@ -52,7 +53,7 @@ const FinalCTA = () => {
                 onClick={() => window.fbq && window.fbq('track', 'Contact')}
                 className="bg-white/5 border border-white/10 shadow-[var(--key-soft)] hover:bg-white/10 hover:border-steel text-white px-8 py-4 rounded-xl text-lg font-bold transition-all duration-200 ease-out flex items-center justify-center gap-2 w-full sm:w-auto focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
               >
-                <MessageCircle className="w-5 h-5" />
+                <WhatsAppIcon className="w-5 h-5" />
                 Falar no WhatsApp
               </a>
             </div>

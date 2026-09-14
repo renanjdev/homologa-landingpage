@@ -75,22 +75,22 @@ const PrivacyPolicy = () => {
                     <tr className="border-b border-white/10">
                       <td className="py-3 pr-4">Cookies de marketing (Meta Pixel)</td>
                       <td className="py-3 pr-4">Medir campanhas e exibir anúncios</td>
-                      <td className="py-3"><strong className="font-semibold text-white">Consentimento</strong> — art. 7º, I</td>
+                      <td className="py-3"><strong className="font-semibold text-white">Consentimento</strong>: art. 7º, I</td>
                     </tr>
                     <tr className="border-b border-white/10">
                       <td className="py-3 pr-4">Cookies analíticos (Vercel Speed Insights)</td>
                       <td className="py-3 pr-4">Medir desempenho e melhorar o site</td>
-                      <td className="py-3"><strong className="font-semibold text-white">Consentimento</strong> / legítimo interesse — art. 7º, I / IX</td>
+                      <td className="py-3"><strong className="font-semibold text-white">Consentimento</strong> / legítimo interesse: art. 7º, I / IX</td>
                     </tr>
                     <tr className="border-b border-white/10">
                       <td className="py-3 pr-4">Atendimento via WhatsApp/e-mail</td>
                       <td className="py-3 pr-4">Responder e conduzir a contratação do serviço</td>
-                      <td className="py-3"><strong className="font-semibold text-white">Procedimentos preliminares ao contrato</strong> — art. 7º, V; e/ou <strong className="font-semibold text-white">consentimento</strong> — art. 7º, I</td>
+                      <td className="py-3"><strong className="font-semibold text-white">Procedimentos preliminares ao contrato</strong>: art. 7º, V; e/ou <strong className="font-semibold text-white">consentimento</strong>: art. 7º, I</td>
                     </tr>
                     <tr>
                       <td className="py-3 pr-4">Cookies estritamente necessários</td>
                       <td className="py-3 pr-4">Fazer o site funcionar</td>
-                      <td className="py-3"><strong className="font-semibold text-white">Legítimo interesse</strong> — art. 7º, IX</td>
+                      <td className="py-3"><strong className="font-semibold text-white">Legítimo interesse</strong>: art. 7º, IX</td>
                     </tr>
                   </tbody>
                 </table>
@@ -101,10 +101,10 @@ const PrivacyPolicy = () => {
               <h2 className="text-xl font-semibold text-white mb-3">4. Com quem compartilhamos</h2>
               <p className="mb-3">Não vendemos seus dados. Compartilhamos com operadores e parceiros estritamente para as finalidades acima:</p>
               <ul className="list-disc space-y-2 pl-5">
-                <li><strong className="font-semibold text-white">Meta Platforms, Inc.</strong> — Meta Pixel e WhatsApp (rastreamento de marketing e canal de atendimento).</li>
-                <li><strong className="font-semibold text-white">Vercel Inc.</strong> — hospedagem e telemetria de desempenho (Speed Insights).</li>
-                <li><strong className="font-semibold text-white">Supabase Inc.</strong> e <strong className="font-semibold text-white">Resend Inc.</strong> — armazenamento e envio de e-mails, quando aplicável a solicitações recebidas.</li>
-                <li><strong className="font-semibold text-white">Concessionárias de energia e órgãos reguladores</strong> — apenas quando necessário à execução de serviços de homologação contratados.</li>
+                <li><strong className="font-semibold text-white">Meta Platforms, Inc.</strong>: Meta Pixel e WhatsApp (rastreamento de marketing e canal de atendimento).</li>
+                <li><strong className="font-semibold text-white">Vercel Inc.</strong>: hospedagem e telemetria de desempenho (Speed Insights).</li>
+                <li><strong className="font-semibold text-white">Supabase Inc.</strong> e <strong className="font-semibold text-white">Resend Inc.</strong>: armazenamento e envio de e-mails, quando aplicável a solicitações recebidas.</li>
+                <li><strong className="font-semibold text-white">Concessionárias de energia e órgãos reguladores</strong>: apenas quando necessário à execução de serviços de homologação contratados.</li>
               </ul>
             </section>
 

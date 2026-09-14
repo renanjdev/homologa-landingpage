@@ -31,7 +31,6 @@ const features: Feature[] = [
     ],
     img: '/dashboard.webp',
     alt: 'Painel de gestão do Homologa Plus com projetos, pendências, potência e pipeline por etapa',
-    badge: { title: '98% de aprovação', sub: 'taxa de homologação' },
   },
   {
     label: 'Fluxo de homologação',
@@ -93,7 +92,7 @@ const Features = () => {
             A plataforma
           </span>
           <h2 className="text-clamp-h2 font-bold text-white mb-4 mt-3 text-balance">
-            A plataforma por trás da <span className="hero-grif">automação</span>
+            A plataforma por trás da automação
           </h2>
           <p className="text-base md:text-lg text-ash leading-relaxed">
             Além de gerar e validar os documentos, o Homologa Plus controla projetos, prazos, financeiro e território; cada parte da operação em um só lugar.
@@ -126,7 +125,7 @@ const Features = () => {
                 <ul className="space-y-3.5">
                   {f.bullets.map((b) => (
                     <li key={b} className="flex items-start gap-3 text-ash font-medium">
-                      <span className="mt-0.5 flex h-5 w-5 flex-none items-center justify-center rounded-md bg-obsidian text-coral shadow-[inset_0_0_0_1px_rgba(255,255,255,0.06)]">
+                      <span className="mt-0.5 flex h-5 w-5 flex-none items-center justify-center rounded-md bg-obsidian text-mist shadow-[inset_0_0_0_1px_rgba(255,255,255,0.06)]">
                         <Check className="w-3 h-3" strokeWidth={3.5} />
                       </span>
                       {b}

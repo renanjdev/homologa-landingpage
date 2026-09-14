@@ -1,15 +1,11 @@
 import React from 'react';
 import { Reveal } from '../lib/anim';
-import { CheckCircle2, Zap, ShieldCheck, TrendingUp, Sparkles } from 'lucide-react';
 import { buildWhatsAppLink } from '../utils/whatsapp';
 
 type Plan = {
   name: string;
   price: string;
   description: string;
-  icon: React.ReactNode;
-  iconBg: string;
-  iconColor: string;
   /** Cota de automação — é o que realmente separa os dois planos. */
   quota: string;
   quotaSubtitle: string;
@@ -44,9 +40,6 @@ const Pricing = () => {
       name: "Homologa Starter",
       price: "297",
       description: "Para quem homologa com regularidade.",
-      icon: <Zap className="w-5 h-5 md:w-6 md:h-6" />,
-      iconBg: "bg-graphite",
-      iconColor: "text-mist",
       quota: "7 projetos",
       quotaSubtitle: "automatizados por mês",
       features: [
@@ -61,9 +54,6 @@ const Pricing = () => {
       price: "597",
       description: "Para quem homologa em volume.",
       priceSubtitle: "Automação sem teto por menos de R$ 20 por dia.",
-      icon: <TrendingUp className="w-5 h-5 md:w-6 md:h-6" />,
-      iconBg: "bg-graphite",
-      iconColor: "text-coral",
       quota: "Projetos ilimitados",
       quotaSubtitle: "automatizados por mês",
       features: [
@@ -118,12 +108,7 @@ const Pricing = () => {
               )}
 
               <div className="mb-6 md:mb-8">
-                <div className="flex items-center gap-3 sm:gap-4 mb-4">
-                  <div className={`w-10 h-10 md:w-12 md:h-12 ${plan.iconBg} ${plan.iconColor} rounded-xl flex items-center justify-center shrink-0 shadow-[inset_0_0_0_1px_rgba(255,255,255,0.06)]`}>
-                    {plan.icon}
-                  </div>
-                  <h3 className="text-lg sm:text-xl font-bold text-white">{plan.name}</h3>
-                </div>
+                <h3 className="mb-3 text-lg sm:text-xl font-bold text-white">{plan.name}</h3>
                 <p className="text-ash text-sm">{plan.description}</p>
               </div>
 
@@ -142,17 +127,13 @@ const Pricing = () => {
 
               {/* Cota de automação: o diferencial real entre os planos */}
               <div className="mb-6 border-y border-white/10 py-4">
-                <div className="flex items-center gap-2.5">
-                  <Sparkles className={`h-4 w-4 shrink-0 ${plan.highlight ? 'text-coral' : 'text-mist'}`} />
-                  <p className="text-base font-bold text-white">{plan.quota}</p>
-                </div>
+                <p className="text-base font-bold text-white">{plan.quota}</p>
                 <p className="mt-1 text-xs text-smoke">{plan.quotaSubtitle}</p>
               </div>
 
-              <ul className="space-y-3.5 md:space-y-4 mb-8 flex-grow">
+              <ul className="tick-list space-y-3.5 md:space-y-4 mb-8 flex-grow">
                 {plan.features.map((feature, idx) => (
-                  <li key={idx} className="flex items-start gap-3 text-sm text-ash">
-                    <CheckCircle2 className="w-4 h-4 md:w-5 md:h-5 text-mist shrink-0 mt-[2px]" />
+                  <li key={idx} className="text-sm text-ash">
                     <span className="leading-tight">{feature}</span>
                   </li>
                 ))}
@@ -194,10 +175,9 @@ const Pricing = () => {
           <h3 className="font-mono text-[11px] md:text-xs font-bold uppercase tracking-[0.14em] text-smoke mb-6">
             Nos dois planos você tem
           </h3>
-          <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-4">
+          <ul className="tick-list grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-4">
             {SHARED_FEATURES.map((feature) => (
-              <li key={feature} className="flex items-start gap-3 text-sm text-ash">
-                <CheckCircle2 className="w-4 h-4 md:w-5 md:h-5 text-mist shrink-0 mt-[2px]" />
+              <li key={feature} className="text-sm text-ash">
                 <span className="leading-snug">{feature}</span>
               </li>
             ))}
@@ -205,8 +185,7 @@ const Pricing = () => {
         </div>
 
         <div className="mt-12 md:mt-16 text-center flex flex-col items-center gap-2">
-          <p className="text-ash text-sm md:text-base flex items-center justify-center gap-2">
-            <ShieldCheck className="w-4 h-4 md:w-5 md:h-5 text-smoke" />
+          <p className="text-ash text-sm md:text-base">
             Demonstração sem compromisso. Sem fidelidade, cancele quando quiser.
           </p>
           <p className="text-smoke text-xs md:text-sm">

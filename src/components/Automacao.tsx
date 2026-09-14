@@ -1,19 +1,6 @@
 import React, { useRef, useState } from 'react';
 import { Reveal } from '../lib/anim';
-import {
-  Cpu,
-  FileText,
-  Cable,
-  Boxes,
-  MapPin,
-  XCircle,
-  AlertTriangle,
-  CheckCircle2,
-  Check,
-  ClipboardList,
-  ArrowRight,
-  X,
-} from 'lucide-react';
+import { XCircle, AlertTriangle, CheckCircle2, ArrowRight, X } from 'lucide-react';
 import { buildWhatsAppLink } from '../utils/whatsapp';
 
 // Foco visível no escuro: o outline global (grafite) some sobre o Void, então
@@ -22,7 +9,6 @@ const focusRing =
   'focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white';
 
 type Documento = {
-  Icon: React.ComponentType<{ className?: string }>;
   nome: string;
   desc: string;
   formatos: string[];
@@ -30,31 +16,26 @@ type Documento = {
 
 const documentos: Documento[] = [
   {
-    Icon: FileText,
     nome: 'Memorial Descritivo e de Cálculo',
     desc: 'No modelo exigido pela sua distribuidora.',
     formatos: ['PDF'],
   },
   {
-    Icon: Cable,
     nome: 'Diagrama Unifilar',
     desc: 'Dimensionado a partir dos dados do projeto.',
     formatos: ['PDF', 'SVG', 'DXF'],
   },
   {
-    Icon: Boxes,
     nome: 'Diagrama de Blocos',
     desc: 'Funcional, com todo o sistema representado.',
     formatos: ['PDF', 'SVG', 'DXF'],
   },
   {
-    Icon: MapPin,
     nome: 'Planta de Localização',
     desc: 'Vista de satélite com as coordenadas da UC.',
     formatos: ['PDF'],
   },
   {
-    Icon: ClipboardList,
     nome: 'Formulários e Anexos',
     desc: 'Os formulários e anexos que cada distribuidora exige, já preenchidos com os dados do projeto.',
     formatos: ['PDF'],
@@ -171,7 +152,6 @@ const Automacao = () => {
           className="max-w-3xl"
         >
           <span className="inline-flex items-center gap-2 rounded-full border border-coral/25 bg-coral-ember px-3.5 py-1.5 font-mono text-[11px] md:text-xs font-medium uppercase tracking-[0.08em] text-ash">
-            <Cpu className="h-3.5 w-3.5 text-coral" />
             A Automação por dentro
           </span>
           <h2 className="mt-5 text-clamp-h2 font-display font-bold text-white text-balance">
@@ -210,9 +190,6 @@ const Automacao = () => {
                   key={d.nome}
                   className="flex items-start gap-4 border-t border-white/10 py-5 first:border-t-0 first:pt-0"
                 >
-                  <span className="flex h-11 w-11 flex-none items-center justify-center rounded-xl bg-obsidian text-coral shadow-[inset_0_0_0_1px_rgba(255,255,255,0.06)]">
-                    <d.Icon className="h-5 w-5" />
-                  </span>
                   <div className="min-w-0">
                     <h4 className="font-display text-base font-bold text-mist">{d.nome}</h4>
                     <p className="mt-0.5 text-sm text-ash">{d.desc}</p>
@@ -246,9 +223,6 @@ const Automacao = () => {
                 <h3 className="font-display text-sm font-bold text-white">Validação de conformidade</h3>
                 <p className="font-mono text-[11px] text-smoke">Distribuidora: Enel SP · pré-protocolo</p>
               </div>
-              <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-graphite text-coral shadow-[inset_0_0_0_1px_rgba(255,255,255,0.06)]">
-                <Cpu className="h-5 w-5" />
-              </span>
             </div>
 
             <ul className="px-2 py-1">
@@ -441,10 +415,9 @@ const Automacao = () => {
           margin="-80px"
           className="mt-12 border-t border-white/10 pt-8"
         >
-          <ul className="flex flex-wrap gap-x-6 gap-y-3">
+          <ul className="tick-list flex flex-wrap gap-x-8 gap-y-3">
             {ganchos.map((g) => (
-              <li key={g} className="flex items-center gap-2 text-sm font-medium text-ash">
-                <Check className="h-4 w-4 flex-none text-mist" strokeWidth={3} />
+              <li key={g} className="text-sm font-medium text-ash">
                 {g}
               </li>
             ))}

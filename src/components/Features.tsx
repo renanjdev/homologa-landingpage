@@ -1,10 +1,8 @@
 import React from 'react';
 import { Reveal } from '../lib/anim';
-import { LayoutDashboard, Workflow, LineChart, Map, Check } from 'lucide-react';
 
 type Feature = {
   label: string;
-  Icon: React.ComponentType<{ className?: string }>;
   title: string;
   desc: string;
   bullets: string[];
@@ -21,7 +19,6 @@ type Feature = {
 const features: Feature[] = [
   {
     label: 'Painel de gestão',
-    Icon: LayoutDashboard,
     title: 'Saiba em 5 segundos quais projetos precisam de você hoje',
     desc: 'Projetos, prazos, pendências e potência instalada em uma visão única. Saiba na hora o que precisa de atenção, sem abrir dez planilhas.',
     bullets: [
@@ -34,7 +31,6 @@ const features: Feature[] = [
   },
   {
     label: 'Fluxo de homologação',
-    Icon: Workflow,
     title: 'Veja na hora qual projeto travou, e onde agir',
     desc: 'Cada projeto avança por um fluxo claro: análise documental, envio à concessionária, vistoria e homologação. Você vê na hora o que travou e onde agir.',
     bullets: [
@@ -48,7 +44,6 @@ const features: Feature[] = [
   },
   {
     label: 'Gestão financeira',
-    Icon: LineChart,
     title: 'Feche o mês sabendo o que entrou, o que falta e o que venceu',
     desc: 'Acompanhe o financeiro de cada homologação: o que já entrou, o que está a receber e o que venceu, mês a mês, sem controle paralelo.',
     bullets: [
@@ -61,7 +56,6 @@ const features: Feature[] = [
   },
   {
     label: 'Visão de território',
-    Icon: Map,
     title: 'Veja onde estão suas obras, e onde vale vender mais',
     desc: 'Acompanhe todos os projetos no mapa e enxergue a concentração de negócios por região, num relance.',
     bullets: [
@@ -80,21 +74,13 @@ const features: Feature[] = [
 
 
 const FeatureLabel = ({ f }: { f: Feature }) => (
-  <span className="inline-flex items-center gap-2.5 mb-5 text-sm font-semibold text-ash">
-    <span className="flex h-7 w-7 items-center justify-center rounded-lg bg-obsidian text-coral shadow-[inset_0_0_0_1px_rgba(255,255,255,0.06)]">
-      <f.Icon className="w-4 h-4" />
-    </span>
-    {f.label}
-  </span>
+  <span className="block mb-4 text-sm font-semibold text-smoke">{f.label}</span>
 );
 
 const FeatureBullets = ({ bullets }: { bullets: string[] }) => (
-  <ul className="space-y-3.5">
+  <ul className="tick-list space-y-3">
     {bullets.map((b) => (
-      <li key={b} className="flex items-start gap-3 text-ash font-medium">
-        <span className="mt-0.5 flex h-5 w-5 flex-none items-center justify-center rounded-md bg-obsidian text-mist shadow-[inset_0_0_0_1px_rgba(255,255,255,0.06)]">
-          <Check className="w-3 h-3" strokeWidth={3.5} />
-        </span>
+      <li key={b} className="text-ash font-medium">
         {b}
       </li>
     ))}

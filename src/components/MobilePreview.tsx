@@ -1,6 +1,5 @@
 import React from 'react';
 import { Reveal } from '../lib/anim';
-import { CheckCircle2 } from 'lucide-react';
 
 const MobilePreview = () => {
   return (
@@ -17,21 +16,16 @@ const MobilePreview = () => {
               Dê autonomia total aos seus integradores. Com o Homologa Plus, seus parceiros cadastram projetos, enviam documentos e acompanham o status pelo celular, direto do canteiro de obra.
             </p>
 
-            <div className="space-y-2.5">
+            <ul className="tick-list space-y-2.5">
               {[
                 "Login simplificado para integradores",
                 "Envio de documentos via celular",
                 "Acompanhamento do status do projeto por etapa",
                 "Dashboard móvel com métricas rápidas"
               ].map((item, i) => (
-                <div key={i} className="flex items-center gap-3">
-                  <div className="w-6 h-6 rounded-full bg-obsidian flex items-center justify-center text-mist shadow-[inset_0_0_0_1px_rgba(255,255,255,0.06)]">
-                    <CheckCircle2 className="w-4 h-4" />
-                  </div>
-                  <span className="text-ash font-medium">{item}</span>
-                </div>
+                <li key={i} className="text-ash font-medium">{item}</li>
               ))}
-            </div>
+            </ul>
           </Reveal>
 
           {/* Image Preview */}

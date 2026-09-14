@@ -1,7 +1,7 @@
 import React, { lazy, Suspense } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Reveal, useScrolledPast } from '../lib/anim';
-import { ShieldCheck, ChevronRight } from 'lucide-react';
+import { ChevronRight } from 'lucide-react';
 import WhatsAppIcon from '../components/icons/WhatsAppIcon';
 import { Link } from 'react-router-dom';
 import { buildWhatsAppLink } from '../utils/whatsapp';
@@ -67,7 +67,6 @@ const Hero = () => {
           {/* Prova de resultado visível no mobile (no desktop vira card flutuante sobre o painel) */}
           <div className="hero-mproof">
             <span className="hero-mchip">
-              <span className="hero-chip-ico mist"><ShieldCheck className="h-4 w-4" aria-hidden="true" /></span>
               <span className="hero-chip-txt">
                 <span className="hero-chip-t">Conformidade</span>
                 <span className="hero-chip-s">validada</span>
@@ -86,7 +85,6 @@ const Hero = () => {
           className="hero-stage"
         >
           <div className="hero-float hero-float-br animate-floaty" style={{ animationDelay: '1.9s' }}>
-            <span className="hero-chip-ico mist"><ShieldCheck className="h-5 w-5" aria-hidden="true" /></span>
             <span className="hero-chip-txt">
               <span className="hero-chip-t">Conformidade validada</span>
               <span className="hero-chip-s">antes de protocolar</span>

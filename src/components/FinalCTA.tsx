@@ -1,6 +1,6 @@
 import React from 'react';
 import { Reveal } from '../lib/anim';
-import { ArrowRight, ShieldCheck } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import WhatsAppIcon from './icons/WhatsAppIcon';
 import { buildWhatsAppLink } from '../utils/whatsapp';
 
@@ -55,10 +55,9 @@ const FinalCTA = () => {
               </a>
             </div>
 
-            <div className="mt-8 flex items-center justify-center gap-2 text-sm text-ash">
-              <ShieldCheck className="w-4 h-4 shrink-0 text-smoke" />
-              <span>Demonstração sem compromisso · Acesso liberado pela nossa equipe.</span>
-            </div>
+            <p className="mt-8 text-sm text-ash">
+              Demonstração sem compromisso · Acesso liberado pela nossa equipe.
+            </p>
           </div>
         </Reveal>
       </div>

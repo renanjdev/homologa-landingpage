@@ -349,3 +349,11 @@
   .scroll-progress { animation: hp-scroll-progress linear both; animation-timeline: scroll(root block); }
 }
 @keyframes hp-scroll-progress { to { transform: scaleX(1); } }
+
+/* Listas: traço curto em vez de ícone de check (ícone repetido em toda lista é
+   o padrão mais comum de página gerada por IA). Marcador decorativo, aria-free. */
+.tick-list > li { position: relative; padding-left: 1.25rem; }
+.tick-list > li::before {
+  content: ""; position: absolute; left: 0; top: 0.72em;
+  width: 0.625rem; height: 1px; background: #6f7072;
+}

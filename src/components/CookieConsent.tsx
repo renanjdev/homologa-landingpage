@@ -1,6 +1,5 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Cookie, ShieldCheck } from 'lucide-react';
 import {
   getConsent,
   setConsent,
@@ -156,10 +155,7 @@ const CookieConsent = () => {
         className="w-full max-w-xl overflow-hidden rounded-2xl border border-white/10 bg-ink shadow-[var(--key),0_40px_90px_-30px_rgba(0,0,0,0.9)]"
       >
         <div className="p-6 sm:p-7">
-          <div className="mb-4 flex items-center gap-3">
-            <span className="flex h-10 w-10 flex-none items-center justify-center rounded-xl bg-coral-ember text-coral ring-1 ring-coral/25">
-              <Cookie className="h-5 w-5" aria-hidden="true" />
-            </span>
+          <div className="mb-4">
             <h2 id="cc-title" className="font-display text-lg font-bold text-white">
               Sua privacidade
             </h2>
@@ -218,10 +214,7 @@ const CookieConsent = () => {
               <ul className="divide-y divide-white/10 rounded-xl border border-white/10 bg-obsidian">
                 <li className="flex items-start justify-between gap-4 p-4">
                   <div className="min-w-0">
-                    <div className="flex items-center gap-2">
-                      <ShieldCheck className="h-4 w-4 flex-none text-emerald-400" aria-hidden="true" />
-                      <p className="text-sm font-bold text-white">Necessários</p>
-                    </div>
+                    <p className="text-sm font-bold text-white">Necessários</p>
                     <p className="mt-1 text-[13px] leading-snug text-ash">
                       Essenciais para o site funcionar. Sempre ativos.
                     </p>

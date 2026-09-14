@@ -1,15 +1,12 @@
 import React from 'react';
 import { Reveal } from '../lib/anim';
-import { Building2, Zap } from 'lucide-react';
 
 const personas = [
   {
-    Icon: Building2,
     label: 'Empresas de homologação',
     desc: 'Quem presta serviço de homologação de usinas solares para terceiros e precisa de escala.',
   },
   {
-    Icon: Zap,
     label: 'Engenharia elétrica',
     desc: 'Empresas de engenharia elétrica que assinam e respondem pelos projetos fotovoltaicos.',
   },
@@ -38,11 +35,8 @@ const WhoIsItFor = () => {
                 duration={0.5}
                 delay={idx * 0.08}
                 margin="-80px"
-                className="flex items-start gap-5 border-t border-white/10 py-6 first:border-t-0 first:pt-0 md:gap-6 md:py-7"
+                className="border-t border-white/10 py-6 first:border-t-0 first:pt-0 md:py-7"
               >
-                <span className="flex h-12 w-12 flex-none items-center justify-center rounded-2xl bg-obsidian text-coral shadow-[inset_0_0_0_1px_rgba(255,255,255,0.06)] md:h-14 md:w-14">
-                  <p.Icon className="h-6 w-6" />
-                </span>
                 <div>
                   <h3 className="text-lg md:text-xl font-bold text-white mb-1">{p.label}</h3>
                   <p className="text-ash leading-relaxed">{p.desc}</p>

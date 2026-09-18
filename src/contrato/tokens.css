@@ -4,8 +4,8 @@
   --fable-accent: #83b9ff;
   --fable-muted: #9aa2ad;
 
-  --fable-display: clamp(4.375rem, 13vw, 13.5625rem);
-  --fable-heading: clamp(3rem, 7.2vw, 7.5rem);
+  --fable-display: clamp(4.5rem, 10.5vw, 11.5rem);
+  --fable-heading: clamp(3rem, 6.2vw, 6.5rem);
   --fable-title: clamp(1.5rem, 2.8vw, 2.75rem);
   --fable-body: 0.9375rem;
   --fable-label: 0.6875rem;
@@ -220,10 +220,10 @@ body.fable-active {
 }
 
 .fable-display {
-  max-width: 7.5ch;
+  max-width: 8.5ch;
   font-size: var(--fable-display);
   font-weight: 330;
-  line-height: 0.78;
+  line-height: 0.84;
 }
 
 .fable-heading {
@@ -418,8 +418,13 @@ body.fable-active {
   .fable-nav-links .fable-nav-button:not(.fable-nav-button--cta) { display: none; }
   .fable-section-shell { padding-top: 6.5rem; min-height: max(100vh, calc(var(--section-duration) * 88vh)); }
   .fable-grid-2, .fable-grid-3 { grid-template-columns: 1fr; }
-  .fable-display { line-height: 0.86; }
+  .fable-display { max-width: 9.5ch; font-size: clamp(3.75rem, 11vw, 7rem); line-height: 0.88; }
   .fable-scene { opacity: 0.72; }
+}
+
+@media (max-width: 42rem) {
+  .fable-display { max-width: 10ch; font-size: clamp(3.35rem, 13vw, 5.2rem); line-height: 0.92; }
+  .fable-heading { max-width: 12ch; font-size: clamp(2.7rem, 12vw, 4.4rem); line-height: 0.92; }
 }
 
 @media (max-width: 32rem) {

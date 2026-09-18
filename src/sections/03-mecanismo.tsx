@@ -59,8 +59,8 @@ export default function Mecanismo({ label }: SectionProps) {
 
         .mechanism__heading {
           max-width: 8.8ch;
-          font-size: clamp(3.1rem, 7.6vw, 8.3rem);
-          line-height: 0.84;
+          font-size: clamp(3rem, 6vw, 6.6rem);
+          line-height: 0.9;
         }
 
         .mechanism__intro {
@@ -246,7 +246,7 @@ export default function Mecanismo({ label }: SectionProps) {
 
         @media (max-width: 42rem) {
           .mechanism { padding-top: 0; }
-          .mechanism__heading { max-width: 8ch; font-size: clamp(3rem, 15vw, 4.7rem); }
+          .mechanism__heading { max-width: 10ch; font-size: clamp(2.7rem, 12vw, 4rem); line-height: .92; }
           .mechanism__top { margin-bottom: 2.5rem; }
           .mechanism__diagram {
             grid-template-columns: 1fr;

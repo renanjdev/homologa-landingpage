@@ -103,7 +103,9 @@ export default function Demonstracao({ id }: SectionProps) {
           position: 'relative',
           zIndex: 8,
           minWidth: 0,
-          minHeight: 'clamp(24rem, 52vw, 43rem)',
+          minHeight: 0,
+          aspectRatio: '16 / 10',
+          height: 'auto',
           borderRadius: 'clamp(1rem, 2vw, 2rem)',
           isolation: 'isolate',
         }}
@@ -123,8 +125,9 @@ export default function Demonstracao({ id }: SectionProps) {
               display: 'block',
               width: '100%',
               height: '100%',
-              minHeight: 'inherit',
-              objectFit: 'cover',
+              minHeight: 0,
+              objectFit: 'contain',
+              background: 'var(--fable-void)',
               opacity: 0.9,
             }}
           >
@@ -140,8 +143,9 @@ export default function Demonstracao({ id }: SectionProps) {
               display: 'block',
               width: '100%',
               height: '100%',
-              minHeight: 'inherit',
-              objectFit: 'cover',
+              minHeight: 0,
+              objectFit: 'contain',
+              background: 'var(--fable-void)',
               opacity: 0.9,
             }}
           />

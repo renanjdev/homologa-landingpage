@@ -41,7 +41,7 @@ export default function Prova({ label }: SectionProps) {
         .proof { width: min(100%, 90rem); margin-inline: auto; }
         .proof__intro { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(17rem, .68fr); gap: clamp(1.5rem, 5vw, 6rem); align-items: end; margin-bottom: clamp(1.75rem, 4vw, 3.5rem); }
         .proof__intro .fable-label { margin-bottom: 1rem; }
-        .proof__heading { max-width: 8.8ch; font-size: clamp(3rem, 7vw, 7.3rem); }
+        .proof__heading { max-width: 10ch; font-size: clamp(3rem, 5.8vw, 6.2rem); line-height: .92; }
         .proof__lede { padding-bottom: .3rem; }
         .proof__layout { display: grid; grid-template-columns: minmax(0, 1.04fr) minmax(23rem, .96fr); gap: clamp(1rem, 2.25vw, 2rem); align-items: stretch; }
         .proof__evidence { display: grid; grid-template-rows: auto minmax(0, 1fr) auto; min-height: clamp(32rem, 60vh, 43rem); border: 1px solid color-mix(in srgb, var(--fable-paper) 15%, transparent); background: color-mix(in srgb, var(--fable-paper) 4%, var(--fable-void)); box-shadow: inset 0 1px color-mix(in srgb, var(--fable-paper) 9%, transparent), 0 2rem 6rem color-mix(in srgb, var(--fable-void) 65%, transparent); overflow: hidden; }
@@ -90,7 +90,7 @@ export default function Prova({ label }: SectionProps) {
         .proof__terms { display: grid; grid-template-columns: .8fr 1fr 1fr; gap: .7rem; margin: 1rem 0 0; padding: 1rem 0 0; border-top: 1px solid color-mix(in srgb, var(--fable-paper) 14%, transparent); color: var(--fable-muted); font-size: .7rem; line-height: 1.35; }
         .proof__note-title { display: block; margin-bottom: .28rem; color: var(--fable-paper); font-size: .58rem; }
         @media (max-width: 62rem) { .proof__layout { grid-template-columns: 1fr; } .proof__evidence { min-height: 29rem; } .proof__plans { grid-template-columns: repeat(2, minmax(0, 1fr)); grid-template-rows: none; } }
-        @media (max-width: 42rem) { .proof__intro { grid-template-columns: 1fr; gap: 1rem; } .proof__heading { font-size: clamp(2.7rem, 14vw, 4.2rem); } .proof__plans { grid-template-columns: 1fr; } .proof__plan { grid-template-columns: minmax(0, 1fr) auto; } .proof__evidence { min-height: 25rem; } .proof__image { min-height: 15rem; } }
+        @media (max-width: 42rem) { .proof__intro { grid-template-columns: 1fr; gap: 1rem; } .proof__heading { max-width: 11ch; font-size: clamp(2.6rem, 12vw, 3.8rem); line-height: .94; } .proof__plans { grid-template-columns: 1fr; } .proof__plan { grid-template-columns: minmax(0, 1fr) auto; } .proof__evidence { min-height: 25rem; } .proof__image { min-height: 15rem; } }
         @media (max-width: 28rem) { .proof__evidence-head, .proof__caption { padding-inline: .85rem; } .proof__plan { gap: .85rem; padding: 1.05rem; } .proof__plan-side { min-width: 6.5rem; } .proof__price strong { font-size: 2.25rem; } .proof__features, .proof__terms { grid-template-columns: 1fr; } .proof__features { gap: .45rem; } .proof__capture-state { max-width: 7rem; } }
       `}</style>
 

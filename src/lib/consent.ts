@@ -4,6 +4,8 @@ import { useSyncExternalStore } from 'react';
 // nada de analytics/marketing carrega sem escolha explícita do titular.
 
 export const CONSENT_KEY = 'hp_cookie_consent';
+/** Disparado uma única vez quando a primeira escolha de consentimento termina. */
+export const FIRST_CONSENT_DECISION_EVENT = 'hp:first-consent-decision';
 /** Suba este número quando as categorias/política mudarem: força re-consentimento. */
 export const CONSENT_VERSION = 1;
 

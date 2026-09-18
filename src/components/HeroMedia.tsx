@@ -36,24 +36,17 @@ const HeroMedia = () => {
     return () => window.clearTimeout(t);
   }, []);
 
-  // Moldura tátil "tecla de teclado" (conceito 16): a barra de janela + o
-  // inner-shadow (--key) vivem no CSS escopado (.hero-window). A ENGENHARIA de
-  // carregamento abaixo é IDÊNTICA à anterior — só o tratamento visual mudou
-  // (fundo escuro, sem drop-shadow, dentro da janela do produto).
+  // A prova usa a captura real do produto, sem redesenhar barra de navegador.
+  // O frame mantém apenas a borda de instrumento e o carregamento continua
+  // idêntico: poster primeiro, vídeo sob demanda/idle conforme o dispositivo.
   return (
     <div className="hero-window">
-      <div className="hero-winbar" aria-hidden="true">
-        <div className="hero-dots"><i></i><i></i><i></i></div>
-        <div className="hero-cmd">
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="none">
-            <circle cx="11" cy="11" r="7" stroke="#6a6b6c" strokeWidth="2" />
-            <path d="m20 20-3.5-3.5" stroke="#6a6b6c" strokeWidth="2" strokeLinecap="round" />
-          </svg>
-          <span>Gerar dossiê de homologação · UC 3009…</span>
-        </div>
-        <span className="hero-wintag">homologa · engine</span>
-      </div>
       <div className="hero-window-body">
+        <div className="hero-scan-status" aria-hidden="true">
+          <span className="hero-scan-status-dot" />
+          <span>Dossiê</span>
+          <strong>validado</strong>
+        </div>
         {mode !== 'poster' ? (
           <video
             className="block w-full"

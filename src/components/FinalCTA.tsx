@@ -38,7 +38,7 @@ const FinalCTA = () => {
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => window.fbq && window.fbq('track', 'Contact')}
-                className="group bg-[#172b50] text-white px-8 py-4 rounded-xl text-lg font-bold transition-all duration-200 ease-out ring-1 ring-coral/40 shadow-[var(--key),var(--btn-lift)] hover:-translate-y-0.5 hover:brightness-125 active:translate-y-0 flex items-center justify-center gap-2 w-full sm:w-auto focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+                className="group flex w-full items-center justify-center gap-2 whitespace-nowrap rounded-xl bg-[#172b50] px-5 py-4 text-base font-bold text-white ring-1 ring-coral/40 shadow-[var(--key),var(--btn-lift)] transition-all duration-200 ease-out hover:-translate-y-0.5 hover:brightness-125 active:translate-y-0 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white sm:w-auto sm:px-8 sm:text-lg"
               >
                 Agendar demonstração
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
@@ -48,7 +48,7 @@ const FinalCTA = () => {
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => window.fbq && window.fbq('track', 'Contact')}
-                className="bg-white/5 border border-white/10 shadow-[var(--key-soft)] hover:bg-white/10 hover:border-steel text-white px-8 py-4 rounded-xl text-lg font-bold transition-all duration-200 ease-out flex items-center justify-center gap-2 w-full sm:w-auto focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+                className="flex w-full items-center justify-center gap-2 whitespace-nowrap rounded-xl border border-white/10 bg-white/5 px-5 py-4 text-base font-bold text-white shadow-[var(--key-soft)] transition-all duration-200 ease-out hover:border-steel hover:bg-white/10 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white sm:w-auto sm:px-8 sm:text-lg"
               >
                 <WhatsAppIcon className="w-5 h-5" />
                 Falar no WhatsApp

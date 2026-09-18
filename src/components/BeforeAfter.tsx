@@ -51,9 +51,12 @@ const Artefato = ({
 
 const BeforeAfter = () => {
   return (
-    <Reveal as="section" y={20} margin="-100px" className="bg-ink py-20 md:py-28 border-t border-white/10">
+    <Reveal as="section" y={20} margin="-100px" className="bg-ink py-16 md:py-24 border-t border-white/10">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="mx-auto mb-10 max-w-2xl text-center md:mb-14">
+        <div className="mx-auto mb-9 max-w-2xl text-center md:mb-12">
+          <p className="mb-4 font-mono text-[11px] uppercase tracking-[0.14em] text-smoke">
+            Antes e depois
+          </p>
           <h2 className="text-clamp-h2 font-display font-bold text-white text-balance">
             O mesmo projeto, nos dois processos
           </h2>

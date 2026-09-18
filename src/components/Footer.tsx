@@ -11,7 +11,7 @@ const Footer = () => {
   return (
     <footer className="bg-void border-t border-white/10 pt-16 pb-[calc(6rem+env(safe-area-inset-bottom))] md:pb-10">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-10 md:gap-12 mb-12 md:mb-16">
+        <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-5 lg:gap-12 mb-12 md:mb-16">
           <div className="sm:col-span-2">
             <Link to="/" className="flex items-center gap-2 min-h-[44px] mb-6" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
               <img src="/logo-h-white.png" alt="Homologa Plus" width={36} height={36} className="w-9 h-9" />

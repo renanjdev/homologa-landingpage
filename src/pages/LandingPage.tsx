@@ -1,4 +1,4 @@
-import React, { lazy, Suspense } from 'react';
+import React, { lazy, Suspense, useEffect, useRef, useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Reveal, useScrolledPast } from '../lib/anim';
 import { ChevronRight } from 'lucide-react';
@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 import { buildWhatsAppLink } from '../utils/whatsapp';
 import { SpeedInsights } from "@vercel/speed-insights/react";
 import HeroMedia from '../components/HeroMedia';
-import { useConsent } from '../lib/consent';
+import { FIRST_CONSENT_DECISION_EVENT, hasConsentDecision, useConsent } from '../lib/consent';
 
 // Lazy load components below the fold
 const BeforeAfter = lazy(() => import('../components/BeforeAfter'));
@@ -23,8 +23,31 @@ const Footer = lazy(() => import('../components/Footer'));
 const Navbar = lazy(() => import('../components/Navbar'));
 
 const Hero = () => {
+  const [launchState, setLaunchState] = useState<'standby' | 'revealing' | 'ready'>(() =>
+    hasConsentDecision() ? 'ready' : 'standby',
+  );
+  const revealTimerRef = useRef<number | null>(null);
+
+  useEffect(() => {
+    const reveal = () => {
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        setLaunchState('ready');
+        return;
+      }
+      setLaunchState('revealing');
+      if (revealTimerRef.current) window.clearTimeout(revealTimerRef.current);
+      revealTimerRef.current = window.setTimeout(() => setLaunchState('ready'), 1450);
+    };
+
+    window.addEventListener(FIRST_CONSENT_DECISION_EVENT, reveal);
+    return () => {
+      window.removeEventListener(FIRST_CONSENT_DECISION_EVENT, reveal);
+      if (revealTimerRef.current) window.clearTimeout(revealTimerRef.current);
+    };
+  }, []);
+
   return (
-    <section className="hero-dark">
+    <section id="conteudo-principal" tabIndex={-1} className={`hero-dark hero-${launchState}`}>
       {/* Atmosfera: geometria gradiente coral/azul dramática sobre o canvas Void */}
       <div className="hero-atmos" aria-hidden="true">
         <div className="hero-blue" />
@@ -36,11 +59,15 @@ const Hero = () => {
 
       <div className="hero-inner">
         <Reveal as="div" y={20} trigger="mount" className="hero-copy">
+          <p className="hero-kicker">
+            <span className="hero-kicker-dot" aria-hidden="true" />
+            Automação documental para homologação solar
+          </p>
           <h1 className="hero-h1">
-            Não para no memorial e no unifilar: o <strong className="font-semibold">Homologa Plus</strong> gera <span className="hero-grif hero-grif--wrap">os formulários e anexos de cada distribuidora</span> e valida antes do protocolo.
+            Do projeto ao protocolo, sua documentação sai <span className="hero-grif hero-grif--wrap">pronta e validada</span>.
           </h1>
           <p className="hero-sub">
-            A partir do projeto cadastrado, com o dimensionamento elétrico embutido, e não para na papelada: <span style={{ color: '#e8e9ea', fontWeight: 600 }}>gestão de projetos, prazos e financeiro num só painel</span>.
+            O Homologa Plus dimensiona e gera memorial, unifilar, planta, formulários e anexos no padrão de cada distribuidora. <strong>Projetos, prazos e financeiro ficam no mesmo painel.</strong>
           </p>
           <div className="hero-cta-row">
             <a
@@ -64,15 +91,12 @@ const Hero = () => {
             </a>
           </div>
 
-          {/* Prova de resultado visível no mobile (no desktop vira card flutuante sobre o painel) */}
-          <div className="hero-mproof">
-            <span className="hero-mchip">
-              <span className="hero-chip-txt">
-                <span className="hero-chip-t">Conformidade</span>
-                <span className="hero-chip-s">validada</span>
-              </span>
-            </span>
-          </div>
+          <ul className="hero-proof-list" aria-label="Diferenciais da automação">
+            <li>Dimensionamento elétrico</li>
+            <li>Padrão da distribuidora</li>
+            <li>Validação normativa</li>
+          </ul>
+
         </Reveal>
 
         {/* Palco do produto: a janela tátil "tecla de teclado" com chips de prova flutuando */}
@@ -94,7 +118,7 @@ const Hero = () => {
           <HeroMedia />
         </Reveal>
 
-        <div className="hero-trust">Mais de 200 empresas de engenharia já usam o Homologa Plus</div>
+        <div className="hero-trust">Memorial, unifilar, planta e anexos gerados no mesmo fluxo</div>
       </div>
     </section>
   );
@@ -110,6 +134,12 @@ const LandingPage = () => {
 
   return (
     <div className="min-h-screen">
+      <a
+        href="#conteudo-principal"
+        className="sr-only fixed left-4 top-4 z-[100] rounded-lg bg-mist px-4 py-3 font-semibold text-ink focus:not-sr-only"
+      >
+        Pular para o conteúdo principal
+      </a>
       {/* ... Helmet below ... */}
       <Helmet>
         <title>Automação e Gestão de Homologação Solar | Homologa Plus</title>
@@ -210,7 +240,7 @@ const LandingPage = () => {
           rel="noopener noreferrer"
           onClick={() => window.fbq && window.fbq('track', 'Contact')}
           tabIndex={scrolled ? 0 : -1}
-          className="flex flex-1 items-center justify-center gap-2 rounded-xl bg-mist px-5 py-3.5 text-base font-bold text-ink shadow-[var(--btn-lift)] hover:brightness-105 active:scale-[0.98] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+          className="flex flex-1 items-center justify-center gap-2 whitespace-nowrap rounded-xl bg-mist px-3 py-3.5 text-sm font-bold text-ink shadow-[var(--btn-lift)] hover:brightness-105 active:scale-[0.98] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white sm:px-5 sm:text-base"
         >
           Agendar demonstração
         </a>
@@ -245,7 +275,7 @@ const LandingPage = () => {
         aria-label="Voltar ao topo"
         aria-hidden={!scrolled}
         tabIndex={scrolled ? 0 : -1}
-        className={`fixed bottom-28 right-8 z-40 hidden bg-obsidian text-mist p-4 rounded-2xl shadow-[var(--key-soft)] border border-white/10 hover:bg-graphite transition-all group md:block focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white ${scrolled ? '' : 'pointer-events-none'}`}
+        className={`fixed bottom-28 right-8 z-40 hidden bg-obsidian text-mist p-4 rounded-2xl shadow-[var(--key-soft)] border border-white/10 hover:bg-graphite transition-[opacity,transform,background-color] group md:block focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white ${scrolled ? '' : 'pointer-events-none'}`}
         style={{ opacity: scrolled ? 1 : 0, transform: scrolled ? 'scale(1)' : 'scale(0.5)' }}
       >
         <ChevronRight className="w-6 h-6 -rotate-90 group-hover:-translate-y-1 transition-transform" aria-hidden="true" />

@@ -150,7 +150,7 @@ const Pricing = () => {
                       window.fbq('track', 'Contact');
                     }
                   }}
-                  className={`w-full py-3 md:py-3.5 rounded-xl font-bold transition-all text-center text-sm md:text-base block focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white ${plan.highlight ? 'bg-mist text-ink shadow-[var(--btn-lift)] hover:-translate-y-px hover:brightness-105' : 'bg-white/5 text-white border border-white/10 shadow-[var(--key-soft)] hover:bg-white/10 hover:border-steel'}`}
+                  className={`block w-full whitespace-nowrap rounded-xl py-3 text-center text-sm font-bold transition-all focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white md:py-3.5 md:text-base ${plan.highlight ? 'bg-mist text-ink shadow-[var(--btn-lift)] hover:-translate-y-px hover:brightness-105' : 'bg-white/5 text-white border border-white/10 shadow-[var(--key-soft)] hover:bg-white/10 hover:border-steel'}`}
                 >
                   {plan.ctaText}
                 </a>

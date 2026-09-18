@@ -11,6 +11,8 @@ coverage/
 .overclock-app/
 .codex/
 .impeccable/
+.finesse/
+.tmp/
 lgpd-flow/
 review-cinema-lp/
 homologa-plus-cinema-*/

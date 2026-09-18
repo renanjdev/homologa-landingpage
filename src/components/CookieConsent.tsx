@@ -1,11 +1,13 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import {
+  FIRST_CONSENT_DECISION_EVENT,
   getConsent,
   setConsent,
   hasConsentDecision,
   initConsentedTrackers,
 } from '../lib/consent';
+import { usePresence } from '../lib/anim';
 
 /**
  * Banner de consentimento de cookies (LGPD / ANPD). Opt-in real: Pixel e
@@ -55,6 +57,8 @@ const CookieConsent = () => {
 
   const dialogRef = useRef<HTMLDivElement>(null);
   const firstFocusRef = useRef<HTMLButtonElement>(null);
+  const isFirstDecisionRef = useRef(!hasConsentDecision());
+  const presence = usePresence(open, 280);
 
   // Boot: sobe trackers já consentidos e decide se o banner aparece sozinho.
   useEffect(() => {
@@ -87,17 +91,31 @@ const CookieConsent = () => {
     setShowPrefs(false);
   }, []);
 
+  const announceFirstDecision = useCallback(() => {
+    if (!isFirstDecisionRef.current) return;
+    isFirstDecisionRef.current = false;
+
+    const reduced = window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
+    window.setTimeout(
+      () => window.dispatchEvent(new Event(FIRST_CONSENT_DECISION_EVENT)),
+      reduced ? 0 : 140,
+    );
+  }, []);
+
   const acceptAll = () => {
     setConsent({ analytics: true, marketing: true });
     close();
+    announceFirstDecision();
   };
   const rejectAll = () => {
     setConsent({ analytics: false, marketing: false });
     close();
+    announceFirstDecision();
   };
   const savePrefs = () => {
     setConsent({ analytics: toggles.analytics, marketing: toggles.marketing });
     close();
+    announceFirstDecision();
   };
 
   // Só dá para fechar sem escolher se já houve uma decisão anterior
@@ -128,19 +146,21 @@ const CookieConsent = () => {
     }
   };
 
-  if (!open) return null;
+  if (!presence.mounted) return null;
 
   // Botão base do cockpit. Aceitar e Recusar têm o MESMO peso visual (ANPD):
   // dois botões sólidos de mesmo tamanho — "primário" (Mist tátil) e "neutro"
   // (Graphite tátil), ambos proeminentes. Sem dark pattern.
   const primaryBtn =
-    'inline-flex min-h-[44px] items-center justify-center rounded-xl px-5 py-3 text-sm font-bold transition-all focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white';
+    'inline-flex min-h-[44px] items-center justify-center rounded-xl px-5 py-3 text-sm font-bold transition-[transform,filter,background-color,border-color] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white';
   const btnMist = 'bg-mist text-ink shadow-[var(--btn-lift)] hover:-translate-y-0.5 hover:brightness-105';
   const btnNeutral = 'bg-graphite text-mist border border-white/10 shadow-[var(--key-soft)] hover:-translate-y-0.5 hover:bg-obsidian';
 
   return (
     <div
-      className="fixed inset-0 z-[80] flex items-end justify-center bg-void/70 p-4 backdrop-blur-[2px] sm:items-center"
+      className={`fixed inset-0 z-[80] flex items-end justify-center bg-void/70 p-3 backdrop-blur-[2px] transition-opacity duration-[280ms] ease-out sm:items-center sm:p-4 ${
+        presence.show ? 'opacity-100' : 'pointer-events-none opacity-0'
+      }`}
       onClick={(e) => {
         if (e.target === e.currentTarget && dismissible) close();
       }}
@@ -152,16 +172,18 @@ const CookieConsent = () => {
         aria-labelledby="cc-title"
         aria-describedby="cc-desc"
         onKeyDown={onKeyDown}
-        className="w-full max-w-xl overflow-hidden rounded-2xl border border-white/10 bg-ink shadow-[var(--key),0_40px_90px_-30px_rgba(0,0,0,0.9)]"
+        className={`max-h-[calc(100dvh-1.5rem)] w-full max-w-lg overflow-y-auto rounded-2xl border border-white/10 bg-ink shadow-[var(--key),0_40px_90px_-30px_rgba(0,0,0,0.9)] transition-[opacity,transform] duration-[280ms] ease-out sm:max-h-[calc(100dvh-2rem)] ${
+          presence.show ? 'translate-y-0 scale-100 opacity-100' : 'translate-y-3 scale-[0.985] opacity-0'
+        }`}
       >
-        <div className="p-6 sm:p-7">
+        <div className="p-5 sm:p-7">
           <div className="mb-4">
             <h2 id="cc-title" className="font-display text-lg font-bold text-white">
               Sua privacidade
             </h2>
           </div>
 
-          <p id="cc-desc" className="text-sm leading-relaxed text-ash">
+          <p id="cc-desc" className="text-[13px] leading-relaxed text-ash sm:text-sm">
             Usamos cookies necessários para o site funcionar e, com o seu consentimento, cookies
             analíticos (desempenho) e de marketing (Meta Pixel). Você pode aceitar, recusar ou
             escolher por categoria. Recusar é tão simples quanto aceitar. Saiba mais na{' '}

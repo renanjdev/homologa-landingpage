@@ -28,11 +28,11 @@ const Navbar = ({ scrolled }: { scrolled: boolean }) => {
       </div>
       <nav
         className={`fixed top-0 left-0 right-0 z-50 border-b border-white/10 backdrop-blur-2xl transition-all duration-300 ${
-          scrolled ? 'bg-ink/80 py-2' : 'bg-ink/55 py-3'
+          scrolled ? 'bg-ink/85 py-1.5' : 'bg-ink/60 py-2'
         }`}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between h-16 items-center">
+          <div className="flex h-14 items-center justify-between">
             <Link
               to="/"
               className="flex items-center gap-2 min-h-[44px] shrink-0 group cursor-pointer focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white rounded-lg"
@@ -41,16 +41,16 @@ const Navbar = ({ scrolled }: { scrolled: boolean }) => {
               <img
                 src="/logo-h-white.png"
                 alt="Homologa Plus"
-                width={36}
-                height={36}
-                className="w-9 h-9 group-hover:scale-110 transition-transform"
+                width={32}
+                height={32}
+                className="h-8 w-8 transition-transform group-hover:scale-105"
               />
               <span className="text-lg sm:text-xl font-bold tracking-tight text-white">
                 Homologa <span className="font-medium text-white/70">Plus</span>
               </span>
             </Link>
 
-            <div className="hidden md:flex items-center gap-1">
+            <div className="hidden lg:flex items-center gap-1">
               {navLinks.map((link) => (
                 <a
                   key={link.name}
@@ -81,7 +81,7 @@ const Navbar = ({ scrolled }: { scrolled: boolean }) => {
               </a>
             </div>
 
-            <div className="md:hidden flex items-center gap-2">
+            <div className="lg:hidden flex items-center gap-2">
               <button
                 onClick={() => setIsOpen(!isOpen)}
                 aria-label={isOpen ? 'Fechar menu' : 'Abrir menu'}
@@ -102,7 +102,7 @@ const Navbar = ({ scrolled }: { scrolled: boolean }) => {
             inert quando fechado: links não recebem foco/clique enquanto invisíveis. */}
         <div
           inert={!isOpen}
-          className={`md:hidden grid transition-all duration-300 ease-in-out ${
+          className={`lg:hidden grid transition-all duration-300 ease-in-out ${
             isOpen ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0'
           }`}
         >

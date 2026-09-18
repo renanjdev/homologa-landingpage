@@ -429,7 +429,7 @@ const Automacao = () => {
               target="_blank"
               rel="noopener noreferrer"
               onClick={() => window.fbq && window.fbq('track', 'Contact')}
-              className={`inline-flex items-center justify-center gap-2 rounded-xl bg-mist px-7 py-3.5 text-base font-bold text-ink shadow-[var(--btn-lift)] transition-all hover:-translate-y-px hover:brightness-105 ${focusRing}`}
+              className={`inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-xl bg-mist px-5 py-3.5 text-sm font-bold text-ink shadow-[var(--btn-lift)] transition-all hover:-translate-y-px hover:brightness-105 sm:px-7 sm:text-base ${focusRing}`}
             >
               Agendar demonstração
               <ArrowRight className="h-4 w-4" />

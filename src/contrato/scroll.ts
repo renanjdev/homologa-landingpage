@@ -64,6 +64,8 @@ export function useVirtualScroll(total: number): {
     let raf = 0;
     let touchY = 0;
     let lastProgress = -1;
+    let lastRenderedY = Number.NaN;
+    let lastPublishedY = Number.NaN;
 
     const clamp = (value: number) => Math.max(0, Math.min(max, value));
     const measure = () => {
@@ -116,11 +118,18 @@ export function useVirtualScroll(total: number): {
     const tick = () => {
       current += (target - current) * 0.085;
       if (Math.abs(target - current) < 0.05) current = target;
-      root.style.transform = `translate3d(0, ${-current}px, 0)`;
+      if (!Number.isFinite(lastRenderedY) || Math.abs(current - lastRenderedY) > 0.05) {
+        root.style.transform = `translate3d(0, ${-current}px, 0)`;
+        lastRenderedY = current;
+      }
       const nextProgress = max > 0 ? current / max : 0;
       document.documentElement.style.setProperty('--fable-progress', nextProgress.toFixed(4));
       const frame = { y: current, target, max, progress: nextProgress };
-      publish(frame);
+      lastFrame = frame;
+      if (!Number.isFinite(lastPublishedY) || Math.abs(current - lastPublishedY) > 0.25) {
+        publish(frame);
+        lastPublishedY = current;
+      }
       if (Math.abs(nextProgress - lastProgress) > 0.003) {
         setProgress(nextProgress);
         lastProgress = nextProgress;

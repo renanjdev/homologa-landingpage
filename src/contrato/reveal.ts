@@ -5,14 +5,18 @@ import type { SectionId } from './types';
 export function useSectionPresence(section: SectionId) {
   const [presence, setPresence] = useState(0);
 
-  useEffect(() => subscribeScroll(() => {
+  useEffect(() => {
     const node = document.querySelector<HTMLElement>(`[data-section="${section}"]`);
     if (!node) return;
-    const rect = node.getBoundingClientRect();
-    const enter = window.innerHeight * 0.92;
-    const value = Math.max(0, Math.min(1, (enter - rect.top) / (window.innerHeight * 0.5)));
-    setPresence((current) => Math.abs(current - value) > 0.02 ? value : current);
-  }), [section]);
+    let previous = -1;
+    return subscribeScroll((frame) => {
+      const enter = window.innerHeight * 0.92;
+      const value = Math.max(0, Math.min(1, (frame.y + enter - node.offsetTop) / (window.innerHeight * 0.5)));
+      if (Math.abs(previous - value) <= 0.02) return;
+      previous = value;
+      setPresence(value);
+    });
+  }, [section]);
 
   return presence;
 }

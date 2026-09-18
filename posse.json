@@ -1,4 +1,6 @@
 {
+  ".gitignore": "contrato-raiz",
+  "src/App.tsx": "contrato-raiz",
   "01-demonstracao.tsx": "executor-1",
   "02-peca-densa.tsx": "executor-2",
   "03-mecanismo.tsx": "executor-3",

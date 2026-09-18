@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" role="img" aria-labelledby="title">
+  <title id="title">Homologa Plus</title>
+  <g fill="#fff">
+    <path d="M18 26 34 16v57L18 63z"/>
+    <path d="M43 12 57 20v25l-14-8zM43 58l14 8v22l-14 8z"/>
+    <path d="m43 42 14 8v-9l16-10v42L58 84V57l-15-8z"/>
+  </g>
+</svg>

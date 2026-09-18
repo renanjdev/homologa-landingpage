@@ -1,6 +1,7 @@
 import React, { Component, Suspense, useMemo, useRef, type ReactNode } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
 import * as THREE from 'three';
+import { SVGLoader } from 'three/examples/jsm/loaders/SVGLoader.js';
 import { getScrollFrame } from './scroll';
 
 const vertexShader = `
@@ -35,30 +36,22 @@ const fragmentShader = `
   }
 `;
 
-const logoPieces = [
-  [[-1.05, -1.15], [-0.7, -1.35], [-0.7, 0.75], [-1.05, 0.95]],
-  [[-0.2, -1.65], [0.22, -1.42], [0.22, -0.1], [-0.2, 0.12]],
-  [[-0.2, 0.8], [0.22, 0.58], [0.22, 1.55], [1.05, 1.08], [1.05, -0.86], [0.67, -1.1], [0.67, 0.72], [0.22, 0.98], [0.22, 0.58], [-0.2, 0.8]],
-] as const;
-
 function BrandInstrument() {
   const ref = useRef<THREE.Group>(null);
-  const geometries = useMemo(() => logoPieces.map((points) => {
-    const shape = new THREE.Shape();
-    points.forEach(([x, y], index) => {
-      if (index === 0) shape.moveTo(x, y);
-      else shape.lineTo(x, y);
-    });
-    shape.closePath();
-    return new THREE.ExtrudeGeometry(shape, {
-      depth: 0.22,
+  const svg = useLoader(SVGLoader, '/logo-h.svg');
+  const geometries = useMemo(() => svg.paths.flatMap((path) => SVGLoader.createShapes(path).map((shape) => {
+    const geometry = new THREE.ExtrudeGeometry(shape, {
+      depth: 8,
       bevelEnabled: true,
       bevelSegments: 3,
-      bevelSize: 0.045,
-      bevelThickness: 0.04,
+      bevelSize: 1.5,
+      bevelThickness: 1.2,
       curveSegments: 3,
     });
-  }), []);
+    geometry.scale(0.022, -0.022, 0.022);
+    geometry.center();
+    return geometry;
+  })), [svg]);
 
   useFrame((state) => {
     const group = ref.current;

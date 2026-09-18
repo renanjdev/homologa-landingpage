@@ -112,7 +112,12 @@ export function useVirtualScroll(total: number): {
       const section = root.querySelector<HTMLElement>(`[data-section="${String(index + 1).padStart(2, '0')}"]`);
       if (!section) return;
       target = clamp(section.offsetTop);
-      current += (target - current) * 0.18;
+      current = target;
+      root.style.transform = `translate3d(0, ${-current}px, 0)`;
+      lastRenderedY = current;
+      const nextProgress = max > 0 ? current / max : 0;
+      publish({ y: current, target, max, progress: nextProgress });
+      lastPublishedY = current;
     };
 
     const tick = () => {

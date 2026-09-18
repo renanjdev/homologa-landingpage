@@ -37,6 +37,9 @@ export function FablePreloader() {
           <strong>{String(value).padStart(3, '0')}</strong>
           <span>Preparando o dossiê técnico</span>
         </div>
+        <p className="fable-copy" style={{ marginTop: '1.25rem' }}>
+          Carregando a experiência Homologa Plus.
+        </p>
         <div className="fable-preloader-track" aria-hidden="true">
           <span style={{ transform: `scaleX(${value / 100})` }} />
         </div>

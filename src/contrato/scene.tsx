@@ -1,4 +1,4 @@
-import React, { Component, Suspense, useRef, useState, type ReactNode } from 'react';
+import React, { Component, Suspense, useLoader, useRef, type ReactNode } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
 import * as THREE from 'three';
 import { getScrollFrame } from './scroll';
@@ -35,35 +35,36 @@ const fragmentShader = `
   }
 `;
 
-function Instrument() {
-  const ref = useRef<THREE.Mesh>(null);
-  const material = useRef<THREE.ShaderMaterial>(null);
+function BrandInstrument() {
+  const ref = useRef<THREE.Group>(null);
+  const texture = useLoader(THREE.TextureLoader, '/logo-h-white.png');
 
   useFrame((state) => {
-    const mesh = ref.current;
-    if (!mesh) return;
+    const group = ref.current;
+    if (!group) return;
     const { progress } = getScrollFrame();
-    mesh.rotation.x = state.clock.elapsedTime * 0.12 + progress * Math.PI * 1.5;
-    mesh.rotation.y = state.clock.elapsedTime * 0.18 + progress * Math.PI * 2.3;
-    mesh.position.x = 1.65 - progress * 3.2;
-    mesh.position.y = Math.sin(progress * Math.PI * 5) * 0.55 + 0.15;
-    if (material.current) material.current.uniforms.uTime.value = state.clock.elapsedTime;
+    group.rotation.x = Math.sin(state.clock.elapsedTime * 0.35) * 0.18 + progress * 0.55;
+    group.rotation.y = state.clock.elapsedTime * 0.18 + progress * 1.5;
+    group.rotation.z = Math.sin(state.clock.elapsedTime * 0.28) * 0.08;
+    group.position.x = 1.55 - progress * 1.7;
+    group.position.y = Math.sin(state.clock.elapsedTime * 0.55 + progress * Math.PI * 2) * 0.18 + 0.15;
   });
 
   return (
-    <mesh ref={ref} scale={0.74}>
-      <torusKnotGeometry args={[0.82, 0.24, 96, 14, 2, 3]} />
-      <shaderMaterial
-        ref={material}
-        vertexShader={vertexShader}
-        fragmentShader={fragmentShader}
-        uniforms={{
-          uTime: { value: 0 },
-          uAccent: { value: new THREE.Color('#83b9ff') },
-        }}
-        transparent
-      />
-    </mesh>
+    <group ref={ref} scale={0.95}>
+      {[0.16, 0.12, 0.08, 0.04, 0].map((depth, index) => (
+        <mesh key={depth} position={[0, 0, -depth]}>
+          <planeGeometry args={[1.7, 1.7]} />
+          <meshBasicMaterial
+            map={texture}
+            color={index === 4 ? '#83b9ff' : '#081327'}
+            transparent
+            opacity={index === 4 ? 0.95 : 0.72}
+            depthWrite={false}
+          />
+        </mesh>
+      ))}
+    </group>
   );
 }
 
@@ -75,8 +76,18 @@ class SceneBoundary extends Component<{ children: ReactNode; fallback: ReactNode
 
 export function FableScene() {
   return (
-    <div className="fable-scene-mark" aria-hidden="true">
-      <img src="/logo-h-white.png" alt="" />
-    </div>
+    <SceneBoundary fallback={<div className="fable-scene-fallback" aria-hidden="true"><img src="/logo-h-white.png" alt="" /></div>}>
+      <Canvas
+        className="fable-scene"
+        aria-hidden="true"
+        dpr={[0.75, 1.1]}
+        camera={{ position: [0, 0, 5.2], fov: 42 }}
+        gl={{ antialias: false, alpha: true, powerPreference: 'high-performance' }}
+      >
+        <Suspense fallback={null}>
+          <BrandInstrument />
+        </Suspense>
+      </Canvas>
+    </SceneBoundary>
   );
 }

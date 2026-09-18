@@ -51,7 +51,7 @@ function Instrument() {
   });
 
   return (
-    <mesh ref={ref} scale={1.28}>
+    <mesh ref={ref} scale={0.74}>
       <torusKnotGeometry args={[0.82, 0.24, 96, 14, 2, 3]} />
       <shaderMaterial
         ref={material}

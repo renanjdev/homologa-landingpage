@@ -372,23 +372,27 @@ body.fable-active {
 .fable-scene {
   position: fixed !important;
   inset: 0 !important;
-  z-index: 12 !important;
+  z-index: 2 !important;
   width: 100vw !important;
   height: 100vh !important;
+  opacity: 0.28;
+  mix-blend-mode: screen;
   pointer-events: none !important;
 }
 
 .fable-scene-fallback {
   position: fixed;
-  z-index: 12;
+  z-index: 2;
   top: 24vh;
   right: 7vw;
-  width: min(28vw, 24rem);
+  width: min(18vw, 16rem);
   aspect-ratio: 1;
   border: 1px solid color-mix(in srgb, var(--fable-accent) 50%, transparent);
   border-radius: 42% 58% 64% 36%;
   pointer-events: none;
   filter: blur(0.05rem);
+  opacity: 0.28;
+  mix-blend-mode: screen;
   transform: rotate(18deg);
 }
 
@@ -419,7 +423,7 @@ body.fable-active {
   .fable-section-shell { padding-top: 6.5rem; min-height: max(100vh, calc(var(--section-duration) * 88vh)); }
   .fable-grid-2, .fable-grid-3 { grid-template-columns: 1fr; }
   .fable-display { max-width: 9.5ch; font-size: clamp(3.75rem, 11vw, 7rem); line-height: 0.88; }
-  .fable-scene { opacity: 0.72; }
+  .fable-scene, .fable-scene-fallback { opacity: 0.16; }
 }
 
 @media (max-width: 42rem) {

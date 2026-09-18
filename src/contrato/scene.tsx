@@ -1,5 +1,5 @@
-import React, { Component, Suspense, useLoader, useRef, type ReactNode } from 'react';
-import { Canvas, useFrame } from '@react-three/fiber';
+import React, { Component, Suspense, useRef, type ReactNode } from 'react';
+import { Canvas, useFrame, useLoader } from '@react-three/fiber';
 import * as THREE from 'three';
 import { getScrollFrame } from './scroll';
 

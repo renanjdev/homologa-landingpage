@@ -104,7 +104,7 @@ export default function Demonstracao({ id }: SectionProps) {
           zIndex: 8,
           minWidth: 0,
           minHeight: 0,
-          aspectRatio: '16 / 10',
+          aspectRatio: '16 / 11',
           height: 'auto',
           borderRadius: 'clamp(1rem, 2vw, 2rem)',
           isolation: 'isolate',

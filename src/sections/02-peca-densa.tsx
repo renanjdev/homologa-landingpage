@@ -43,9 +43,9 @@ export default function PecaDensa({ label }: SectionProps) {
         .peca-densa { width: min(100%, 90rem); margin-inline: auto; }
         .peca-densa__intro { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(17rem, .9fr); gap: clamp(1.5rem, 5vw, 6rem); align-items: end; margin-bottom: clamp(1.75rem, 4vh, 3.5rem); }
         .peca-densa__intro .fable-label { margin-bottom: 1rem; }
-        .peca-densa__heading { max-width: 9ch; font-size: clamp(2.6rem, 6vw, 6.8rem); line-height: .88; }
+        .peca-densa__heading { max-width: 12ch; font-size: clamp(2.5rem, 4.8vw, 5.1rem); line-height: .92; }
         .peca-densa__lede { align-self: end; padding-bottom: .35rem; }
-        .peca-densa__board { display: grid; grid-template-columns: minmax(0, 1fr) minmax(17.25rem, .34fr); min-height: min(43rem, 64vh); border: 1px solid color-mix(in srgb, var(--fable-paper) 15%, transparent); background: color-mix(in srgb, var(--fable-paper) 4%, var(--fable-void)); box-shadow: inset 0 1px color-mix(in srgb, var(--fable-paper) 9%, transparent), 0 2rem 6rem color-mix(in srgb, var(--fable-void) 65%, transparent); }
+        .peca-densa__board { display: grid; grid-template-columns: minmax(0, 1fr) minmax(17.25rem, .34fr); min-height: min(36rem, 58vh); border: 1px solid color-mix(in srgb, var(--fable-paper) 15%, transparent); background: color-mix(in srgb, var(--fable-paper) 4%, var(--fable-void)); box-shadow: inset 0 1px color-mix(in srgb, var(--fable-paper) 9%, transparent), 0 2rem 6rem color-mix(in srgb, var(--fable-void) 65%, transparent); }
         .peca-densa__workbench { min-width: 0; display: grid; grid-template-rows: auto minmax(0, 1fr); border-right: 1px solid color-mix(in srgb, var(--fable-paper) 13%, transparent); }
         .peca-densa__tabs { display: flex; gap: .25rem; padding: .75rem; overflow-x: auto; border-bottom: 1px solid color-mix(in srgb, var(--fable-paper) 13%, transparent); scrollbar-width: thin; scrollbar-color: var(--fable-accent) transparent; }
         .peca-densa__tab { flex: 0 0 auto; min-height: 2.75rem; border: 1px solid transparent; border-radius: .45rem; padding: .55rem .78rem; color: var(--fable-muted); background: transparent; font: 600 var(--fable-label)/1.1 "Cascadia Code", ui-monospace, monospace; letter-spacing: .08em; text-transform: uppercase; cursor: pointer; transition: color 220ms var(--fable-ease), background 220ms var(--fable-ease), border-color 220ms var(--fable-ease); }
@@ -56,7 +56,7 @@ export default function PecaDensa({ label }: SectionProps) {
         .peca-densa__document-meta { display: flex; justify-content: space-between; gap: 1rem; align-items: baseline; padding-bottom: .8rem; color: var(--fable-muted); font-family: "Cascadia Code", ui-monospace, monospace; font-size: var(--fable-label); letter-spacing: .11em; line-height: 1.25; text-transform: uppercase; }
         .peca-densa__document-meta strong { color: var(--fable-paper); font-weight: 620; }
         .peca-densa__preview { min-height: 0; overflow: hidden; border: 1px solid color-mix(in srgb, var(--fable-paper) 14%, transparent); background: var(--fable-paper); }
-        .peca-densa__preview img { display: block; width: 100%; height: 100%; min-height: 17rem; object-fit: contain; object-position: center; }
+        .peca-densa__preview img { display: block; width: 100%; height: 100%; min-height: 14rem; object-fit: contain; object-position: center; }
         .peca-densa__panel { min-width: 0; display: flex; flex-direction: column; }
         .peca-densa__panel-head { display: flex; justify-content: space-between; gap: 1rem; align-items: center; padding: 1.15rem 1.2rem; border-bottom: 1px solid color-mix(in srgb, var(--fable-paper) 13%, transparent); }
         .peca-densa__panel-head h3 { margin: 0; font-size: .92rem; font-weight: 620; }
@@ -77,7 +77,7 @@ export default function PecaDensa({ label }: SectionProps) {
         .peca-densa__note { margin: auto 1.15rem 1.15rem; padding-top: .9rem; border-top: 1px solid color-mix(in srgb, var(--fable-paper) 12%, transparent); color: var(--fable-muted); font-size: .72rem; line-height: 1.42; }
         .peca-densa__note strong { color: var(--fable-paper); font-weight: 580; }
         @media (max-width: 60rem) { .peca-densa__intro, .peca-densa__board { grid-template-columns: 1fr; } .peca-densa__workbench { border-right: 0; border-bottom: 1px solid color-mix(in srgb, var(--fable-paper) 13%, transparent); } .peca-densa__panel { min-height: 24rem; } }
-        @media (max-width: 32rem) { .peca-densa__intro { gap: 1rem; } .peca-densa__heading { font-size: clamp(2.3rem, 13vw, 3.4rem); } .peca-densa__canvas { padding: .75rem; } .peca-densa__preview img { min-height: 14rem; } .peca-densa__panel-head { padding-inline: .9rem; } .peca-densa__simulation { max-width: 8rem; } .peca-densa__metric, .peca-densa__checks { padding-inline: .9rem; } .peca-densa__note { margin-inline: .9rem; } }
+        @media (max-width: 32rem) { .peca-densa__intro { gap: 1rem; } .peca-densa__heading { max-width: 11ch; font-size: clamp(2.2rem, 11vw, 3.1rem); } .peca-densa__canvas { padding: .75rem; } .peca-densa__preview img { min-height: 12rem; } .peca-densa__panel-head { padding-inline: .9rem; } .peca-densa__simulation { max-width: 8rem; } .peca-densa__metric, .peca-densa__checks { padding-inline: .9rem; } .peca-densa__note { margin-inline: .9rem; } }
       `}</style>
 
       <div className="peca-densa__intro">

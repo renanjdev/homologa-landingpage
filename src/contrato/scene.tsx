@@ -1,4 +1,4 @@
-import React, { Component, Suspense, useEffect, useRef, useState, type ReactNode } from 'react';
+import React, { Component, Suspense, useRef, useState, type ReactNode } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
 import * as THREE from 'three';
 import { getScrollFrame } from './scroll';
@@ -74,19 +74,23 @@ class SceneBoundary extends Component<{ children: ReactNode; fallback: ReactNode
 }
 
 export function FableScene() {
-  const [supported, setSupported] = useState(true);
-
-  useEffect(() => {
+  const [mode] = useState<'webgl' | 'fallback'>(() => {
     try {
       const canvas = document.createElement('canvas');
-      setSupported(Boolean(canvas.getContext('webgl2') || canvas.getContext('webgl')));
+      const gl = canvas.getContext('webgl2') || canvas.getContext('webgl');
+      if (!gl) return 'fallback';
+      const extension = gl.getExtension('WEBGL_debug_renderer_info');
+      const renderer = extension
+        ? String(gl.getParameter(extension.UNMASKED_RENDERER_WEBGL))
+        : '';
+      return /swiftshader|software|llvmpipe/i.test(renderer) ? 'fallback' : 'webgl';
     } catch {
-      setSupported(false);
+      return 'fallback';
     }
-  }, []);
+  });
 
   const fallback = <div className="fable-scene-fallback" aria-hidden="true" />;
-  if (!supported) return fallback;
+  if (mode === 'fallback') return fallback;
 
   return (
     <SceneBoundary fallback={fallback}>

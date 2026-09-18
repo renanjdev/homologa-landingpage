@@ -1,4 +1,4 @@
-import React, { lazy, Suspense } from 'react';
+import React, { lazy, Suspense, useEffect, useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { FablePreloader } from '../contrato/preloader';
 import { FableRegistry, SECTION_REGISTRY } from '../contrato/registry';
@@ -11,6 +11,16 @@ const FableScene = lazy(() => import('../contrato/scene').then((module) => ({ de
 
 export default function LandingPage() {
   const { rootRef } = useVirtualScroll(SECTION_REGISTRY.length);
+  const [reducedMotion, setReducedMotion] = useState(() =>
+    typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches,
+  );
+
+  useEffect(() => {
+    const media = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const onChange = () => setReducedMotion(media.matches);
+    media.addEventListener?.('change', onChange);
+    return () => media.removeEventListener?.('change', onChange);
+  }, []);
 
   const goTo = (index: number) => window.__fable?.scrollTo(index);
 
@@ -49,9 +59,11 @@ export default function LandingPage() {
           <FableRegistry />
         </div>
       </div>
-      <Suspense fallback={<div className="fable-scene-fallback" aria-hidden="true" />}>
-        <FableScene />
-      </Suspense>
+      {!reducedMotion && (
+        <Suspense fallback={<div className="fable-scene-fallback" aria-hidden="true" />}>
+          <FableScene />
+        </Suspense>
+      )}
       <div className="fable-noise" aria-hidden="true" />
       <div className="fable-scrollbar" aria-hidden="true"><span /></div>
     </div>

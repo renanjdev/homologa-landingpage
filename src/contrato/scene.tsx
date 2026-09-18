@@ -1,5 +1,5 @@
-import React, { Component, Suspense, useRef, type ReactNode } from 'react';
-import { Canvas, useFrame, useLoader } from '@react-three/fiber';
+import React, { Component, Suspense, useMemo, useRef, type ReactNode } from 'react';
+import { Canvas, useFrame } from '@react-three/fiber';
 import * as THREE from 'three';
 import { getScrollFrame } from './scroll';
 
@@ -35,9 +35,30 @@ const fragmentShader = `
   }
 `;
 
+const logoPieces = [
+  [[-1.05, -1.15], [-0.7, -1.35], [-0.7, 0.75], [-1.05, 0.95]],
+  [[-0.2, -1.65], [0.22, -1.42], [0.22, -0.1], [-0.2, 0.12]],
+  [[-0.2, 0.8], [0.22, 0.58], [0.22, 1.55], [1.05, 1.08], [1.05, -0.86], [0.67, -1.1], [0.67, 0.72], [0.22, 0.98], [0.22, 0.58], [-0.2, 0.8]],
+] as const;
+
 function BrandInstrument() {
   const ref = useRef<THREE.Group>(null);
-  const texture = useLoader(THREE.TextureLoader, '/logo-h-white.png');
+  const geometries = useMemo(() => logoPieces.map((points) => {
+    const shape = new THREE.Shape();
+    points.forEach(([x, y], index) => {
+      if (index === 0) shape.moveTo(x, y);
+      else shape.lineTo(x, y);
+    });
+    shape.closePath();
+    return new THREE.ExtrudeGeometry(shape, {
+      depth: 0.22,
+      bevelEnabled: true,
+      bevelSegments: 3,
+      bevelSize: 0.045,
+      bevelThickness: 0.04,
+      curveSegments: 3,
+    });
+  }), []);
 
   useFrame((state) => {
     const group = ref.current;
@@ -51,17 +72,10 @@ function BrandInstrument() {
   });
 
   return (
-    <group ref={ref} scale={0.95}>
-      {[0.16, 0.12, 0.08, 0.04, 0].map((depth, index) => (
-        <mesh key={depth} position={[0, 0, -depth]}>
-          <planeGeometry args={[1.7, 1.7]} />
-          <meshBasicMaterial
-            map={texture}
-            color={index === 4 ? '#83b9ff' : '#081327'}
-            transparent
-            opacity={index === 4 ? 0.95 : 0.72}
-            depthWrite={false}
-          />
+    <group ref={ref} scale={0.52} rotation={[0.12, -0.25, 0]}>
+      {geometries.map((geometry, index) => (
+        <mesh key={index} geometry={geometry} position={[0, 0, index * 0.018]}>
+          <meshStandardMaterial color={index === 2 ? '#83b9ff' : '#0d1b33'} metalness={0.58} roughness={0.24} emissive={index === 2 ? '#132f62' : '#02050b'} emissiveIntensity={0.7} />
         </mesh>
       ))}
     </group>
@@ -84,6 +98,9 @@ export function FableScene() {
         camera={{ position: [0, 0, 5.2], fov: 42 }}
         gl={{ antialias: false, alpha: true, powerPreference: 'high-performance' }}
       >
+        <ambientLight intensity={0.7} />
+        <pointLight position={[2, 2, 4]} intensity={3.2} color="#83b9ff" />
+        <pointLight position={[-2, -1, 2]} intensity={1.4} color="#f2efe8" />
         <Suspense fallback={null}>
           <BrandInstrument />
         </Suspense>

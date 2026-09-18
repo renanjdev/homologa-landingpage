@@ -1,0 +1,8 @@
+{
+  "01-demonstracao.tsx": "executor-1",
+  "02-peca-densa.tsx": "executor-2",
+  "03-mecanismo.tsx": "executor-3",
+  "04-virada.tsx": "executor-4",
+  "05-prova.tsx": "executor-5",
+  "06-acao.tsx": "executor-6"
+}

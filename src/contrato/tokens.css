@@ -369,31 +369,33 @@ body.fable-active {
   background: var(--fable-accent);
 }
 
-.fable-scene {
+.fable-scene,
+.fable-scene-mark,
+.fable-scene-fallback {
   position: fixed !important;
-  inset: 0 !important;
   z-index: 2 !important;
-  width: 100vw !important;
-  height: 100vh !important;
-  opacity: 0.28;
+  top: 18vh;
+  right: 9vw;
+  width: clamp(7rem, 15vw, 13rem);
+  aspect-ratio: 1;
+  opacity: 0.16;
   mix-blend-mode: screen;
   pointer-events: none !important;
 }
 
-.fable-scene-fallback {
-  position: fixed;
-  z-index: 2;
-  top: 24vh;
-  right: 7vw;
-  width: min(18vw, 16rem);
-  aspect-ratio: 1;
-  border: 1px solid color-mix(in srgb, var(--fable-accent) 50%, transparent);
-  border-radius: 42% 58% 64% 36%;
-  pointer-events: none;
-  filter: blur(0.05rem);
-  opacity: 0.28;
-  mix-blend-mode: screen;
-  transform: rotate(18deg);
+.fable-scene-mark img,
+.fable-scene-fallback img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: drop-shadow(0 0 1.5rem color-mix(in srgb, var(--fable-accent) 35%, transparent));
+  animation: fable-mark-float 7s ease-in-out infinite;
+}
+
+@keyframes fable-mark-float {
+  0%, 100% { transform: translate3d(0, 0, 0) rotate(-3deg); }
+  50% { transform: translate3d(0, -0.65rem, 0) rotate(3deg); }
 }
 
 .fable-placeholder {
@@ -423,7 +425,7 @@ body.fable-active {
   .fable-section-shell { padding-top: 6.5rem; min-height: max(100vh, calc(var(--section-duration) * 88vh)); }
   .fable-grid-2, .fable-grid-3 { grid-template-columns: 1fr; }
   .fable-display { max-width: 9.5ch; font-size: clamp(3.75rem, 11vw, 7rem); line-height: 0.88; }
-  .fable-scene, .fable-scene-fallback { opacity: 0.16; }
+  .fable-scene, .fable-scene-mark, .fable-scene-fallback { top: 24vh; right: 7vw; width: 6rem; opacity: 0.1; }
 }
 
 @media (max-width: 42rem) {

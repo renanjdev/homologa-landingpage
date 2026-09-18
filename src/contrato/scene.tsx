@@ -74,37 +74,9 @@ class SceneBoundary extends Component<{ children: ReactNode; fallback: ReactNode
 }
 
 export function FableScene() {
-  const [mode] = useState<'webgl' | 'fallback'>(() => {
-    try {
-      const canvas = document.createElement('canvas');
-      const gl = canvas.getContext('webgl2') || canvas.getContext('webgl');
-      if (!gl) return 'fallback';
-      const extension = gl.getExtension('WEBGL_debug_renderer_info');
-      const renderer = extension
-        ? String(gl.getParameter(extension.UNMASKED_RENDERER_WEBGL))
-        : '';
-      return /swiftshader|software|llvmpipe/i.test(renderer) ? 'fallback' : 'webgl';
-    } catch {
-      return 'fallback';
-    }
-  });
-
-  const fallback = <div className="fable-scene-fallback" aria-hidden="true" />;
-  if (mode === 'fallback') return fallback;
-
   return (
-    <SceneBoundary fallback={fallback}>
-      <Canvas
-        className="fable-scene"
-        aria-hidden="true"
-        dpr={[0.75, 1.25]}
-        camera={{ position: [0, 0, 5.2], fov: 42 }}
-        gl={{ antialias: false, alpha: true, powerPreference: 'high-performance' }}
-      >
-        <Suspense fallback={null}>
-          <Instrument />
-        </Suspense>
-      </Canvas>
-    </SceneBoundary>
+    <div className="fable-scene-mark" aria-hidden="true">
+      <img src="/logo-h-white.png" alt="" />
+    </div>
   );
 }

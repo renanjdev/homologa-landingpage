@@ -60,7 +60,7 @@ export default function LandingPage() {
         </div>
       </div>
       {!reducedMotion && (
-        <Suspense fallback={<div className="fable-scene-fallback" aria-hidden="true" />}>
+        <Suspense fallback={<div className="fable-scene-fallback" aria-hidden="true"><img src="/logo-h-white.png" alt="" /></div>}>
           <FableScene />
         </Suspense>
       )}

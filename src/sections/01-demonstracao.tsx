@@ -59,7 +59,7 @@ export default function Demonstracao({ id }: SectionProps) {
       }}
     >
       <style>{`
-        .demonstracao__layout { grid-template-columns: minmax(0, .84fr) minmax(0, 1.16fr); }
+        .demonstracao__layout { grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); }
         @media (max-width: 60rem) { .demonstracao__layout { grid-template-columns: 1fr; } }
       `}</style>
       <div style={{ position: 'relative', zIndex: 14, minWidth: 0, paddingBlock: 'clamp(1rem, 4vh, 4rem)' }}>

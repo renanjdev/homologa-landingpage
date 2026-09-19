@@ -51,14 +51,17 @@ export default function Demonstracao({ id }: SectionProps) {
 
   return (
     <div
-      className="fable-container"
+      className="fable-container demonstracao__layout"
       style={{
         display: 'grid',
-        gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 31rem), 1fr))',
         alignItems: 'center',
         gap: 'clamp(2rem, 5vw, 6.5rem)',
       }}
     >
+      <style>{`
+        .demonstracao__layout { grid-template-columns: minmax(0, .84fr) minmax(0, 1.16fr); }
+        @media (max-width: 60rem) { .demonstracao__layout { grid-template-columns: 1fr; } }
+      `}</style>
       <div style={{ position: 'relative', zIndex: 14, minWidth: 0, paddingBlock: 'clamp(1rem, 4vh, 4rem)' }}>
         <p className="fable-label">Automação documental para energia solar</p>
         <LineReveal

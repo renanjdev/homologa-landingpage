@@ -41,14 +41,14 @@ function BrandInstrument() {
   const svg = useLoader(SVGLoader, '/logo-h-indigo.svg');
   const geometries = useMemo(() => svg.paths.flatMap((path) => SVGLoader.createShapes(path).map((shape) => {
     const geometry = new THREE.ExtrudeGeometry(shape, {
-      depth: 8,
+      depth: 45,
       bevelEnabled: true,
       bevelSegments: 3,
-      bevelSize: 1.5,
-      bevelThickness: 1.2,
+      bevelSize: 4,
+      bevelThickness: 3,
       curveSegments: 3,
     });
-    geometry.scale(0.022, -0.022, 0.022);
+    geometry.scale(0.0025, -0.0025, 0.0025);
     geometry.center();
     return geometry;
   })), [svg]);
@@ -65,7 +65,7 @@ function BrandInstrument() {
   });
 
   return (
-    <group ref={ref} scale={0.52} rotation={[0.12, -0.25, 0]}>
+    <group ref={ref} scale={0.88} rotation={[0.12, -0.25, 0]}>
       {geometries.map((geometry, index) => (
         <mesh key={index} geometry={geometry} position={[0, 0, index * 0.018]}>
           <meshStandardMaterial color={index === 2 ? '#83b9ff' : '#0d1b33'} metalness={0.58} roughness={0.24} emissive={index === 2 ? '#132f62' : '#02050b'} emissiveIntensity={0.7} />

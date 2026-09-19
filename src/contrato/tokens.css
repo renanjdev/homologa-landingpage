@@ -220,8 +220,8 @@ body.fable-active {
 }
 
 .fable-display {
-  max-width: 18ch;
-  font-size: clamp(3.4rem, 6.5vw, 7.5rem);
+  max-width: 22ch;
+  font-size: clamp(2.8rem, 6vw, 6.5rem);
   font-weight: 330;
   line-height: 0.9;
   word-break: normal;
@@ -437,7 +437,7 @@ body.fable-active {
   .fable-nav-links .fable-nav-button:not(.fable-nav-button--cta) { display: none; }
   .fable-section-shell { padding-top: 6.5rem; min-height: max(100vh, calc(var(--section-duration) * 88vh)); }
   .fable-grid-2, .fable-grid-3 { grid-template-columns: 1fr; }
-  .fable-display { max-width: 18ch; font-size: clamp(3rem, 7.5vw, 5.25rem); line-height: 0.94; }
+  .fable-display { max-width: 22ch; font-size: clamp(2.8rem, 7vw, 5.25rem); line-height: 0.94; }
   .fable-scene { opacity: 0.1; }
   .fable-scene-mark, .fable-scene-fallback { top: 24vh; right: 7vw; width: 6rem; opacity: 0.1; }
 }

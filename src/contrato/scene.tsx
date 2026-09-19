@@ -38,7 +38,7 @@ const fragmentShader = `
 
 function BrandInstrument() {
   const ref = useRef<THREE.Group>(null);
-  const svg = useLoader(SVGLoader, '/logo-h.svg');
+  const svg = useLoader(SVGLoader, '/logo-h-indigo.svg');
   const geometries = useMemo(() => svg.paths.flatMap((path) => SVGLoader.createShapes(path).map((shape) => {
     const geometry = new THREE.ExtrudeGeometry(shape, {
       depth: 8,

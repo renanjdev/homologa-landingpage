@@ -4,11 +4,13 @@ import { useMockTelemetry } from '../contrato/mock';
 import type { SectionProps } from '../contrato/types';
 
 const documents = [
-  { id: 'memorial', label: 'Memorial', title: 'Memorial descritivo', src: '/doc-memorial.webp', alt: 'Prévia do memorial descritivo da usina solar' },
-  { id: 'unifilar', label: 'Unifilar', title: 'Diagrama unifilar completo', src: '/doc-unifilar-completo.webp', alt: 'Prévia do diagrama unifilar completo' },
-  { id: 'blocos', label: 'Blocos', title: 'Diagrama de blocos', src: '/doc-blocos.webp', alt: 'Prévia do diagrama de blocos do sistema fotovoltaico' },
-  { id: 'planta', label: 'Planta', title: 'Planta de localização', src: '/doc-planta.webp', alt: 'Prévia da planta de localização da instalação' },
-  { id: 'cpfl', label: 'Anexo CPFL', title: 'Anexo da distribuidora', src: '/doc-anexo-cpfl.webp', alt: 'Prévia do anexo CPFL para protocolo' },
+  { id: 'memorial', label: 'Memorial', title: 'Memorial descritivo', desc: 'No modelo exigido pela sua distribuidora.', formatos: 'PDF', src: '/doc-memorial.webp', alt: 'Prévia do memorial descritivo da usina solar' },
+  { id: 'unifilar', label: 'Unifilar', title: 'Diagrama unifilar completo', desc: 'Dimensionado a partir dos dados do projeto.', formatos: 'PDF, SVG, DXF', src: '/doc-unifilar-completo.webp', alt: 'Prévia do diagrama unifilar completo' },
+  { id: 'blocos', label: 'Blocos', title: 'Diagrama de blocos', desc: 'Funcional, com todo o sistema representado.', formatos: 'PDF, SVG, DXF', src: '/doc-blocos.webp', alt: 'Prévia do diagrama de blocos do sistema fotovoltaico' },
+  { id: 'planta', label: 'Planta', title: 'Planta de localização', desc: 'Vista de satélite com as coordenadas da UC.', formatos: 'PDF', src: '/doc-planta.webp', alt: 'Prévia da planta de localização da instalação' },
+  { id: 'cpfl', label: 'CPFL', title: 'Anexo da CPFL', desc: 'Formulário preenchido automaticamente com dados do projeto.', formatos: 'PDF', src: '/doc-anexo-cpfl.webp', alt: 'Prévia do anexo CPFL para protocolo' },
+  { id: 'energisa', label: 'Energisa', title: 'Orçamento Energisa', desc: 'Formulário preenchido automaticamente com dados do projeto.', formatos: 'PDF', src: '/doc-anexo-energisa.webp', alt: 'Prévia do formulário Energisa' },
+  { id: 'equatorial', label: 'Equatorial', title: 'Solicitação Equatorial', desc: 'Formulário preenchido automaticamente com dados do projeto.', formatos: 'PDF', src: '/doc-anexo-equatorial.webp', alt: 'Prévia do anexo Equatorial' },
 ] as const;
 
 const validationItems = [
@@ -37,26 +39,39 @@ export default function PecaDensa({ label }: SectionProps) {
     document.getElementById(`dossie-tab-${documents[next].id}`)?.focus();
   };
 
+  const dialogRef = React.useRef<HTMLDialogElement>(null);
+  const openViewer = () => dialogRef.current?.showModal();
+  const closeViewer = () => dialogRef.current?.close();
+
   return (
     <section className="peca-densa" aria-labelledby="dossie-title">
       <style>{`
+        .peca-densa__dialog { margin: auto; max-width: none; max-height: none; padding: 0; background: transparent; border: 0; outline: none; }
+        .peca-densa__dialog::backdrop { background: color-mix(in srgb, var(--fable-void) 90%, transparent); backdrop-filter: blur(4px); }
+        .peca-densa__dialog-inner { position: relative; display: flex; width: 100vw; height: 100vh; align-items: center; justify-content: center; padding: 2rem; }
+        .peca-densa__dialog img { max-width: 100%; max-height: 100%; object-fit: contain; }
+        .peca-densa__dialog-close { position: absolute; top: 1.5rem; right: 1.5rem; width: 3rem; height: 3rem; display: grid; place-items: center; border-radius: 50%; background: var(--fable-paper); color: var(--fable-void); border: 0; font-size: 1.5rem; cursor: pointer; transition: transform 0.2s var(--fable-ease); }
+        .peca-densa__dialog-close:hover { transform: scale(1.05); }
         .peca-densa { width: min(100%, 90rem); margin-inline: auto; }
         .peca-densa__intro { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(17rem, .9fr); gap: clamp(1.5rem, 5vw, 6rem); align-items: end; margin-bottom: clamp(1.75rem, 4vh, 3.5rem); }
         .peca-densa__intro .fable-label { margin-bottom: 1rem; }
         .peca-densa__heading { max-width: 12ch; font-size: clamp(2.5rem, 4.8vw, 5.1rem); line-height: .92; }
         .peca-densa__lede { align-self: end; padding-bottom: .35rem; }
-        .peca-densa__board { display: grid; grid-template-columns: minmax(0, 1fr) minmax(17.25rem, .34fr); min-height: min(36rem, 58vh); border: 1px solid color-mix(in srgb, var(--fable-paper) 15%, transparent); background: color-mix(in srgb, var(--fable-paper) 4%, var(--fable-void)); box-shadow: inset 0 1px color-mix(in srgb, var(--fable-paper) 9%, transparent), 0 2rem 6rem color-mix(in srgb, var(--fable-void) 65%, transparent); }
-        .peca-densa__workbench { min-width: 0; display: grid; grid-template-rows: auto minmax(0, 1fr); border-right: 1px solid color-mix(in srgb, var(--fable-paper) 13%, transparent); }
+        .peca-densa__board { display: grid; grid-template-columns: minmax(0, 1fr) minmax(17.25rem, .34fr); min-height: clamp(24rem, 50vh, 36rem); height: auto; border: 1px solid color-mix(in srgb, var(--fable-paper) 15%, transparent); background: color-mix(in srgb, var(--fable-paper) 4%, var(--fable-void)); box-shadow: inset 0 1px color-mix(in srgb, var(--fable-paper) 9%, transparent), 0 2rem 6rem color-mix(in srgb, var(--fable-void) 65%, transparent); }
+        .peca-densa__workbench { min-width: 0; min-height: 0; display: grid; grid-template-rows: auto minmax(0, 1fr); border-right: 1px solid color-mix(in srgb, var(--fable-paper) 13%, transparent); }
         .peca-densa__tabs { display: flex; gap: .25rem; padding: .75rem; overflow-x: auto; border-bottom: 1px solid color-mix(in srgb, var(--fable-paper) 13%, transparent); scrollbar-width: thin; scrollbar-color: var(--fable-accent) transparent; }
-        .peca-densa__tab { flex: 0 0 auto; min-height: 2.75rem; border: 1px solid transparent; border-radius: .45rem; padding: .55rem .78rem; color: var(--fable-muted); background: transparent; font: 600 var(--fable-label)/1.1 "Cascadia Code", ui-monospace, monospace; letter-spacing: .08em; text-transform: uppercase; cursor: pointer; transition: color 220ms var(--fable-ease), background 220ms var(--fable-ease), border-color 220ms var(--fable-ease); }
+        .peca-densa__tab { flex: 0 0 auto; display: inline-flex; align-items: center; justify-content: center; min-height: 2.75rem; border: 1px solid transparent; border-radius: .45rem; padding: .55rem .78rem; color: var(--fable-muted); background: transparent; font: 600 var(--fable-label)/1.1 "Cascadia Code", ui-monospace, monospace; letter-spacing: .08em; text-align: center; text-transform: uppercase; white-space: nowrap; cursor: pointer; transition: color 220ms var(--fable-ease), background 220ms var(--fable-ease), border-color 220ms var(--fable-ease); }
         .peca-densa__tab:hover { color: var(--fable-paper); background: color-mix(in srgb, var(--fable-paper) 6%, transparent); }
         .peca-densa__tab[aria-selected="true"] { color: var(--fable-void); border-color: var(--fable-accent); background: var(--fable-accent); }
         .peca-densa__tab:focus-visible, .peca-densa__status:focus-visible { outline: 2px solid var(--fable-accent); outline-offset: 3px; }
         .peca-densa__canvas { position: relative; min-height: 0; display: grid; grid-template-rows: auto minmax(0, 1fr); padding: clamp(1rem, 2vw, 1.5rem); background: color-mix(in srgb, var(--fable-void) 82%, var(--fable-paper)); }
         .peca-densa__document-meta { display: flex; justify-content: space-between; gap: 1rem; align-items: baseline; padding-bottom: .8rem; color: var(--fable-muted); font-family: "Cascadia Code", ui-monospace, monospace; font-size: var(--fable-label); letter-spacing: .11em; line-height: 1.25; text-transform: uppercase; }
         .peca-densa__document-meta strong { color: var(--fable-paper); font-weight: 620; }
-        .peca-densa__preview { min-height: 0; overflow: hidden; border: 1px solid color-mix(in srgb, var(--fable-paper) 14%, transparent); background: var(--fable-paper); }
-        .peca-densa__preview img { display: block; width: 100%; height: 100%; min-height: 14rem; object-fit: contain; object-position: center; }
+        .peca-densa__preview { display: block; justify-self: center; width: min(100%, 28rem); aspect-ratio: .72; min-width: 0; min-height: 0; cursor: zoom-in; overflow: hidden; border: 1px solid color-mix(in srgb, var(--fable-paper) 14%, transparent); background: var(--fable-paper); }
+        .peca-densa__preview[data-document="unifilar"],
+        .peca-densa__preview[data-document="blocos"],
+        .peca-densa__preview[data-document="planta"] { width: min(100%, 48rem); aspect-ratio: 1.45; }
+        .peca-densa__preview img { display: block; width: 100%; height: 100%; min-height: 0; object-fit: contain; object-position: center; }
         .peca-densa__panel { min-width: 0; display: flex; flex-direction: column; }
         .peca-densa__panel-head { display: flex; justify-content: space-between; gap: 1rem; align-items: center; padding: 1.15rem 1.2rem; border-bottom: 1px solid color-mix(in srgb, var(--fable-paper) 13%, transparent); }
         .peca-densa__panel-head h3 { margin: 0; font-size: .92rem; font-weight: 620; }
@@ -76,9 +91,22 @@ export default function PecaDensa({ label }: SectionProps) {
         .peca-densa__status span { display: block; margin-top: .18rem; color: var(--fable-muted); font-size: .71rem; line-height: 1.35; }
         .peca-densa__note { margin: auto 1.15rem 1.15rem; padding-top: .9rem; border-top: 1px solid color-mix(in srgb, var(--fable-paper) 12%, transparent); color: var(--fable-muted); font-size: .72rem; line-height: 1.42; }
         .peca-densa__note strong { color: var(--fable-paper); font-weight: 580; }
-        @media (max-width: 60rem) { .peca-densa__intro, .peca-densa__board { grid-template-columns: 1fr; } .peca-densa__workbench { border-right: 0; border-bottom: 1px solid color-mix(in srgb, var(--fable-paper) 13%, transparent); } .peca-densa__panel { min-height: 24rem; } }
-        @media (max-width: 32rem) { .peca-densa__intro { gap: 1rem; } .peca-densa__heading { max-width: 11ch; font-size: clamp(2.2rem, 11vw, 3.1rem); } .peca-densa__canvas { padding: .75rem; } .peca-densa__preview img { min-height: 12rem; } .peca-densa__panel-head { padding-inline: .9rem; } .peca-densa__simulation { max-width: 8rem; } .peca-densa__metric, .peca-densa__checks { padding-inline: .9rem; } .peca-densa__note { margin-inline: .9rem; } }
+        @media (max-width: 60rem) { .peca-densa__intro, .peca-densa__board { grid-template-columns: 1fr; } .peca-densa__board { height: auto; } .peca-densa__preview, .peca-densa__preview[data-document="unifilar"], .peca-densa__preview[data-document="blocos"], .peca-densa__preview[data-document="planta"] { width: 100%; } .peca-densa__workbench { border-right: 0; border-bottom: 1px solid color-mix(in srgb, var(--fable-paper) 13%, transparent); } .peca-densa__panel { min-height: 24rem; } }
+        @media (max-width: 32rem) { .peca-densa__intro { gap: 1rem; } .peca-densa__heading { max-width: 11ch; font-size: clamp(2.2rem, 11vw, 3.1rem); } .peca-densa__canvas { padding: .75rem; } .peca-densa__preview { aspect-ratio: .72; } .peca-densa__preview[data-document="unifilar"], .peca-densa__preview[data-document="blocos"], .peca-densa__preview[data-document="planta"] { aspect-ratio: 1.45; } .peca-densa__panel-head { padding-inline: .9rem; } .peca-densa__simulation { max-width: 8rem; } .peca-densa__metric, .peca-densa__checks { padding-inline: .9rem; } .peca-densa__note { margin-inline: .9rem; } }
       `}</style>
+
+      <dialog
+        className="peca-densa__dialog"
+        ref={dialogRef}
+        onClick={(e) => { if (e.target === dialogRef.current) closeViewer(); }}
+      >
+        <div className="peca-densa__dialog-inner">
+          <button type="button" className="peca-densa__dialog-close" onClick={closeViewer} aria-label="Fechar visualizador">
+            ×
+          </button>
+          <img src={selected.src} alt={selected.alt} />
+        </div>
+      </dialog>
 
       <div className="peca-densa__intro">
         <div>
@@ -87,15 +115,15 @@ export default function PecaDensa({ label }: SectionProps) {
             as="h2"
             section="02"
             className="fable-heading peca-densa__heading"
-            lines={['Dossiê técnico', 'em leitura ativa.']}
+            lines={['Documentos prontos', 'para o protocolo.']}
           />
         </div>
-        <p className="fable-copy peca-densa__lede">
-          Documentos do protocolo e uma leitura de conformidade no mesmo instrumento. O validador classifica cada item por referência normativa aplicável.
+        <p className="fable-copy peca-densa__lede" style={{ maxWidth: '42ch' }}>
+          O sistema <strong>gera automaticamente</strong> o pacote do protocolo: memorial, diagramas, planta e formulários da distribuidora, e ainda checa a conformidade normativa antes do envio.
         </p>
       </div>
 
-      <div className="peca-densa__board fable-tabular">
+      <div className="peca-densa__board fable-tabular" data-scroll-anchor>
         <div className="peca-densa__workbench">
           <div className="peca-densa__tabs" role="tablist" aria-label="Documentos do dossiê técnico">
             {documents.map((document, index) => (
@@ -122,20 +150,29 @@ export default function PecaDensa({ label }: SectionProps) {
             role="tabpanel"
             aria-labelledby={`dossie-tab-${selected.id}`}
           >
-            <div className="peca-densa__document-meta">
-              <strong>{selected.title}</strong>
-              <span>prévia documental</span>
+            <div className="peca-densa__document-meta" style={{ display: 'flex', flexDirection: 'column', gap: '0.4rem', paddingBottom: '1.2rem', textTransform: 'none', letterSpacing: 'normal' }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', flexWrap: 'wrap', gap: '0.5rem' }}>
+                <strong style={{ fontSize: 'var(--fable-body)', color: 'var(--fable-paper)', fontWeight: 600 }}>{selected.title}</strong>
+                <span style={{ fontSize: 'var(--fable-label)', background: 'color-mix(in srgb, var(--fable-paper) 8%, transparent)', padding: '0.2rem 0.5rem', borderRadius: '4px', color: 'var(--fable-paper)' }}>Gera em {selected.formatos}</span>
+              </div>
+              <span style={{ color: 'var(--fable-muted)', fontSize: 'var(--fable-label)', lineHeight: 1.4 }}>{selected.desc}</span>
             </div>
-            <div className="peca-densa__preview">
+            <button
+              type="button"
+              className="peca-densa__preview"
+              data-document={selected.id}
+              onClick={openViewer}
+              aria-label={`Ampliar ${selected.title}`}
+            >
               <img src={selected.src} alt={selected.alt} />
-            </div>
+            </button>
           </div>
         </div>
 
-        <aside className="peca-densa__panel" aria-label="Estado da validação">
+        <aside className="peca-densa__panel" data-scroll-anchor aria-label="Estado da validação">
           <div className="peca-densa__panel-head">
             <h3>Leitura do validador</h3>
-            <span className="peca-densa__simulation">simulação visual</span>
+            <span className="peca-densa__simulation">indicadores ilustrativos</span>
           </div>
 
           <dl className="peca-densa__metrics" aria-label="Dados simulados do dossiê">
@@ -156,7 +193,7 @@ export default function PecaDensa({ label }: SectionProps) {
           </div>
 
           <p className="peca-densa__note">
-            <strong>Simulação visual.</strong> Os dados exibidos são apenas demonstrativos e não representam métricas de cliente.
+            <strong>Documentos demonstrativos.</strong> Os indicadores numéricos são ilustrativos; a estrutura e os arquivos mostram o fluxo real da Automação.
           </p>
         </aside>
       </div>

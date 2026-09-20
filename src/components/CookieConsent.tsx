@@ -153,7 +153,7 @@ const CookieConsent = () => {
   // (Graphite tátil), ambos proeminentes. Sem dark pattern.
   const primaryBtn =
     'inline-flex min-h-[44px] items-center justify-center rounded-xl px-5 py-3 text-sm font-bold transition-[transform,filter,background-color,border-color] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white';
-  const btnMist = 'bg-mist text-ink shadow-[var(--btn-lift)] hover:-translate-y-0.5 hover:brightness-105';
+  const btnMist = 'border border-transparent bg-mist text-ink shadow-[var(--btn-lift)] hover:-translate-y-0.5 hover:brightness-105';
   const btnNeutral = 'bg-graphite text-mist border border-white/10 shadow-[var(--key-soft)] hover:-translate-y-0.5 hover:bg-obsidian';
 
   return (

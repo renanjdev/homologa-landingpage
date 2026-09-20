@@ -89,24 +89,18 @@ export default function Mecanismo({ label }: SectionProps) {
         }
 
         .mechanism__diagram {
+          --mechanism-gap: clamp(0.6rem, 2.3vw, 2.75rem);
           position: relative;
           display: grid;
           grid-template-columns: repeat(5, minmax(0, 1fr));
-          gap: clamp(0.6rem, 2.3vw, 2.75rem);
+          gap: var(--mechanism-gap);
           padding: clamp(1.25rem, 3vw, 2.5rem) 0 clamp(2rem, 5vw, 4rem);
           border-top: 1px solid color-mix(in srgb, var(--fable-paper) 22%, transparent);
           border-bottom: 1px solid color-mix(in srgb, var(--fable-paper) 15%, transparent);
         }
 
         .mechanism__rail {
-          position: absolute;
-          z-index: 0;
-          top: clamp(2.25rem, 5.3vw, 4rem);
-          left: 2.7%;
-          right: 2.7%;
-          height: 1px;
-          overflow: hidden;
-          background: color-mix(in srgb, var(--fable-paper) 19%, transparent);
+          display: none;
         }
 
         .mechanism__rail > span {
@@ -133,7 +127,32 @@ export default function Mecanismo({ label }: SectionProps) {
           transition: opacity 500ms var(--fable-ease), transform 700ms var(--fable-ease);
         }
 
+        .mechanism__step:not(:last-child)::before,
+        .mechanism__step:not(:last-child)::after {
+          content: "";
+          position: absolute;
+          z-index: 0;
+          top: 1.175rem;
+          left: 0.36rem;
+          width: calc(100% + var(--mechanism-gap));
+          height: 1px;
+          transform-origin: left;
+        }
+
+        .mechanism__step:not(:last-child)::before {
+          background: color-mix(in srgb, var(--fable-paper) 19%, transparent);
+        }
+
+        .mechanism__step:not(:last-child)::after {
+          transform: scaleX(var(--step-presence));
+          background: var(--fable-accent);
+          box-shadow: 0 0 1.2rem color-mix(in srgb, var(--fable-accent) 60%, transparent);
+          transition: transform 220ms linear;
+        }
+
         .mechanism__node {
+          position: relative;
+          z-index: 1;
           display: flex;
           align-items: center;
           gap: 0.7rem;
@@ -240,33 +259,19 @@ export default function Mecanismo({ label }: SectionProps) {
         @media (max-width: 56rem) {
           .mechanism__top,
           .mechanism__footer { grid-template-columns: 1fr; gap: 2rem; }
-          .mechanism__diagram { gap: 0.85rem; }
+          .mechanism__diagram { --mechanism-gap: 0.85rem; }
           .mechanism__title { min-height: 2.8em; }
         }
 
         @media (max-width: 42rem) {
           .mechanism { padding-top: 0; }
           .mechanism__heading { max-width: 10ch; font-size: clamp(2.7rem, 12vw, 4rem); line-height: .92; }
-          .mechanism__top { margin-bottom: 2.5rem; }
+          .mechanism__top { gap: 1.5rem; margin-bottom: 2rem; }
           .mechanism__diagram {
             grid-template-columns: 1fr;
             gap: 0;
             padding: 0;
             border-bottom: 0;
-          }
-          .mechanism__rail {
-            top: 1.15rem;
-            bottom: 1.15rem;
-            left: 0.34rem;
-            right: auto;
-            width: 1px;
-            height: auto;
-          }
-          .mechanism__rail > span {
-            width: 100%;
-            height: 100%;
-            transform: scaleY(var(--mechanism-presence));
-            transform-origin: top;
           }
           .mechanism__step {
             grid-template-columns: auto minmax(0, 1fr);
@@ -277,6 +282,17 @@ export default function Mecanismo({ label }: SectionProps) {
             padding-left: 0;
             transform: translateX(calc((1 - var(--step-presence)) * -0.75rem));
           }
+          .mechanism__step:not(:last-child)::before,
+          .mechanism__step:not(:last-child)::after {
+            top: 2.125rem;
+            left: 0.36rem;
+            width: 1px;
+            height: 100%;
+            transform-origin: top;
+          }
+          .mechanism__step:not(:last-child)::after {
+            transform: scaleY(var(--step-presence));
+          }
           .mechanism__node { grid-row: span 2; align-self: start; min-width: 3.7rem; }
           .mechanism__title { min-height: 0; }
           .mechanism__detail { max-width: 29ch; }
@@ -285,10 +301,11 @@ export default function Mecanismo({ label }: SectionProps) {
 
         @media (prefers-reduced-motion: reduce) {
           .mechanism__rail > span { transition: none; transform: scaleX(1); }
+          .mechanism__step:not(:last-child)::after { transition: none; transform: scaleX(1); }
           .mechanism__step { opacity: 1; transform: none; transition: none; }
           .mechanism__node i { transition: none; }
           .mechanism__step[data-current='true'] .mechanism__node i { background: var(--fable-accent); }
-          @media (max-width: 42rem) { .mechanism__rail > span { transform: scaleY(1); } }
+          @media (max-width: 42rem) { .mechanism__step:not(:last-child)::after { transform: scaleY(1); } }
         }
       `}</style>
 
@@ -325,7 +342,7 @@ export default function Mecanismo({ label }: SectionProps) {
           </div>
         </div>
 
-        <div className="mechanism__diagram" aria-label="Fluxo da automação de engenharia">
+        <div className="mechanism__diagram" data-scroll-anchor aria-label="Fluxo da automação de engenharia">
           <div className="mechanism__rail" aria-hidden="true"><span /></div>
           {steps.map((step, index) => {
             const stepPresence = presenceForStep(presence, index);
@@ -341,7 +358,7 @@ export default function Mecanismo({ label }: SectionProps) {
           })}
         </div>
 
-        <div className="mechanism__footer">
+        <div className="mechanism__footer" data-scroll-anchor>
           <div className="mechanism__outputs">
             <LineReveal as="p" className="mechanism__caption" section="03" lines={['Saídas para continuar trabalhando']} />
             <div className="mechanism__formats" aria-label="Formatos de arquivo editáveis">

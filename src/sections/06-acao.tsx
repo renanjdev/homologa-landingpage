@@ -104,6 +104,7 @@ export default function Acao({ id }: SectionProps) {
       </div>
 
       <footer
+        data-scroll-anchor
         aria-label="Informações institucionais"
         style={{
           display: 'grid',
@@ -133,6 +134,7 @@ export default function Acao({ id }: SectionProps) {
 
         <nav aria-label="Informações legais">
           <p className="acao__footer-title">Institucional</p>
+          <a className="acao__footer-link" href="https://app.homologaplus.com.br/login" target="_blank" rel="noopener noreferrer">Acessar plataforma</a>
           <Link className="acao__footer-link" to="/termos">Termos de uso</Link>
           <Link className="acao__footer-link" to="/privacidade">Privacidade</Link>
           <button
@@ -156,10 +158,10 @@ export default function Acao({ id }: SectionProps) {
         .acao__primary:hover { background: color-mix(in srgb, var(--fable-void) 88%, var(--fable-paper)); }
         .acao__secondary { border-color: color-mix(in srgb, var(--fable-void) 30%, transparent); color: var(--fable-void); background: color-mix(in srgb, var(--fable-paper) 42%, transparent); }
         .acao__secondary:hover { background: color-mix(in srgb, var(--fable-paper) 64%, transparent); }
-        .acao__eyebrow, .acao__footer-title { margin: 0; color: var(--fable-paper); font-family: "Cascadia Code", "JetBrains Mono", ui-monospace, monospace; font-size: var(--fable-label); font-weight: 620; letter-spacing: 0.13em; line-height: 1.3; text-transform: uppercase; }
+        .acao__eyebrow, .acao__footer-title { margin: 0; color: var(--fable-paper); font-family: "JetBrains Mono", ui-monospace, monospace, "JetBrains Mono", ui-monospace, monospace; font-size: var(--fable-label); font-weight: 620; letter-spacing: 0.13em; line-height: 1.3; text-transform: uppercase; }
         .acao__eyebrow { color: color-mix(in srgb, var(--fable-void) 66%, transparent); }
         .acao__note { display: grid; grid-template-columns: 2rem minmax(0, 1fr); gap: 0.5rem; margin: 0; color: var(--fable-void); font-size: var(--fable-body); font-weight: 560; line-height: 1.35; }
-        .acao__note span { font-family: "Cascadia Code", "JetBrains Mono", ui-monospace, monospace; font-size: var(--fable-label); font-variant-numeric: tabular-nums; }
+        .acao__note span { font-family: "JetBrains Mono", ui-monospace, monospace, "JetBrains Mono", ui-monospace, monospace; font-size: var(--fable-label); font-variant-numeric: tabular-nums; }
         .acao__footer-title { margin-bottom: 0.75rem; }
         .acao__footer-link, .acao__footer-copy { display: block; width: fit-content; margin: 0 0 0.4rem; color: var(--fable-muted); font-size: var(--fable-label); line-height: 1.45; text-decoration: none; }
         .acao__footer-link:hover { color: var(--fable-accent); text-decoration: underline; text-underline-offset: 0.25em; }

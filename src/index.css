@@ -181,7 +181,7 @@
   /* elevação tátil do botão neutro Mist */
   --btn-lift: rgba(0,0,0,0.03) 0 7px 3px 0, rgba(0,0,0,0.25) 0 4px 4px 0;
 }
-::selection { background: rgba(140,194,254,0.28); color: var(--color-mist); }
+::selection { background: color-mix(in srgb, var(--fable-accent) 20%, transparent); color: var(--color-mist); }
 ::-webkit-scrollbar { width: 10px; height: 10px; }
 ::-webkit-scrollbar-track { background: var(--color-void); }
 ::-webkit-scrollbar-thumb { background: #151618; border-radius: 9999px; border: 2px solid var(--color-void); }
@@ -242,17 +242,17 @@
 }
 .hero-sky {
   position: absolute; left: 34%; top: 8%; width: 520px; height: 520px; transform: translate(-50%, -50%);
-  background: radial-gradient(circle, rgba(99,161,255,0.30) 0%, rgba(20,60,163,0) 68%); filter: blur(30px);
+  background: radial-gradient(circle, color-mix(in srgb, var(--fable-accent) 15%, transparent) 0%, rgba(20,60,163,0) 68%); filter: blur(30px);
 }
 .hero-coral-bar {
   position: absolute; left: 50%; top: 19%; width: min(1500px, 190vw); height: 260px;
   transform: translate(-50%, -50%) rotate(-18deg);
-  background: linear-gradient(90deg, rgba(140,194,254,0) 0%, rgba(140,194,254,0.5) 42%, rgba(96,150,230,0.6) 55%, rgba(140,194,254,0) 100%);
+  background: linear-gradient(90deg, color-mix(in srgb, var(--fable-accent) 20%, transparent) 0%, color-mix(in srgb, var(--fable-accent) 20%, transparent) 42%, rgba(96,150,230,0.6) 55%, color-mix(in srgb, var(--fable-accent) 20%, transparent) 100%);
   filter: blur(46px); mix-blend-mode: screen;
 }
 .hero-coral-bar.two {
   top: 29%; width: min(1300px, 170vw); height: 130px; transform: translate(-50%, -50%) rotate(-8deg);
-  background: linear-gradient(90deg, rgba(140,194,254,0) 0%, rgba(140,194,254,0.38) 50%, rgba(140,194,254,0) 100%); filter: blur(52px);
+  background: linear-gradient(90deg, color-mix(in srgb, var(--fable-accent) 20%, transparent) 0%, color-mix(in srgb, var(--fable-accent) 20%, transparent) 50%, color-mix(in srgb, var(--fable-accent) 20%, transparent) 100%); filter: blur(52px);
 }
 .hero-vignette {
   position: absolute; inset: 0;
@@ -264,13 +264,13 @@
 
 .hero-kicker {
   display: inline-flex; align-items: center; gap: 9px; margin: 0 0 20px; padding: 7px 11px;
-  border: 1px solid rgba(140,194,254,0.2); border-radius: 9999px; background: rgba(23,43,80,0.62);
+  border: 1px solid color-mix(in srgb, var(--fable-accent) 20%, transparent); border-radius: 9999px; background: color-mix(in srgb, var(--fable-void) 80%, var(--fable-accent));
   color: var(--ash); font-family: var(--font-mono); font-size: 11px; font-weight: 500;
   letter-spacing: .08em; line-height: 1.2; text-transform: uppercase; box-shadow: var(--key-soft);
 }
 .hero-kicker-dot {
   width: 6px; height: 6px; border-radius: 9999px; background: var(--coral);
-  box-shadow: 0 0 0 4px rgba(140,194,254,0.1); flex-shrink: 0;
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--fable-accent) 20%, transparent); flex-shrink: 0;
 }
 .hero-revealing .hero-kicker-dot { animation: hp-ready-dot .8s .18s cubic-bezier(.16,1,.3,1) both; }
 
@@ -282,7 +282,7 @@
 .hero-grif { color: var(--mist); white-space: nowrap; position: relative; }
 .hero-grif::after {
   content: ""; position: absolute; left: 0; right: 0; bottom: -0.1em; height: 2px; border-radius: 2px;
-  background: linear-gradient(90deg, rgba(140,194,254,0) 0%, var(--coral) 28%, var(--coral) 72%, rgba(140,194,254,0) 100%);
+  background: linear-gradient(90deg, color-mix(in srgb, var(--fable-accent) 20%, transparent) 0%, var(--coral) 28%, var(--coral) 72%, color-mix(in srgb, var(--fable-accent) 20%, transparent) 100%);
 }
 /* Variante para frases LONGAS do grifo (ex.: âncora do H1 que ocupa >1 linha).
    O ::after absoluto do .hero-grif não acompanha múltiplas linhas e o nowrap
@@ -291,7 +291,7 @@
    branco suave (Mist) → contraste AA sobre o Void. */
 .hero-grif--wrap {
   white-space: normal;
-  background-image: linear-gradient(90deg, rgba(140,194,254,0) 0%, var(--coral) 28%, var(--coral) 72%, rgba(140,194,254,0) 100%);
+  background-image: linear-gradient(90deg, color-mix(in srgb, var(--fable-accent) 20%, transparent) 0%, var(--coral) 28%, var(--coral) 72%, color-mix(in srgb, var(--fable-accent) 20%, transparent) 100%);
   background-repeat: no-repeat;
   background-position: 0 100%;
   background-size: 100% 2px;
@@ -303,7 +303,7 @@
 .hero-revealing .hero-grif--wrap { animation: hp-grif-draw .72s .28s cubic-bezier(.16,1,.3,1) both; }
 
 .hero-sub {
-  margin-top: 24px; max-width: 62ch; color: #c9cacb; font-weight: 400;
+  margin-top: 24px; max-width: 62ch; color: var(--fable-paper); font-weight: 400;
   font-size: clamp(1rem, 0.5vw + 0.9rem, 1.125rem); line-height: 1.55;
 }
 .hero-sub strong { color: #f2f2f2; font-weight: 600; }
@@ -316,7 +316,7 @@
   transition: transform .18s cubic-bezier(.16,1,.3,1), filter .2s ease, background-color .2s ease, border-color .2s ease;
 }
 .hero-btn svg { flex-shrink: 0; }
-.hero-btn-mist { background: var(--mist); color: #1a1a1a; box-shadow: var(--btn-lift); }
+.hero-btn-mist { background: var(--mist); color: var(--fable-void); box-shadow: var(--btn-lift); }
 .hero-btn-mist:hover { filter: brightness(1.04); transform: translateY(-1px); }
 .hero-btn-mist:active { transform: translateY(0); }
 .hero-btn-ghost { background: rgba(255,255,255,0.04); color: var(--mist); border: 1px solid var(--border); box-shadow: var(--key-soft); }
@@ -372,7 +372,7 @@
 }
 .hero-window::before {
   content: ""; position: absolute; inset: 0; z-index: 12; pointer-events: none; border-radius: inherit;
-  box-shadow: inset 0 0 0 1px rgba(140,194,254,.72), inset 0 0 34px rgba(99,161,255,.12);
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--fable-accent) 20%, transparent), inset 0 0 34px color-mix(in srgb, var(--fable-accent) 15%, transparent);
   opacity: 0;
 }
 .hero-standby .hero-window { opacity: .78; transform: translateY(6px) scale(.992); }
@@ -381,19 +381,19 @@
 .hero-window-body { position: relative; background: #050608; line-height: 0; }
 .hero-window-body::after {
   content: ""; position: absolute; z-index: 8; left: 0; right: 0; top: 0; height: 38%; pointer-events: none;
-  background: linear-gradient(180deg, rgba(99,161,255,0), rgba(99,161,255,.08) 66%, rgba(140,194,254,.56) 96%, rgba(255,255,255,.88) 100%);
-  box-shadow: 0 1px 18px rgba(99,161,255,.28); opacity: 0; transform: translateY(-105%);
+  background: linear-gradient(180deg, color-mix(in srgb, var(--fable-accent) 15%, transparent), color-mix(in srgb, var(--fable-accent) 15%, transparent) 66%, color-mix(in srgb, var(--fable-accent) 20%, transparent) 96%, rgba(255,255,255,.88) 100%);
+  box-shadow: 0 1px 18px color-mix(in srgb, var(--fable-accent) 15%, transparent); opacity: 0; transform: translateY(-105%);
 }
 .hero-revealing .hero-window-body::after { animation: hp-validation-scan .9s .16s cubic-bezier(.45,0,.2,1) both; }
 .hero-window-body video, .hero-window-body img { display: block; width: 100%; height: auto; }
 
 .hero-scan-status {
   position: absolute; z-index: 10; top: 14px; right: 14px; display: inline-flex; align-items: center; gap: 7px;
-  min-height: 28px; padding: 7px 10px; border: 1px solid rgba(140,194,254,.22); border-radius: 8px;
+  min-height: 28px; padding: 7px 10px; border: 1px solid color-mix(in srgb, var(--fable-accent) 20%, transparent); border-radius: 8px;
   background: rgba(7,8,10,.82); color: var(--ash); font-family: var(--font-mono); font-size: 10px; line-height: 1;
   letter-spacing: .02em; box-shadow: var(--key-soft); backdrop-filter: blur(12px); opacity: 0; pointer-events: none;
 }
-.hero-scan-status-dot { width: 5px; height: 5px; border-radius: 9999px; background: var(--coral); box-shadow: 0 0 0 3px rgba(140,194,254,.11); }
+.hero-scan-status-dot { width: 5px; height: 5px; border-radius: 9999px; background: var(--coral); box-shadow: 0 0 0 3px color-mix(in srgb, var(--fable-accent) 20%, transparent); }
 .hero-scan-status strong { color: var(--coral); font-weight: 600; }
 .hero-revealing .hero-scan-status { animation: hp-scan-status 1.12s .1s cubic-bezier(.16,1,.3,1) both; }
 
@@ -468,5 +468,5 @@
 .tick-list > li { position: relative; padding-left: 1.25rem; }
 .tick-list > li::before {
   content: ""; position: absolute; left: 0; top: 0.72em;
-  width: 0.625rem; height: 1px; background: #6f7072;
+  width: 0.625rem; height: 1px; background: var(--fable-muted);
 }

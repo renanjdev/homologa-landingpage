@@ -40,6 +40,7 @@ export default function LandingPage() {
         </button>
         <nav className="fable-nav-links" aria-label="Navegação principal">
           <button className="fable-nav-button" type="button" onClick={() => goTo(1)}>Automação</button>
+          <button className="fable-nav-button" type="button" onClick={() => goTo(2)}>Como funciona</button>
           <button className="fable-nav-button" type="button" onClick={() => goTo(4)}>Planos</button>
           <a
             className="fable-nav-button fable-nav-button--cta"

@@ -60,10 +60,10 @@ export default function Demonstracao({ id }: SectionProps) {
     >
       <style>{`
         .demonstracao__layout { grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); }
-        @media (max-width: 75rem) { .demonstracao__layout { grid-template-columns: 1fr; } }
+        @media (max-width: 75rem) { .demonstracao__layout { grid-template-columns: minmax(0, 1fr); } }
       `}</style>
       <div style={{ position: 'relative', zIndex: 14, minWidth: 0, paddingBlock: 'clamp(1rem, 4vh, 4rem)' }}>
-        <p className="fable-label">Automação documental para energia solar</p>
+        <p className="fable-label">Automação documental para homologação solar</p>
         <LineReveal
           as="h1"
           section={id}
@@ -80,6 +80,7 @@ export default function Demonstracao({ id }: SectionProps) {
           lines={[
             <>A partir dos dados do projeto, o Homologa Plus dimensiona e gera memorial, diagramas, planta e formulários.</>,
             <>Tudo no padrão da distribuidora, com a conformidade verificada antes do protocolo.</>,
+            <>Para empresas de homologação e engenharia elétrica: projetos, prazos e financeiro no mesmo painel.</>,
           ]}
         />
         <div className="fable-actions" style={{ marginTop: 'clamp(1.75rem, 4vh, 3rem)' }}>

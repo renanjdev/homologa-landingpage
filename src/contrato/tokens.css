@@ -48,9 +48,8 @@ body.fable-active {
   position: fixed;
   inset: 0;
   overflow: hidden;
-  background:
-    radial-gradient(circle at 74% 10%, color-mix(in srgb, var(--fable-accent) 14%, transparent), transparent 30%),
-    var(--fable-void);
+  z-index: 3;
+  background: radial-gradient(circle at 74% 10%, color-mix(in srgb, var(--fable-accent) 14%, transparent), transparent 30%);
 }
 
 .fable-scroll-root {
@@ -105,6 +104,7 @@ body.fable-active {
   text-decoration: none;
   font-weight: 650;
   letter-spacing: -0.03em;
+  white-space: nowrap;
 }
 
 .fable-brand img { width: 2rem; height: 2rem; }
@@ -118,6 +118,9 @@ body.fable-active {
 
 .fable-nav-button,
 .fable-text-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   min-height: 2.75rem;
   border: 0;
   border-radius: 999px;
@@ -127,6 +130,10 @@ body.fable-active {
   font: inherit;
   font-size: 0.8125rem;
   font-weight: 580;
+  line-height: 1;
+  text-align: center;
+  text-decoration: none;
+  white-space: nowrap;
   cursor: pointer;
   transition: color 280ms var(--fable-ease), background 280ms var(--fable-ease), transform 280ms var(--fable-ease);
 }
@@ -179,7 +186,7 @@ body.fable-active {
   overflow: clip;
 }
 
-.fable-section-shell:first-child { margin-top: 0; }
+.fable-section-shell:first-child { margin-top: 0; align-items: flex-start; padding-top: 14vh; }
 .fable-section-shell > * { width: 100%; }
 
 .fable-container {
@@ -211,12 +218,14 @@ body.fable-active {
 .fable-display,
 .fable-heading,
 .fable-title {
+  min-width: 0;
   margin: 0;
   color: var(--fable-paper);
   font-family: "Segoe UI Variable Display", "Segoe UI Variable", ui-sans-serif, system-ui, sans-serif;
   font-variation-settings: "wght" 360;
   letter-spacing: -0.068em;
   text-wrap: balance;
+  overflow-wrap: anywhere;
 }
 
 .fable-display {
@@ -225,7 +234,6 @@ body.fable-active {
   font-weight: 330;
   line-height: 0.9;
   word-break: normal;
-  overflow-wrap: normal;
   hyphens: none;
 }
 
@@ -253,6 +261,8 @@ body.fable-active {
 }
 
 .fable-copy strong { color: var(--fable-paper); font-weight: 580; }
+.fable-display + .fable-copy,
+.fable-heading + .fable-copy { margin-top: clamp(1rem, 2vh, 1.5rem); }
 .fable-accent { color: var(--fable-accent); }
 .fable-tabular { font-variant-numeric: tabular-nums; }
 
@@ -302,6 +312,9 @@ body.fable-active {
   text-decoration: none;
   font-size: 0.875rem;
   font-weight: 680;
+  line-height: 1;
+  text-align: center;
+  white-space: nowrap;
   transition: transform 300ms var(--fable-ease), background 300ms var(--fable-ease);
 }
 
@@ -448,8 +461,9 @@ body.fable-active {
 }
 
 @media (max-width: 32rem) {
-  .fable-brand span { font-size: 0.875rem; }
-  .fable-nav-button--cta { padding-inline: 0.9rem; font-size: 0.75rem; }
+  .fable-brand { gap: 0.5rem; }
+  .fable-brand span { font-size: 0.8125rem; }
+  .fable-nav-button--cta { padding-inline: 0.75rem; font-size: 0.75rem; }
   .fable-actions { flex-direction: column; }
   .fable-button { width: 100%; }
 }

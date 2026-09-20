@@ -8,7 +8,7 @@ export default function Virada({ label }: SectionProps) {
   };
 
   return (
-    <div className="fable-container" style={{ display: 'grid', gap: 'clamp(2.5rem, 6vh, 5.5rem)' }}>
+    <div className="fable-container" style={{ display: 'grid', gap: 'clamp(2rem, 4vh, 4rem)' }}>
       <div
         style={{
           display: 'flex',
@@ -34,8 +34,8 @@ export default function Virada({ label }: SectionProps) {
         section="04"
         className="fable-display"
         lines={[
-          'Não é mais um painel.',
-          'É o motor de engenharia',
+          'Mais que gestão.',
+          'É engenharia automatizada',
           'antes do protocolo.',
         ]}
       />
@@ -49,6 +49,7 @@ export default function Virada({ label }: SectionProps) {
             lines={[
               'A gestão do processo existe. Ela organiza responsáveis, etapas e pendências.',
               'O diferencial está antes do envio: dimensionar, gerar o pacote documental e verificar a conformidade técnica do projeto.',
+              'Projetos, prazos, financeiro, território e integradores permanecem no mesmo fluxo de operação.',
             ]}
           />
           <p className="fable-copy">
@@ -67,7 +68,7 @@ export default function Virada({ label }: SectionProps) {
         >
           <div style={{ display: 'grid', gap: '0.35rem' }}>
             <span className="fable-label" style={{ margin: 0 }}>Gestão de processo</span>
-            <p className="fable-title" style={{ maxWidth: '13ch' }}>Organizar pendências.</p>
+            <p className="fable-title" style={{ maxWidth: '13ch' }}>Acompanhar o processo inteiro.</p>
           </div>
           <div
             style={{

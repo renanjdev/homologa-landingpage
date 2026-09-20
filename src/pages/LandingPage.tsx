@@ -21,6 +21,7 @@ const Pricing = lazy(() => import('../components/Pricing'));
 const Footer = lazy(() => import('../components/Footer'));
 
 const Navbar = lazy(() => import('../components/Navbar'));
+const BrandScene3D = lazy(() => import('../components/BrandScene3D'));
 
 const Hero = () => {
   const [launchState, setLaunchState] = useState<'standby' | 'revealing' | 'ready'>(() =>
@@ -134,6 +135,9 @@ const LandingPage = () => {
 
   return (
     <div className="min-h-screen">
+      <Suspense fallback={<div className="landing-3d-scene landing-3d-scene--fallback" aria-hidden="true"><img src="/logo-h-white.png" alt="" /></div>}>
+        <BrandScene3D />
+      </Suspense>
       <a
         href="#conteudo-principal"
         className="sr-only fixed left-4 top-4 z-[100] rounded-lg bg-mist px-4 py-3 font-semibold text-ink focus:not-sr-only"

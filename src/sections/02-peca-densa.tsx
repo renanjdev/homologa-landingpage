@@ -5,8 +5,8 @@ import { useMockTelemetry } from '../contrato/mock';
 import type { SectionProps } from '../contrato/types';
 
 const documents = [
-  { id: 'memorial', label: 'Memorial', title: 'Memorial descritivo', desc: 'No modelo exigido pela sua distribuidora.', formatos: 'PDF', src: '/doc-memorial.webp', alt: 'Prévia do memorial descritivo da usina solar' },
   { id: 'unifilar', label: 'Unifilar', title: 'Diagrama unifilar completo', desc: 'Condutores, disjuntores, DPS e proteções dimensionados.', formatos: 'PDF, SVG, DXF', src: '/doc-unifilar-completo.webp', alt: 'Prévia do diagrama unifilar completo' },
+  { id: 'memorial', label: 'Memorial', title: 'Memorial descritivo', desc: 'No modelo exigido pela sua distribuidora.', formatos: 'PDF', src: '/doc-memorial.webp', alt: 'Prévia do memorial descritivo da usina solar' },
   { id: 'blocos', label: 'Blocos', title: 'Diagrama de blocos', desc: 'Funcional, com todo o sistema representado.', formatos: 'PDF, SVG, DXF', src: '/doc-blocos.webp', alt: 'Prévia do diagrama de blocos do sistema fotovoltaico' },
   { id: 'planta', label: 'Planta', title: 'Planta de localização', desc: 'Vista de satélite com as coordenadas da UC.', formatos: 'PDF', src: '/doc-planta.webp', alt: 'Prévia da planta de localização da instalação' },
   { id: 'cpfl', label: 'CPFL', title: 'Anexo da CPFL', desc: 'Anexo F preenchido com os dados do projeto.', formatos: 'PDF', src: '/doc-anexo-cpfl.webp', alt: 'Prévia do anexo CPFL para protocolo' },
@@ -119,11 +119,11 @@ export default function PecaDensa({ label }: SectionProps) {
           />
         </div>
         <p className="fable-copy peca-densa__lede" style={{ maxWidth: '42ch' }}>
-          Memorial, unifilar, diagrama de blocos, planta de localização e os formulários da distribuidora <strong>saem preenchidos com os dados do projeto</strong>. Você revisa, o responsável técnico assina e o protocolo segue.
+          Diagrama unifilar, diagrama de blocos, memorial descritivo, planta de localização e os formulários da distribuidora <strong>saem preenchidos com os dados do projeto</strong>. Você revisa, o responsável técnico assina e o protocolo segue.
         </p>
       </div>
 
-      <div className="peca-densa__board fable-tabular" data-scroll-anchor>
+      <div className="peca-densa__board fable-tabular">
         <div className="peca-densa__workbench">
           <div className="peca-densa__tabs" role="tablist" aria-label="Documentos do dossiê técnico">
             {documents.map((document, index) => (
@@ -169,7 +169,7 @@ export default function PecaDensa({ label }: SectionProps) {
           </div>
         </div>
 
-        <aside className="peca-densa__panel" data-scroll-anchor aria-label="Estado da validação">
+        <aside className="peca-densa__panel" aria-label="Estado da validação">
           <div className="peca-densa__panel-head">
             <h3>Leitura do validador</h3>
             <span className="peca-densa__simulation">indicadores ilustrativos</span>

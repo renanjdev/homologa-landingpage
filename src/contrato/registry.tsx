@@ -8,12 +8,12 @@ import Prova from '../sections/05-prova';
 import Acao from '../sections/06-acao';
 
 export const SECTION_REGISTRY: SectionDefinition[] = [
-  { id: '01', label: 'Demonstração', duration: 1.1, overlap: 0, component: Demonstracao },
-  { id: '02', label: 'A peça densa', duration: 1.35, overlap: 0.12, component: PecaDensa },
-  { id: '03', label: 'O mecanismo', duration: 1.25, overlap: 0.1, component: Mecanismo },
-  { id: '04', label: 'A virada', duration: 1.15, overlap: 0.08, component: Virada, inverted: true },
-  { id: '05', label: 'A prova', duration: 1.5, overlap: 0.1, component: Prova },
-  { id: '06', label: 'A ação', duration: 1.2, overlap: 0.08, component: Acao },
+  { id: '01', label: 'Início', duration: 1.1, overlap: 0, component: Demonstracao },
+  { id: '02', label: 'Documentos gerados', duration: 1.35, overlap: 0.12, component: PecaDensa },
+  { id: '03', label: 'Como funciona', duration: 1.25, overlap: 0.1, component: Mecanismo },
+  { id: '04', label: 'Diferencial', duration: 1.15, overlap: 0.08, component: Virada, inverted: true },
+  { id: '05', label: 'Planos', duration: 1.5, overlap: 0.1, component: Prova },
+  { id: '06', label: 'Demonstração', duration: 1.2, overlap: 0.08, component: Acao },
 ];
 
 export function FableRegistry() {
@@ -25,7 +25,7 @@ export function FableRegistry() {
           <section
             key={section.id}
             data-section={section.id}
-            aria-label={`${section.id}. ${section.label}`}
+            aria-label={section.label}
             className={`fable-section-shell ${section.inverted ? 'fable-invert' : ''}`}
             style={{
               '--section-duration': section.duration,

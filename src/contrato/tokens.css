@@ -183,8 +183,10 @@ body.fable-active {
   display: flex;
   align-items: center;
   width: 100%;
-  min-height: max(100vh, calc(var(--section-duration) * 100vh));
-  padding: 7rem var(--fable-gutter) 4rem;
+  /* Até a altura da tela: seções de 110 a 150% dela deixavam vazios grandes
+     em volta do conteúdo centralizado. */
+  min-height: 100vh;
+  padding: 7rem var(--fable-gutter) 4.5rem;
   margin-top: calc(var(--section-overlap) * -100vh);
   overflow: clip;
 }
@@ -454,7 +456,7 @@ body.fable-active {
 
 @media (max-width: 56rem) {
   .fable-nav-links .fable-nav-button:not(.fable-nav-button--cta) { display: none; }
-  .fable-section-shell { padding-top: 6.5rem; min-height: max(100vh, calc(var(--section-duration) * 88vh)); }
+  .fable-section-shell { padding-top: 6rem; min-height: 0; }
   .fable-grid-2, .fable-grid-3 { grid-template-columns: 1fr; }
   .fable-display { max-width: 22ch; --display-size: clamp(2.8rem, 7vw, 5.25rem); line-height: 0.94; }
   .fable-scene { opacity: 0.1; }
@@ -537,3 +539,8 @@ body.fable-active::before { content: none; }
 /* Coluna do título do hero: "Documentação" mede ~7em em Inter (fonte usada
    fora do Windows 11) e quebrava no meio da palavra. 13,5cqi garante que caiba. */
 .fable-display-fit { container-type: inline-size; --display-fit: 13.5cqi; }
+
+/* Rolagem nativa (celular e tablet): a seção tem a altura do conteúdo, com
+   ritmo fixo entre elas e sem sobreposição. */
+html.fable-native .fable-section-shell { min-height: 0; margin-top: 0; padding-top: 4.5rem; padding-bottom: 3.5rem; }
+html.fable-native .fable-section-shell:first-child { padding-top: 7rem; }

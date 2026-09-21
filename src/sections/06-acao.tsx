@@ -42,13 +42,6 @@ export default function Acao({ id }: SectionProps) {
       >
         <div style={{ minWidth: 0 }}>
           <LineReveal
-            as="p"
-            className="fable-label"
-            lineClassName="acao__ink"
-            section={id}
-            lines={['06 · Próximo passo']}
-          />
-          <LineReveal
             as="h2"
             className="fable-heading acao__ink"
             section={id}
@@ -62,8 +55,8 @@ export default function Acao({ id }: SectionProps) {
             className="fable-copy acao__ink"
             section={id}
             lines={[
-              <>Nossa equipe mostra a automação no fluxo real, da entrada do projeto à documentação para protocolo.</>,
-              <>Demonstração sem compromisso. Depois, o acesso é liberado pela nossa equipe.</>,
+              <>Nossa equipe mostra a Automação no fluxo real: do cadastro do projeto ao pacote pronto para protocolo.</>,
+              <>Demonstração sem compromisso. Depois, a equipe libera o seu acesso.</>,
             ]}
           />
           <div className="fable-actions" style={{ marginTop: 'clamp(1.75rem, 4vh, 3rem)' }}>
@@ -74,7 +67,7 @@ export default function Acao({ id }: SectionProps) {
               rel="noopener noreferrer"
               onClick={() => window.fbq?.('track', 'Contact')}
             >
-              Agendar demonstração <span aria-hidden="true">↗</span>
+              Agendar demonstração
             </a>
             <a
               className="fable-button acao__secondary"
@@ -82,7 +75,7 @@ export default function Acao({ id }: SectionProps) {
               target="_blank"
               rel="noopener noreferrer"
             >
-              Acessar plataforma <span aria-hidden="true">↗</span>
+              Acessar plataforma
             </a>
           </div>
         </div>

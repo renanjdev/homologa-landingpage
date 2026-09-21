@@ -7,6 +7,8 @@ import { Link } from 'react-router-dom';
 import { buildWhatsAppLink } from '../utils/whatsapp';
 import { SpeedInsights } from "@vercel/speed-insights/react";
 import HeroMedia from '../components/HeroMedia';
+// Navbar fica acima da dobra: import direto (lazy causava o "pop" do menu).
+import Navbar from '../components/Navbar';
 import { FIRST_CONSENT_DECISION_EVENT, hasConsentDecision, useConsent } from '../lib/consent';
 
 // Lazy load components below the fold
@@ -19,8 +21,6 @@ const FAQ = lazy(() => import('../components/FAQ'));
 const FinalCTA = lazy(() => import('../components/FinalCTA'));
 const Pricing = lazy(() => import('../components/Pricing'));
 const Footer = lazy(() => import('../components/Footer'));
-
-const Navbar = lazy(() => import('../components/Navbar'));
 
 const Hero = () => {
   const [launchState, setLaunchState] = useState<'standby' | 'revealing' | 'ready'>(() =>
@@ -207,9 +207,7 @@ const LandingPage = () => {
           }
         `}</script>
       </Helmet>
-      <Suspense fallback={<div className="h-16" />}>
-        <Navbar scrolled={scrolled} />
-      </Suspense>
+      <Navbar scrolled={scrolled} />
       <Hero />
       <Suspense fallback={<div className="h-20" />}>
         <main>

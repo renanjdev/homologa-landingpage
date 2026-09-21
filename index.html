@@ -14,6 +14,19 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="dns-prefetch" href="https://connect.facebook.net" />
+    <!-- Fontes direto no HTML (antes era @import dentro do CSS: cadeia HTML→CSS→CSS→fonte).
+         Faixas variáveis = 1 arquivo por família em vez de 1 por peso. -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@700..800&family=Inter:wght@400..800&family=JetBrains+Mono:wght@400..500&display=swap" />
+    <!-- LCP da home: o poster do hero só é descoberto depois do JS da landing.
+         Pré-carrega já no HTML, apenas na rota "/". -->
+    <script>
+      if (location.pathname === '/') {
+        var l = document.createElement('link');
+        l.rel = 'preload'; l.as = 'image'; l.href = '/automacao-demo-poster.jpg';
+        l.setAttribute('fetchpriority', 'high');
+        document.head.appendChild(l);
+      }
+    </script>
     
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />

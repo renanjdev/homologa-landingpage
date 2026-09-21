@@ -30,8 +30,11 @@ const steps = [
   },
 ] as const;
 
+const STEP_STAGGER = 0.12;
+// Cada etapa entra um pouco depois da anterior e todas chegam a 1 juntas no fim.
 function presenceForStep(presence: number, index: number) {
-  return Math.max(0, Math.min(1, presence * 1.55 - index * 0.19));
+  const start = index * STEP_STAGGER;
+  return Math.max(0, Math.min(1, (presence - start) / (1 - (steps.length - 1) * STEP_STAGGER)));
 }
 
 export default function Mecanismo({ label }: SectionProps) {
@@ -89,51 +92,35 @@ export default function Mecanismo({ label }: SectionProps) {
         }
 
         .mechanism__diagram {
+          --dot: 0.75rem;
           --mechanism-gap: clamp(0.6rem, 2.3vw, 2.75rem);
           position: relative;
           display: grid;
           grid-template-columns: repeat(5, minmax(0, 1fr));
           gap: var(--mechanism-gap);
-          padding: clamp(1.25rem, 3vw, 2.5rem) 0 clamp(2rem, 5vw, 4rem);
-          border-top: 1px solid color-mix(in srgb, var(--fable-paper) 22%, transparent);
+          padding: clamp(1.5rem, 3vw, 2.5rem) 0 clamp(2rem, 5vw, 4rem);
           border-bottom: 1px solid color-mix(in srgb, var(--fable-paper) 15%, transparent);
-        }
-
-        .mechanism__rail {
-          display: none;
-        }
-
-        .mechanism__rail > span {
-          display: block;
-          width: 100%;
-          height: 100%;
-          transform: scaleX(var(--mechanism-presence));
-          transform-origin: left;
-          background: var(--fable-accent);
-          box-shadow: 0 0 1.2rem color-mix(in srgb, var(--fable-accent) 60%, transparent);
-          transition: transform 220ms linear;
         }
 
         .mechanism__step {
           position: relative;
-          z-index: 1;
           display: grid;
-          grid-template-rows: auto auto 1fr;
-          gap: 1rem;
+          grid-template-rows: var(--dot) auto auto 1fr;
+          row-gap: 0.9rem;
           min-width: 0;
-          padding-top: 0.05rem;
           opacity: calc(0.28 + var(--step-presence) * 0.72);
           transform: translateY(calc((1 - var(--step-presence)) * 1rem));
           transition: opacity 500ms var(--fable-ease), transform 700ms var(--fable-ease);
         }
 
+        /* Trilho: liga o centro de um ponto ao centro do próximo, só na linha
+           dos pontos (o número fica abaixo, sem ser riscado). */
         .mechanism__step:not(:last-child)::before,
         .mechanism__step:not(:last-child)::after {
           content: "";
           position: absolute;
-          z-index: 0;
-          top: 1.175rem;
-          left: 0.36rem;
+          top: calc(var(--dot) / 2 - 0.5px);
+          left: calc(var(--dot) / 2);
           width: calc(100% + var(--mechanism-gap));
           height: 1px;
           transform-origin: left;
@@ -146,44 +133,44 @@ export default function Mecanismo({ label }: SectionProps) {
         .mechanism__step:not(:last-child)::after {
           transform: scaleX(var(--step-presence));
           background: var(--fable-accent);
-          box-shadow: 0 0 1.2rem color-mix(in srgb, var(--fable-accent) 60%, transparent);
           transition: transform 220ms linear;
         }
 
         .mechanism__node {
           position: relative;
           z-index: 1;
-          display: flex;
-          align-items: center;
-          gap: 0.7rem;
-          min-height: 2.25rem;
+          box-sizing: border-box;
+          width: var(--dot);
+          height: var(--dot);
+          border: 1px solid color-mix(in srgb, var(--fable-paper) 55%, transparent);
+          border-radius: 50%;
+          background: var(--fable-void);
+          transition: background 450ms var(--fable-ease), border-color 450ms var(--fable-ease), box-shadow 450ms var(--fable-ease);
+        }
+
+        .mechanism__step[data-done='true'] .mechanism__node {
+          border-color: var(--fable-accent);
+          background: var(--fable-accent);
+        }
+
+        /* Etapa atual: anel nítido (sem brilho difuso). */
+        .mechanism__step[data-current='true'] .mechanism__node {
+          box-shadow: 0 0 0 0.3rem color-mix(in srgb, var(--fable-accent) 22%, transparent);
+        }
+
+        .mechanism__num {
           color: var(--fable-muted);
-          font-family: "Cascadia Code", "JetBrains Mono", ui-monospace, monospace;
+          font-family: "Cascadia Code", "JetBrains Mono Variable", "JetBrains Mono", ui-monospace, monospace;
           font-size: var(--fable-label);
           font-variant-numeric: tabular-nums;
           font-weight: 650;
           letter-spacing: 0.14em;
+          line-height: 1;
+          transition: color 450ms var(--fable-ease);
         }
 
-        .mechanism__node i {
-          display: block;
-          width: 0.72rem;
-          height: 0.72rem;
-          border: 1px solid color-mix(in srgb, var(--fable-paper) 55%, transparent);
-          border-radius: 50%;
-          background: var(--fable-void);
-          box-shadow: 0 0 0 calc(var(--step-presence) * 0.45rem) color-mix(in srgb, var(--fable-accent) 18%, transparent);
-          transition: background 450ms var(--fable-ease), border-color 450ms var(--fable-ease), box-shadow 600ms var(--fable-ease);
-        }
-
-        .mechanism__step[data-current='true'] .mechanism__node,
-        .mechanism__step[data-current='true'] .mechanism__title {
+        .mechanism__step[data-current='true'] .mechanism__num {
           color: var(--fable-accent);
-        }
-
-        .mechanism__step[data-current='true'] .mechanism__node i {
-          border-color: var(--fable-accent);
-          background: var(--fable-accent);
         }
 
         .mechanism__title {
@@ -274,18 +261,20 @@ export default function Mecanismo({ label }: SectionProps) {
             border-bottom: 0;
           }
           .mechanism__step {
-            grid-template-columns: auto minmax(0, 1fr);
-            grid-template-rows: auto auto;
+            grid-template-columns: var(--dot) minmax(0, 1fr);
+            grid-template-rows: auto auto auto;
             column-gap: 1rem;
-            row-gap: 0.45rem;
-            padding: 1rem 0 1.15rem;
-            padding-left: 0;
+            row-gap: 0.4rem;
+            padding: 0 0 1.75rem;
             transform: translateX(calc((1 - var(--step-presence)) * -0.75rem));
           }
+          .mechanism__node { grid-column: 1; grid-row: 1; margin-top: 0.05rem; }
+          .mechanism__num, .mechanism__title, .mechanism__detail { grid-column: 2; }
+          .mechanism__num { grid-row: 1; align-self: center; }
           .mechanism__step:not(:last-child)::before,
           .mechanism__step:not(:last-child)::after {
-            top: 2.125rem;
-            left: 0.36rem;
+            top: calc(var(--dot) / 2 + 0.05rem);
+            left: calc(var(--dot) / 2 - 0.5px);
             width: 1px;
             height: 100%;
             transform-origin: top;
@@ -293,18 +282,15 @@ export default function Mecanismo({ label }: SectionProps) {
           .mechanism__step:not(:last-child)::after {
             transform: scaleY(var(--step-presence));
           }
-          .mechanism__node { grid-row: span 2; align-self: start; min-width: 3.7rem; }
           .mechanism__title { min-height: 0; }
           .mechanism__detail { max-width: 29ch; }
           .mechanism__footer { padding-top: 1.5rem; }
         }
 
         @media (prefers-reduced-motion: reduce) {
-          .mechanism__rail > span { transition: none; transform: scaleX(1); }
           .mechanism__step:not(:last-child)::after { transition: none; transform: scaleX(1); }
           .mechanism__step { opacity: 1; transform: none; transition: none; }
-          .mechanism__node i { transition: none; }
-          .mechanism__step[data-current='true'] .mechanism__node i { background: var(--fable-accent); }
+          .mechanism__node, .mechanism__num { transition: none; }
           @media (max-width: 42rem) { .mechanism__step:not(:last-child)::after { transform: scaleY(1); } }
         }
       `}</style>
@@ -337,14 +323,15 @@ export default function Mecanismo({ label }: SectionProps) {
         </div>
 
         <div className="mechanism__diagram" data-scroll-anchor aria-label="Fluxo da automação de engenharia">
-          <div className="mechanism__rail" aria-hidden="true"><span /></div>
           {steps.map((step, index) => {
             const stepPresence = presenceForStep(presence, index);
             const stepStyle = { '--step-presence': stepPresence } as CSSProperties;
-            const isCurrent = stepPresence > 0.86 && (index === steps.length - 1 || presenceForStep(presence, index + 1) < 0.86);
+            const isDone = stepPresence >= 0.99;
+            const isCurrent = stepPresence > 0.5 && (index === steps.length - 1 || presenceForStep(presence, index + 1) <= 0.5);
             return (
-              <article className="mechanism__step" data-current={isCurrent} key={step.code} style={stepStyle}>
-                <div className="mechanism__node"><i aria-hidden="true" /><span>{step.code}</span></div>
+              <article className="mechanism__step" data-done={isDone} data-current={isCurrent} key={step.code} style={stepStyle}>
+                <span className="mechanism__node" aria-hidden="true" />
+                <span className="mechanism__num">{step.code}</span>
                 <LineReveal as="h3" className="mechanism__title" section="03" lines={[step.title]} />
                 <LineReveal as="p" className="mechanism__detail" section="03" lines={[step.detail]} />
               </article>

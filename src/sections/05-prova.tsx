@@ -125,7 +125,7 @@ export default function Prova({ label }: SectionProps) {
         />
       </div>
 
-      <div className="proof__layout" data-scroll-anchor>
+      <div className="proof__layout">
         <figure className="proof__evidence" aria-labelledby="proof-capture-caption">
           <div className="proof__evidence-head">
             <span className="proof__eyebrow">Ambiente Homologa Plus</span>
@@ -139,7 +139,7 @@ export default function Prova({ label }: SectionProps) {
           </figcaption>
         </figure>
 
-        <div className="proof__plans" data-scroll-anchor aria-label="Planos Homologa Plus">
+        <div className="proof__plans" aria-label="Planos Homologa Plus">
           {plans.map((plan) => (
             <article className={`proof__plan ${plan.featured ? 'proof__plan--full' : ''}`} key={plan.name} aria-label={`Plano ${plan.name}`}>
               <div className="proof__plan-copy">
@@ -175,7 +175,7 @@ export default function Prova({ label }: SectionProps) {
         <div><span className="proof__note-title">Pagamento</span>Processado via Stripe.</div>
       </div>
 
-      <div className="proof__faq" data-scroll-anchor aria-labelledby="proof-faq-title">
+      <div className="proof__faq" aria-labelledby="proof-faq-title">
         <p className="proof__faq-heading" id="proof-faq-title">Dúvidas rápidas antes de começar</p>
         <div className="proof__faq-grid">
           <details className="proof__faq-item">

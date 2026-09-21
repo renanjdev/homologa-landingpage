@@ -2,7 +2,7 @@ import React, { lazy, Suspense, useEffect, useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { FablePreloader } from '../contrato/preloader';
 import { FableRegistry, SECTION_REGISTRY } from '../contrato/registry';
-import { useVirtualScroll } from '../contrato/scroll';
+import { useFableScroll } from '../contrato/scroll';
 import { buildWhatsAppLink } from '../utils/whatsapp';
 import '../contrato/tokens.css';
 
@@ -15,7 +15,7 @@ const SCENE_IDLE_FALLBACK_DELAY = 1200;
 type NavigatorWithConnection = Navigator & { connection?: { saveData?: boolean } };
 
 export default function LandingPage() {
-  const { rootRef } = useVirtualScroll(SECTION_REGISTRY.length);
+  const { rootRef } = useFableScroll(SECTION_REGISTRY.length);
   const [reducedMotion, setReducedMotion] = useState(() =>
     typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches,
   );
@@ -81,8 +81,8 @@ export default function LandingPage() {
   return (
     <div className="fable-page">
       <Helmet>
-        <title>Automação e Gestão de Homologação Solar | Homologa Plus</title>
-        <meta name="description" content="Gere memorial, unifilar, planta e anexos no padrão da distribuidora, valide a conformidade e acompanhe a homologação solar em um só fluxo." />
+        <title>Automação de Documentos para Homologação Fotovoltaica | Homologa Plus</title>
+        <meta name="description" content="Automação de documentos para homologação de usinas fotovoltaicas: diagrama unifilar, memorial, planta e os formulários da sua distribuidora prontos e conferidos antes do protocolo." />
         <link rel="canonical" href="https://homologaplus.com.br/" />
       </Helmet>
 
@@ -122,7 +122,6 @@ export default function LandingPage() {
         <div className="fable-scene-fallback" aria-hidden="true"><img src="/logo-h-white.png" alt="" /></div>
       )}
       <div className="fable-noise" aria-hidden="true" />
-      <div className="fable-scrollbar" aria-hidden="true"><span /></div>
     </div>
   );
 }

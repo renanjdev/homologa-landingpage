@@ -3,8 +3,9 @@ import { BrowserRouter, Routes, Route, Navigate, useLocation } from 'react-route
 import { Suspense, lazy } from 'react';
 import CookieConsent from './components/CookieConsent';
 
-// Lazy load pages
-const LandingPage = lazy(() => import('./pages/LandingPage'));
+// A home é a rota de entrada de quase todo o tráfego: import direto evita uma
+// ida-e-volta de rede (chunk lazy) antes de pintar o hero. Demais páginas lazy.
+import LandingPage from './pages/LandingPage';
 const TermsOfUse = lazy(() => import('./pages/TermsOfUse'));
 const PrivacyPolicy = lazy(() => import('./pages/PrivacyPolicy'));
 const ThankYou = lazy(() => import('./pages/ThankYou'));

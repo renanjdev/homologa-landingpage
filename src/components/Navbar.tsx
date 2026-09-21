@@ -27,7 +27,7 @@ const Navbar = ({ scrolled }: { scrolled: boolean }) => {
         />
       </div>
       <nav
-        className={`fixed top-0 left-0 right-0 z-50 border-b border-white/10 backdrop-blur-2xl transition-all duration-300 ${
+        className={`fixed top-0 left-0 right-0 z-50 border-b border-white/10 backdrop-blur-md transition-[background-color,padding] duration-300 ${
           scrolled ? 'bg-ink/85 py-1.5' : 'bg-ink/60 py-2'
         }`}
       >

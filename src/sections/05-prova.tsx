@@ -15,13 +15,13 @@ const plans: Plan[] = [
   {
     name: 'Starter',
     price: '297',
-    description: 'Para estruturar a operação com capacidade definida.',
+    description: 'Para quem homologa alguns projetos por mês e quer parar de montar documento à mão.',
     features: ['7 projetos automatizados/mês', '3 usuários técnicos', 'Até 50 integradoras'],
   },
   {
     name: 'Full',
     price: '597',
-    description: 'Para uma operação contínua, sem teto de projetos.',
+    description: 'Para operação com volume constante, sem teto de automação.',
     features: ['Projetos ilimitados', '10 usuários técnicos', 'Integradoras ilimitadas', 'Suporte dedicado'],
     featured: true,
   },
@@ -78,10 +78,10 @@ export default function Prova({ label }: SectionProps) {
         .proof__plan--full .proof__plan-tag { color: var(--fable-paper); background: var(--fable-void); }
         .proof__features { grid-column: 1 / -1; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); align-content: start; gap: .5rem 1rem; margin: 0; padding: .9rem 0 0; border-top: 1px solid color-mix(in srgb, var(--fable-paper) 13%, transparent); list-style: none; }
         .proof__plan--full .proof__features { border-color: color-mix(in srgb, var(--fable-void) 20%, transparent); }
-        .proof__features li { display: grid; grid-template-columns: .5rem minmax(0, 1fr); gap: .5rem; color: var(--fable-paper); font-size: .72rem; line-height: 1.35; }
-        .proof__features li::before { content: ""; width: .42rem; height: .42rem; margin-top: .25rem; border-radius: 50%; background: var(--fable-accent); }
+        .proof__features li { display: grid; grid-template-columns: .625rem minmax(0, 1fr); gap: .55rem; color: var(--fable-paper); font-size: .72rem; line-height: 1.35; }
+        .proof__features li::before { content: ""; width: .625rem; height: 1px; margin-top: .62em; background: currentColor; opacity: .6; }
         .proof__plan--full .proof__features li { color: var(--fable-void); }
-        .proof__plan--full .proof__features li::before { background: var(--fable-void); }
+        
         .proof__action { grid-column: 1 / -1; display: inline-flex; align-items: center; justify-content: center; width: 100%; min-height: 2.9rem; border: 1px solid color-mix(in srgb, var(--fable-paper) 24%, transparent); border-radius: 999px; padding: .7rem 1rem; color: var(--fable-paper); background: transparent; font: 660 .76rem/1.15 "Segoe UI Variable", "Inter", ui-sans-serif, system-ui, sans-serif; text-align: center; text-decoration: none; white-space: nowrap; transition: transform 260ms var(--fable-ease), background 260ms var(--fable-ease), color 260ms var(--fable-ease); }
         .proof__action:hover { color: var(--fable-void); background: var(--fable-paper); transform: translateY(-.12rem); }
         .proof__action:focus-visible { outline: 2px solid var(--fable-accent); outline-offset: 3px; }
@@ -95,8 +95,8 @@ export default function Prova({ label }: SectionProps) {
         .proof__faq-item { border-bottom: 1px solid color-mix(in srgb, var(--fable-paper) 12%, transparent); }
         .proof__faq-item summary { display: flex; align-items: center; justify-content: space-between; gap: 1rem; min-height: 3.25rem; padding: .75rem 0; color: var(--fable-paper); cursor: pointer; font-size: .78rem; font-weight: 600; line-height: 1.3; list-style: none; }
         .proof__faq-item summary::-webkit-details-marker { display: none; }
-        .proof__faq-item summary::after { content: "+"; flex: 0 0 auto; color: var(--fable-accent); font-family: "Cascadia Code", "JetBrains Mono", ui-monospace, monospace; font-size: 1rem; font-weight: 400; }
-        .proof__faq-item[open] summary::after { content: "−"; }
+        .proof__faq-item summary::after { content: ""; flex: 0 0 auto; width: .75rem; height: .75rem; background: linear-gradient(var(--fable-accent), var(--fable-accent)) center / 100% 1.5px no-repeat, linear-gradient(var(--fable-accent), var(--fable-accent)) center / 1.5px 100% no-repeat; transition: transform 240ms var(--fable-ease); }
+        .proof__faq-item[open] summary::after { transform: rotate(45deg); }
         .proof__faq-item summary:focus-visible { outline: 2px solid var(--fable-accent); outline-offset: .25rem; }
         .proof__faq-item p { max-width: 36rem; margin: 0 0 1rem; color: var(--fable-muted); font-size: .75rem; line-height: 1.5; }
         @media (max-width: 62rem) { .proof__layout { grid-template-columns: minmax(0, 1fr); gap: 1.5rem; } .proof__evidence { min-height: 29rem; } .proof__plans { grid-template-columns: repeat(2, minmax(0, 1fr)); grid-template-rows: none; } }
@@ -107,12 +107,11 @@ export default function Prova({ label }: SectionProps) {
 
       <div className="proof__intro">
         <div>
-          <p className="fable-label">05 · {label}</p>
           <LineReveal
             as="h2"
             className="fable-heading proof__heading"
             section="05"
-            lines={['A plataforma', 'à vista.']}
+            lines={['Planos pelo', 'volume de projetos.']}
           />
         </div>
         <LineReveal
@@ -120,8 +119,8 @@ export default function Prova({ label }: SectionProps) {
           className="fable-copy proof__lede"
           section="05"
           lines={[
-            'Uma captura real do ambiente de trabalho e planos com escopo verificável.',
-            'Os dois planos incluem a plataforma completa e a Automação. O que muda é o volume mensal.',
+            'Os dois planos têm a plataforma completa e a Automação.',
+            'O que muda é quantos projetos você automatiza por mês.',
           ]}
         />
       </div>
@@ -136,7 +135,6 @@ export default function Prova({ label }: SectionProps) {
             <img className="proof__image" src="/dashboard.webp" alt="Tela real do dashboard da plataforma Homologa Plus" />
           </div>
           <figcaption className="proof__caption" id="proof-capture-caption">
-            <span className="proof__caption-mark" aria-hidden="true" />
             <p><strong>Produto em operação.</strong> A plataforma reúne o acompanhamento do trabalho técnico e a Automação no mesmo ambiente.</p>
           </figcaption>
         </figure>
@@ -182,7 +180,7 @@ export default function Prova({ label }: SectionProps) {
         <div className="proof__faq-grid">
           <details className="proof__faq-item">
             <summary>Funciona com a minha distribuidora?</summary>
-            <p>Sim. O fluxo organiza documentos, etapas e prazos conforme a distribuidora, com exemplos para CPFL, Energisa e Equatorial.</p>
+            <p>Sim. Documentos, etapas e prazos seguem o padrão de cada distribuidora. Os anexos específicos da CPFL, da Energisa e da Equatorial, por exemplo, já saem preenchidos.</p>
           </details>
           <details className="proof__faq-item">
             <summary>Os arquivos ficam editáveis?</summary>

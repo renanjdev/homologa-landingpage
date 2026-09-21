@@ -9,34 +9,13 @@ export default function Virada({ label }: SectionProps) {
 
   return (
     <div className="fable-container" style={{ display: 'grid', gap: 'clamp(2rem, 4vh, 4rem)' }}>
-      <div
-        style={{
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'space-between',
-          gap: '1rem',
-          paddingBottom: '1rem',
-          borderBottom: '1px solid',
-          ...ruleStyle,
-        }}
-      >
-        <p className="fable-label" style={{ margin: 0 }}>{label}</p>
-        <span
-          className="fable-tabular"
-          style={{ fontFamily: '"Cascadia Code", "JetBrains Mono", ui-monospace, monospace', fontSize: 'var(--fable-label)', fontWeight: 620, letterSpacing: '0.14em' }}
-        >
-          04 / 06
-        </span>
-      </div>
-
       <LineReveal
         as="h2"
         section="04"
         className="fable-display"
         lines={[
-          'Mais que gestão.',
-          'É engenharia automatizada',
-          'antes do protocolo.',
+          'Organizar o processo',
+          'não evita a reprovação.',
         ]}
       />
 
@@ -47,13 +26,13 @@ export default function Virada({ label }: SectionProps) {
             section="04"
             className="fable-copy"
             lines={[
-              'A gestão do processo existe. Ela organiza responsáveis, etapas e pendências.',
-              'O diferencial está antes do envio: dimensionar, gerar o pacote documental e verificar a conformidade técnica do projeto.',
-              'Projetos, prazos, financeiro, território e integradores permanecem no mesmo fluxo de operação.',
+              'Planilha e painel de gestão mostram onde cada projeto está. Não impedem que ele volte da distribuidora.',
+              'O retrabalho nasce antes do envio: um cálculo fora da norma, um anexo no modelo errado, um campo esquecido.',
+              'O Homologa Plus atua nesse ponto. Dimensiona, gera o pacote e confere a conformidade antes do protocolo.',
             ]}
           />
           <p className="fable-copy">
-            Memorial, unifilar, planta e anexos entram no mesmo fluxo de validação normativa. Assim, a operação não fica limitada a acompanhar o retrabalho depois que ele aparece.
+            E a gestão vem junto: projetos, prazos, financeiro, território e integradoras no mesmo painel.
           </p>
         </div>
 
@@ -85,27 +64,6 @@ export default function Virada({ label }: SectionProps) {
         </div>
       </div>
 
-      <div
-        aria-label="Sinais técnicos"
-        style={{
-          display: 'flex',
-          flexWrap: 'wrap',
-          gap: '0.6rem 1.25rem',
-          paddingTop: '1rem',
-          borderTop: '1px solid',
-          ...ruleStyle,
-          fontFamily: '"Cascadia Code", "JetBrains Mono", ui-monospace, monospace',
-          fontSize: 'var(--fable-label)',
-          fontWeight: 620,
-          letterSpacing: '0.12em',
-          textTransform: 'uppercase',
-        }}
-      >
-        <span>Dimensionamento</span>
-        <span>Pacote documental</span>
-        <span>Validação normativa</span>
-        <span>Antes do protocolo</span>
-      </div>
     </div>
   );
 }

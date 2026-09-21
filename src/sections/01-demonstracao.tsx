@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import type { SectionProps } from '../contrato/types';
 import { LineReveal } from '../contrato/reveal';
+import { Pause, Play } from 'lucide-react';
 import { buildWhatsAppLink } from '../utils/whatsapp';
 import EsteiraConcessionarias from './esteira-concessionarias';
 
@@ -63,8 +64,7 @@ export default function Demonstracao({ id }: SectionProps) {
         .demonstracao__layout { grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); }
         @media (max-width: 75rem) { .demonstracao__layout { grid-template-columns: minmax(0, 1fr); } }
       `}</style>
-      <div style={{ position: 'relative', zIndex: 14, minWidth: 0, paddingBlock: 'clamp(1rem, 4vh, 4rem)' }}>
-        <p className="fable-label">Automação documental para homologação solar</p>
+      <div className="fable-display-fit" style={{ position: 'relative', zIndex: 14, minWidth: 0, paddingBlock: 'clamp(1rem, 4vh, 4rem)' }}>
         <LineReveal
           as="h1"
           section={id}
@@ -79,9 +79,9 @@ export default function Demonstracao({ id }: SectionProps) {
           section={id}
           className="fable-copy"
           lines={[
-            <>A partir dos dados do projeto, o Homologa Plus dimensiona e gera memorial, diagramas, planta e formulários.</>,
-            <>Tudo no padrão da distribuidora, com a conformidade verificada antes do protocolo.</>,
-            <>Para empresas de homologação e engenharia elétrica: projetos, prazos e financeiro no mesmo painel.</>,
+            <>Pare de montar memorial e unifilar à mão a cada projeto.</>,
+            <>O Homologa Plus dimensiona a usina e gera o pacote do protocolo no padrão da sua distribuidora.</>,
+            <>Antes do envio, aponta o que impediria a aprovação, com a norma citada.</>,
           ]}
         />
         <div className="fable-actions" style={{ marginTop: 'clamp(1.75rem, 4vh, 3rem)' }}>
@@ -90,14 +90,14 @@ export default function Demonstracao({ id }: SectionProps) {
             href={demoLink}
             onClick={() => window.fbq?.('track', 'Contact')}
           >
-            Agendar demonstração <span aria-hidden="true">↗</span>
+            Agendar demonstração
           </a>
           <button
             className="fable-button fable-button--ghost"
             type="button"
             onClick={() => window.__fable?.scrollTo(1)}
           >
-            Ver a documentação
+            Ver os documentos gerados
           </button>
         </div>
       </div>
@@ -182,66 +182,14 @@ export default function Demonstracao({ id }: SectionProps) {
             cursor: reducedMotion ? 'not-allowed' : 'pointer',
           }}
         >
-          <span aria-hidden="true">{videoPlaying ? 'Ⅱ' : '▶'}</span>
+          {videoPlaying
+            ? <Pause aria-hidden="true" size={14} strokeWidth={2} />
+            : <Play aria-hidden="true" size={14} strokeWidth={2} />}
           {reducedMotion ? 'Movimento reduzido' : videoPlaying ? 'Pausar' : 'Ver em movimento'}
         </button>
-        <div
-          aria-hidden="true"
-          style={{
-            position: 'absolute',
-            inset: 0,
-            pointerEvents: 'none',
-            background: 'linear-gradient(112deg, color-mix(in srgb, var(--fable-void) 54%, transparent), transparent 48%, color-mix(in srgb, var(--fable-void) 44%, transparent))',
-          }}
-        />
-        <div
-          style={{
-            position: 'absolute',
-            inset: 'clamp(1rem, 2vw, 1.75rem)',
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'flex-start',
-            justifyContent: 'space-between',
-            pointerEvents: 'none',
-          }}
-        >
-          <span
-            className="fable-label"
-            style={{
-              margin: 0,
-              padding: '0.55rem 0.75rem',
-              border: '1px solid color-mix(in srgb, var(--fable-paper) 20%, transparent)',
-              background: 'color-mix(in srgb, var(--fable-void) 70%, transparent)',
-              color: 'var(--fable-paper)',
-            }}
-          >
-            {videoPlaying ? 'Demonstração em execução' : 'Demonstração pronta'}
-          </span>
-          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem', maxWidth: '29rem' }}>
-            {['dimensionamento elétrico', 'padrão da distribuidora', 'validação normativa'].map((signal) => (
-              <span
-                key={signal}
-                style={{
-                  padding: '0.55rem 0.75rem',
-                  border: '1px solid color-mix(in srgb, var(--fable-accent) 60%, transparent)',
-                  background: 'color-mix(in srgb, var(--fable-void) 75%, transparent)',
-                  color: 'var(--fable-paper)',
-                  fontFamily: '"Cascadia Code", "JetBrains Mono", ui-monospace, monospace',
-                  fontSize: 'var(--fable-label)',
-                  fontWeight: 620,
-                  letterSpacing: '0.08em',
-                  lineHeight: 1.25,
-                  textTransform: 'uppercase',
-                }}
-              >
-                {signal}
-              </span>
-            ))}
-          </div>
-        </div>
       </div>
-      {/* Logo abaixo da demonstração e do selo "padrão da distribuidora":
-          ainda na primeira tela, mostra para quais distribuidoras ela vale. */}
+      {/* Logo abaixo da demonstração, ainda na primeira tela: mostra para
+          quais distribuidoras o pacote é gerado. */}
       <EsteiraConcessionarias />
       </div>
     </div>

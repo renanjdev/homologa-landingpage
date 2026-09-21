@@ -1,16 +1,17 @@
 import React, { useState } from 'react';
+import { X } from 'lucide-react';
 import { LineReveal } from '../contrato/reveal';
 import { useMockTelemetry } from '../contrato/mock';
 import type { SectionProps } from '../contrato/types';
 
 const documents = [
   { id: 'memorial', label: 'Memorial', title: 'Memorial descritivo', desc: 'No modelo exigido pela sua distribuidora.', formatos: 'PDF', src: '/doc-memorial.webp', alt: 'Prévia do memorial descritivo da usina solar' },
-  { id: 'unifilar', label: 'Unifilar', title: 'Diagrama unifilar completo', desc: 'Dimensionado a partir dos dados do projeto.', formatos: 'PDF, SVG, DXF', src: '/doc-unifilar-completo.webp', alt: 'Prévia do diagrama unifilar completo' },
+  { id: 'unifilar', label: 'Unifilar', title: 'Diagrama unifilar completo', desc: 'Condutores, disjuntores, DPS e proteções dimensionados.', formatos: 'PDF, SVG, DXF', src: '/doc-unifilar-completo.webp', alt: 'Prévia do diagrama unifilar completo' },
   { id: 'blocos', label: 'Blocos', title: 'Diagrama de blocos', desc: 'Funcional, com todo o sistema representado.', formatos: 'PDF, SVG, DXF', src: '/doc-blocos.webp', alt: 'Prévia do diagrama de blocos do sistema fotovoltaico' },
   { id: 'planta', label: 'Planta', title: 'Planta de localização', desc: 'Vista de satélite com as coordenadas da UC.', formatos: 'PDF', src: '/doc-planta.webp', alt: 'Prévia da planta de localização da instalação' },
-  { id: 'cpfl', label: 'CPFL', title: 'Anexo da CPFL', desc: 'Formulário preenchido automaticamente com dados do projeto.', formatos: 'PDF', src: '/doc-anexo-cpfl.webp', alt: 'Prévia do anexo CPFL para protocolo' },
-  { id: 'energisa', label: 'Energisa', title: 'Orçamento Energisa', desc: 'Formulário preenchido automaticamente com dados do projeto.', formatos: 'PDF', src: '/doc-anexo-energisa.webp', alt: 'Prévia do formulário Energisa' },
-  { id: 'equatorial', label: 'Equatorial', title: 'Solicitação Equatorial', desc: 'Formulário preenchido automaticamente com dados do projeto.', formatos: 'PDF', src: '/doc-anexo-equatorial.webp', alt: 'Prévia do anexo Equatorial' },
+  { id: 'cpfl', label: 'CPFL', title: 'Anexo da CPFL', desc: 'Anexo F preenchido com os dados do projeto.', formatos: 'PDF', src: '/doc-anexo-cpfl.webp', alt: 'Prévia do anexo CPFL para protocolo' },
+  { id: 'energisa', label: 'Energisa', title: 'Orçamento Energisa', desc: 'Formulário de orçamento de conexão preenchido com os dados do projeto.', formatos: 'PDF', src: '/doc-anexo-energisa.webp', alt: 'Prévia do formulário Energisa' },
+  { id: 'equatorial', label: 'Equatorial', title: 'Solicitação Equatorial', desc: 'Anexo I preenchido com os dados do projeto.', formatos: 'PDF', src: '/doc-anexo-equatorial.webp', alt: 'Prévia do anexo Equatorial' },
 ] as const;
 
 const validationItems = [
@@ -102,7 +103,7 @@ export default function PecaDensa({ label }: SectionProps) {
       >
         <div className="peca-densa__dialog-inner">
           <button type="button" className="peca-densa__dialog-close" onClick={closeViewer} aria-label="Fechar visualizador">
-            ×
+            <X aria-hidden="true" size={20} strokeWidth={2} />
           </button>
           <img src={selected.src} alt={selected.alt} />
         </div>
@@ -110,16 +111,15 @@ export default function PecaDensa({ label }: SectionProps) {
 
       <div className="peca-densa__intro">
         <div>
-          <p className="fable-label">02 · {label}</p>
           <LineReveal
             as="h2"
             section="02"
             className="fable-heading peca-densa__heading"
-            lines={['Documentos prontos', 'para o protocolo.']}
+            lines={['O pacote que você', 'montava à mão.']}
           />
         </div>
         <p className="fable-copy peca-densa__lede" style={{ maxWidth: '42ch' }}>
-          O sistema <strong>gera automaticamente</strong> o pacote do protocolo: memorial, diagramas, planta e formulários da distribuidora, e ainda checa a conformidade normativa antes do envio.
+          Memorial, unifilar, diagrama de blocos, planta de localização e os formulários da distribuidora <strong>saem preenchidos com os dados do projeto</strong>. Você revisa, o responsável técnico assina e o protocolo segue.
         </p>
       </div>
 

@@ -6,27 +6,27 @@ const steps = [
   {
     code: '01',
     title: 'Cadastro do projeto',
-    detail: 'Dados da unidade, da distribuidora e da instalação entram no fluxo.',
+    detail: 'UC, distribuidora e equipamentos, digitados uma única vez.',
   },
   {
     code: '02',
     title: 'Dimensionamento elétrico',
-    detail: 'O arranjo é tratado para inversor string ou microinversor.',
+    detail: 'Condutores, disjuntores, DPS e proteções, para string ou microinversor.',
   },
   {
     code: '03',
-    title: 'Geração do dossiê',
-    detail: 'Memorial, diagramas, planta e formulários tomam forma editável.',
+    title: 'Geração dos documentos',
+    detail: 'Memorial, diagramas, planta e anexos da distribuidora, editáveis.',
   },
   {
     code: '04',
     title: 'Validação de conformidade',
-    detail: 'A engenharia é confrontada com a norma e o padrão aplicável.',
+    detail: 'Cada item sai como impeditivo, atenção ou conforme, com a norma citada.',
   },
   {
     code: '05',
     title: 'Protocolo e acompanhamento',
-    detail: 'O pacote segue para protocolo com a rastreabilidade do processo.',
+    detail: 'Prazos, pendências e parecer de acesso no mesmo painel.',
   },
 ] as const;
 
@@ -313,16 +313,10 @@ export default function Mecanismo({ label }: SectionProps) {
         <div className="mechanism__top">
           <div>
             <LineReveal
-              as="p"
-              className="fable-label"
-              section="03"
-              lines={[`03. ${label}`]}
-            />
-            <LineReveal
               as="h2"
               className="fable-heading mechanism__heading"
               section="03"
-              lines={['Dados entram.', <>Engenharia <span className="fable-accent">sai.</span></>]}
+              lines={['Cadastre uma vez.', <>O resto <span className="fable-accent">sai pronto.</span></>]}
             />
           </div>
 
@@ -331,7 +325,7 @@ export default function Mecanismo({ label }: SectionProps) {
               as="p"
               className="fable-copy"
               section="03"
-              lines={['Uma esteira técnica transforma o projeto em documentação pronta para revisão, protocolo e acompanhamento.']}
+              lines={['Os dados do projeto entram uma única vez. Dimensionamento, documentos, conferência normativa e acompanhamento do protocolo partem deles.']}
             />
             <LineReveal
               as="p"
@@ -360,7 +354,7 @@ export default function Mecanismo({ label }: SectionProps) {
 
         <div className="mechanism__footer" data-scroll-anchor>
           <div className="mechanism__outputs">
-            <LineReveal as="p" className="mechanism__caption" section="03" lines={['Saídas para continuar trabalhando']} />
+            <LineReveal as="p" className="mechanism__caption" section="03" lines={['Arquivos de saída']} />
             <div className="mechanism__formats" aria-label="Formatos de arquivo editáveis">
               {['PDF', 'SVG', 'DXF'].map((format) => (
                 <LineReveal as="span" className="mechanism__format" section="03" lines={[format]} key={format} />
@@ -370,12 +364,12 @@ export default function Mecanismo({ label }: SectionProps) {
               as="p"
               className="fable-copy"
               section="03"
-              lines={['Arquivos editáveis preservam a revisão e a assinatura do RT.']}
+              lines={['Editáveis, para o RT revisar e assinar sem redesenhar nada.']}
             />
           </div>
 
           <div className="mechanism__standards">
-            <LineReveal as="p" className="mechanism__caption" section="03" lines={['Referências de conformidade']} />
+            <LineReveal as="p" className="mechanism__caption" section="03" lines={['Normas conferidas']} />
             <LineReveal
               as="p"
               section="03"

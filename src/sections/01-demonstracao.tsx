@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import type { SectionProps } from '../contrato/types';
 import { LineReveal } from '../contrato/reveal';
 import { buildWhatsAppLink } from '../utils/whatsapp';
+import EsteiraConcessionarias from './esteira-concessionarias';
 
 const demoLink = buildWhatsAppLink('Olá! Quero agendar uma demonstração do Homologa Plus.');
 
@@ -101,6 +102,7 @@ export default function Demonstracao({ id }: SectionProps) {
         </div>
       </div>
 
+      <div style={{ minWidth: 0, display: 'flex', flexDirection: 'column', gap: 'clamp(1rem, 2.5vh, 1.75rem)' }}>
       <div
         className="fable-panel"
         style={{
@@ -238,6 +240,10 @@ export default function Demonstracao({ id }: SectionProps) {
             ))}
           </div>
         </div>
+      </div>
+      {/* Logo abaixo da demonstração e do selo "padrão da distribuidora":
+          ainda na primeira tela, mostra para quais distribuidoras ela vale. */}
+      <EsteiraConcessionarias />
       </div>
     </div>
   );

@@ -7,6 +7,8 @@ type Plan = {
   name: 'Starter' | 'Full';
   price: string;
   description: string;
+  volume: string;
+  volumeDetail: string;
   features: string[];
   featured?: boolean;
 };
@@ -16,13 +18,17 @@ const plans: Plan[] = [
     name: 'Starter',
     price: '297',
     description: 'Para quem homologa alguns projetos por mês e quer parar de montar documento à mão.',
-    features: ['7 projetos automatizados/mês', '3 usuários técnicos', 'Até 50 integradoras'],
+    volume: '7 projetos',
+    volumeDetail: 'automatizados por mês',
+    features: ['3 usuários técnicos', 'Até 50 integradoras'],
   },
   {
     name: 'Full',
     price: '597',
     description: 'Para operação com volume constante, sem teto de automação.',
-    features: ['Projetos ilimitados', '10 usuários técnicos', 'Integradoras ilimitadas', 'Suporte dedicado'],
+    volume: 'Ilimitados',
+    volumeDetail: 'projetos automatizados por mês',
+    features: ['10 usuários técnicos', 'Integradoras ilimitadas', 'Suporte dedicado'],
     featured: true,
   },
 ];
@@ -36,73 +42,71 @@ const trackPlan = (plan: Plan) => {
 
 export default function Prova({ label }: SectionProps) {
   return (
-    <section className="proof" aria-label="Prova da plataforma e planos Homologa Plus">
+    <section className="proof" aria-label="Planos Homologa Plus">
       <style>{`
         .proof { width: min(100%, 90rem); margin-inline: auto; }
-        .proof__intro { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(17rem, .68fr); gap: clamp(1.5rem, 5vw, 6rem); align-items: end; margin-bottom: clamp(1.75rem, 4vw, 3.5rem); }
-        .proof__intro .fable-label { margin-bottom: 1rem; }
+        .proof__intro { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(17rem, .68fr); gap: clamp(1.5rem, 5vw, 6rem); align-items: end; margin-bottom: clamp(2rem, 4vw, 3.5rem); }
         .proof__heading { max-width: 10ch; font-size: clamp(3rem, 5.8vw, 6.2rem); line-height: .92; }
         .proof__lede { padding-bottom: .3rem; }
-        .proof__layout { display: grid; grid-template-columns: minmax(0, 1.04fr) minmax(23rem, .96fr); gap: clamp(1rem, 2.25vw, 2rem); align-items: stretch; }
-        .proof__evidence { display: grid; grid-template-rows: auto minmax(0, 1fr) auto; min-height: clamp(32rem, 60vh, 43rem); border: 1px solid color-mix(in srgb, var(--fable-paper) 15%, transparent); background: color-mix(in srgb, var(--fable-paper) 4%, var(--fable-void)); box-shadow: inset 0 1px color-mix(in srgb, var(--fable-paper) 9%, transparent), 0 2rem 6rem color-mix(in srgb, var(--fable-void) 65%, transparent); overflow: hidden; }
-        .proof__evidence-head { display: flex; justify-content: space-between; gap: 1rem; align-items: center; padding: 1rem 1.15rem; border-bottom: 1px solid color-mix(in srgb, var(--fable-paper) 13%, transparent); }
-        .proof__eyebrow, .proof__capture-state, .proof__note-title, .proof__plan-kicker, .proof__plan-tag { font-family: "Cascadia Code", "JetBrains Mono", ui-monospace, monospace; font-size: var(--fable-label); font-weight: 650; letter-spacing: .1em; line-height: 1.2; text-transform: uppercase; }
-        .proof__eyebrow { color: var(--fable-paper); }
-        .proof__capture-state { color: var(--fable-accent); text-align: right; }
-        .proof__image-wrap { position: relative; min-height: 0; padding: clamp(.6rem, 1.2vw, 1rem); background: color-mix(in srgb, var(--fable-void) 82%, var(--fable-paper)); }
-        .proof__image-wrap::after { content: ""; position: absolute; inset: clamp(.6rem, 1.2vw, 1rem); pointer-events: none; border: 1px solid color-mix(in srgb, var(--fable-paper) 16%, transparent); }
-        .proof__image { display: block; width: 100%; height: 100%; min-height: 19rem; object-fit: cover; object-position: top left; filter: saturate(.92) contrast(1.04); }
-        .proof__caption { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: .85rem; padding: 1rem 1.15rem 1.15rem; border-top: 1px solid color-mix(in srgb, var(--fable-paper) 13%, transparent); }
-        .proof__caption-mark { width: .6rem; height: .6rem; margin-top: .28rem; border-radius: 50%; background: var(--fable-accent); box-shadow: 0 0 1rem color-mix(in srgb, var(--fable-accent) 60%, transparent); }
-        .proof__caption p { margin: 0; color: var(--fable-muted); font-size: .79rem; line-height: 1.45; }
-        .proof__caption strong { color: var(--fable-paper); font-weight: 600; }
-        .proof__plans { display: grid; grid-template-rows: repeat(2, auto); gap: 1rem; }
-        .proof__plan { position: relative; display: grid; grid-template-columns: minmax(0, 1fr) auto; grid-template-rows: auto minmax(0, 1fr) auto; gap: 1.25rem; align-items: start; border: 1px solid color-mix(in srgb, var(--fable-paper) 15%, transparent); padding: clamp(1.25rem, 2vw, 1.75rem); background: color-mix(in srgb, var(--fable-paper) 4%, var(--fable-void)); overflow: hidden; }
-        .proof__plan--full { border-color: var(--fable-accent); background: var(--fable-accent); color: var(--fable-void); box-shadow: 0 1.5rem 4rem color-mix(in srgb, var(--fable-accent) 19%, transparent); }
-        .proof__plan--full::before { content: ""; position: absolute; width: 17rem; height: 17rem; right: -8rem; top: -12rem; border: 1px solid color-mix(in srgb, var(--fable-void) 25%, transparent); border-radius: 50%; }
-        .proof__plan-copy, .proof__plan-side { position: relative; z-index: 1; }
-        .proof__plan-side { display: grid; justify-items: end; gap: .8rem; min-width: 8.25rem; }
-        .proof__plan-kicker { margin: 0 0 .6rem; color: var(--fable-muted); }
-        .proof__plan--full .proof__plan-kicker { color: color-mix(in srgb, var(--fable-void) 66%, transparent); }
-        .proof__plan-name { margin: 0; color: var(--fable-paper); font-size: clamp(1.9rem, 3vw, 3.1rem); font-weight: 450; letter-spacing: -.06em; line-height: .88; }
+
+        /* Planos lado a lado; subgrid alinha preço, volume, lista e botão na mesma
+           altura nos dois cards, mesmo com descrições de tamanhos diferentes. */
+        .proof__plans { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(1rem, 2vw, 1.5rem); }
+        .proof__plan { display: grid; grid-template-rows: subgrid; grid-row: span 5; row-gap: 1.5rem; border: 1px solid color-mix(in srgb, var(--fable-paper) 15%, transparent); padding: clamp(1.5rem, 3vw, 2.5rem); background: color-mix(in srgb, var(--fable-paper) 4%, var(--fable-void)); }
+        .proof__plan--full { border-color: var(--fable-accent); background: var(--fable-accent); color: var(--fable-void); }
+        .proof__plan-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 1rem; }
+        .proof__plan-name { margin: 0; color: var(--fable-paper); font-size: clamp(2rem, 3vw, 2.75rem); font-weight: 450; letter-spacing: -.05em; line-height: .95; }
         .proof__plan--full .proof__plan-name { color: var(--fable-void); }
-        .proof__plan-description { max-width: 28rem; margin: .65rem 0 0; color: var(--fable-muted); font-size: .77rem; line-height: 1.4; }
-        .proof__plan--full .proof__plan-description { color: color-mix(in srgb, var(--fable-void) 73%, transparent); }
-        .proof__price { display: flex; align-items: baseline; justify-content: flex-end; color: var(--fable-paper); font-variant-numeric: tabular-nums; letter-spacing: -.065em; white-space: nowrap; }
+        .proof__plan-tag { flex: 0 0 auto; display: inline-flex; align-items: center; min-height: 1.75rem; padding: 0 .65rem; color: var(--fable-paper); background: var(--fable-void); font-family: "Cascadia Code", "JetBrains Mono Variable", "JetBrains Mono", ui-monospace, monospace; font-size: .75rem; font-weight: 650; letter-spacing: .08em; text-transform: uppercase; }
+        .proof__plan-description { margin: .75rem 0 0; max-width: 34ch; color: var(--fable-muted); font-size: var(--fable-body); line-height: 1.45; }
+        .proof__plan--full .proof__plan-description { color: color-mix(in srgb, var(--fable-void) 78%, transparent); }
+
+        .proof__price { display: flex; align-items: baseline; gap: .3rem; color: var(--fable-paper); font-variant-numeric: tabular-nums; white-space: nowrap; }
         .proof__plan--full .proof__price { color: var(--fable-void); }
-        .proof__currency { align-self: flex-start; margin-top: .25rem; font-size: .8rem; font-weight: 650; letter-spacing: -.03em; }
-        .proof__price strong { font-size: clamp(2.55rem, 4vw, 4.5rem); font-weight: 360; line-height: .76; }
-        .proof__period { margin-left: .3rem; color: var(--fable-muted); font-size: .68rem; font-weight: 600; letter-spacing: -.01em; }
-        .proof__plan--full .proof__period { color: color-mix(in srgb, var(--fable-void) 68%, transparent); }
-        .proof__plan-tag { display: inline-flex; align-items: center; min-height: 1.5rem; padding: 0 .5rem; color: var(--fable-void); background: var(--fable-accent); }
-        .proof__plan--full .proof__plan-tag { color: var(--fable-paper); background: var(--fable-void); }
-        .proof__features { grid-column: 1 / -1; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); align-content: start; gap: .5rem 1rem; margin: 0; padding: .9rem 0 0; border-top: 1px solid color-mix(in srgb, var(--fable-paper) 13%, transparent); list-style: none; }
-        .proof__plan--full .proof__features { border-color: color-mix(in srgb, var(--fable-void) 20%, transparent); }
-        .proof__features li { display: grid; grid-template-columns: .625rem minmax(0, 1fr); gap: .55rem; color: var(--fable-paper); font-size: .72rem; line-height: 1.35; }
-        .proof__features li::before { content: ""; width: .625rem; height: 1px; margin-top: .62em; background: currentColor; opacity: .6; }
+        .proof__currency { align-self: flex-start; margin-top: .45rem; font-size: 1rem; font-weight: 600; }
+        .proof__price strong { font-size: clamp(3rem, 4.6vw, 4.5rem); font-weight: 360; letter-spacing: -.06em; line-height: .85; }
+        .proof__period { color: var(--fable-muted); font-size: .9375rem; font-weight: 500; }
+        .proof__plan--full .proof__period { color: color-mix(in srgb, var(--fable-void) 72%, transparent); }
+
+        /* O que muda entre os planos, em destaque e na mesma altura nos dois cards. */
+        .proof__volume { display: grid; gap: .2rem; margin: 0; padding: 1rem 0; border-block: 1px solid color-mix(in srgb, var(--fable-paper) 14%, transparent); }
+        .proof__plan--full .proof__volume { border-color: color-mix(in srgb, var(--fable-void) 22%, transparent); }
+        .proof__volume strong { color: var(--fable-paper); font-size: clamp(1.35rem, 2vw, 1.65rem); font-weight: 560; letter-spacing: -.03em; line-height: 1.1; }
+        .proof__volume span { color: var(--fable-muted); font-size: var(--fable-body); line-height: 1.35; }
+        .proof__plan--full .proof__volume strong { color: var(--fable-void); }
+        .proof__plan--full .proof__volume span { color: color-mix(in srgb, var(--fable-void) 72%, transparent); }
+
+        .proof__features { display: grid; gap: .6rem; margin: 0; padding: 0; list-style: none; }
+        .proof__features li { display: grid; grid-template-columns: .75rem minmax(0, 1fr); gap: .65rem; color: var(--fable-paper); font-size: var(--fable-body); line-height: 1.4; }
+        .proof__features li::before { content: ""; width: .75rem; height: 1px; margin-top: .72em; background: currentColor; opacity: .55; }
         .proof__plan--full .proof__features li { color: var(--fable-void); }
-        
-        .proof__action { grid-column: 1 / -1; display: inline-flex; align-items: center; justify-content: center; width: 100%; min-height: 2.9rem; border: 1px solid color-mix(in srgb, var(--fable-paper) 24%, transparent); border-radius: 999px; padding: .7rem 1rem; color: var(--fable-paper); background: transparent; font: 660 .76rem/1.15 "Segoe UI Variable", "Inter", ui-sans-serif, system-ui, sans-serif; text-align: center; text-decoration: none; white-space: nowrap; transition: transform 260ms var(--fable-ease), background 260ms var(--fable-ease), color 260ms var(--fable-ease); }
+
+        .proof__cta { display: grid; gap: .75rem; align-self: end; }
+        .proof__action { display: inline-flex; align-items: center; justify-content: center; width: 100%; min-height: 3.25rem; border: 1px solid color-mix(in srgb, var(--fable-paper) 28%, transparent); border-radius: 999px; padding: .8rem 1.25rem; color: var(--fable-paper); background: transparent; font: 640 .9375rem/1.15 "Segoe UI Variable", "Inter Variable", "Inter", ui-sans-serif, system-ui, sans-serif; text-align: center; text-decoration: none; transition: transform 260ms var(--fable-ease), background 260ms var(--fable-ease), color 260ms var(--fable-ease); }
         .proof__action:hover { color: var(--fable-void); background: var(--fable-paper); transform: translateY(-.12rem); }
         .proof__action:focus-visible { outline: 2px solid var(--fable-accent); outline-offset: 3px; }
-        .proof__plan--full .proof__action { border-color: var(--fable-void); color: var(--fable-void); }
-        .proof__plan--full .proof__action:hover { color: var(--fable-paper); background: var(--fable-void); }
-        .proof__terms { display: grid; grid-template-columns: minmax(0, .8fr) repeat(2, minmax(0, 1fr)); gap: .7rem; margin: 1rem 0 0; padding: 1rem 0 0; border-top: 1px solid color-mix(in srgb, var(--fable-paper) 14%, transparent); color: var(--fable-muted); font-size: .7rem; line-height: 1.35; }
-        .proof__note-title { display: block; margin-bottom: .28rem; color: var(--fable-paper); font-size: .58rem; }
-        .proof__faq { margin-top: clamp(2.25rem, 5vw, 4rem); padding-top: 1rem; border-top: 1px solid color-mix(in srgb, var(--fable-paper) 14%, transparent); }
-        .proof__faq-heading { margin: 0 0 1rem; color: var(--fable-paper); font-family: "Cascadia Code", "JetBrains Mono", ui-monospace, monospace; font-size: var(--fable-label); font-weight: 650; letter-spacing: .12em; line-height: 1.25; text-transform: uppercase; }
-        .proof__faq-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 1.5rem; }
+        .proof__plan--full .proof__action { border-color: var(--fable-void); color: var(--fable-paper); background: var(--fable-void); }
+        .proof__plan--full .proof__action:hover { background: color-mix(in srgb, var(--fable-void) 86%, var(--fable-paper)); }
+        .proof__plan--full .proof__action:focus-visible { outline-color: var(--fable-void); }
+        .proof__assurance { margin: 0; color: var(--fable-muted); font-size: .875rem; line-height: 1.4; text-align: center; }
+        .proof__plan--full .proof__assurance { color: color-mix(in srgb, var(--fable-void) 72%, transparent); }
+
+        .proof__faq { margin-top: clamp(2.5rem, 5vw, 4.5rem); padding-top: 1.25rem; border-top: 1px solid color-mix(in srgb, var(--fable-paper) 14%, transparent); }
+        .proof__faq-heading { margin: 0 0 1rem; color: var(--fable-paper); font-size: clamp(1.25rem, 1.8vw, 1.5rem); font-weight: 520; letter-spacing: -.02em; line-height: 1.2; }
+        .proof__faq-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 2rem; }
         .proof__faq-item { border-bottom: 1px solid color-mix(in srgb, var(--fable-paper) 12%, transparent); }
-        .proof__faq-item summary { display: flex; align-items: center; justify-content: space-between; gap: 1rem; min-height: 3.25rem; padding: .75rem 0; color: var(--fable-paper); cursor: pointer; font-size: .78rem; font-weight: 600; line-height: 1.3; list-style: none; }
+        .proof__faq-item summary { display: flex; align-items: center; justify-content: space-between; gap: 1rem; min-height: 3.5rem; padding: .85rem 0; color: var(--fable-paper); cursor: pointer; font-size: var(--fable-body); font-weight: 600; line-height: 1.35; list-style: none; }
         .proof__faq-item summary::-webkit-details-marker { display: none; }
         .proof__faq-item summary::after { content: ""; flex: 0 0 auto; width: .75rem; height: .75rem; background: linear-gradient(var(--fable-accent), var(--fable-accent)) center / 100% 1.5px no-repeat, linear-gradient(var(--fable-accent), var(--fable-accent)) center / 1.5px 100% no-repeat; transition: transform 240ms var(--fable-ease); }
         .proof__faq-item[open] summary::after { transform: rotate(45deg); }
         .proof__faq-item summary:focus-visible { outline: 2px solid var(--fable-accent); outline-offset: .25rem; }
-        .proof__faq-item p { max-width: 36rem; margin: 0 0 1rem; color: var(--fable-muted); font-size: .75rem; line-height: 1.5; }
-        @media (max-width: 62rem) { .proof__layout { grid-template-columns: minmax(0, 1fr); gap: 1.5rem; } .proof__evidence { min-height: 29rem; } .proof__plans { grid-template-columns: repeat(2, minmax(0, 1fr)); grid-template-rows: none; } }
-        @media (max-width: 42rem) { .proof__intro { grid-template-columns: minmax(0, 1fr); gap: 1rem; } .proof__heading { max-width: 11ch; font-size: clamp(2.6rem, 12vw, 3.8rem); line-height: .94; } .proof__plans { grid-template-columns: minmax(0, 1fr); } .proof__plan { grid-template-columns: minmax(0, 1fr) auto; } .proof__evidence { min-height: 25rem; } .proof__image { min-height: 15rem; } }
-        @media (max-width: 42rem) { .proof__faq-grid { grid-template-columns: minmax(0, 1fr); } }
-        @media (max-width: 28rem) { .proof__evidence-head, .proof__caption { padding-inline: .85rem; } .proof__plan { gap: .85rem; padding: 1.05rem; } .proof__plan-side { min-width: 6.5rem; } .proof__price strong { font-size: 2.25rem; } .proof__features, .proof__terms { grid-template-columns: minmax(0, 1fr); } .proof__features { gap: .45rem; } .proof__capture-state { max-width: 7rem; } }
+        .proof__faq-item p { max-width: 40rem; margin: 0 0 1.1rem; color: var(--fable-muted); font-size: var(--fable-body); line-height: 1.55; }
+
+        @media (max-width: 48rem) {
+          .proof__intro { grid-template-columns: minmax(0, 1fr); gap: 1rem; }
+          .proof__heading { max-width: 11ch; font-size: clamp(2.6rem, 12vw, 3.8rem); line-height: .94; }
+          .proof__plans, .proof__faq-grid { grid-template-columns: minmax(0, 1fr); }
+        }
       `}</style>
 
       <div className="proof__intro">
@@ -125,38 +129,24 @@ export default function Prova({ label }: SectionProps) {
         />
       </div>
 
-      <div className="proof__layout">
-        <figure className="proof__evidence" aria-labelledby="proof-capture-caption">
-          <div className="proof__evidence-head">
-            <span className="proof__eyebrow">Ambiente Homologa Plus</span>
-            <span className="proof__capture-state">captura de produto real</span>
-          </div>
-          <div className="proof__image-wrap">
-            <img className="proof__image" src="/dashboard.webp" alt="Tela real do dashboard da plataforma Homologa Plus" />
-          </div>
-          <figcaption className="proof__caption" id="proof-capture-caption">
-            <p><strong>Produto em operação.</strong> A plataforma reúne o acompanhamento do trabalho técnico e a Automação no mesmo ambiente.</p>
-          </figcaption>
-        </figure>
-
-        <div className="proof__plans" aria-label="Planos Homologa Plus">
-          {plans.map((plan) => (
-            <article className={`proof__plan ${plan.featured ? 'proof__plan--full' : ''}`} key={plan.name} aria-label={`Plano ${plan.name}`}>
-              <div className="proof__plan-copy">
-                <p className="proof__plan-kicker">Plano Homologa Plus</p>
+      <div className="proof__plans" aria-label="Planos Homologa Plus">
+        {plans.map((plan) => (
+          <article className={`proof__plan ${plan.featured ? 'proof__plan--full' : ''}`} key={plan.name} aria-label={`Plano ${plan.name}`}>
+            <div>
+              <div className="proof__plan-head">
                 <h3 className="proof__plan-name">{plan.name}</h3>
-                <p className="proof__plan-description">{plan.description}</p>
+                {plan.featured && <span className="proof__plan-tag">Mais escolhido</span>}
               </div>
-              <div className="proof__plan-side">
-                {plan.featured && <span className="proof__plan-tag">mais escolhido</span>}
-                <div className="proof__price" aria-label={`R$ ${plan.price} por mês`}>
-                  <span className="proof__currency">R$</span><strong>{plan.price}</strong><span className="proof__period">/mês</span>
-                </div>
-              </div>
-              <ul className="proof__features">
-                {plan.features.map((feature) => <li key={feature}>{feature}</li>)}
-                <li>Plataforma inteira e Automação</li>
-              </ul>
+              <p className="proof__plan-description">{plan.description}</p>
+            </div>
+            <div className="proof__price" aria-label={`R$ ${plan.price} por mês`}>
+              <span className="proof__currency">R$</span><strong>{plan.price}</strong><span className="proof__period">/mês</span>
+            </div>
+            <p className="proof__volume"><strong>{plan.volume}</strong><span>{plan.volumeDetail}</span></p>
+            <ul className="proof__features">
+              {plan.features.map((feature) => <li key={feature}>{feature}</li>)}
+            </ul>
+            <div className="proof__cta">
               <a
                 className="proof__action"
                 href={buildWhatsAppLink(`Olá! Quero contratar o plano Homologa Plus ${plan.name}.`)}
@@ -164,15 +154,10 @@ export default function Prova({ label }: SectionProps) {
               >
                 Falar sobre o plano {plan.name}
               </a>
-            </article>
-          ))}
-        </div>
-      </div>
-
-      <div className="proof__terms" aria-label="Condições comerciais">
-        <div><span className="proof__note-title">Contratação</span>Sem fidelidade.</div>
-        <div><span className="proof__note-title">Cancelamento</span>Feito diretamente pelo sistema.</div>
-        <div><span className="proof__note-title">Pagamento</span>Processado via Stripe.</div>
+              <p className="proof__assurance">Sem fidelidade. Cancele pelo próprio sistema. Pagamento via Stripe.</p>
+            </div>
+          </article>
+        ))}
       </div>
 
       <div className="proof__faq" aria-labelledby="proof-faq-title">

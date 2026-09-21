@@ -180,7 +180,6 @@ export default function Demonstracao({ id }: SectionProps) {
             fontSize: '0.75rem',
             fontWeight: 620,
             cursor: reducedMotion ? 'not-allowed' : 'pointer',
-            backdropFilter: 'blur(0.75rem)',
           }}
         >
           <span aria-hidden="true">{videoPlaying ? 'Ⅱ' : '▶'}</span>

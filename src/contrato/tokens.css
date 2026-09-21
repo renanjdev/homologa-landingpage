@@ -64,10 +64,12 @@ body.fable-active {
   position: fixed;
   inset: 0;
   z-index: 40;
-  opacity: 0.045;
+  opacity: 0.02;
   pointer-events: none;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.92' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.55'/%3E%3C/svg%3E");
-  mix-blend-mode: soft-light;
+  /* Sem mix-blend-mode: camada fixa de tela inteira por cima de tudo obrigava
+     a mesclar a tela toda a cada quadro de rolagem/animação (travadas).
+     Em mistura normal o grão aparece mais no preto, por isso a opacidade baixa. */
 }
 
 .fable-grid-overlay {
@@ -92,8 +94,9 @@ body.fable-active {
   min-height: 4.75rem;
   padding: 0 var(--fable-gutter);
   border-bottom: 1px solid color-mix(in srgb, var(--fable-paper) 12%, transparent);
-  background: color-mix(in srgb, var(--fable-void) 76%, transparent);
-  backdrop-filter: blur(1.25rem);
+  /* Sem backdrop-filter: o desfoque era refeito a cada quadro sobre o conteúdo
+     em movimento; com o fundo 86% opaco a diferença não aparece. */
+  background: color-mix(in srgb, var(--fable-void) 86%, transparent);
 }
 
 .fable-brand {
@@ -392,7 +395,8 @@ body.fable-active {
   width: 100vw !important;
   height: 100vh !important;
   opacity: 0.22;
-  mix-blend-mode: screen;
+  /* Sem mix-blend-mode: screen. Sobre o fundo quase preto o resultado é o
+     mesmo, e o blend num canvas de tela cheia redesenhado a 60fps pesava. */
   pointer-events: none !important;
 }
 
@@ -405,7 +409,6 @@ body.fable-active {
   width: clamp(7rem, 15vw, 13rem);
   aspect-ratio: 1;
   opacity: 0.16;
-  mix-blend-mode: screen;
   pointer-events: none !important;
 }
 
@@ -487,3 +490,43 @@ html.fable-native body { overflow: visible; }
 html.fable-native .fable-viewport { position: relative; overflow: visible; background-size: 100% 100vh; background-repeat: no-repeat; }
 /* isolation mantém a grade decorativa acima do conteúdo, como no modo guiado. */
 html.fable-native .fable-scroll-root { position: relative; transform: none !important; will-change: auto; isolation: isolate; }
+
+/* Esteira de distribuidoras (seção 01). Só transform em loop: roda no
+   compositor, sem layout nem pintura por frame. */
+.esteira { position: relative; z-index: 14; }
+.esteira__titulo { margin: 0 0 0.85rem; color: var(--fable-muted); }
+.esteira__trilho {
+  overflow: hidden;
+  contain: layout paint;
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent);
+}
+.esteira__faixa { display: flex; width: max-content; animation: esteira-rolar 38s linear infinite; }
+.esteira__trilho:hover .esteira__faixa,
+.esteira.is-fora .esteira__faixa { animation-play-state: paused; }
+.esteira__grupo {
+  display: flex; align-items: center; flex-shrink: 0;
+  gap: clamp(2.5rem, 6vw, 5.5rem); margin: 0; padding: 0 clamp(1.25rem, 3vw, 2.75rem); list-style: none;
+}
+.esteira__item { display: flex; align-items: center; height: 42px; }
+.esteira__item img {
+  display: block; width: auto; height: var(--logo-h);
+  filter: brightness(0) invert(1); opacity: 0.58;
+  transition: opacity 0.3s var(--fable-ease);
+}
+.esteira__item img:hover { opacity: 0.95; }
+@keyframes esteira-rolar { to { transform: translate3d(-50%, 0, 0); } }
+@media (max-width: 42rem) {
+  .esteira__faixa { animation-duration: 28s; }
+  .esteira__item img { height: calc(var(--logo-h) * 0.82); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .esteira__trilho { -webkit-mask-image: none; mask-image: none; }
+  .esteira__faixa { animation: none; width: auto; }
+  .esteira__grupo { flex-wrap: wrap; justify-content: center; row-gap: 1.5rem; }
+  .esteira__grupo[aria-hidden] { display: none; }
+}
+
+/* O ruído global de index.css (body::before, com soft-light em tela cheia)
+   duplicava o .fable-noise e custava uma mesclagem da tela toda por quadro. */
+body.fable-active::before { content: none; }

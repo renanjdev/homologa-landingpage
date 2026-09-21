@@ -63,7 +63,7 @@ export default function Demonstracao({ id }: SectionProps) {
         .demonstracao__layout { grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); }
         @media (max-width: 75rem) { .demonstracao__layout { grid-template-columns: minmax(0, 1fr); } }
       `}</style>
-      <div style={{ position: 'relative', zIndex: 14, minWidth: 0, paddingBlock: 'clamp(1rem, 4vh, 4rem)' }}>
+      <div className="fable-display-fit" style={{ position: 'relative', zIndex: 14, minWidth: 0, paddingBlock: 'clamp(1rem, 4vh, 4rem)' }}>
         <p className="fable-label">Automação documental para homologação solar</p>
         <LineReveal
           as="h1"

@@ -231,9 +231,12 @@ body.fable-active {
   overflow-wrap: anywhere;
 }
 
+/* --display-fit (opcional) limita o tamanho à largura da coluna: a palavra mais
+   longa sempre cabe, qualquer que seja a fonte disponível no aparelho. */
 .fable-display {
+  --display-size: clamp(2.8rem, 6vw, 6.5rem);
   max-width: 22ch;
-  font-size: clamp(2.8rem, 6vw, 6.5rem);
+  font-size: min(var(--display-size), var(--display-fit, 100vw));
   font-weight: 330;
   line-height: 0.9;
   word-break: normal;
@@ -453,13 +456,13 @@ body.fable-active {
   .fable-nav-links .fable-nav-button:not(.fable-nav-button--cta) { display: none; }
   .fable-section-shell { padding-top: 6.5rem; min-height: max(100vh, calc(var(--section-duration) * 88vh)); }
   .fable-grid-2, .fable-grid-3 { grid-template-columns: 1fr; }
-  .fable-display { max-width: 22ch; font-size: clamp(2.8rem, 7vw, 5.25rem); line-height: 0.94; }
+  .fable-display { max-width: 22ch; --display-size: clamp(2.8rem, 7vw, 5.25rem); line-height: 0.94; }
   .fable-scene { opacity: 0.1; }
   .fable-scene-mark, .fable-scene-fallback { top: 24vh; right: 7vw; width: 6rem; opacity: 0.1; }
 }
 
 @media (max-width: 42rem) {
-  .fable-display { max-width: 18ch; font-size: clamp(2.4rem, 8vw, 3.8rem); line-height: 1; }
+  .fable-display { max-width: 18ch; --display-size: clamp(2.4rem, 8vw, 3.8rem); line-height: 1; }
   .fable-heading { max-width: 12ch; font-size: clamp(2.7rem, 12vw, 4.4rem); line-height: 0.92; }
 }
 
@@ -530,3 +533,7 @@ html.fable-native .fable-scroll-root { position: relative; transform: none !impo
 /* O ruído global de index.css (body::before, com soft-light em tela cheia)
    duplicava o .fable-noise e custava uma mesclagem da tela toda por quadro. */
 body.fable-active::before { content: none; }
+
+/* Coluna do título do hero: "Documentação" mede ~7em em Inter (fonte usada
+   fora do Windows 11) e quebrava no meio da palavra. 13,5cqi garante que caiba. */
+.fable-display-fit { container-type: inline-size; --display-fit: 13.5cqi; }

@@ -1,4 +1,4 @@
-import React, { Component, Suspense, useRef, type ReactNode } from 'react';
+import React, { Component, Suspense, useEffect, useRef, useState, type ReactNode } from 'react';
 import { Canvas, useFrame, useLoader } from '@react-three/fiber';
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
@@ -33,12 +33,26 @@ class SceneBoundary extends Component<{ children: ReactNode; fallback: ReactNode
 }
 
 export function FableScene() {
+  const [frameloop, setFrameloop] = useState<'always' | 'never'>(() =>
+    typeof document !== 'undefined' && document.visibilityState === 'hidden' ? 'never' : 'always',
+  );
+
+  useEffect(() => {
+    const onVisibilityChange = () => {
+      setFrameloop(document.visibilityState === 'hidden' ? 'never' : 'always');
+    };
+    document.addEventListener('visibilitychange', onVisibilityChange);
+    return () => document.removeEventListener('visibilitychange', onVisibilityChange);
+  }, []);
+
   return (
     <SceneBoundary fallback={<div className="fable-scene-fallback" aria-hidden="true"><img src="/logo-h-white.png" alt="" /></div>}>
       <Canvas
         className="fable-scene"
         aria-hidden="true"
         dpr={[0.75, 1.1]}
+        frameloop={frameloop}
+        performance={{ min: 0.5 }}
         camera={{ position: [0, 0, 5.2], fov: 42 }}
         gl={{ antialias: false, alpha: true, powerPreference: 'high-performance' }}
       >

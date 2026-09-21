@@ -26,7 +26,7 @@ body.fable-active {
   margin: 0;
   background: var(--fable-void);
   color: var(--fable-paper);
-  font-family: "Segoe UI Variable", "Inter", ui-sans-serif, system-ui, sans-serif;
+  font-family: "Segoe UI Variable", "Inter Variable", "Inter", ui-sans-serif, system-ui, sans-serif;
   font-size: var(--fable-body);
   font-weight: 350;
   line-height: 1.5;
@@ -200,7 +200,7 @@ body.fable-active {
   gap: 0.65rem;
   margin: 0 0 1.5rem;
   color: var(--fable-muted);
-  font-family: "Cascadia Code", "JetBrains Mono", ui-monospace, monospace;
+  font-family: "Cascadia Code", "JetBrains Mono Variable", "JetBrains Mono", ui-monospace, monospace;
   font-size: var(--fable-label);
   font-weight: 620;
   letter-spacing: 0.16em;
@@ -221,7 +221,7 @@ body.fable-active {
   min-width: 0;
   margin: 0;
   color: var(--fable-paper);
-  font-family: "Segoe UI Variable Display", "Segoe UI Variable", ui-sans-serif, system-ui, sans-serif;
+  font-family: "Segoe UI Variable Display", "Segoe UI Variable", "Inter Variable", ui-sans-serif, system-ui, sans-serif;
   font-variation-settings: "wght" 360;
   letter-spacing: -0.068em;
   text-wrap: balance;
@@ -364,7 +364,7 @@ body.fable-active {
 
 .fable-preloader-count span {
   color: var(--fable-muted);
-  font-family: "Cascadia Code", ui-monospace, monospace;
+  font-family: "Cascadia Code", "JetBrains Mono Variable", ui-monospace, monospace;
   font-size: var(--fable-label);
   letter-spacing: 0.15em;
   text-transform: uppercase;
@@ -430,7 +430,7 @@ body.fable-active {
   min-height: 72vh;
   border: 1px dashed color-mix(in srgb, var(--fable-paper) 18%, transparent);
   color: var(--fable-muted);
-  font-family: "Cascadia Code", ui-monospace, monospace;
+  font-family: "Cascadia Code", "JetBrains Mono Variable", ui-monospace, monospace;
   font-size: var(--fable-label);
   letter-spacing: 0.15em;
   text-transform: uppercase;
@@ -476,3 +476,14 @@ body.fable-active {
   .fable-scene { display: none; }
   .fable-section-shell { margin-top: 0; }
 }
+
+/* Modo nativo (toque, sem hover): rolagem do navegador, com arremesso e sem
+   trechos pulados. Ligado por scroll.ts; revelações seguem pelo scroll da janela. */
+html.fable-native,
+html.fable-native body { height: auto; overscroll-behavior: auto; }
+html.fable-native { overflow-x: clip; overflow-y: auto; scroll-padding-top: 5rem; }
+html.fable-native body { overflow: visible; }
+/* Gradiente do tamanho da tela no topo (não esticado pela página inteira). */
+html.fable-native .fable-viewport { position: relative; overflow: visible; background-size: 100% 100vh; background-repeat: no-repeat; }
+/* isolation mantém a grade decorativa acima do conteúdo, como no modo guiado. */
+html.fable-native .fable-scroll-root { position: relative; transform: none !important; will-change: auto; isolation: isolate; }

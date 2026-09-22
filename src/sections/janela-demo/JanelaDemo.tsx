@@ -2,19 +2,16 @@ import { useEffect, useRef, useState, type KeyboardEvent } from 'react';
 import { Pause, Play, ShieldCheck } from 'lucide-react';
 import './janela-demo.css';
 
-// Cortes exatos de public/automacao-loop.mp4 (453 quadros, 15,1 s, montado a partir da gravação da Automação).
-// Remedir se o loop for reeditado.
+// Cortes exatos de public/automacao-loop.mp4 (627 quadros, 20,9 s, montado a partir da gravação da Automação).
+// Uma legenda por ato, cada uma parada de 4 a 10 s para dar tempo de ler. Remedir se o loop for reeditado.
 const TRECHOS = [
   { inicio: 0, tela: 'Automação · Conformidade', ato: '01 Validar', legenda: 'Projeto validado: 17 regras conferidas' },
-  { inicio: 2.7, tela: 'Gerar documentos', ato: '02 Gerar', legenda: 'Formulário, unifilar, blocos e planta gerados', tag: 'Acelerado 3×' },
-  { inicio: 4.5333, tela: 'Gerar documentos', ato: '02 Gerar', legenda: 'Formulário, unifilar, blocos e planta gerados', tag: 'Acelerado 6×' },
-  { inicio: 6.6, tela: 'Gerar documentos', ato: '02 Gerar', legenda: 'Formulário, unifilar, blocos e planta gerados' },
-  { inicio: 8.0, tela: 'Documentos do pedido', ato: '03 Conferir', legenda: 'Diagrama unifilar: prévia, PDF e DXF' },
-  { inicio: 10.5, tela: 'Documentos do pedido', ato: '03 Conferir', legenda: 'Diagrama de blocos: prévia, PDF e DXF' },
-  { inicio: 12.8, tela: 'Documentos do pedido', ato: '03 Conferir', legenda: 'Planta de localização: prévia e PDF' },
+  { inicio: 4.0, tela: 'Gerar documentos', ato: '02 Gerar', legenda: 'Formulário, unifilar, blocos e planta gerados', tag: 'Acelerado' },
+  { inicio: 7.9, tela: 'Gerar documentos', ato: '02 Gerar', legenda: 'Formulário, unifilar, blocos e planta gerados' },
+  { inicio: 10.4, tela: 'Documentos do pedido', ato: '03 Conferir', legenda: 'Unifilar, blocos e planta prontos para conferir' },
 ] as const;
-// O poster e um quadro do trecho do unifilar: antes do primeiro quadro tocado, legenda e titulo seguem ele.
-const TRECHO_DO_POSTER = 4;
+// O poster e um quadro do ato 03 (o unifilar): antes do primeiro quadro tocado, legenda e titulo seguem ele.
+const TRECHO_DO_POSTER = 3;
 const REDUCED_MOTION = '(prefers-reduced-motion: reduce)';
 const trechoEm = (t: number) => TRECHOS.reduce((atual, trecho, i) => (t >= trecho.inicio ? i : atual), 0);
 
@@ -77,8 +74,14 @@ export default function JanelaDemo() {
     return () => io.disconnect();
   }, [estatico, pronto]);
 
-  const pintar = (video: HTMLVideoElement, t: number) => {
-    if (video.duration) progressRef.current?.style.setProperty('transform', `scaleX(${(t / video.duration).toFixed(4)})`);
+  // Sempre o currentTime do video: em alguns navegadores o mediaTime do requestVideoFrameCallback
+  // nao zera quando o loop recomeca, e a barra passava de 100% e a legenda ficava presa no ultimo ato.
+  const pintar = (video: HTMLVideoElement) => {
+    const t = video.currentTime;
+    if (video.duration) {
+      const fracao = Math.min(1, Math.max(0, t / video.duration));
+      progressRef.current?.style.setProperty('transform', `scaleX(${fracao.toFixed(4)})`);
+    }
     const proximo = trechoEm(t);
     if (proximo !== trechoRef.current) {
       trechoRef.current = proximo;
@@ -91,8 +94,8 @@ export default function JanelaDemo() {
     const video = videoRef.current;
     if (!video || !playing || typeof video.requestVideoFrameCallback !== 'function') return;
     let handle = 0;
-    const tick = (_now: number, meta: VideoFrameCallbackMetadata) => {
-      pintar(video, meta.mediaTime);
+    const tick = () => {
+      pintar(video);
       handle = video.requestVideoFrameCallback(tick);
     };
     handle = video.requestVideoFrameCallback(tick);
@@ -170,7 +173,7 @@ export default function JanelaDemo() {
             aria-hidden="true"
             onPlay={() => setPlaying(true)}
             onPause={() => setPlaying(false)}
-            onTimeUpdate={(event) => pintar(event.currentTarget, event.currentTarget.currentTime)}
+            onTimeUpdate={(event) => pintar(event.currentTarget)}
           >
             <source src="/automacao-loop.mp4" type="video/mp4" />
           </video>

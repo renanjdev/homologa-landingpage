@@ -176,7 +176,7 @@ export default function GuiaPage({ path, meta, crumb = 'Guias', title, lede, upd
         {meta.og !== false && <meta property="og:title" content={meta.title} />}
         {meta.og !== false && <meta property="og:description" content={meta.description} />}
         {meta.og !== false && <meta property="og:type" content="article" />}
-        {meta.og !== false && <meta property="og:url" content={url} />}
+        <meta property="og:url" content={url} />
       </Helmet>
 
       <a className="guia__skip" href="#conteudo">Pular para o conteúdo</a>

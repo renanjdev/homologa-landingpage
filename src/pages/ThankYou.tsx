@@ -1,4 +1,5 @@
 import React from 'react';
+import { Helmet } from 'react-helmet-async';
 import { Reveal } from '../lib/anim';
 import { CheckCircle2, ArrowRight } from 'lucide-react';
 import WhatsAppIcon from '../components/icons/WhatsAppIcon';
@@ -10,6 +11,10 @@ import { buildWhatsAppLink } from '../utils/whatsapp';
 const ThankYou = () => {
   return (
     <div className="min-h-screen flex flex-col bg-void text-mist">
+      <Helmet>
+        <link rel="canonical" href="https://homologaplus.com.br/obrigado" />
+        <meta property="og:url" content="https://homologaplus.com.br/obrigado" />
+      </Helmet>
       <Navbar scrolled={true} />
 
       <main className="flex-grow flex items-center justify-center pt-24 pb-16 px-4 sm:px-6 lg:px-8">

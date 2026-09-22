@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState, type RefObject } from 'react';
+import { useEffect, useRef, type RefObject } from 'react';
 import type { ScrollFrame } from './types';
 
 const listeners = new Set<(frame: ScrollFrame) => void>();
@@ -19,12 +19,12 @@ function publish(frame: ScrollFrame) {
   listeners.forEach((listener) => listener(frame));
 }
 
+// Sem estado React de progresso: re-renderizava a página inteira na rolagem.
+// O progresso vive em --fable-progress (na barra própria) e em subscribeScroll.
 export function useVirtualScroll(total: number): {
   rootRef: RefObject<HTMLDivElement | null>;
-  progress: number;
 } {
   const rootRef = useRef<HTMLDivElement>(null);
-  const [progress, setProgress] = useState(0);
 
   useEffect(() => {
     const root = rootRef.current;
@@ -73,9 +73,19 @@ export function useVirtualScroll(total: number): {
     let wheelGestureConsumed = false;
     let wheelGestureTimer = 0;
     let lastTickTime = performance.now();
-    let lastProgress = -1;
     let lastRenderedY = Number.NaN;
     let lastPublishedY = Number.NaN;
+
+    // A variável fica só na barra própria: no <html> ela forçava recálculo de
+    // estilo da página inteira a cada quadro de rolagem.
+    const progressHost = document.querySelector<HTMLElement>('.fable-scrollbar') ?? html;
+    let lastProgressText = '';
+    const setProgressVar = (value: number) => {
+      const text = value.toFixed(4);
+      if (text === lastProgressText) return;
+      lastProgressText = text;
+      progressHost.style.setProperty('--fable-progress', text);
+    };
 
     const clamp = (value: number) => Math.max(0, Math.min(max, value));
     const nearestAnchorIndex = (value: number) => anchors.reduce((nearest, anchor, index) => (
@@ -220,16 +230,12 @@ export function useVirtualScroll(total: number): {
         lastRenderedY = current;
       }
       const nextProgress = max > 0 ? current / max : 0;
-      document.documentElement.style.setProperty('--fable-progress', nextProgress.toFixed(4));
+      setProgressVar(nextProgress);
       const frame = { y: current, target, max, progress: nextProgress };
       lastFrame = frame;
       if (!Number.isFinite(lastPublishedY) || Math.abs(current - lastPublishedY) > 0.25) {
         publish(frame);
         lastPublishedY = current;
-      }
-      if (Math.abs(nextProgress - lastProgress) > 0.003) {
-        setProgress(nextProgress);
-        lastProgress = nextProgress;
       }
       raf = requestAnimationFrame(tick);
     };
@@ -262,10 +268,10 @@ export function useVirtualScroll(total: number): {
       body.style.fontSize = previous.bodyFontSize;
       html.style.overflow = previous.htmlOverflow;
       root.style.transform = '';
-      document.documentElement.style.removeProperty('--fable-progress');
+      progressHost.style.removeProperty('--fable-progress');
       delete window.__fable;
     };
   }, [total]);
 
-  return { rootRef, progress };
+  return { rootRef };
 }

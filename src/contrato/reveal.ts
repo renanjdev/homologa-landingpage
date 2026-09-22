@@ -9,10 +9,13 @@ export function useSectionPresence(section: SectionId) {
     const node = document.querySelector<HTMLElement>(`[data-section="${section}"]`);
     if (!node) return;
     let previous = -1;
+    // Passos de 0,1 (antes 0,02): ~10 renders por passagem em vez de ~50.
+    // As transições CSS de quem consome suavizam os degraus.
     return subscribeScroll((frame) => {
       const enter = window.innerHeight * 0.92;
-      const value = Math.max(0, Math.min(1, (frame.y + enter - node.offsetTop) / (window.innerHeight * 0.5)));
-      if (Math.abs(previous - value) <= 0.02) return;
+      const raw = Math.max(0, Math.min(1, (frame.y + enter - node.offsetTop) / (window.innerHeight * 0.5)));
+      const value = Math.round(raw * 10) / 10;
+      if (value === previous) return;
       previous = value;
       setPresence(value);
     });

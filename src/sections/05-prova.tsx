@@ -16,7 +16,7 @@ type Plan = {
 const plans: Plan[] = [
   {
     name: 'Starter',
-    price: '297',
+    price: '397',
     description: 'Para quem homologa alguns projetos por mês e quer parar de montar documento à mão.',
     volume: '7 projetos',
     volumeDetail: 'automatizados por mês',

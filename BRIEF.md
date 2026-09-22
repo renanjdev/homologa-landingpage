@@ -14,7 +14,7 @@ Do cadastro ao parecer de acesso, o Homologa Plus dimensiona, gera e valida memo
 2. **A PEÇA DENSA:** cockpit interativo de um dossiê técnico. Alternar documentos reais em `public/doc-*.webp`, mostrar dados simulados claramente identificados e uma leitura de conformidade. Não inventar telemetria de cliente.
 3. **O MECANISMO:** fluxo visual cadastro → dimensionamento → geração → validação → protocolo, citando os formatos PDF, SVG e DXF e as normas NBR 5410, NBR 16690, PRODIST Módulo 3 e Lei 14.300.
 4. **A VIRADA:** fundo inteiro azul. Matar a objeção “é só mais um painel”: o diferencial é o motor de engenharia que produz e verifica o dossiê; a gestão vem junto.
-5. **A PROVA:** evidência visual real de produto e planos verificados. Starter: R$ 297/mês, 7 projetos automatizados/mês, 3 usuários técnicos, até 50 integradoras. Full: R$ 597/mês, projetos ilimitados, 10 usuários técnicos, integradoras ilimitadas e suporte dedicado. Sem fidelidade.
+5. **A PROVA:** evidência visual real de produto e planos verificados. Starter: R$ 397/mês, 7 projetos automatizados/mês, 3 usuários técnicos, até 50 integradoras. Full: R$ 597/mês, projetos ilimitados, 10 usuários técnicos, integradoras ilimitadas e suporte dedicado. Sem fidelidade.
 6. **A AÇÃO:** fechamento direto para WhatsApp. Demonstração sem compromisso, acesso liberado pela equipe. Incluir acesso à plataforma, contato, Bauru/SP e links legais. Não prometer teste grátis.
 
 ## Regras vinculantes

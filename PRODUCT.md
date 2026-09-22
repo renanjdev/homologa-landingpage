@@ -55,7 +55,7 @@ Um concorrente que só faz gestão de processo não consegue copiar isso sem con
 
 | Plano | Preço | Cota de automação | Assentos e parceiros |
 |---|---|---|---|
-| Homologa Starter | R$ 297/mês | 7 projetos automatizados/mês | 3 usuários técnicos, até 50 integradoras |
+| Homologa Starter | R$ 397/mês | 7 projetos automatizados/mês | 3 usuários técnicos, até 50 integradoras |
 | Homologa Full | R$ 597/mês | Projetos ilimitados | 10 usuários técnicos, integradoras ilimitadas, suporte dedicado |
 
 A diferença entre os planos é **volume de automação**, não recurso. Cadastro de projetos é ilimitado nos dois. "Mais escolhido" está no Full.

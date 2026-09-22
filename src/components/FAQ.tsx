@@ -29,7 +29,7 @@ const FAQ = () => {
     },
     {
       question: "Em qual plano está a Automação?",
-      answer: "A Automação vem nos dois planos. O que muda entre eles é o volume: o Homologa Starter (R$ 297/mês) automatiza 7 projetos por mês e o Homologa Full (R$ 597/mês) não tem teto. Na demonstração, mostramos a Automação gerando e validando documentos de verdade."
+      answer: "A Automação vem nos dois planos. O que muda entre eles é o volume: o Homologa Starter (R$ 397/mês) automatiza 7 projetos por mês e o Homologa Full (R$ 597/mês) não tem teto. Na demonstração, mostramos a Automação gerando e validando documentos de verdade."
     },
     {
       question: "Como funciona a demonstração?",

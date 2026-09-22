@@ -38,7 +38,7 @@ const Pricing = () => {
   const plans: Plan[] = [
     {
       name: "Homologa Starter",
-      price: "297",
+      price: "397",
       description: "Para quem homologa com regularidade.",
       quota: "7 projetos",
       quotaSubtitle: "automatizados por mês",

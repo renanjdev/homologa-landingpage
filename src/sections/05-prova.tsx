@@ -129,7 +129,7 @@ export default function Prova({ label }: SectionProps) {
         />
       </div>
 
-      <div className="proof__plans" aria-label="Planos Homologa Plus">
+      <div className="proof__plans" data-scroll-anchor aria-label="Planos Homologa Plus">
         {plans.map((plan) => (
           <article className={`proof__plan ${plan.featured ? 'proof__plan--full' : ''}`} key={plan.name} aria-label={`Plano ${plan.name}`}>
             <div>
@@ -160,7 +160,7 @@ export default function Prova({ label }: SectionProps) {
         ))}
       </div>
 
-      <div className="proof__faq" aria-labelledby="proof-faq-title">
+      <div className="proof__faq" data-scroll-anchor aria-labelledby="proof-faq-title">
         <p className="proof__faq-heading" id="proof-faq-title">Dúvidas rápidas antes de começar</p>
         <div className="proof__faq-grid">
           <details className="proof__faq-item">

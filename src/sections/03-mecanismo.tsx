@@ -16,7 +16,7 @@ const steps = [
   {
     code: '03',
     title: 'Geração dos documentos',
-    detail: 'Diagramas, memorial, planta e anexos da distribuidora, editáveis.',
+    detail: 'Memorial, diagramas, planta e anexos da distribuidora, editáveis.',
   },
   {
     code: '04',
@@ -322,7 +322,7 @@ export default function Mecanismo({ label }: SectionProps) {
           </div>
         </div>
 
-        <div className="mechanism__diagram" aria-label="Fluxo da automação de engenharia">
+        <div className="mechanism__diagram" data-scroll-anchor aria-label="Fluxo da automação de engenharia">
           {steps.map((step, index) => {
             const stepPresence = presenceForStep(presence, index);
             const stepStyle = { '--step-presence': stepPresence } as CSSProperties;
@@ -339,7 +339,7 @@ export default function Mecanismo({ label }: SectionProps) {
           })}
         </div>
 
-        <div className="mechanism__footer">
+        <div className="mechanism__footer" data-scroll-anchor>
           <div className="mechanism__outputs">
             <LineReveal as="p" className="mechanism__caption" section="03" lines={['Arquivos de saída']} />
             <div className="mechanism__formats" aria-label="Formatos de arquivo editáveis">

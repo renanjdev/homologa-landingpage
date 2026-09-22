@@ -86,7 +86,7 @@ A diferença entre os planos é **volume de automação**, não recurso. Cadastr
 - Capturas do produto: `dashboard.webp`, `financeiro.webp`, `mapa-projetos.webp`, `fluxo.webp`, `mobile-preview.webp`
 - Documentos gerados pela Automação: `doc-unifilar.webp`, `doc-unifilar-completo.webp`, `doc-blocos.webp`, `doc-planta.webp`, `doc-memorial.webp`
 - Anexos por distribuidora, já preenchidos: `doc-anexo-equatorial.webp`, `doc-anexo-cpfl.webp`, `doc-anexo-energisa.webp`
-- Vídeo da Automação: `automacao-demo.mp4` com pôster `automacao-demo-poster.jpg`
+- Vídeo da Automação: `automacao-loop.mp4` (loop de 15,1 s em três atos: validar, gerar e conferir unifilar, blocos e planta) com pôster `automacao-loop-poster.jpg` (o unifilar pronto)
 - Conteúdo editorial próprio: cinco páginas de SEO em `src/pages/seo/` sobre homologação, documentos, erros comuns e CPFL
 
 **Usar com ressalva:** "mais de 200 empresas" e "98% de aprovação" são estimativas internas sem base auditável (confirmado com o usuário). Podem continuar no site, mas não devem virar promessa dura, número em destaque de manchete, ou base de garantia. Se um trabalho futuro precisar de prova forte, use as demonstrações de produto acima, não esses números.

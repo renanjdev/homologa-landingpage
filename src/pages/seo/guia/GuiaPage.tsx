@@ -13,7 +13,8 @@ export type GuiaBlock =
   | { kind: 'steps'; items: Pair[] }
   | { kind: 'pairs'; items: Pair[] }
   | { kind: 'numbered'; items: ReactNode[] }
-  | { kind: 'groups'; groups: { title: string; items: string[] }[] };
+  | { kind: 'groups'; groups: { title: string; items: string[] }[] }
+  | { kind: 'table'; head: string[]; rows: ReactNode[][] };
 
 export type GuiaSection = {
   id: string;
@@ -25,11 +26,14 @@ export type GuiaSection = {
 
 type GuiaPageProps = {
   path: string;
-  meta: { title: string; description: string };
+  meta: { title: string; description: string; og?: boolean };
+  crumb?: string;
   title: string;
-  lede: string;
+  lede?: ReactNode;
+  updated?: string;
   sections: GuiaSection[];
-  cta: { title: string; text: string; note?: string };
+  cta?: { title: string; text: string; note?: string };
+  related?: boolean;
 };
 
 export const GUIAS = [
@@ -85,6 +89,21 @@ function Block({ block }: { block: GuiaBlock }) {
           ))}
         </ol>
       );
+    case 'table':
+      return (
+        <div className="guia__table-wrap" role="region" aria-label="Tabela" tabIndex={0}>
+          <table className="guia__table">
+            <thead>
+              <tr>{block.head.map((cell) => <th key={cell} scope="col">{cell}</th>)}</tr>
+            </thead>
+            <tbody>
+              {block.rows.map((row, index) => (
+                <tr key={index}>{row.map((cell, cellIndex) => <td key={cellIndex}>{cell}</td>)}</tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      );
     case 'groups':
       return (
         <div className="guia__groups">
@@ -135,11 +154,12 @@ function Toc({ sections, active }: { sections: GuiaSection[]; active: string }) 
   );
 }
 
-export default function GuiaPage({ path, meta, title, lede, sections, cta }: GuiaPageProps) {
+export default function GuiaPage({ path, meta, crumb = 'Guias', title, lede, updated, sections, cta, related = true }: GuiaPageProps) {
   const ids = React.useMemo(() => sections.map((section) => section.id), [sections]);
   const active = useActiveSection(ids);
   const url = `https://homologaplus.com.br${path}`;
   const others = GUIAS.filter((guia) => guia.to !== path);
+  const tocLabel = crumb === 'Guias' ? 'Neste guia' : 'Nesta página';
 
   // O ruído global de index.css é uma mesclagem de tela cheia a cada quadro de rolagem.
   useEffect(() => {
@@ -153,10 +173,10 @@ export default function GuiaPage({ path, meta, title, lede, sections, cta }: Gui
         <title>{meta.title}</title>
         <meta name="description" content={meta.description} />
         <link rel="canonical" href={url} />
-        <meta property="og:title" content={meta.title} />
-        <meta property="og:description" content={meta.description} />
-        <meta property="og:type" content="article" />
-        <meta property="og:url" content={url} />
+        {meta.og !== false && <meta property="og:title" content={meta.title} />}
+        {meta.og !== false && <meta property="og:description" content={meta.description} />}
+        {meta.og !== false && <meta property="og:type" content="article" />}
+        {meta.og !== false && <meta property="og:url" content={url} />}
       </Helmet>
 
       <a className="guia__skip" href="#conteudo">Pular para o conteúdo</a>
@@ -195,20 +215,21 @@ export default function GuiaPage({ path, meta, title, lede, sections, cta }: Gui
             <nav aria-label="Trilha de navegação" className="guia__crumbs">
               <Link to="/">Início</Link>
               <span aria-hidden="true">/</span>
-              <span>Guias</span>
+              <span>{crumb}</span>
             </nav>
             <h1 className="guia__title">{title}</h1>
-            <p className="guia__lede">{lede}</p>
+            {updated && <p className="guia__updated fable-tabular">{updated}</p>}
+            {lede && <p className="guia__lede">{lede}</p>}
           </div>
 
           <div className="guia__body">
-            <aside className="guia__toc" aria-label="Neste guia">
+            <aside className="guia__toc" aria-label={tocLabel}>
               <details className="guia__toc-mobile">
-                <summary>Neste guia</summary>
+                <summary>{tocLabel}</summary>
                 <Toc sections={sections} active={active} />
               </details>
               <div className="guia__toc-desktop">
-                <p className="guia__toc-title">Neste guia</p>
+                <p className="guia__toc-title">{tocLabel}</p>
                 <Toc sections={sections} active={active} />
               </div>
             </aside>
@@ -234,16 +255,18 @@ export default function GuiaPage({ path, meta, title, lede, sections, cta }: Gui
                 </section>
               ))}
 
-              <section className="guia__cta fable-invert" aria-labelledby="guia-cta-titulo">
-                <h2 id="guia-cta-titulo" className="guia__cta-title">{cta.title}</h2>
-                <p className="guia__cta-text">{cta.text}</p>
-                <a className="fable-button guia__cta-button" href={DEMO_LINK} target="_blank" rel="noopener noreferrer" onClick={trackContact}>
-                  Agendar demonstração
-                </a>
-                {cta.note && <p className="guia__cta-note">{cta.note}</p>}
-              </section>
+              {cta && (
+                <section className="guia__cta fable-invert" aria-labelledby="guia-cta-titulo">
+                  <h2 id="guia-cta-titulo" className="guia__cta-title">{cta.title}</h2>
+                  <p className="guia__cta-text">{cta.text}</p>
+                  <a className="fable-button guia__cta-button" href={DEMO_LINK} target="_blank" rel="noopener noreferrer" onClick={trackContact}>
+                    Agendar demonstração
+                  </a>
+                  {cta.note && <p className="guia__cta-note">{cta.note}</p>}
+                </section>
+              )}
 
-              <nav className="guia__related" aria-label="Outros guias">
+              {related && <nav className="guia__related" aria-label="Outros guias">
                 <p className="guia__toc-title">Continue lendo</p>
                 <ul>
                   {others.map((guia) => (
@@ -252,7 +275,7 @@ export default function GuiaPage({ path, meta, title, lede, sections, cta }: Gui
                     </li>
                   ))}
                 </ul>
-              </nav>
+              </nav>}
             </article>
           </div>
         </div>

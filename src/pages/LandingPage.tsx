@@ -27,8 +27,8 @@ export default function LandingPage() {
   return (
     <div className="fable-page">
       <Helmet>
-        <title>Automação e Gestão de Homologação Solar | Homologa Plus</title>
-        <meta name="description" content="Gere memorial, unifilar, planta e anexos no padrão da distribuidora, valide a conformidade e acompanhe a homologação solar em um só fluxo." />
+        <title>Automação de Documentos para Homologação Fotovoltaica | Homologa Plus</title>
+        <meta name="description" content="Automação de documentos para homologação de usinas fotovoltaicas: diagrama unifilar, memorial, planta e os formulários da sua distribuidora prontos e conferidos antes do protocolo." />
         <link rel="canonical" href="https://homologaplus.com.br/" />
       </Helmet>
 

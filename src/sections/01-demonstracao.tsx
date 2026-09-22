@@ -70,8 +70,10 @@ export default function Demonstracao({ id }: SectionProps) {
           section={id}
           className="fable-display"
           lines={[
-            <>Documentação pronta.</>,
-            <><span className="fable-accent">Validada</span> antes do protocolo.</>,
+            <>Automação de</>,
+            <>documentos para</>,
+            <>homologação</>,
+            <span className="fable-accent">fotovoltaica.</span>,
           ]}
         />
         <LineReveal
@@ -79,9 +81,8 @@ export default function Demonstracao({ id }: SectionProps) {
           section={id}
           className="fable-copy"
           lines={[
-            <>Pare de montar memorial e unifilar à mão a cada projeto.</>,
-            <>O Homologa Plus dimensiona a usina e gera o pacote do protocolo no padrão da sua distribuidora.</>,
-            <>Antes do envio, aponta o que impediria a aprovação, com a norma citada.</>,
+            <>Cadastre a usina uma vez: diagrama unifilar, memorial descritivo, planta de localização e os formulários da sua distribuidora saem prontos.</>,
+            <>Antes do protocolo, o sistema confere a conformidade e aponta o que impediria a aprovação, com a norma citada.</>,
           ]}
         />
         <div className="fable-actions" style={{ marginTop: 'clamp(1.75rem, 4vh, 3rem)' }}>

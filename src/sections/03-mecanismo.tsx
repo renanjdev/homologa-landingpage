@@ -16,7 +16,7 @@ const steps = [
   {
     code: '03',
     title: 'Geração dos documentos',
-    detail: 'Memorial, diagramas, planta e anexos da distribuidora, editáveis.',
+    detail: 'Diagramas, memorial, planta e anexos da distribuidora, editáveis.',
   },
   {
     code: '04',

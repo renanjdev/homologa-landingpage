@@ -77,8 +77,8 @@ export default function Prova({ label }: SectionProps) {
         .proof__plan--full .proof__volume span { color: color-mix(in srgb, var(--fable-void) 72%, transparent); }
 
         .proof__features { display: grid; gap: .6rem; margin: 0; padding: 0; list-style: none; }
-        .proof__features li { display: grid; grid-template-columns: .75rem minmax(0, 1fr); gap: .65rem; color: var(--fable-paper); font-size: var(--fable-body); line-height: 1.4; }
-        .proof__features li::before { content: ""; width: .75rem; height: 1px; margin-top: .72em; background: currentColor; opacity: .55; }
+        .proof__features li { display: grid; grid-template-columns: .3125rem minmax(0, 1fr); gap: .7rem; color: var(--fable-paper); font-size: var(--fable-body); line-height: 1.4; }
+        .proof__features li::before { content: ""; width: .3125rem; height: .3125rem; margin-top: calc(.7em - .15625rem); border-radius: 50%; background: currentColor; opacity: .55; }
         .proof__plan--full .proof__features li { color: var(--fable-void); }
 
         .proof__cta { display: grid; gap: .75rem; align-self: end; }

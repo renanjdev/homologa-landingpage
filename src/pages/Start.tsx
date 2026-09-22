@@ -14,7 +14,7 @@ const Start = () => {
   return (
     <div className="min-h-screen bg-void text-mist font-sans overflow-x-hidden selection:bg-coral/25">
       <Helmet>
-        <title>Agende uma Demonstração | Homologa Plus - Automação e Gestão de Homologação Solar</title>
+        <title>Agende uma Demonstração | Homologa Plus: Automação e Gestão de Homologação Solar</title>
         <meta name="description" content="Pare de gerenciar homologações solares por planilha e WhatsApp. Controle projetos, clientes e documentos em um só lugar. Agende uma demonstração e veja como funciona." />
         <meta name="keywords" content="demonstração homologa plus, software homologação solar, gestão projetos solares" />
         <link rel="canonical" href="https://homologaplus.com.br/start" />

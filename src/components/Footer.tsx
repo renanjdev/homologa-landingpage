@@ -49,7 +49,7 @@ const Footer = () => {
             <h3 className="font-bold text-white mb-6">Contato</h3>
             <ul className="space-y-4 text-ash">
               <li>contato@homologaplus.com.br</li>
-              <li>Bauru - SP</li>
+              <li>Bauru, SP</li>
             </ul>
           </div>
         </div>

@@ -30,6 +30,7 @@ export default function LandingPage() {
         <title>Automação de Documentos para Homologação Fotovoltaica | Homologa Plus</title>
         <meta name="description" content="Automação de documentos para homologação de usinas fotovoltaicas: diagrama unifilar, memorial, planta e os formulários da sua distribuidora prontos e conferidos antes do protocolo." />
         <link rel="canonical" href="https://homologaplus.com.br/" />
+        <meta property="og:url" content="https://homologaplus.com.br/" />
       </Helmet>
 
       <FablePreloader />

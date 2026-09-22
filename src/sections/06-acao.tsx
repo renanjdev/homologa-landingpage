@@ -146,7 +146,6 @@ export default function Acao({ id }: SectionProps) {
         .acao__ink { color: var(--fable-void); }
         .acao__ink.fable-copy { color: color-mix(in srgb, var(--fable-void) 70%, transparent); }
         .acao__ink.fable-label { color: color-mix(in srgb, var(--fable-void) 64%, transparent); }
-        .acao__ink.fable-label::before { background: currentColor; }
         .acao__primary { background: var(--fable-void); color: var(--fable-paper); }
         .acao__primary:hover { background: color-mix(in srgb, var(--fable-void) 88%, var(--fable-paper)); }
         .acao__secondary { border-color: color-mix(in srgb, var(--fable-void) 30%, transparent); color: var(--fable-void); background: color-mix(in srgb, var(--fable-paper) 42%, transparent); }

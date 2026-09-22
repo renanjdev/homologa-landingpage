@@ -204,7 +204,6 @@ body.fable-active {
 .fable-label {
   display: inline-flex;
   align-items: center;
-  gap: 0.65rem;
   margin: 0 0 1.5rem;
   color: var(--fable-muted);
   font-family: "Cascadia Code", "JetBrains Mono", ui-monospace, monospace;
@@ -213,13 +212,6 @@ body.fable-active {
   letter-spacing: 0.16em;
   line-height: 1.25;
   text-transform: uppercase;
-}
-
-.fable-label::before {
-  content: "";
-  width: 1.75rem;
-  height: 1px;
-  background: currentColor;
 }
 
 .fable-display,

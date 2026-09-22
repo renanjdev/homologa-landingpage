@@ -97,6 +97,7 @@ export default function Acao({ id }: SectionProps) {
       </div>
 
       <footer
+        data-scroll-anchor
         aria-label="Informações institucionais"
         style={{
           display: 'grid',

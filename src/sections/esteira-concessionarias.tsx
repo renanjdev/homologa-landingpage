@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, type CSSProperties } from 'react';
+import React, { type CSSProperties } from 'react';
 
 // Proporção (largura/altura) de cada arquivo em public/concessionarias.
 const CONCESSIONARIAS = [
@@ -37,19 +37,8 @@ function Logos({ copia }: { copia?: boolean }) {
 }
 
 export default function EsteiraConcessionarias() {
-  const ref = useRef<HTMLDivElement>(null);
-
-  // Fora da tela a animação pausa: sem quadros compostos à toa.
-  useEffect(() => {
-    const el = ref.current;
-    if (!el || typeof IntersectionObserver === 'undefined') return;
-    const io = new IntersectionObserver(([entry]) => el.classList.toggle('is-fora', !entry.isIntersecting));
-    io.observe(el);
-    return () => io.disconnect();
-  }, []);
-
   return (
-    <div ref={ref} className="esteira" role="region" aria-label="Distribuidoras atendidas">
+    <div className="esteira" role="region" aria-label="Distribuidoras atendidas">
       <p className="fable-label esteira__titulo">Preparado para o padrão das principais distribuidoras</p>
       <div className="esteira__trilho">
         <div className="esteira__faixa">

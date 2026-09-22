@@ -123,7 +123,7 @@ export default function PecaDensa({ label }: SectionProps) {
         </p>
       </div>
 
-      <div className="peca-densa__board fable-tabular">
+      <div className="peca-densa__board fable-tabular" data-scroll-anchor>
         <div className="peca-densa__workbench">
           <div className="peca-densa__tabs" role="tablist" aria-label="Documentos do dossiê técnico">
             {documents.map((document, index) => (
@@ -169,7 +169,7 @@ export default function PecaDensa({ label }: SectionProps) {
           </div>
         </div>
 
-        <aside className="peca-densa__panel" aria-label="Estado da validação">
+        <aside className="peca-densa__panel" data-scroll-anchor aria-label="Estado da validação">
           <div className="peca-densa__panel-head">
             <h3>Leitura do validador</h3>
             <span className="peca-densa__simulation">indicadores ilustrativos</span>

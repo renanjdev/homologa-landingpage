@@ -1,184 +1,135 @@
 import React from 'react';
-import { Reveal } from '../lib/anim';
-import { ChevronLeft } from 'lucide-react';
-import { Link } from 'react-router-dom';
-import { Helmet } from 'react-helmet-async';
+import GuiaPage, { type GuiaSection } from './seo/guia/GuiaPage';
 
-const PrivacyPolicy = () => {
-  return (
-    <div className="min-h-screen bg-void font-sans text-mist">
-      <Helmet>
-        <title>Política de Privacidade | Homologa Plus</title>
-        <meta name="description" content="Saiba como o Homologa Plus trata seus dados pessoais: controlador, bases legais, cookies, terceiros, transferência internacional e seus direitos sob a LGPD." />
-        <link rel="canonical" href="https://homologaplus.com.br/privacidade" />
-      </Helmet>
-      <nav className="fixed top-0 left-0 right-0 z-50 bg-ink/70 backdrop-blur-md border-b border-white/10">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
-          <Link to="/" className="flex items-center gap-2 group">
-            <img src="/logo-h-white.png" alt="Homologa Plus" width={40} height={40} className="w-10 h-10 group-hover:scale-110 transition-transform" />
-            <span className="text-xl font-bold tracking-tight text-white">Homologa <span className="text-coral font-medium">Plus</span></span>
-          </Link>
-          <Link to="/" className="flex items-center gap-2 text-ash hover:text-white transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white">
-            <ChevronLeft className="w-5 h-5" />
-            <span>Voltar para Home</span>
-          </Link>
-        </div>
-      </nav>
+const Email = ({ to }: { to: string }) => <a className="guia__link" href={`mailto:${to}`}>{to}</a>;
 
-      <main className="pt-32 pb-20 px-4">
-        <Reveal
-          as="div"
-          y={20}
-          trigger="mount"
-          className="max-w-3xl mx-auto bg-obsidian rounded-3xl p-8 md:p-12 shadow-[var(--key-soft)] border border-white/10"
-        >
-          <h1 className="text-4xl font-bold mb-2 text-white">Política de Privacidade</h1>
-          <p className="mb-8 font-mono text-[13px] uppercase tracking-[0.14em] text-smoke">
-            Última atualização: 04/09/2026
-          </p>
+const sections: GuiaSection[] = [
+  {
+    id: 'controlador',
+    title: '1. Quem é o controlador dos seus dados',
+    blocks: [{
+      kind: 'p',
+      text: <>O Homologa Plus, inscrito no CNPJ nº 68.835.775/0001-10, com sede em Bauru/SP, é o controlador dos dados pessoais tratados neste site, nos termos da Lei nº 13.709/2018 (LGPD). Para qualquer assunto relacionado à privacidade e proteção de dados, fale com nosso Encarregado (DPO) pelo e-mail{' '}<Email to="privacidade@homologaplus.com.br" />. Para outros assuntos:{' '}<Email to="contato@homologaplus.com.br" />.</>,
+    }],
+  },
+  {
+    id: 'dados-coletados',
+    title: '2. Quais dados coletamos',
+    blocks: [{
+      kind: 'checklist',
+      items: [
+        <><strong>Dados de navegação e cookies:</strong> ao aceitar, coletamos identificadores de cookies, endereço IP, páginas visitadas e eventos de interação, por meio de ferramentas de análise e de marketing (ver seção "Cookies").</>,
+        <><strong>Dados de contato que você nos envia:</strong> ao nos chamar pelo WhatsApp ou por e-mail, você nos fornece dados como nome, telefone/WhatsApp, e-mail e o conteúdo da sua mensagem.</>,
+        <><strong>Dados de origem:</strong> parâmetros de campanha (UTMs) e a página de referência, quando presentes no link de acesso.</>,
+      ],
+    }],
+  },
+  {
+    id: 'finalidades',
+    title: '3. Para que usamos (finalidades) e com que base legal',
+    blocks: [{
+      kind: 'table',
+      head: ['Tratamento', 'Finalidade', 'Base legal (LGPD)'],
+      rows: [
+        ['Cookies de marketing (Meta Pixel)', 'Medir campanhas e exibir anúncios', <><strong>Consentimento</strong>: art. 7º, I</>],
+        ['Cookies analíticos (Vercel Speed Insights)', 'Medir desempenho e melhorar o site', <><strong>Consentimento</strong> / legítimo interesse: art. 7º, I / IX</>],
+        ['Atendimento via WhatsApp/e-mail', 'Responder e conduzir a contratação do serviço', <><strong>Procedimentos preliminares ao contrato</strong>: art. 7º, V; e/ou <strong>consentimento</strong>: art. 7º, I</>],
+        ['Cookies estritamente necessários', 'Fazer o site funcionar', <><strong>Legítimo interesse</strong>: art. 7º, IX</>],
+      ],
+    }],
+  },
+  {
+    id: 'compartilhamento',
+    title: '4. Com quem compartilhamos',
+    blocks: [
+      { kind: 'p', text: 'Não vendemos seus dados. Compartilhamos com operadores e parceiros estritamente para as finalidades acima:' },
+      {
+        kind: 'checklist',
+        items: [
+          <><strong>Meta Platforms, Inc.</strong>: Meta Pixel e WhatsApp (rastreamento de marketing e canal de atendimento).</>,
+          <><strong>Vercel Inc.</strong>: hospedagem e telemetria de desempenho (Speed Insights).</>,
+          <><strong>Supabase Inc.</strong> e <strong>Resend Inc.</strong>: armazenamento e envio de e-mails, quando aplicável a solicitações recebidas.</>,
+          <><strong>Concessionárias de energia e órgãos reguladores</strong>: apenas quando necessário à execução de serviços de homologação contratados.</>,
+        ],
+      },
+    ],
+  },
+  {
+    id: 'whatsapp',
+    title: '5. Atendimento pelo WhatsApp',
+    blocks: [{ kind: 'p', text: 'Nossos botões de contato levam ao WhatsApp, serviço operado pela Meta. Ao iniciar a conversa, seu número e o conteúdo das mensagens são tratados também segundo a política de privacidade do WhatsApp/Meta.' }],
+  },
+  {
+    id: 'direitos',
+    title: '6. Seus direitos como titular (art. 18 da LGPD)',
+    blocks: [{
+      kind: 'p',
+      text: <>Você pode, a qualquer momento: confirmar a existência de tratamento; acessar seus dados; corrigir dados incompletos ou desatualizados; solicitar anonimização, bloqueio ou eliminação de dados desnecessários ou tratados em desconformidade; solicitar a portabilidade; obter informação sobre com quem compartilhamos; ser informado sobre a possibilidade de não consentir; <strong>revogar o consentimento</strong>; e peticionar perante a ANPD. Para exercer qualquer direito, escreva para{' '}<Email to="privacidade@homologaplus.com.br" />.</>,
+    }],
+  },
+  {
+    id: 'cookies',
+    title: '7. Cookies e como recusar',
+    blocks: [{
+      kind: 'p',
+      text: (
+        <>
+          Usamos três categorias de cookies: <strong>necessários</strong> (sempre ativos),
+          <strong> analíticos</strong> e <strong>de marketing</strong>.
+          Cookies analíticos e de marketing só são ativados <strong>após o seu consentimento</strong>
+          {' '}no banner exibido na primeira visita. Você pode <strong>aceitar, recusar ou personalizar</strong>
+          {' '}as categorias a qualquer momento pelo botão{' '}
+          <button
+            type="button"
+            className="guia__link"
+            onClick={() => window.dispatchEvent(new Event('open-cookie-preferences'))}
+          >
+            "Preferências de cookies"
+          </button>
+          {' '}no rodapé. Recusar é tão simples quanto aceitar.
+        </>
+      ),
+    }],
+  },
+  {
+    id: 'transferencia',
+    title: '8. Transferência internacional de dados',
+    blocks: [{ kind: 'p', text: 'Os parceiros acima (Meta, Vercel, WhatsApp, Supabase, Resend) processam dados em servidores fora do Brasil, inclusive nos Estados Unidos. Essas transferências ocorrem com base nas hipóteses do art. 33 da LGPD e nas salvaguardas contratuais desses fornecedores.' }],
+  },
+  {
+    id: 'retencao',
+    title: '9. Por quanto tempo guardamos',
+    blocks: [{ kind: 'p', text: 'Mantemos os dados apenas pelo tempo necessário às finalidades informadas ou por obrigação legal. Dados de contato de quem não se torna cliente são eliminados ou anonimizados quando cessa a finalidade. Você pode pedir a eliminação antecipada pelo canal do Encarregado.' }],
+  },
+  {
+    id: 'seguranca',
+    title: '10. Segurança',
+    blocks: [{ kind: 'p', text: 'Adotamos medidas técnicas e organizacionais para proteger seus dados contra acesso não autorizado, perda ou alteração.' }],
+  },
+  {
+    id: 'encarregado',
+    title: '11. Encarregado (DPO) e alterações',
+    blocks: [{
+      kind: 'p',
+      text: <>Encarregado pelo tratamento de dados:{' '}<Email to="privacidade@homologaplus.com.br" />. Podemos atualizar esta política; a data de "Última atualização" no topo indica a versão vigente.</>,
+    }],
+  },
+];
 
-          <div className="space-y-8 text-ash leading-relaxed">
-            <section>
-              <h2 className="text-xl font-semibold text-white mb-3">1. Quem é o controlador dos seus dados</h2>
-              <p>
-                O Homologa Plus, inscrito no CNPJ nº 68.835.775/0001-10, com sede em Bauru/SP, é o
-                controlador dos dados pessoais tratados neste site, nos termos da Lei nº 13.709/2018
-                (LGPD). Para qualquer assunto relacionado à privacidade e proteção de dados, fale com
-                nosso Encarregado (DPO) pelo e-mail{' '}
-                <a href="mailto:privacidade@homologaplus.com.br" className="font-semibold text-coral underline underline-offset-2 hover:text-white">privacidade@homologaplus.com.br</a>.
-                Para outros assuntos:{' '}
-                <a href="mailto:contato@homologaplus.com.br" className="font-semibold text-coral underline underline-offset-2 hover:text-white">contato@homologaplus.com.br</a>.
-              </p>
-            </section>
-
-            <section>
-              <h2 className="text-xl font-semibold text-white mb-3">2. Quais dados coletamos</h2>
-              <ul className="list-disc space-y-2 pl-5">
-                <li><strong className="font-semibold text-white">Dados de navegação e cookies:</strong> ao aceitar, coletamos identificadores de cookies, endereço IP, páginas visitadas e eventos de interação, por meio de ferramentas de análise e de marketing (ver seção "Cookies").</li>
-                <li><strong className="font-semibold text-white">Dados de contato que você nos envia:</strong> ao nos chamar pelo WhatsApp ou por e-mail, você nos fornece dados como nome, telefone/WhatsApp, e-mail e o conteúdo da sua mensagem.</li>
-                <li><strong className="font-semibold text-white">Dados de origem:</strong> parâmetros de campanha (UTMs) e a página de referência, quando presentes no link de acesso.</li>
-              </ul>
-            </section>
-
-            <section>
-              <h2 className="text-xl font-semibold text-white mb-3">3. Para que usamos (finalidades) e com que base legal</h2>
-              <div className="overflow-x-auto">
-                <table className="w-full min-w-[520px] border-collapse text-sm">
-                  <thead>
-                    <tr className="border-b border-white/15 text-left">
-                      <th className="py-2 pr-4 font-semibold text-white">Tratamento</th>
-                      <th className="py-2 pr-4 font-semibold text-white">Finalidade</th>
-                      <th className="py-2 font-semibold text-white">Base legal (LGPD)</th>
-                    </tr>
-                  </thead>
-                  <tbody className="align-top">
-                    <tr className="border-b border-white/10">
-                      <td className="py-3 pr-4">Cookies de marketing (Meta Pixel)</td>
-                      <td className="py-3 pr-4">Medir campanhas e exibir anúncios</td>
-                      <td className="py-3"><strong className="font-semibold text-white">Consentimento</strong>: art. 7º, I</td>
-                    </tr>
-                    <tr className="border-b border-white/10">
-                      <td className="py-3 pr-4">Cookies analíticos (Vercel Speed Insights)</td>
-                      <td className="py-3 pr-4">Medir desempenho e melhorar o site</td>
-                      <td className="py-3"><strong className="font-semibold text-white">Consentimento</strong> / legítimo interesse: art. 7º, I / IX</td>
-                    </tr>
-                    <tr className="border-b border-white/10">
-                      <td className="py-3 pr-4">Atendimento via WhatsApp/e-mail</td>
-                      <td className="py-3 pr-4">Responder e conduzir a contratação do serviço</td>
-                      <td className="py-3"><strong className="font-semibold text-white">Procedimentos preliminares ao contrato</strong>: art. 7º, V; e/ou <strong className="font-semibold text-white">consentimento</strong>: art. 7º, I</td>
-                    </tr>
-                    <tr>
-                      <td className="py-3 pr-4">Cookies estritamente necessários</td>
-                      <td className="py-3 pr-4">Fazer o site funcionar</td>
-                      <td className="py-3"><strong className="font-semibold text-white">Legítimo interesse</strong>: art. 7º, IX</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </section>
-
-            <section>
-              <h2 className="text-xl font-semibold text-white mb-3">4. Com quem compartilhamos</h2>
-              <p className="mb-3">Não vendemos seus dados. Compartilhamos com operadores e parceiros estritamente para as finalidades acima:</p>
-              <ul className="list-disc space-y-2 pl-5">
-                <li><strong className="font-semibold text-white">Meta Platforms, Inc.</strong>: Meta Pixel e WhatsApp (rastreamento de marketing e canal de atendimento).</li>
-                <li><strong className="font-semibold text-white">Vercel Inc.</strong>: hospedagem e telemetria de desempenho (Speed Insights).</li>
-                <li><strong className="font-semibold text-white">Supabase Inc.</strong> e <strong className="font-semibold text-white">Resend Inc.</strong>: armazenamento e envio de e-mails, quando aplicável a solicitações recebidas.</li>
-                <li><strong className="font-semibold text-white">Concessionárias de energia e órgãos reguladores</strong>: apenas quando necessário à execução de serviços de homologação contratados.</li>
-              </ul>
-            </section>
-
-            <section>
-              <h2 className="text-xl font-semibold text-white mb-3">5. Atendimento pelo WhatsApp</h2>
-              <p>Nossos botões de contato levam ao WhatsApp, serviço operado pela Meta. Ao iniciar a conversa, seu número e o conteúdo das mensagens são tratados também segundo a política de privacidade do WhatsApp/Meta.</p>
-            </section>
-
-            <section>
-              <h2 className="text-xl font-semibold text-white mb-3">6. Seus direitos como titular (art. 18 da LGPD)</h2>
-              <p>
-                Você pode, a qualquer momento: confirmar a existência de tratamento; acessar seus dados;
-                corrigir dados incompletos ou desatualizados; solicitar anonimização, bloqueio ou
-                eliminação de dados desnecessários ou tratados em desconformidade; solicitar a
-                portabilidade; obter informação sobre com quem compartilhamos; ser informado sobre a
-                possibilidade de não consentir; <strong className="font-semibold text-white">revogar o consentimento</strong>;
-                e peticionar perante a ANPD. Para exercer qualquer direito, escreva para{' '}
-                <a href="mailto:privacidade@homologaplus.com.br" className="font-semibold text-coral underline underline-offset-2 hover:text-white">privacidade@homologaplus.com.br</a>.
-              </p>
-            </section>
-
-            <section>
-              <h2 className="text-xl font-semibold text-white mb-3">7. Cookies e como recusar</h2>
-              <p>
-                Usamos três categorias de cookies: <strong className="font-semibold text-white">necessários</strong> (sempre ativos),
-                <strong className="font-semibold text-white"> analíticos</strong> e <strong className="font-semibold text-white">de marketing</strong>.
-                Cookies analíticos e de marketing só são ativados <strong className="font-semibold text-white">após o seu consentimento</strong>
-                {' '}no banner exibido na primeira visita. Você pode <strong className="font-semibold text-white">aceitar, recusar ou personalizar</strong>
-                {' '}as categorias a qualquer momento pelo botão{' '}
-                <button
-                  type="button"
-                  onClick={() => window.dispatchEvent(new Event('open-cookie-preferences'))}
-                  className="inline font-semibold text-coral underline underline-offset-2 hover:text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
-                >
-                  "Preferências de cookies"
-                </button>
-                {' '}no rodapé. Recusar é tão simples quanto aceitar.
-              </p>
-            </section>
-
-            <section>
-              <h2 className="text-xl font-semibold text-white mb-3">8. Transferência internacional de dados</h2>
-              <p>Os parceiros acima (Meta, Vercel, WhatsApp, Supabase, Resend) processam dados em servidores fora do Brasil, inclusive nos Estados Unidos. Essas transferências ocorrem com base nas hipóteses do art. 33 da LGPD e nas salvaguardas contratuais desses fornecedores.</p>
-            </section>
-
-            <section>
-              <h2 className="text-xl font-semibold text-white mb-3">9. Por quanto tempo guardamos</h2>
-              <p>Mantemos os dados apenas pelo tempo necessário às finalidades informadas ou por obrigação legal. Dados de contato de quem não se torna cliente são eliminados ou anonimizados quando cessa a finalidade. Você pode pedir a eliminação antecipada pelo canal do Encarregado.</p>
-            </section>
-
-            <section>
-              <h2 className="text-xl font-semibold text-white mb-3">10. Segurança</h2>
-              <p>Adotamos medidas técnicas e organizacionais para proteger seus dados contra acesso não autorizado, perda ou alteração.</p>
-            </section>
-
-            <section>
-              <h2 className="text-xl font-semibold text-white mb-3">11. Encarregado (DPO) e alterações</h2>
-              <p>
-                Encarregado pelo tratamento de dados:{' '}
-                <a href="mailto:privacidade@homologaplus.com.br" className="font-semibold text-coral underline underline-offset-2 hover:text-white">privacidade@homologaplus.com.br</a>.
-                Podemos atualizar esta política; a data de "Última atualização" no topo indica a versão vigente.
-              </p>
-            </section>
-          </div>
-        </Reveal>
-      </main>
-
-      <footer className="bg-void border-t border-white/10 py-12">
-        <div className="max-w-7xl mx-auto px-4 text-center text-smoke text-sm">
-          <p>© 2026 Homologa Plus. Todos os direitos reservados.</p>
-        </div>
-      </footer>
-    </div>
-  );
-};
+const PrivacyPolicy = () => (
+  <GuiaPage
+    path="/privacidade"
+    meta={{
+      title: 'Política de Privacidade | Homologa Plus',
+      description: 'Saiba como o Homologa Plus trata seus dados pessoais: controlador, bases legais, cookies, terceiros, transferência internacional e seus direitos sob a LGPD.',
+      og: false,
+    }}
+    crumb="Institucional"
+    title="Política de Privacidade"
+    updated="Última atualização: 04/09/2026"
+    sections={sections}
+    related={false}
+  />
+);
 
 export default PrivacyPolicy;

@@ -1,4 +1,4 @@
-import { useEffect, useRef, type RefObject } from 'react';
+import { useEffect, useRef, useState, type RefObject } from 'react';
 import type { ScrollFrame } from './types';
 
 const listeners = new Set<(frame: ScrollFrame) => void>();
@@ -30,12 +30,12 @@ const sectionSelector = (index: number) => `[data-section="${String(index + 1).p
  *   conteúdo maiores que a tela. Os frames continuam publicados a partir do
  *   scroll da janela, então revelações, cena e barra própria seguem funcionando.
  */
-// Sem estado React de progresso: re-renderizava a página inteira durante a
-// rolagem. O progresso vive em --fable-progress e em subscribeScroll.
 export function useVirtualScroll(total: number): {
   rootRef: RefObject<HTMLDivElement | null>;
+  progress: number;
 } {
   const rootRef = useRef<HTMLDivElement>(null);
+  const [progress, setProgress] = useState(0);
 
   useEffect(() => {
     const root = rootRef.current;
@@ -56,15 +56,19 @@ export function useVirtualScroll(total: number): {
     if (!guided) html.classList.add('fable-native');
     body.style.fontSize = '15px';
 
-    // Variável só na barra própria: no <html> ela forçava recálculo de estilo
-    // da página inteira a cada quadro de rolagem.
-    const progressHost = document.querySelector<HTMLElement>('.fable-scrollbar') ?? html;
+    let lastProgress = -1;
     let lastProgressText = '';
     const setProgressVar = (value: number) => {
       const text = value.toFixed(4);
       if (text === lastProgressText) return;
       lastProgressText = text;
-      progressHost.style.setProperty('--fable-progress', text);
+      html.style.setProperty('--fable-progress', text);
+    };
+    const syncProgressState = (value: number) => {
+      if (Math.abs(value - lastProgress) > 0.003) {
+        setProgress(value);
+        lastProgress = value;
+      }
     };
 
     const restore = () => {
@@ -74,7 +78,7 @@ export function useVirtualScroll(total: number): {
       body.style.fontSize = previous.bodyFontSize;
       html.style.overflow = previous.htmlOverflow;
       root.style.transform = '';
-      progressHost.style.removeProperty('--fable-progress');
+      html.style.removeProperty('--fable-progress');
       delete window.__fable;
     };
 
@@ -87,6 +91,7 @@ export function useVirtualScroll(total: number): {
         const nextProgress = Math.min(1, Math.max(0, y / max));
         setProgressVar(nextProgress);
         publish({ y, target: y, max, progress: nextProgress });
+        syncProgressState(nextProgress);
       };
       const schedule = () => {
         if (!raf) raf = requestAnimationFrame(update);
@@ -146,6 +151,7 @@ export function useVirtualScroll(total: number): {
         publish(frame);
         lastPublishedY = current;
       }
+      syncProgressState(nextProgress);
     };
 
     // O loop só roda enquanto há movimento: parado, não consome CPU nem bateria.
@@ -389,5 +395,5 @@ export function useVirtualScroll(total: number): {
     };
   }, [total]);
 
-  return { rootRef };
+  return { rootRef, progress };
 }

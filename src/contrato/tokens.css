@@ -22,6 +22,10 @@ html.fable-active body {
   overscroll-behavior: none;
 }
 
+/* O ruído global de index.css (body::before, soft-light em tela cheia)
+   duplicava o .fable-noise e custava uma mesclagem da tela toda por quadro. */
+body.fable-active::before { content: none; }
+
 body.fable-active {
   margin: 0;
   background: var(--fable-void);
@@ -92,8 +96,9 @@ body.fable-active {
   min-height: 4.75rem;
   padding: 0 var(--fable-gutter);
   border-bottom: 1px solid color-mix(in srgb, var(--fable-paper) 12%, transparent);
-  background: color-mix(in srgb, var(--fable-void) 76%, transparent);
-  backdrop-filter: blur(1.25rem);
+  /* Sem backdrop-filter: desfocar o conteúdo em movimento atrás do menu
+     custava um blur de faixa inteira a cada quadro. Fundo um pouco mais denso compensa. */
+  background: color-mix(in srgb, var(--fable-void) 88%, transparent);
 }
 
 .fable-brand {
